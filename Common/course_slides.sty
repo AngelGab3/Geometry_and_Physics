@@ -1,0 +1,71 @@
+\ProvidesPackage{course_slides}[2026/10/28 Beamer Theme for Geometry and Physics]
+
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,angles,quotes,calc,babel,positioning}
+\RequirePackage{xcolor}
+
+% Palette
+\definecolor{blackmain}{HTML}{1A1A1A}
+\definecolor{orangeacc}{HTML}{E65C00}
+\definecolor{creambg}{HTML}{FBF8F1}
+\definecolor{orangebg}{HTML}{FFF4EB}
+\definecolor{graymuted}{HTML}{7A746E}
+\definecolor{pureblack}{HTML}{0D0D0D}
+\definecolor{navyaccent}{HTML}{1B365D}
+
+% Disable navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Color theme settings
+\setbeamercolor{palette primary}{bg=blackmain,fg=creambg}
+\setbeamercolor{palette secondary}{bg=orangeacc,fg=white}
+\setbeamercolor{palette tertiary}{bg=creambg,fg=blackmain}
+\setbeamercolor{structure}{fg=orangeacc}
+
+\setbeamercolor{background canvas}{bg=creambg}
+\setbeamercolor{normal text}{fg=blackmain}
+\setbeamercolor{frametitle}{bg=creambg,fg=blackmain}
+\setbeamercolor{title}{bg=creambg,fg=blackmain}
+\setbeamercolor{subtitle}{fg=orangeacc}
+\setbeamercolor{author}{fg=graymuted}
+\setbeamercolor{institute}{fg=graymuted}
+\setbeamercolor{date}{fg=graymuted}
+
+% Custom Block Colors
+\setbeamercolor{block title}{bg=orangeacc,fg=white}
+\setbeamercolor{block body}{bg=orangebg,fg=blackmain}
+
+\setbeamercolor{block title example}{bg=navyaccent,fg=white}
+\setbeamercolor{block body example}{bg=white,fg=blackmain}
+
+\setbeamercolor{block title alerted}{bg=pureblack,fg=white}
+\setbeamercolor{block body alerted}{bg=white,fg=blackmain}
+
+\setbeamerfont{frametitle}{series=\bfseries,size=\Large}
+\setbeamerfont{title}{series=\bfseries,size=\LARGE}
+
+% Headline & Footline
+\setbeamertemplate{frametitle}{%
+  \vspace{0.4cm}%
+  \noindent{\Large\bfseries\color{blackmain}\insertframetitle}%
+  \ifx\insertframesubtitle\@empty\else%
+    \par\noindent{\small\color{orangeacc}\insertframesubtitle}%
+  \fi%
+  \par\vspace{0.1cm}%
+  \noindent{\color{orangeacc}\rule{\linewidth}{1.2pt}}\par%
+}
+
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.5ex,dp=1.1ex,left]{footline}%
+    \hspace*{3ex}\textcolor{graymuted}{\scriptsize Geometría y Física I}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.1ex,center]{footline}%
+    \textcolor{orangeacc}{\scriptsize\insertshorttitle}
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.5ex,dp=1.1ex,right]{footline}%
+    \textcolor{graymuted}{\scriptsize\insertframenumber{} / \inserttotalframenumber}\hspace*{3ex}
+  \end{beamercolorbox}}%
+  \vskip1ex%
+}

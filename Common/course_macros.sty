@@ -1,0 +1,44 @@
+\ProvidesPackage{course_macros}[2026/10/28 Macros for Geometry and Physics]
+
+\RequirePackage{amsmath,amssymb,amsfonts,mathtools}
+
+% Sets and spaces
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Manifold}{\mathcal{M}}
+\newcommand{\PhaseSpace}{\mathcal{P}}
+
+% Tangent and cotangent spaces
+\newcommand{\TpM}{T_p\mathcal{M}}
+\newcommand{\TstarpM}{T^*_p\mathcal{M}}
+\newcommand{\TM}{T\mathcal{M}}
+\newcommand{\TstarM}{T^*\mathcal{M}}
+\newcommand{\TQ}{TQ}
+\newcommand{\TstarQ}{T^*Q}
+
+% Differential forms and Cartan calculus
+\newcommand{\extd}{\mathrm{d}}                 % Exterior derivative: \extd
+\newcommand{\iprod}{\iota}                     % Interior product / contraction: \iprod_X
+\newcommand{\Lie}{\mathcal{L}}                 % Lie derivative: \Lie_X
+\newcommand{\hodge}{\star}                     % Hodge star: \hodge
+\newcommand{\pb}{^*}                          % Pullback: f\pb
+\newcommand{\pf}{_*}                          % Pushforward: f\pf
+
+% Musical isomorphisms
+\newcommand{\flatm}{\flat}
+\newcommand{\sharpm}{\sharp}
+
+% Poisson bracket and Lie bracket
+\newcommand{\poisson}[2]{\left\{ #1,\, #2 \right\}}
+\newcommand{\liebracket}[2]{\left[ #1,\, #2 \right]}
+
+% Physical forms
+\newcommand{\canform}{\theta}                  % Liouville 1-form
+\newcommand{\sympform}{\omega}                 % Symplectic 2-form
+\newcommand{\poincarecartan}{\omega_H}        % Poincare-Cartan form
+
+% Visual highlights
+\newcommand{\term}[1]{\textbf{\color{orangeacc}#1}}
+\newcommand{\termb}[1]{\textbf{\color{blackmain}#1}}

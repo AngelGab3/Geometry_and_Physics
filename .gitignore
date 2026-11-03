@@ -1,0 +1,25 @@
+# macOS
+.DS_Store
+._*
+
+# Heavy reference books / external PDFs
+Bibliografía/
+Bibliografí/
+Bibliograf*
+
+# Legacy sub-repository
+Mathematical_Methods_1/
+
+# LaTeX auxiliary build files
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.snm
+*.synctex.gz
+*.toc
+*.vrb

@@ -1,0 +1,188 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Semana 4: Puntos, Funciones Coordenadas y Vectores en $\R^n$}}}\\[0.15cm]
+{\large\textbf{Del vector anclado al operador diferencial}}\\[0.3cm]
+{\large\textcolor{graymuted}{Notas de Clase --- Nivel Licenciatura}}\\[0.2cm]
+\end{center}
+
+\vspace{0.2cm}
+
+% =====================================================================
+\manualsection[1. Puntos vs. Vectores]{1. Puntos vs. Vectores: ¿Por qué importa el punto de aplicación?}
+
+En el cálculo elemental solemos usar la misma notación $(x, y, z)$ tanto para señalar un **lugar en el espacio** como para representar una **fuerza** o una **velocidad**. Esta confusión aparente no causa problemas en el álgebra lineal básica, pero en la física real es una distinción crítica:
+
+\begin{intuitionbox}{Puntos versus Vectores}
+\begin{itemize}
+    \item Un \term{punto} $p \in \R^n$ representa una \textbf{posición fija} (dónde ocurre el fenómeno). Los puntos no se pueden sumar de manera natural: ¿qué significado físico tendría sumar la posición de la Ciudad de México con la posición de Madrid?
+    \item Un \term{vector anclado} $v_p$ representa una \textbf{magnitud y dirección de movimiento} aplicada específicamente en el punto $p$ (la velocidad del viento en esa ciudad, la aceleración de una partícula en ese instante).
+\end{itemize}
+\end{intuitionbox}
+
+\begin{infobox}[orangeacc]{Definición 1.1 (Vector tangente euclidiano)}
+Sea $p \in \R^n$. Un \term{vector tangente a $\R^n$ en el punto $p$} es un par ordenado:
+\[
+v_p = (p, v), \qquad \text{con } v \in \R^n.
+\]
+Llamamos a $p$ el \textbf{punto base} y a $v$ la parte vectorial. El conjunto de todos los vectores tangentes aplicados en el mismo punto $p$ forma un espacio vectorial real denotado por $\R^n_p$ (o $T_p\R^n$), llamado \term{espacio tangente a $\R^n$ en $p$}.
+\end{infobox}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.3]
+  % Coordinates axes
+  \draw[->,graymuted!70] (-0.5,0) -- (4,0) node[right] {$x$};
+  \draw[->,graymuted!70] (0,-0.5) -- (0,3) node[above] {$y$};
+
+  % Point P and Q
+  \coordinate (P) at (1.5,1.2);
+  \coordinate (Q) at (3.0,2.0);
+
+  \fill[blackmain] (P) circle (2pt) node[below left] {$p = (1.5, 1.2)$};
+  \fill[blackmain] (Q) circle (2pt) node[below right] {$q = (3.0, 2.0)$};
+
+  % Tangent spaces as local axes
+  \draw[dashed,navyaccent!50] ($(P)+(-0.8,0)$) -- ($(P)+(1.2,0)$);
+  \draw[dashed,navyaccent!50] ($(P)+(0,-0.8)$) -- ($(P)+(0,1.2)$);
+  \node[navyaccent!80!black,above left] at ($(P)+(-0.2,0.8)$) {\footnotesize $\R^2_p$};
+
+  % Vectors at P
+  \draw[->,orangeacc,very thick] (P) -- ($(P)+(1.0,0.8)$) node[above] {$v_p$};
+  \draw[->,navyaccent,very thick] (P) -- ($(P)+(0.5,-0.6)$) node[below right] {$w_p$};
+
+  % Vector at Q
+  \draw[->,orangeacc,very thick] (Q) -- ($(Q)+(1.0,0.8)$) node[above] {$v_q$};
+
+  \node[graymuted,align=center,font=\footnotesize] at (2.2,0.4) 
+    {Aunque $v_p$ y $v_q$ tienen los mismos componentes $(1, 0.8)$,\\[-1pt] 
+     \textbf{¡viven en espacios tangentes distintos!}};
+\end{tikzpicture}
+\caption{En el espacio euclidiano $\R^2$, cada punto $p$ porta su propio espacio tangente $\R^2_p$. No podemos sumar un vector en $p$ con un vector en $q$ de forma inmediata sin especificar un transporte.}
+\label{fig:tangent_euclidean}
+\end{figure}
+
+% =====================================================================
+\manualsection[2. Derivada Direccional]{2. La acción sobre campos escalares: Derivada direccional}
+
+En física, los vectores rara vez están aislados: una partícula con velocidad $v_p$ atraviesa un medio donde existen magnitudes escalares como la temperatura $T(x,y,z)$, el potencial electrostático $V(x,y,z)$ o la densidad de masa $\rho(x,y,z)$.
+
+\begin{infobox}[pureblack]{Definición 2.1 (Derivada direccional)}
+Sea $f: \R^n \to \R$ una función suave ($C^\infty$) y sea $v_p = (p, v) \in \R^n_p$ un vector tangente. La \term{derivada direccional de $f$ en la dirección de $v_p$} es la tasa instantánea de cambio de $f$ a lo largo de una recta que pasa por $p$ con velocidad $v$:
+\[
+v_p[f] \equiv \left. \frac{\extd}{\extd t} f(p + t v) \right|_{t=0}.
+\]
+\end{infobox}
+
+Calculando mediante la regla de la cadena multivariable para $p = (x^1, \dots, x^n)$ y $v = (v^1, \dots, v^n)$:
+\[
+v_p[f] = \sum_{i=1}^n \left. \frac{\partial f}{\partial x^i} \right|_p \left. \frac{\extd (p^i + t v^i)}{\extd t} \right|_{t=0} = \sum_{i=1}^n v^i \left. \frac{\partial f}{\partial x^i} \right|_p.
+\]
+
+\begin{examplebox}{Ejemplo 2.1: Cálculo explícito en $\R^2$}
+Sea el potencial $f(x, y) = x^2 y$ y el vector $v_p$ anclado en $p = (1, 2)$ con componentes $v = (3, -1)$.
+La derivada direccional de $f$ según $v_p$ es:
+\[
+v_p[f] = 3 \left.\frac{\partial (x^2 y)}{\partial x}\right|_{(1,2)} + (-1) \left.\frac{\partial (x^2 y)}{\partial y}\right|_{(1,2)} = 3\,(2xy)\Big|_{(1,2)} - 1\,(x^2)\Big|_{(1,2)} = 3(4) - 1(1) = 11.
+\]
+Esto significa que para un observador que se mueve con esa velocidad al pasar por $(1,2)$, el valor de $f$ se incrementa a razón de $11$ unidades por segundo.
+\end{examplebox}
+
+% =====================================================================
+\manualsection[3. El Vector Operador]{3. El vector como operador diferencial}
+
+Observa con atención la fórmula obtenida:
+\[
+v_p[f] = \left( \sum_{i=1}^n v^i \left.\frac{\partial}{\partial x^i}\right|_p \right) f.
+\]
+Esta identidad revela la idea maestra de Élie Cartan: **no necesitamos pensar en el vector como una flecha geométrica abstracta**. El vector $v_p$ actúa **idénticamente** como el operador diferencial de primer orden:
+\[
+v_p = v^1 \left.\frac{\partial}{\partial x^1}\right|_p + v^2 \left.\frac{\partial}{\partial x^2}\right|_p + \dots + v^n \left.\frac{\partial}{\partial x^n}\right|_p.
+\]
+
+\begin{theorembox}{Teorema 3.1 (Propiedad de Derivación / Regla de Leibniz)}
+Todo vector tangente $v_p \in \R^n_p$, visto como operador sobre funciones suaves $f, g \in C^\infty(\R^n)$, satisface:
+\begin{enumerate}
+    \item \textbf{Linealidad:} $v_p(\alpha f + \beta g) = \alpha\, v_p(f) + \beta\, v_p(g), \quad \forall \alpha, \beta \in \R$.
+    \item \textbf{Regla de Leibniz:}
+    \[
+    v_p(f \cdot g) = f(p)\, v_p(g) + g(p)\, v_p(f).
+    \]
+\end{enumerate}
+\end{theorembox}
+
+\begin{infobox}[orangeacc]{Interpretación de los vectores base $\partial / \partial x^i$}
+En física elemental escribimos los vectores en $\R^3$ usando la base ortonormal $\{\hat{i}, \hat{j}, \hat{k}\}$. 
+En geometría diferencial y cálculo de Cartan, la base natural del espacio tangente $\R^3_p$ es:
+\[
+e_1 = \left.\frac{\partial}{\partial x}\right|_p, \qquad e_2 = \left.\frac{\partial}{\partial y}\right|_p, \qquad e_3 = \left.\frac{\partial}{\partial z}\right|_p.
+\]
+¿Por qué esta notación es superior? Porque cuando cambiamos a coordenadas polares, cilíndricas o esféricas, las derivadas parciales se transforman de forma natural y automática siguiendo la regla de la cadena multivariable.
+\end{infobox}
+
+% =====================================================================
+\manualsection[4. Cambio de Coordenadas]{4. Cambio de Coordenadas en $\R^2$: Cartesianas a Polares}
+
+Consideremos el plano euclidiano $\R^2 \setminus \{(0,0)\}$ y el paso a coordenadas polares $(r, \theta)$:
+\[
+x = r\cos\theta, \qquad y = r\sin\theta.
+\]
+¿Cómo se expresan los operadores base $\frac{\partial}{\partial r}$ y $\frac{\partial}{\partial \theta}$ en términos de $\frac{\partial}{\partial x}$ y $\frac{\partial}{\partial y}$? Aplicamos la regla de la cadena a una función de prueba arbitraria $f(x, y)$:
+\[
+\frac{\partial f}{\partial r} = \frac{\partial f}{\partial x}\frac{\partial x}{\partial r} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial r} = \cos\theta \frac{\partial f}{\partial x} + \sin\theta \frac{\partial f}{\partial y}.
+\]
+Como esto es válido para cualquier función suave $f$, podemos igualar directamente los operadores:
+\[
+\frac{\partial}{\partial r} = \cos\theta \frac{\partial}{\partial x} + \sin\theta \frac{\partial}{\partial y}, \qquad
+\frac{\partial}{\partial \theta} = -r\sin\theta \frac{\partial}{\partial x} + r\cos\theta \frac{\partial}{\partial y}.
+\]
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[>=Stealth,scale=1.4]
+  \draw[->,graymuted!60] (-0.3,0) -- (3.5,0) node[right] {$x$};
+  \draw[->,graymuted!60] (0,-0.3) -- (0,3.0) node[above] {$y$};
+
+  % Circle arc
+  \draw[dashed,graymuted!50] (2.2,0) arc (0:90:2.2cm);
+
+  \coordinate (P) at (1.55,1.55);
+  \fill[blackmain] (P) circle (2pt) node[below left] {$p(r, \theta)$};
+  \draw[graymuted!70] (0,0) -- (P);
+  \draw[graymuted!70] (0.6,0) arc (0:45:0.6cm) node[midway,right] {\footnotesize $\theta$};
+
+  % Radial basis vector
+  \draw[->,very thick,orangeacc] (P) -- ($(P)+(0.85,0.85)$) node[above right] {$\frac{\partial}{\partial r}$};
+
+  % Angular basis vector
+  \draw[->,very thick,navyaccent] (P) -- ($(P)+(-1.2,1.2)$) node[above left] {$\frac{\partial}{\partial \theta}$};
+\end{tikzpicture}
+\caption{En coordenadas polares, $\partial/\partial r$ tiene longitud 1, pero $\partial/\partial \theta$ tiene longitud euclidiana $r$. En geometría diferencial los vectores de la base coordenada **no se normalizan artificialmente**, pues preservan su significado geométrico como tasas de variación unitarias del parámetro.}
+\label{fig:polar_basis}
+\end{figure}
+
+% =====================================================================
+\manualsection[5. Resumen]{5. Resumen del Tema 1}
+
+\begin{enumerate}
+    \item Un vector euclidiano no es simplemente una triada de números, sino un objeto anclado a un punto $p$: $v_p = (p, v) \in \R^n_p$.
+    \item La forma natural en que un vector interactúa con el mundo físico es evaluando la **tasa de variación direccional** de observables escalares: $v_p[f]$.
+    \item Identificamos directamente el vector con su operador diferencial:
+    \[
+    v_p = v^i \left.\frac{\partial}{\partial x^i}\right|_p.
+    \]
+\end{enumerate}
+
+En la siguiente clase abordaremos el paso fundamental hacia el cálculo de Cartan: ¿Qué ocurre si invertimos los papeles y estudiamos los **funcionales lineales que se alimentan de vectores**? Así nacerán los **covectores y las 1-formas diferenciales**.
+
+\end{document}

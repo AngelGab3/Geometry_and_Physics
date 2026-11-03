@@ -1,0 +1,105 @@
+\ProvidesPackage{course_notes}[2026/10/28 Note Style for Geometry and Physics]
+
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[spanish,provide=*]{babel}
+\RequirePackage{lmodern}
+\RequirePackage[margin=2.5cm]{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{enumitem}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\usetikzlibrary{arrows.meta,angles,quotes,calc,babel,positioning}
+\RequirePackage{placeins}
+\RequirePackage{graphicx}
+\RequirePackage{microtype}
+\RequirePackage{needspace}
+
+% ============ PALETTE: BLACK, ORANGE, AND CREAM ============
+\definecolor{blackmain}{HTML}{1A1A1A}
+\definecolor{orangeacc}{HTML}{E65C00}
+\definecolor{creambg}{HTML}{FBF8F1}
+\definecolor{orangebg}{HTML}{FFF4EB}
+\definecolor{graymuted}{HTML}{7A746E}
+\definecolor{pureblack}{HTML}{0D0D0D}
+\definecolor{navyaccent}{HTML}{1B365D}
+
+% ============ HEADERS AND FOOTERS ============
+\setlength{\headheight}{25pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{blackmain}{\small\textbf{Geometría y Física I}}}
+\fancyhead[R]{\textcolor{orangeacc}{\small\textbf{\nouppercase{\rightmark}}}}
+\fancyfoot[C]{\textcolor{graymuted}{\thepage}}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{orangeacc}\leaders\hrule height \headrulewidth\hfill}}
+
+\setlist[itemize]{label={\small\textcolor{orangeacc}{$\blacksquare$}},leftmargin=1.6em}
+\setlist[enumerate]{label={\textcolor{orangeacc}{\arabic*.}},leftmargin=1.8em}
+
+% ============ TITLES ============
+\newcommand{\manualsection}[2][]{%
+  \Needspace{10\baselineskip}%
+  \vspace{0.4cm}
+  \par\noindent{\Large\bfseries\color{blackmain} #2}\par\nobreak
+  \noindent{\color{orangeacc}\rule{\linewidth}{1.4pt}}\par\nobreak
+  \vspace{0.2cm}
+  \def\shorttitle{#1}%
+  \ifx\shorttitle\@empty
+    \markright{#2}%
+  \else
+    \markright{#1}%
+  \fi
+}
+
+\newcommand{\manualsubsection}[1]{%
+  \Needspace{5\baselineskip}%
+  \par\vspace{0.25cm}\noindent{\bfseries\color{orangeacc}\large #1}\par\nobreak
+  \vspace{0.15cm}
+}
+
+% ============ CONTENT BOXES ============
+\newtcolorbox{infobox}[2][orangeacc]{
+  enhanced,
+  colback=creambg,colframe=#1!90!black,
+  boxrule=1pt,arc=2mm,
+  left=9pt,right=9pt,top=6pt,bottom=6pt,
+  before skip=8pt,after skip=8pt,
+  before upper={\textbf{\color{#1!95!black}\large #2}\par\nobreak
+    {\color{#1!50}\rule{\linewidth}{0.6pt}}\par\nobreak\smallskip}
+}
+
+\newtcolorbox{intuitionbox}[1]{
+  enhanced,
+  colback=creambg!80!white,colframe=navyaccent,
+  boxrule=1pt,arc=2mm,
+  left=9pt,right=9pt,top=6pt,bottom=6pt,
+  before skip=8pt,after skip=8pt,
+  before upper={\textbf{\color{navyaccent}\large #1}\par\nobreak
+    {\color{navyaccent!40}\rule{\linewidth}{0.6pt}}\par\nobreak\smallskip}
+}
+
+\newtcolorbox{examplebox}[1]{
+  enhanced,
+  colback=orangebg,colframe=orangeacc!85!black,
+  boxrule=1pt,arc=2mm,
+  left=9pt,right=9pt,top=6pt,bottom=6pt,
+  before skip=8pt,after skip=8pt,
+  before upper={\textbf{\color{orangeacc!95!black}\large #1}\par\nobreak
+    {\color{orangeacc!40}\rule{\linewidth}{0.6pt}}\par\nobreak\smallskip}
+}
+
+\newtcolorbox{theorembox}[1]{
+  enhanced,
+  colback=creambg!70!white,colframe=pureblack,
+  boxrule=1.1pt,arc=2mm,
+  left=9pt,right=9pt,top=6pt,bottom=6pt,
+  before skip=8pt,after skip=8pt,
+  before upper={\textbf{\color{pureblack}\large #1}\par\nobreak
+    {\color{orangeacc}\rule{\linewidth}{0.8pt}}\par\nobreak\smallskip}
+}
+
+\renewcommand{\familydefault}{\rmdefault}
+\linespread{1.06}
+\tikzset{every node/.append style={font=\rmfamily}}

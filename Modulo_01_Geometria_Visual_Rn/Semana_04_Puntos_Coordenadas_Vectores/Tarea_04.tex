@@ -1,0 +1,103 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Tarea Semana 4: Puntos, Vectores y Derivaciones en $\R^n$}}}\\[0.2cm]
+{\large\textcolor{graymuted}{Nivel: Licenciatura en Física}}\\[0.25cm]
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent\textbf{Instrucciones:} Resuelve detalladamente los siguientes problemas en el espacio euclidiano $\R^2$ y $\R^3$. Justifica cada cálculo con argumentos geométricos y físicos.
+
+% =====================================================================
+\manualsection{Parte A: Intuición Geométrica y Visualización en $\R^2$}
+
+\begin{infobox}{Problema 1: Puntos, trayectorias y campos de temperatura}
+En el plano $\R^2$, la temperatura de una placa metálica está descrita por el campo escalar:
+\[
+T(x, y) = 100 - (x - 2)^2 - 2(y - 1)^2 \quad [^\circ\text{C}].
+\]
+Una partícula se encuentra en el punto $p = (1, 2)$.
+\begin{enumerate}[label=\alph*)]
+    \item Traza un dibujo en el plano $(x, y)$ que muestre las curvas isotermas (curvas de nivel $T = \text{cte}$) para $T = 90^\circ\text{C}$, $T = 95^\circ\text{C}$ y la temperatura máxima en el punto $(2, 1)$.
+    \item En el punto $p = (1, 2)$, consideramos dos velocidades distintas:
+    \[
+    v_1 = 2 \left.\frac{\partial}{\partial x}\right|_p + \left.\frac{\partial}{\partial y}\right|_p, \qquad
+    v_2 = -2 \left.\frac{\partial}{\partial x}\right|_p + \left.\frac{\partial}{\partial y}\right|_p.
+    \]
+    Calcula la derivada direccional del campo de temperatura en ambas direcciones: $v_1[T]$ y $v_2[T]$.
+    \item Dibuja ambos vectores en tu gráfica anclados en $p$. ¿Cuál partícula experimenta un calentamiento y cuál un enfriamiento? ¿Qué vector tangente en $p$ tendría derivada direccional nula ($v[T] = 0$)?
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 2: Vectores tangentes a curvas de nivel}
+Considera el potencial electrostático en $\R^2$ dado por $V(x, y) = x^2 - y^2$.
+\begin{enumerate}[label=\alph*)]
+    \item Dibuja la curva equipotencial que pasa por el punto $p = (\sqrt{5}, 1)$, correspondiente a $V = 4$.
+    \item Encuentra un vector tangente $w_p \in \R^2_p$ no nulo tal que $w_p[V] = 0$. 
+    \item Comprueba geométricamente que este vector $w_p$ es tangente a la hipérbola $x^2 - y^2 = 4$ en dicho punto.
+\end{enumerate}
+\end{infobox}
+
+% =====================================================================
+\manualsection{Parte B: El Álgebra de las Derivaciones en $\R^n$}
+
+\begin{infobox}{Problema 3: Composiciones vs. Conmutadores}
+Sean dos operadores diferenciales en $\R^3$:
+\[
+X = x \frac{\partial}{\partial y} - y \frac{\partial}{\partial x}, \qquad Y = \frac{\partial}{\partial x}.
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Para dos funciones suaves $f, g \in C^\infty(\R^3)$, calcula la acción de la composición $X(Y(f \cdot g))$.
+    Muestra explícitamente qué términos impiden que la composición simple $X \circ Y$ sea una derivación de primer orden (es decir, qué términos violan la regla de Leibniz).
+    \item Calcula explícitamente el corchete de Lie $[X, Y] = X \circ Y - Y \circ X$ aplicado a una función genérica $f(x, y, z)$.
+    \item Muestra que el resultado es otro operador diferencial de primer orden y exprésalo como combinación lineal de $\{\partial_x, \partial_y, \partial_z\}$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 4: Coordenadas Cilíndricas en $\R^3$}
+En $\R^3 \setminus \{z\text{-axis}\}$, las coordenadas cilíndricas $(r, \theta, z)$ se relacionan con las cartesianas mediante:
+\[
+x = r\cos\theta, \quad y = r\sin\theta, \quad z = z.
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Mediante la regla de la cadena multivariable, expresa los operadores base cilíndricos:
+    \[
+    e_r = \frac{\partial}{\partial r}, \qquad e_\theta = \frac{\partial}{\partial \theta}, \qquad e_z = \frac{\partial}{\partial z}
+    \]
+    en términos de la base cartesiana $\{\partial_x, \partial_y, \partial_z\}$.
+    \item Calcula el producto escalar euclidiano ordinario de cada par de vectores base. ¿Son ortogonales entre sí?
+    \item ¿Por qué la norma euclidiana del operador $\partial_\theta$ es $\|\partial_\theta\| = r$? Explica por qué en cálculo de Cartan es preferible trabajar con $\partial_\theta$ que con el vector unitario normalizado $\hat{e}_\theta = \frac{1}{r}\partial_\theta$.
+\end{enumerate}
+\end{infobox}
+
+% =====================================================================
+\manualsection{Parte C: Física en el Espacio de Fases Euclidiano}
+
+\begin{infobox}{Problema 5: Dinámica del Oscilador Armónico en el plano $(q, p)$}
+El espacio de fases de una partícula unidimensional de masa $m$ sujeta a un resorte de constante $k$ es el plano euclidiano $\R^2$ con coordenadas $(q, p)$, donde $q$ es la posición y $p$ el momento. La energía total es:
+\[
+H(q, p) = \frac{p^2}{2m} + \frac{1}{2} k q^2.
+\]
+El flujo dinámico en este plano está determinado por el campo vectorial:
+\[
+X_H = \frac{p}{m} \frac{\partial}{\partial q} - kq \frac{\partial}{\partial p}.
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Evalúa la derivada del observable energía a lo largo de este campo vectorial calculando $X_H[H]$.
+    \item Explica el significado físico del resultado: ¿qué principio de conservación demuestra?
+    \item En el plano $(q, p)$, dibuja la elipse de energía constante $H(q, p) = E_0$. Dibuja varios vectores $X_H$ sobre la elipse y verifica visualmente que $X_H$ es tangente a la curva en todo punto.
+\end{enumerate}
+\end{infobox}
+
+\end{document}

@@ -1,0 +1,171 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+\usepackage{../../Common/course_slides}
+\usepackage{../../Common/course_macros}
+\usepackage[spanish,provide=*]{babel}
+
+\title[Semana 4: Vectores en el Espacio Euclidiano]{Puntos, Funciones Coordenadas y Vectores en $\R^n$}
+\subtitle{Del vector anclado al operador diferencial}
+\author{Geometría y Física I}
+\institute{Licenciatura en Física}
+\date{}
+
+\begin{document}
+
+% ---------------------------------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{1. Puntos vs. Vectores: Una distinción física vital}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      En cálculo elemental solemos escribir $(x, y, z)$ tanto para posiciones como para velocidades.
+      \vspace{0.2cm}
+      \begin{itemize}
+        \item \textbf{Punto $p \in \R^n$:} Representa un \textit{lugar fijo} en el espacio.
+        \begin{itemize}
+          \item No se pueden sumar puntos físicamente: ¿qué significa «sumar dos ciudades»?
+        \end{itemize}
+        \vspace{0.15cm}
+        \item \textbf{Vector anclado $v_p$:} Representa una \textit{tasa de cambio o velocidad} en el punto $p$.
+        \begin{itemize}
+          \item La velocidad del viento en la cima del Everest vive en un espacio tangente distinto a la velocidad a nivel del mar.
+        \end{itemize}
+      \end{itemize}
+    \end{column}
+
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[>=Stealth,scale=1.1]
+        \draw[->,graymuted!60] (-0.3,0) -- (3.2,0) node[right] {\tiny $x$};
+        \draw[->,graymuted!60] (0,-0.3) -- (0,2.6) node[above] {\tiny $y$};
+        
+        \coordinate (P) at (1.0,0.8);
+        \coordinate (Q) at (2.2,1.8);
+        
+        \fill[blackmain] (P) circle (1.8pt) node[below left] {\footnotesize $p$};
+        \fill[blackmain] (Q) circle (1.8pt) node[below right] {\footnotesize $q$};
+        
+        \draw[->,orangeacc,very thick] (P) -- ($(P)+(0.8,0.7)$) node[above] {\footnotesize $v_p$};
+        \draw[->,orangeacc,very thick] (Q) -- ($(Q)+(0.8,0.7)$) node[above] {\footnotesize $v_q$};
+        
+        \node[navyaccent,align=center,font=\tiny] at (1.6,0.3) 
+          {Mismos componentes $(v^1, v^2)$,\\[-1pt] \textbf{pero espacios tangentes distintos:}\\[-1pt]
+          $v_p \in \R^2_p, \quad v_q \in \R^2_q$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{2. El espacio tangente euclidiano $\R^n_p$}
+  \begin{block}{Definición (Vector tangente anclado)}
+    Un \textbf{vector tangente a $\R^n$ en $p$} es un par ordenado:
+    \[
+    v_p = (p, v) \qquad \text{con } p \in \R^n \text{ (punto base) y } v \in \R^n \text{ (vector)}.
+    \]
+    El conjunto de todos los vectores anclados en $p$ se denota $\R^n_p$ (o $T_p\R^n$) y forma un espacio vectorial de dimensión $n$.
+  \end{block}
+
+  \vspace{0.3cm}
+  \begin{exampleblock}{Operaciones en $\R^n_p$}
+    Solo podemos sumar vectores con el \textbf{mismo punto de aplicación}:
+    \[
+    (p, v) + (p, w) = (p, v + w), \qquad \alpha (p, v) = (p, \alpha v).
+    \]
+  \end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{3. Acción sobre el mundo físico: Derivada direccional}
+  Si una partícula pasa por $p$ con velocidad $v_p$, y en el espacio hay un campo escalar observable $f: \R^n \to \R$ (temperatura, potencial, presión):
+  
+  \begin{block}{Derivada direccional de $f$}
+    \[
+    v_p[f] \equiv \left. \frac{\extd}{\extd t} f(p + t v) \right|_{t=0} = \sum_{i=1}^n v^i \left.\frac{\partial f}{\partial x^i}\right|_p
+    \]
+  \end{block}
+
+  \vspace{0.2cm}
+  \begin{itemize}
+    \item Mide la \textbf{tasa instantánea de cambio} de $f$ experimentada por la partícula al atravesar el punto $p$.
+    \item Si $v_p[f] > 0$, la partícula se mueve hacia valores mayores de $f$.
+    \item Si $v_p[f] = 0$, la partícula se desplaza instantáneamente a lo largo de una superficie de nivel $f = \text{cte}$.
+  \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{4. La gran revelación: El vector es un operador diferencial}
+  Reescribamos la derivada direccional factorizando la función $f$:
+  \[
+  v_p[f] = \left( \sum_{i=1}^n v^i \left.\frac{\partial}{\partial x^i}\right|_p \right) f
+  \]
+  \vspace{-0.2cm}
+  \begin{alertblock}{La identificación fundamental de Cartan}
+    El vector tangente $v_p$ \textbf{es idéntico} al operador diferencial de primer orden:
+    \[
+    v_p = v^1 \left.\frac{\partial}{\partial x^1}\right|_p + v^2 \left.\frac{\partial}{\partial x^2}\right|_p + \dots + v^n \left.\frac{\partial}{\partial x^n}\right|_p
+    \]
+  \end{alertblock}
+  \vspace{0.2cm}
+  \begin{itemize}
+    \item Los vectores unitarios tradicionales $\{\hat{i}, \hat{j}, \hat{k}\}$ se reemplazan naturalmente por $\{\partial_x, \partial_y, \partial_z\}$.
+    \item Esta notación se extiende de inmediato a cualquier sistema curvilíneo.
+  \end{itemize}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{5. Cambio de Coordenadas: Cartesianas a Polares en $\R^2$}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      Con $x = r\cos\theta, \; y = r\sin\theta$, aplicamos la regla de la cadena a una función $f$:
+      \[
+      \frac{\partial f}{\partial r} = \cos\theta \frac{\partial f}{\partial x} + \sin\theta \frac{\partial f}{\partial y}
+      \]
+      \[
+      \frac{\partial f}{\partial \theta} = -r\sin\theta \frac{\partial f}{\partial x} + r\cos\theta \frac{\partial f}{\partial y}
+      \]
+      \vspace{-0.1cm}
+      \begin{exampleblock}{Propiedad geométrica}
+        $\frac{\partial}{\partial \theta}$ tiene longitud euclidiana $r$. En cálculo de Cartan \textbf{no se normaliza}, porque representa exactamente la derivada respecto al ángulo.
+      \end{exampleblock}
+    \end{column}
+
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[>=Stealth,scale=1.1]
+        \draw[->,graymuted!60] (-0.2,0) -- (3.0,0) node[right] {\tiny $x$};
+        \draw[->,graymuted!60] (0,-0.2) -- (0,2.6) node[above] {\tiny $y$};
+        \draw[dashed,graymuted!40] (1.8,0) arc (0:90:1.8cm);
+        
+        \coordinate (P) at (1.27,1.27);
+        \fill[blackmain] (P) circle (1.8pt) node[below left] {\footnotesize $p$};
+        \draw[graymuted!70] (0,0) -- (P);
+        
+        \draw[->,very thick,orangeacc] (P) -- ($(P)+(0.7,0.7)$) node[above right] {\footnotesize $\partial_r$};
+        \draw[->,very thick,navyaccent] (P) -- ($(P)+(-0.9,0.9)$) node[above left] {\footnotesize $\partial_\theta$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{6. Resumen y Hacia dónde vamos}
+  \begin{block}{Lo que hemos consolidado en $\R^n$}
+    \begin{enumerate}
+      \item En cada punto $p \in \R^n$ existe un espacio tangente local $\R^n_p$.
+      \item Un vector actúa sobre observables mediante la derivada direccional $v_p[f]$.
+      \item Todo vector es una combinación lineal de derivadas parciales: $v_p = v^i \partial_i$.
+    \end{enumerate}
+  \end{block}
+  \vspace{0.2cm}
+  \begin{alertblock}{El próximo paso crucial}
+    Un vector es una flecha $\longrightarrow$. ¿Qué es el objeto dual que se «come» esa flecha y produce un número real linealmente?
+    \begin{center}
+      \textbf{Tema 2: Covectores y 1-Formas en $\R^n$ (Láminas de nivel y trabajo sin métrica)}
+    \end{center}
+  \end{alertblock}
+\end{frame}
+
+\end{document}

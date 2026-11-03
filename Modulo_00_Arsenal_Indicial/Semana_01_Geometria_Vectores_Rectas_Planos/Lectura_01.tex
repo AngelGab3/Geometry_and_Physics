@@ -167,12 +167,12 @@ Si $v_1, v_2, v_3 \neq 0$, al despejar el parámetro común $t$ obtenemos la \te
 \end{tikzpicture}
 \end{center}
 
-\begin{examplebox}{Puente hacia la Geometría Diferencial: El Vector Tangente}
+\begin{examplebox}{Interpretación Cinemática: El Vector Velocidad}
 Observa que si derivamos la posición $\vec{r}(t) = \vec{p}_0 + t\vec{v}$ respecto al parámetro $t$, obtenemos:
 \[
 \frac{d\vec{r}}{dt} = \vec{v}.
 \]
-Esta sencilla ecuación de primer semestre encierra una idea profunda que explotaremos en el Módulo 1 (Semana 05): \textbf{todo vector geométrico anclado en un punto $P_0$ puede verse como el vector velocidad de una curva que pasa por $P_0$ en $t=0$}.
+Todo vector geométrico anclado en un punto $P_0$ puede verse cinemáticamente como el vector velocidad de una partícula que pasa por $P_0$ en el instante inicial $t=0$.
 \end{examplebox}
 
 % =====================================================================
@@ -243,7 +243,7 @@ En un espacio vectorial real arbitrario $V$, un \textbf{producto interno} (o pro
     \item \textbf{Bilinealidad (Linealidad en cada entrada):} $\langle a\vec{u} + b\vec{v}, \vec{w} \rangle = a\langle \vec{u}, \vec{w} \rangle + b\langle \vec{v}, \vec{w} \rangle$.
     \item \textbf{Positividad definida:} $\langle \vec{u}, \vec{u} \rangle \ge 0$, y $\langle \vec{u}, \vec{u} \rangle = 0 \iff \vec{u} = \vec{0}$.
 \end{enumerate}
-Todo producto interno induce una \textbf{norma (longitud)} $\|\vec{u}\| \equiv \sqrt{\langle \vec{u}, \vec{u} \rangle}$ que cumple la \textbf{Desigualdad de Cauchy-Schwarz} $|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$ y la \textbf{Desigualdad del Triángulo} $\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|$. En la Semana 04 veremos cómo esta estructura se generaliza mediante el \textbf{tensor métrico} $g_{ij}$.
+Todo producto interno induce una \textbf{norma (longitud)} $\|\vec{u}\| \equiv \sqrt{\langle \vec{u}, \vec{u} \rangle}$ que cumple la \textbf{Desigualdad de Cauchy-Schwarz} $|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$ y la \textbf{Desigualdad del Triángulo} $\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|$.
 \end{theorembox}
 
 % =====================================================================
@@ -313,16 +313,15 @@ El vector $\vec{u} \times \vec{v} \equiv \langle u_2 v_3 - u_3 v_2,\; u_3 v_1 - 
 \end{center}
 
 % =====================================================================
-\manualsection[5. El Plano, Subespacios y Bases]{5. La Ecuación del Plano: Dos Visiones Duales, Subespacios y la Semilla de Cartan}
+\manualsection[5. El Plano, Subespacios y Bases]{5. La Ecuación del Plano: Dos Visiones Duales, Subespacios y Bases}
 
-Llegamos al concepto geométrico más importante de esta primera semana. ¿Cómo describimos matemáticamente una superficie plana (un plano $\Pi$) en el espacio tridimensional $\R^3$? Existen \textbf{dos maneras duales} de hacerlo, y entender cómo se conectan es la llave maestra tanto del álgebra lineal como de la geometría diferencial:
+Llegamos a uno de los conceptos geométricos centrales: ¿cómo describimos una superficie plana (un plano $\Pi$) en el espacio tridimensional $\R^3$? Existen \textbf{dos maneras duales} de hacerlo, y entender cómo se conectan es fundamental tanto para el álgebra como para la geometría:
 
 \manualsubsection{Visión 1 (Por Generación Interna): La Ecuación Paramétrica del Plano}
-Si nos paramos en un punto inicial $P_0$ del plano y elegimos \textbf{dos vectores directores no colineales} $\vec{v}_1$ y $\vec{v}_2$ contenidos dentro del plano, podemos llegar a cualquier rincón del plano combinando pasos en ambas direcciones con dos parámetros independientes $(u, v) \in \R^2$:
+Si nos paramos en un punto inicial $P_0$ del plano y elegimos \textbf{dos vectores directores no colineales} $\vec{v}_1$ y $\vec{v}_2$ contenidos dentro del plano, podemos llegar a cualquier punto del plano combinando pasos en ambas direcciones con dos parámetros independientes $(u, v) \in \R^2$:
 \[
 \vec{r}(u, v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2.
 \]
-\textit{(Esta visión constructiva «desde adentro» con dos coordenadas locales $(u, v)$ es exactamente cómo describiremos las superficies curvas y variedades diferenciables en el Módulo 3).}
 
 \manualsubsection{Formalización: Subespacios Vectoriales, Independencia Lineal, Base y Dimensión}
 ¿Qué significa rigurosamente que $\vec{v}_1$ y $\vec{v}_2$ «no sean colineales» y qué diferencia a un plano que pasa por el origen ($\vec{p}_0 = \vec{0}$) de uno que no pasa por el origen?
@@ -407,18 +406,18 @@ n_1 x + n_2 y + n_3 z = c.
         \fill[navyaccent] (1.58, 0.43) circle (1.8pt);
         \fill[navyaccent] (1.96, 1.29) circle (1.8pt);
         \fill[navyaccent] (2.33, 2.14) circle (1.8pt);
-        \node[font=\footnotesize\bfseries, align=center] at (2.0, -0.75) {(b) Familia $n_1 x + n_2 y + n_3 z = c$\\[-2pt]{\scriptsize (Semilla visual de una 1-forma)}};
+        \node[font=\footnotesize\bfseries, align=center] at (2.0, -0.75) {(b) Familia de planos paralelos\\[-2pt]{\scriptsize $n_1 x + n_2 y + n_3 z = c$}};
     \end{scope}
 \end{tikzpicture}
 \end{center}
 
-\begin{intuitionbox}{El Gran Puente hacia las Formas de Cartan (Figura b)}
+\begin{intuitionbox}{Interpretación Geométrica de la Familia de Planos Paralelos (Figura b)}
 ¿Qué ocurre si mantenemos fijo el vector normal $\vec{n} = \langle n_1, n_2, n_3 \rangle$ pero hacemos variar el número $c = 1, 2, 3, \dots$ en la ecuación $n_1 x + n_2 y + n_3 z = c$?
-Obtenemos una \textbf{familia de planos paralelos equiespaciados} que llenan el espacio como las hojas de un libro o las capas de una cebolla. Si ahora lanzamos un vector desplazamiento $\vec{v} = \langle v_1, v_2, v_3 \rangle$, el producto punto:
+Obtenemos una \textbf{familia de planos paralelos equiespaciados} que estratifican el espacio. Si ahora trazamos un vector desplazamiento $\vec{v} = \langle v_1, v_2, v_3 \rangle$, el producto punto:
 \[
 \vec{n} \cdot \vec{v} = n_1 v_1 + n_2 v_2 + n_3 v_3 = \Delta c
 \]
-mide exactamente \textbf{cuántos planos de la familia fueron perforados por la flecha $\vec{v}$}. En el Módulo 1 (Semana 06) descubrirás que esta familia de planos paralelos es la definición geométrica exacta de una \textbf{1-forma diferencial de Cartan} (un elemento del espacio dual $V^*$).
+mide exactamente \textbf{cuántos planos de la familia son atravesados por el vector $\vec{v}$}. El producto punto adquiere así una interpretación gráfica directa: contar el número de superficies de nivel que cruza una flecha.
 \end{intuitionbox}
 
 % =====================================================================

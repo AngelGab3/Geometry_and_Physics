@@ -167,7 +167,7 @@
           \item Si $\vec{p}_0 = \vec{0}$, el conjunto $W = \{t\vec{v} \mid t \in \R\}$ contiene a $\vec{0}$ y es un \textbf{subespacio vectorial de dimensión 1}.
           \item Si $\vec{p}_0 \neq \vec{0}$, la recta $\mathcal{L} = \vec{p}_0 + W$ es un \textbf{subespacio afín} trasladado.
         \end{itemize}
-        \item \textbf{Semilla Geométrica (Semana 05):} La derivada $\dot{\vec{r}}(t) = \vec{v}$ es el \textbf{vector tangente} a la curva.
+        \item \textbf{Vector Tangente a una Curva:} La derivada $\dot{\vec{r}}(t) = \vec{v}$ representa la velocidad instantánea del movimiento rectilíneo.
       \end{itemize}
     \end{column}
     \begin{column}{0.49\textwidth}
@@ -298,7 +298,7 @@
         \[
         \boxed{\vec{u}\times\vec{v} = -\vec{v}\times\vec{u} \implies \vec{u}\times\vec{u} = \vec{0}}
         \]
-        \item \textbf{Semilla Geométrica:} En la Semana 02 codificaremos esta antisimetría con $\epsilon_{ijk}$, y en la Semana 07 veremos que $\vec{u}\times\vec{v}$ corresponde al \textbf{producto exterior} $\vec{u}\wedge\vec{v}$.
+        \item \textbf{Propiedad Clave:} El signo codifica la orientación relativa del par ordenado $(\vec{u}, \vec{v})$.
       \end{itemize}
     \end{column}
     \begin{column}{0.44\textwidth}
@@ -354,8 +354,8 @@
           \item \textbf{Paramétrica ($2$ parámetros):} $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$.
           \item \textbf{Normal ($1$ restricción):} $\vec{n}\cdot(\vec{r}-\vec{p}_0) = 0 \iff n_1 x + n_2 y + n_3 z = c$.
         \end{itemize}
-        \item \textbf{Semilla de las 1-Formas (Semana 06):}
-        Al variar $c \in \R$, $\alpha(\vec{r}) = \vec{n}\cdot\vec{r} = c$ forma una \textbf{pila de láminas paralelas}. Evaluar $\vec{n}\cdot\vec{w}$ \textbf{cuenta cuántas láminas perfora $\vec{w}$}.
+        \item \textbf{Familia de Láminas Paralelas:}
+        Al variar $c \in \R$, la ecuación $\vec{n}\cdot\vec{r} = c$ forma una \textbf{pila de planos paralelos}. El producto $\vec{n}\cdot\vec{w}$ \textbf{cuenta cuántas láminas perfora $\vec{w}$}.
       \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
@@ -386,16 +386,12 @@
 \begin{frame}{Actividad 5: Intersección de Dos Planos y Distancia Mínima}
   \begin{block}{Reto en clase (8 minutos)}
     \footnotesize
-    Dos fallas geológicas planas $\Pi_1$ y $\Pi_2$ tienen vectores normales $\vec{n}_1 = (1, 0, -1)$ y $\vec{n}_2 = (0, 1, 1)$, con ecuaciones $x - z = 1$ y $y + z = 2$.
+    Dos planos $\Pi_1$ y $\Pi_2$ tienen vectores normales $\vec{n}_1 = (1, 0, -1)$ y $\vec{n}_2 = (0, 1, 1)$, con ecuaciones $x - z = 1$ y $y + z = 2$.
     \begin{enumerate}
       \item[(a)] \textbf{Conteo de Dimensión:} Estamos en $\R^3$ ($\dim = 3$). Cada plano impone $1$ restricción lineal independiente. ¿Qué dimensión tiene la intersección $\Pi_1 \cap \Pi_2$?
       \item[(b)] \textbf{Dirección de la Recta de Intersección:} Si el vector director $\vec{v}$ de la recta $\mathcal{L} = \Pi_1 \cap \Pi_2$ vive dentro de $\Pi_1$ y también dentro de $\Pi_2$, ¿cómo es $\vec{v}$ respecto a $\vec{n}_1$ y $\vec{n}_2$? ¡Usa el producto cruz para encontrar $\vec{v}$ de inmediato!
     \end{enumerate}
   \end{block}
-  \begin{exampleblock}{Puente Hacia el Futuro (Semana 07)}
-    \footnotesize
-    Superponer dos familias de planos ($\alpha_1$ y $\alpha_2$) forma una cuadrícula de tubos orientados en el espacio. Esa será exactamente la imagen geométrica de una \textbf{2-forma diferencial} $\alpha_1 \wedge \alpha_2$.
-  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -414,7 +410,6 @@
         \[
         \boxed{\vec{v} = \vec{n}_1 \times \vec{n}_2}
         \]
-        \item \textbf{Próxima Semana (Semana 02):} Comprimiremos la expansión en la base ortonormal $\{\hat{e}_1,\hat{e}_2,\hat{e}_3\}$ usando \textbf{Notación de Einstein}, $\delta_{ij}$ y $\epsilon_{ijk}$.
       \end{itemize}
     \end{column}
     \begin{column}{0.45\textwidth}

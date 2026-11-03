@@ -1,0 +1,226 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+\usepackage{../../Common/course_slides}
+\usepackage{../../Common/course_macros}
+\usepackage[spanish,provide=*]{babel}
+
+\title[Semana 4: Jacobianas, Curvilíneas y Métrica $g_{ij}$]{Matrices Jacobianas, Coordenadas Curvilíneas y el Tensor Métrico}
+\subtitle{Bases Locales Adaptadas, Elementos de Línea y Factores de Volumen}
+\author{Geometría y Física I: Mecánica Clásica y Formas de Cartan}
+\institute{}
+\date{}
+
+\begin{document}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+
+% ---------------------------------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Actividad 1: La Regla de la Cadena y la Base Local}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    Consideremos la transformación de coordenadas polares en el plano: $x = r\cos\theta$, $y = r\sin\theta$.
+    \begin{enumerate}
+      \item[(a)] \textbf{Diferenciales:} Calcula las derivadas parciales y escribe $dx$ y $dy$ en términos de $dr$ y $d\theta$:
+      \[
+      \begin{pmatrix} dx \\ dy \end{pmatrix} = \begin{pmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix} \equiv J \begin{pmatrix} dr \\ d\theta \end{pmatrix}.
+      \]
+      \item[(b)] \textbf{Vectores Tangentes Coordenados:} A partir del vector de posición $\vec{r} = x\hat{e}_1 + y\hat{e}_2$, calcula $\vec{e}_r = \frac{\partial\vec{r}}{\partial r}$ y $\vec{e}_\theta = \frac{\partial\vec{r}}{\partial\theta}$.
+      \item[(c)] \textbf{Longitudes y Perpendicularidad:} Calcula las normas $\|\vec{e}_r\|$, $\|\vec{e}_\theta\|$ y el producto punto $\vec{e}_r \cdot \vec{e}_\theta$. ¿Por qué $\vec{e}_\theta$ no es unitario?
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusion 1: La Matriz Jacobiana y la Base Local}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Matriz Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$:}
+        Conecta desplazamientos infinitesimales:
+        \[
+        dx^i = J^i{}_a\,du^a.
+        \]
+        \item \textbf{Base Local Tangente:}
+        \[
+        \vec{e}_a = \frac{\partial\vec{r}}{\partial u^a} = J^i{}_a \hat{e}_i.
+        \]
+        \item \textbf{En Coordenadas Polares:}
+        \[
+        \vec{e}_r = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \qquad \vec{e}_\theta = \begin{pmatrix} -r\sin\theta \\ r\cos\theta \end{pmatrix}.
+        \]
+        $\|\vec{e}_r\| = 1$, pero $\|\vec{e}_\theta\| = r$ (crece con la distancia al origen).
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.9]
+        \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (3.5,0) node[right, font=\tiny] {$x$};
+        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,3.2) node[above, font=\tiny] {$y$};
+        \coordinate (P) at (2.0, 1.5);
+        \draw[color=orangeacc!60] (0.4, 0.3) -- (3.0, 2.25);
+        \draw[color=navyaccent!60] (2.41, 0.65) arc (15:65:2.5);
+        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (P) -- ($(P)+(1.0, 0.75)$) node[above right=1pt, font=\scriptsize\bfseries] {$\vec{e}_r$};
+        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (P) -- ($(P)+(-0.75, 1.0)$) node[above left=1pt, font=\scriptsize\bfseries] {$\vec{e}_\theta$};
+        \fill[blackmain] (P) circle (2pt) node[below right=1pt, font=\tiny\bfseries] {$P(r,\theta)$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Actividad 2: El Elemento de Línea y el Tensor Métrico $g_{ab}$}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    En coordenadas cartesianas el cuadrado de la distancia infinitesimal es $ds^2 = dx^2 + dy^2$.
+    \begin{enumerate}
+      \item[(a)] Sustituye $dx = \cos\theta\,dr - r\sin\theta\,d\theta$ e $dy = \sin\theta\,dr + r\cos\theta\,d\theta$ en $ds^2$.
+      \item[(b)] Desarrolla los binomios y agrupa los términos proporcionales a $dr^2$, $dr\,d\theta$ y $d\theta^2$. Verifica que:
+      \[
+      ds^2 = dr^2 + r^2 d\theta^2.
+      \]
+      \item[(c)] Escribe la forma cuadrática como $ds^2 = \begin{pmatrix} dr & d\theta \end{pmatrix} \begin{pmatrix} g_{rr} & g_{r\theta} \\ g_{\theta r} & g_{\theta\theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix}$ e identifica los elementos de la matriz $g$.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusión 2: Definición y Propiedades del Tensor Métrico}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Tensor Métrico Riemanniano $g_{ab}$:}
+        \[
+        \boxed{g_{ab} \equiv \vec{e}_a \cdot \vec{e}_b = (J^T J)_{ab}}
+        \]
+        \item \textbf{Elemento de Línea (Teorema de Pitágoras Curvilíneo):}
+        \[
+        \boxed{ds^2 = g_{ab}\,du^a du^b}
+        \]
+        \item \textbf{Ortogonalidad:}
+        Si $g_{ab} = 0$ para $a \neq b$, las líneas de coordenadas se cruzan en ángulos de $90^\circ$ en todo punto.
+        \item \textbf{Factores de Escala de Lamé:}
+        $h_a = \sqrt{g_{aa}} = \|\vec{e}_a\|$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{block}{Polares vs. Cartesianas}
+        \footnotesize
+        \[
+        (g_{ij})_{\text{cart}} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+        \]
+        \[
+        (g_{ab})_{\text{pol}} = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix}
+        \]
+        ¡La métrica codifica la geometría de las coordenadas!
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Actividad 3: Factor de Escala de Volumen y $|\det J|$}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    Consideremos la transformación a coordenadas esféricas en $\R^3$:
+    \[
+    x = r\sin\theta\cos\phi, \qquad y = r\sin\theta\sin\phi, \qquad z = r\cos\theta.
+    \]
+    \begin{enumerate}
+      \item[(a)] Los vectores tangentes coordenados son ortogonales entre sí y tienen longitudes $h_r = 1$, $h_\theta = r$, $h_\phi = r\sin\theta$. Escribe la matriz diagonal del tensor métrico $g_{ab}$.
+      \item[(b)] Calcula el determinante del tensor métrico $\det(g)$ y deduce su raíz cuadrada $\sqrt{\det(g)}$.
+      \item[(c)] Explica geométricamente por qué el elemento de volumen físico es $dV = r^2\sin\theta\,dr\,d\theta\,d\phi$.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusión 3: Deformación del Volumen y Coordenadas Esféricas}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Volumen y Métrica:}
+        \[
+        \boxed{dV = \sqrt{\det(g)}\,du^1 du^2 du^3 = |\det J|\,du^1 du^2 du^3}
+        \]
+        \item \textbf{Métrica Esférica:}
+        \[
+        ds^2 = dr^2 + r^2 d\theta^2 + r^2\sin^2\theta\,d\phi^2
+        \]
+        \item \textbf{Métrica Cilíndrica:}
+        \[
+        ds^2 = d\rho^2 + \rho^2 d\phi^2 + dz^2, \quad dV = \rho\,d\rho\,d\phi\,dz.
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.85]
+        \draw[fill=orangeacc!15, draw=orangeacc, thick] (0,0) -- (1.6, 0.4) arc (15:55:1.6) -- cycle;
+        \draw[color=navyaccent, dashed] (0,0) -- (2.3, 0.6) arc (15:55:2.3) -- cycle;
+        \node[font=\tiny\bfseries, color=blackmain] at (1.2, 0.9) {$r\,d\theta$};
+        \node[font=\tiny\bfseries, color=orangeacc] at (1.9, 0.4) {$dr$};
+      \end{tikzpicture}
+      \vspace{0.1cm}
+      {\scriptsize Elemento de área en polares: $dA = r\,dr\,d\theta$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Actividad 4: Diferenciales Exactos frente a Inexactos}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    \begin{enumerate}
+      \item[(a)] \textbf{Diferencial Exacto ($df$):} Dada la función potencial $f(x, y) = x^2 y$, calcula $df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$. Evalúa $\int_{(0,0)}^{(1,2)} df$ a lo largo de cualquier camino. ¿Depende del camino elegido?
+      \item[(b)] \textbf{Diferencial Inexacto ($\delta W$):} Considera la forma diferencial $\delta W = -y\,dx + x\,dy$.
+      Calcula $\int \delta W$ sobre dos caminos distintos que unen $(0,0)$ con $(1,1)$:
+      \begin{itemize}
+        \scriptsize
+        \item Camino 1: Recta recta $y = x$.
+        \item Camino 2: Parábola $y = x^2$.
+      \end{itemize}
+      ¿Dan el mismo resultado? ¿Existe una función $U(x,y)$ tal que $\delta W = dU$?
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusión 4: Exactitud, Independencia de Camino y Síntesis}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Diferencial Exacto $df$:}
+        Proviene de una función escalar $f$. Cumple la condición de integrabilidad $\partial_x F_y = \partial_y F_x$.
+        \[
+        \int_A^B df = f(B) - f(A), \qquad \oint df = 0.
+        \]
+        \item \textbf{Diferencial Inexacto $\delta W$:}
+        Depende del camino recorrido. En el reto:
+        \[
+        \int_{\text{recta}} \delta W = 0 \neq \int_{\text{parábola}} \delta W = \frac{1}{3}.
+        \]
+        \item \textbf{Síntesis:} $J^i{}_a$ transforma variables, $g_{ab}$ mide distancias y volúmenes, y la integrabilidad distingue estados de trayectorias.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{block}{Condición de Integrabilidad}
+        \footnotesize
+        Para $\omega = P\,dx + Q\,dy$:
+        \[
+        \omega \text{ es exacto} \iff \frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}.
+        \]
+        Representa la simetría de derivadas cruzadas de Schwarz.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}

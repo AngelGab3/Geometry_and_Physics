@@ -1,0 +1,97 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Tarea 3: El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones}}}\\[0.2cm]
+{\large\textcolor{graymuted}{Módulo 0: El Arsenal Indicial y Geométrico}}\\[0.25cm]
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent\textbf{Instrucciones:} Desarrolla de manera clara y justificada cada uno de los problemas siguientes. Apóyate en esquemas geométricos cuando sea apropiado y fundamenta tus pasos en las definiciones formales vistas.
+
+% =============================================================================
+\manualsection{Parte A: Construcción Geométrica y Ortogonalidad}
+
+\begin{infobox}{Problema 1: Construcción de una Rotación en el Plano $SO(2)$}
+Sea $\{\hat{e}_1, \hat{e}_2\}$ la base canónica ortonormal de $\R^2$.
+\begin{enumerate}[label=(\alph*)]
+    \item Traza la circunferencia unitaria y dibuja los vectores rotados $\hat{e}'_1 = R(\theta)\hat{e}_1$ y $\hat{e}'_2 = R(\theta)\hat{e}_2$ tras un giro antihorario de ángulo $\theta$.
+    \item Proyecta $\hat{e}'_1$ y $\hat{e}'_2$ sobre los ejes horizontal y vertical para deducir sus componentes cartesianas, y ensambla la matriz $R(\theta) = [\hat{e}'_1 \mid \hat{e}'_2]$.
+    \item Comprueba explícitamente mediante multiplicación matricial que $R(\theta)^T R(\theta) = I$ y calcula $\det R(\theta)$.
+    \item Demuestra algebraicamente que $R(\theta_1)R(\theta_2) = R(\theta_1+\theta_2)$ usando las identidades de adición de ángulos trigonométricos.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 2: Rotaciones frente a Reflexiones}
+Considera las dos transformaciones lineales en $\R^3$ dadas por las matrices:
+\[
+R = \begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}, \qquad
+S = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -1 \end{pmatrix}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Verifica si $R$ y $S$ pertenecen al grupo ortogonal $O(3)$ evaluando $R^T R$ y $S^T S$.
+    \item Calcula $\det(R)$ y $\det(S)$. ¿Cuál de ellas pertenece a $SO(3)$?
+    \item Describe el efecto geométrico de $S$ sobre una terna orientada de vectores $\{\vec{u}, \vec{v}, \vec{w}\}$ y explica por qué una reflexión no puede expresarse como una rotación continua.
+\end{enumerate}
+\end{infobox}
+
+% =============================================================================
+\manualsection{Parte B: No-Conmutatividad y Teorema de Euler}
+
+\begin{infobox}{Problema 3: No-Conmutatividad en Tres Dimensiones}
+Considera las rotaciones de ángulo $\pi/2$ alrededor de los ejes coordenados $X$ y $Y$:
+\[
+R_x(\pi/2) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{pmatrix}, \qquad
+R_y(\pi/2) = \begin{pmatrix} 0 & 0 & 1 \\ 0 & 1 & 0 \\ -1 & 0 & 0 \end{pmatrix}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Calcula los productos matriciales $R_A = R_x(\pi/2)R_y(\pi/2)$ y $R_B = R_y(\pi/2)R_x(\pi/2)$.
+    \item Aplica $R_A$ y $R_B$ al vector unitario $\hat{e}_3 = (0,0,1)^T$. Compara las posiciones finales y verifica que $R_A \neq R_B$.
+    \item Calcula el conmutador matricial $[R_x, R_y] \equiv R_x R_y - R_y R_x$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 4: Eje de Rotación (Teorema de Euler)}
+Considera la matriz de rotación:
+\[
+R = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Verifica que $R \in SO(3)$ calculando $R^T R$ y $\det(R)$.
+    \item Resuelve el sistema homogéneo $(R - I)\vec{v} = \vec{0}$ para encontrar el eje de rotación invariante.
+    \item Normaliza el vector resultante para obtener un vector unitario $\hat{n}$ que apunte a lo largo del eje fijo.
+    \item Calcula la traza $\text{tr}(R) = R_{11} + R_{22} + R_{33}$ y usa la relación $\text{tr}(R) = 1 + 2\cos\theta$ para determinar el ángulo neto de rotación $\theta$ alrededor de dicho eje.
+\end{enumerate}
+\end{infobox}
+
+% =============================================================================
+\manualsection{Parte C: Dinámica y Rotaciones Infinitesimales}
+
+\begin{infobox}{Problema 5: Rotaciones Infinitesimales y Velocidad Angular}
+Una rotación cercana a la identidad se parametriza como $R(\delta\theta) = I + \Omega\,\delta\theta$, donde $\delta\theta \ll 1$.
+\begin{enumerate}[label=(\alph*)]
+    \item A partir de la condición $R^T R = I$, demuestra que despreciando términos de orden $\delta\theta^2$ se obtiene $\Omega^T = -\Omega$.
+    \item Escribe la forma general de una matriz antisimétrica de $3 \times 3$ en función de tres cantidades $(\omega_1, \omega_2, \omega_3)$.
+    \item Demuestra que para cualquier vector de posición $\vec{r} = (x, y, z)^T$, el producto $\Omega\vec{r}$ coincide exactamente con el producto cruz $\vec{\omega} \times \vec{r}$, donde $\vec{\omega} = (\omega_1, \omega_2, \omega_3)^T$.
+    \item Si un punto se mueve describiendo una trayectoria puramente rotacional con velocidad angular constante $\vec{\omega}$, demuestra que la aceleración centrípeta es $\ddot{\vec{r}} = \vec{\omega} \times (\vec{\omega} \times \vec{r})$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 6: Rotaciones frente a Traslaciones}
+\begin{enumerate}[label=(\alph*)]
+    \item Considera una traslación pura $T_{\vec{a}}(\vec{x}) = \vec{x} + \vec{a}$ y una rotación pura $R(\vec{x}) = R\vec{x}$. Muestra mediante un contraejemplo simple que la composición de una rotación y una traslación en general no conmuta ($R(T_{\vec{a}}(\vec{x})) \neq T_{\vec{a}}(R\vec{x})$).
+    \item Explica por qué el conjunto de traslaciones forma un subgrupo conmutativo, mientras que las rotaciones en 3D forman un grupo no conmutativo.
+\end{enumerate}
+\end{infobox}
+
+\end{document}

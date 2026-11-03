@@ -62,5 +62,5 @@
 | :---: | :--- | :---: | :---: | :---: | :---: |
 | **01** | Geometría de Vectores, Proyecciones, Rectas y Planos | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |
 | **02** | Notación de Einstein, $\delta_{ij}$, Levi-Civita y Determinantes | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |
-| **03** | El Grupo de Rotaciones $SO(2), SO(3)$ y Traslaciones | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
-| **04** | Matrices Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
+| **03** | El Grupo de Rotaciones $SO(2), SO(3)$ y Traslaciones | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |
+| **04** | Matrices Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |

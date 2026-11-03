@@ -1,0 +1,187 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Semana 4: Matrices Jacobianas, Coordenadas Curvilíneas y el Tensor Métrico}}}\\[0.15cm]
+{\large\textbf{Transformación de coordenadas, bases locales adaptadas, factor de volumen y $g_{ij}$}}\\[0.3cm]
+{\large\textcolor{graymuted}{Notas de Estudio --- Módulo 0: El Arsenal Indicial y Geométrico}}\\[0.2cm]
+\end{center}
+
+\vspace{0.2cm}
+
+% =====================================================================
+\manualsection[1. De Coordenadas Cartesianas a Curvilíneas]{1. La Necesidad de Nuevas Coordenadas: Simetría Física frente a Rigidez Cartesiana}
+
+En la física y la geometría aplicada rara vez nos enfrentamos a problemas donde la simetría sea estrictamente cúbica o plana. Cuando estudiamos el campo gravitatorio de un planeta, la difusión térmica en un cilindro o la rotación de un vórtice, forzar coordenadas cartesianas $(x, y, z)$ complica innecesariamente las ecuaciones.
+
+Sin embargo, al abandonar el sistema cartesiano surge un desafío matemático inmediato: las líneas coordenadas ya no son rectas paralelas y los vectores unitarios cambian de dirección de un punto a otro del espacio. ¿Cómo se transforman los vectores, los desplazamientos infinitesimales y las distancias en un sistema de coordenadas no cartesiano?
+
+% =====================================================================
+\manualsection[2. La Matriz Jacobiana y la Base Local]{2. La Matriz Jacobiana y la Construcción de la Base Local}
+
+Consideremos una transformación suave de coordenadas en $\R^n$ entre variables cartesianas $x^i$ ($i = 1, \dots, n$) y coordenadas curvilíneas generales $u^a$ ($a = 1, \dots, n$):
+\[
+x^i = x^i(u^1, u^2, \dots, u^n).
+\]
+
+\begin{intuitionbox}{El Desplazamiento Infinitesimal y la Matriz Jacobiana}
+Por la regla de la cadena multivariable, la variación infinitesimal de las coordenadas cartesianas al variar las coordenadas curvilíneas está dada por:
+\[
+dx^i = \frac{\partial x^i}{\partial u^a}\,du^a \equiv J^i{}_a\,du^a,
+\]
+donde hemos adoptado la convención de suma de Einstein sobre el índice mudo $a$.
+La matriz $J = (J^i{}_a)_{n\times n}$ se denomina \textbf{Matriz Jacobiana}:
+\[
+J = \begin{pmatrix} 
+\frac{\partial x^1}{\partial u^1} & \cdots & \frac{\partial x^1}{\partial u^n} \\
+\vdots & \ddots & \vdots \\
+\frac{\partial x^n}{\partial u^1} & \cdots & \frac{\partial x^n}{\partial u^n}
+\end{pmatrix}.
+\]
+\end{intuitionbox}
+
+\begin{theorembox}{Construcción de la Base Local Tangente}
+El vector de posición cartesiano es $\vec{r}(u^1, \dots, u^n) = x^i(u^a)\hat{e}_i$. Si incrementamos una sola coordenada $u^a$ manteniendo todas las demás fijas, la tasa de variación espacial genera el vector tangente a la $a$-ésima línea coordenada:
+\[
+\vec{\varepsilon}_a \equiv \frac{\partial\vec{r}}{\partial u^a} = \frac{\partial x^i}{\partial u^a}\hat{e}_i = J^i{}_a \hat{e}_i.
+\]
+El conjunto $\{\vec{\varepsilon}_1, \dots, \vec{\varepsilon}_n\}$ constituye la \textbf{base local (o coordenada)} en el punto $P$. A diferencia de la base cartesiana fija $\{\hat{e}_i\}$, los vectores $\vec{\varepsilon}_a$ dependen del punto donde nos encontremos.
+\end{theorembox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.0]
+    % Ejes cartesianos suaves
+    \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (4.2,0) node[right, font=\footnotesize] {$x$};
+    \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,3.6) node[above, font=\footnotesize] {$y$};
+
+    \coordinate (O) at (0,0);
+    \coordinate (P) at (2.4, 1.8);
+
+    % Linea coordenada r (radial)
+    \draw[color=orangeacc!70, domain=0.4:3.6, variable=\t, samples=20] plot ({\t}, {0.75*\t});
+    \node[color=orangeacc, font=\scriptsize\bfseries] at (3.5, 2.8) {Línea $r$ ($\theta = \text{cte}$)};
+
+    % Linea coordenada theta (arco)
+    \draw[color=navyaccent!70, domain=20:65, variable=\a, samples=30] plot ({3.0*cos(\a)}, {3.0*sin(\a)});
+    \node[color=navyaccent, font=\scriptsize\bfseries] at (1.1, 3.1) {Línea $\theta$ ($r = \text{cte}$)};
+
+    % Vectores de la base local en P
+    \draw[-{Stealth[length=2.8mm]}, line width=1.8pt, color=orangeacc] (P) -- ($(P) + (1.2, 0.9)$) node[above right=1pt, font=\small\bfseries] {$\vec{\varepsilon}_r = \frac{\partial\vec{r}}{\partial r}$};
+    \draw[-{Stealth[length=2.8mm]}, line width=1.8pt, color=navyaccent] (P) -- ($(P) + (-0.9, 1.2)$) node[above left=1pt, font=\small\bfseries] {$\vec{\varepsilon}_\theta = \frac{\partial\vec{r}}{\partial \theta}$};
+
+    \fill[blackmain] (P) circle (2.2pt) node[below right=2pt, font=\footnotesize\bfseries] {$P(r,\theta)$};
+    \draw[-{Stealth}, color=graymuted, line width=1pt] (O) -- (P) node[pos=0.5, below right=1pt, font=\footnotesize] {$\vec{r}$};
+\end{tikzpicture}
+\end{center}
+
+% =====================================================================
+\manualsection[3. El Tensor Métrico]{3. El Tensor Métrico $g_{ab}$: Midiendo Distancias en Coordenadas Curvas}
+
+En coordenadas cartesianas, el Teorema de Pitágoras diferencial establece que el cuadrado de la distancia infinitesimal entre dos puntos cercanos es:
+\[
+ds^2 = (dx^1)^2 + (dx^2)^2 + \dots + (dx^n)^2 = \delta_{ij} dx^i dx^j.
+\]
+Si sustituimos la transformación $dx^i = J^i{}_a du^a$ en esta expresión:
+\[
+ds^2 = \delta_{ij} (J^i{}_a du^a)(J^j{}_b du^b) = (\delta_{ij} J^i{}_a J^j{}_b) du^a du^b.
+\]
+
+\begin{theorembox}{Definición Formal: Tensor Métrico Riemanniano $g_{ab}$}
+El objeto bilineal simétrico que gobierna el cálculo de distancias y productos internos en las coordenadas $u^a$ es el \textbf{Tensor Métrico}:
+\[
+\boxed{g_{ab} \equiv \vec{\varepsilon}_a \cdot \vec{\varepsilon}_b = \delta_{ij} J^i{}_a J^j{}_b = (J^T J)_{ab}}
+\]
+La distancia euclidiana al cuadrado (o elemento de línea) se expresa mediante la forma cuadrática fundamental:
+\[
+\boxed{ds^2 = g_{ab}\,du^a du^b}
+\]
+\end{theorembox}
+
+\manualsubsection{Sistemas Coordenados Ortogonales}
+Un sistema de coordenadas curvilíneas es \textbf{ortogonal} si sus vectores coordenados locales son mutuamente perpendiculares para todo punto del espacio:
+\[
+\vec{\varepsilon}_a \cdot \vec{\varepsilon}_b = 0 \quad \text{para todo } a \neq b.
+\]
+En tal caso, la matriz del tensor métrico es diagonal:
+\[
+(g_{ab}) = \begin{pmatrix} h_1^2 & 0 & \dots & 0 \\ 0 & h_2^2 & \dots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & \dots & h_n^2 \end{pmatrix},
+\]
+donde $h_a \equiv \|\vec{\varepsilon}_a\| = \sqrt{g_{aa}}$ se denominan \textbf{factores de escala de Lamé}.
+
+% =====================================================================
+\manualsection[4. Coordenadas Clásicas: Polares, Cilíndricas y Esféricas]{4. Los Tres Ejemplos Arquetípicos de la Física}
+
+\manualsubsection{1. Coordenadas Polares en el Plano $(r, \theta)$}
+Las ecuaciones de transformación son $x = r\cos\theta$ e $y = r\sin\theta$.
+La matriz Jacobiana es:
+\[
+J = \begin{pmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta} \end{pmatrix} = \begin{pmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{pmatrix}.
+\]
+El tensor métrico se obtiene multiplicando $J^T J$:
+\[
+(g_{ab}) = J^T J = \begin{pmatrix} \cos\theta & \sin\theta \\ -r\sin\theta & r\cos\theta \end{pmatrix} \begin{pmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix}.
+\]
+Por lo tanto, el elemento de línea es:
+\[
+\boxed{ds^2 = dr^2 + r^2 d\theta^2}
+\]
+Los vectores tangentes tienen normas $\|\vec{\varepsilon}_r\| = 1$ y $\|\vec{\varepsilon}_\theta\| = r$. Los vectores unitarios normalizados son $\hat{e}_r = \vec{\varepsilon}_r$ y $\hat{e}_\theta = \frac{1}{r}\vec{\varepsilon}_\theta$.
+
+\manualsubsection{2. Coordenadas Cilíndricas en $\R^3$ $(\rho, \phi, z)$}
+Con $x = \rho\cos\phi$, $y = \rho\sin\phi$ y $z = z$:
+\[
+(g_{ab}) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \rho^2 & 0 \\ 0 & 0 & 1 \end{pmatrix} \quad \implies \quad \boxed{ds^2 = d\rho^2 + \rho^2 d\phi^2 + dz^2}
+\]
+
+\manualsubsection{3. Coordenadas Esféricas en $\R^3$ $(r, \theta, \phi)$}
+Con $x = r\sin\theta\cos\phi$, $y = r\sin\theta\sin\phi$, $z = r\cos\theta$:
+Los factores de escala son $h_r = 1$, $h_\theta = r$, $h_\phi = r\sin\theta$, lo que conduce a:
+\[
+(g_{ab}) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & r^2 & 0 \\ 0 & 0 & r^2\sin^2\theta \end{pmatrix} \quad \implies \quad \boxed{ds^2 = dr^2 + r^2 d\theta^2 + r^2\sin^2\theta\,d\phi^2}
+\]
+
+% =====================================================================
+\manualsection[5. Elementos de Volumen y el Determinante Jacobiano]{5. La Deformación del Volumen y el Determinante Jacobiano}
+
+¿Cómo cambia un elemento de volumen cartesiano $dV = dx\,dy\,dz$ al integrarse en coordenadas curvilíneas?
+El paralelepípedo infinitesimal generado por los vectores de la base local $\{\vec{\varepsilon}_1 du^1, \dots, \vec{\varepsilon}_n du^n\}$ tiene volumen:
+\[
+dV = |(\vec{\varepsilon}_1 \times \vec{\varepsilon}_2)\cdot\vec{\varepsilon}_3|\,du^1 du^2 du^3 = |\det(J)|\,du^1 du^2 du^3.
+\]
+Usando la relación métrica $g = J^T J$:
+\[
+\det(g) = \det(J^T J) = [\det(J)]^2 \quad \implies \quad |\det(J)| = \sqrt{\det(g)}.
+\]
+Por lo tanto:
+\[
+\boxed{dV = \sqrt{\det(g)}\,du^1 \dots du^n}
+\]
+Para coordenadas esféricas, $\det(g) = (1)(r^2)(r^2\sin^2\theta) = r^4\sin^2\theta$, de modo que $\sqrt{\det(g)} = r^2\sin\theta$, recuperando el factor clásico $dV = r^2\sin\theta\,dr\,d\theta\,d\phi$.
+
+% =====================================================================
+\manualsection[6. Diferenciales Exactos frente a Inexactos]{6. Física de las Formas Diferenciales: Diferenciales Exactos e Inexactos}
+
+En termodinámica y mecánica elemental encontramos dos tipos de cantidades infinitesimales que suelen anotarse de forma similar pero obedecen leyes matemáticas radicalmente distintas:
+\begin{itemize}
+    \item \textbf{Diferenciales Exactos ($df$):} Corresponden a cambios de una \textbf{función de estado} o potencial $f(x, y, z)$. Por el teorema fundamental del cálculo, su integral sobre cualquier curva que conecte $A$ con $B$ depende exclusivamente de los extremos:
+    \[
+    \int_A^B df = f(B) - f(A), \qquad \oint df = 0.
+    \]
+    La forma diferencial $\omega = df = \frac{\partial f}{\partial x^i}dx^i$ cumple la condición de compatibilidad de derivadas cruzadas $\partial_i (\partial_j f) = \partial_j (\partial_i f)$.
+    \item \textbf{Diferenciales Inexactos ($\delta W, \delta Q$):} Corresponden a magnitudes que dependen de la \textbf{trayectoria específica} seguida en el espacio, como el trabajo mecánico realizado por una fuerza de fricción o el calor intercambiado:
+    \[
+    W = \int_\gamma \delta W = \int_\gamma \vec{F}\cdot d\vec{r}.
+    \]
+    En general, para un diferencial inexacto $\oint \delta W \neq 0$.
+\end{itemize}
+
+\end{document}

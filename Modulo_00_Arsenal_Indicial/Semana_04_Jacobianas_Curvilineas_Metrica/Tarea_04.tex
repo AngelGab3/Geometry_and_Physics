@@ -1,0 +1,90 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Tarea 4: Matrices Jacobianas, Coordenadas Curvilíneas y el Tensor Métrico}}}\\[0.2cm]
+{\large\textcolor{graymuted}{Módulo 0: El Arsenal Indicial y Geométrico}}\\[0.25cm]
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent\textbf{Instrucciones:} Resuelve de forma rigurosa y justificada cada uno de los problemas siguientes. Detalla los pasos algebraicos en notación indicial y acompaña tus explicaciones con esquemas geométricos claros.
+
+% =============================================================================
+\manualsection{Parte A: Transformaciones de Coordenadas y Matrices Jacobianas}
+
+\begin{infobox}{Problema 1: Coordenadas Polares en el Plano}
+Considera la transformación estándar a coordenadas polares en $\R^2$:
+\[
+x = r\cos\theta, \qquad y = r\sin\theta.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Calcula la matriz Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$ donde $x^i \in \{x, y\}$ y $u^a \in \{r, \theta\}$.
+    \item Calcula su determinante $\det(J)$ y demuestra que $J$ es invertible para todo $r > 0$.
+    \item Invierte la transformación para obtener $r(x, y)$ y $\theta(x, y)$, y calcula la matriz Jacobiana inversa $\tilde{J}^a{}_i = \frac{\partial u^a}{\partial x^i}$.
+    \item Verifica explícitamente mediante multiplicación matricial que $J \tilde{J} = I$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 2: Coordenadas Parabólicas en el Plano}
+Las coordenadas parabólicas $(\sigma, \tau)$ en el plano están definidas por:
+\[
+x = \frac{1}{2}(\sigma^2 - \tau^2), \qquad y = \sigma\tau, \qquad \sigma \ge 0, \quad \tau \in \R.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Dibuja en un plano cartesiano las curvas coordenadas $\sigma = \text{cte}$ y $\tau = \text{cte}$. Muestra analíticamente que ambas familias son parábolas confocales con foco en el origen.
+    \item Calcula los vectores tangentes de la base coordenada $\vec{\varepsilon}_\sigma = \frac{\partial\vec{r}}{\partial\sigma}$ y $\vec{\varepsilon}_\tau = \frac{\partial\vec{r}}{\partial\tau}$.
+    \item Demuestra que $\vec{\varepsilon}_\sigma \cdot \vec{\varepsilon}_\tau = 0$ y concluye que el sistema de coordenadas parabólicas es ortogonal.
+\end{enumerate}
+\end{infobox}
+
+% =============================================================================
+\manualsection{Parte B: Tensor Métrico y Elementos de Volumen}
+
+\begin{infobox}{Problema 3: Tensor Métrico en Coordenadas Cilíndricas y Esféricas}
+\begin{enumerate}[label=(\alph*)]
+    \item A partir de la definición $g_{ab} = \vec{\varepsilon}_a \cdot \vec{\varepsilon}_b$, calcula explícitamente las componentes de la matriz del tensor métrico $g_{ab}$ para coordenadas cilíndricas $(\rho, \phi, z)$ en $\R^3$.
+    \item Repite el cálculo para coordenadas esféricas $(r, \theta, \phi)$ en $\R^3$. Escribe la forma cuadrática del elemento de línea $ds^2 = g_{ab}\,du^a du^b$.
+    \item Encuentra la matriz inversa del tensor métrico $g^{ab}$ (definida por $g^{ac} g_{cb} = \delta^a{}_b$) para ambos sistemas coordenados.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 4: Deformación del Volumen y Coordenadas Curvas}
+\begin{enumerate}[label=(\alph*)]
+    \item Demuestra la identidad general $\det(g) = [\det(J)]^2$, donde $g = J^T J$.
+    \item Calcula $\sqrt{\det(g)}$ para coordenadas esféricas y verifica que coincide exactamente con el factor de volumen $dV = r^2\sin\theta\,dr\,d\theta\,d\phi$.
+    \item Para el sistema de coordenadas parabólicas del Problema 2, calcula el tensor métrico $g_{ab}$ en dos dimensiones y determina su elemento de área $dA = \sqrt{\det(g)}\,d\sigma\,d\tau$.
+\end{enumerate}
+\end{infobox}
+
+% =============================================================================
+\manualsection{Parte C: Formas Diferenciales Exactas frente a Inexactas}
+
+\begin{infobox}{Problema 5: Diferenciales Exactos e Independencia de Trayectoria}
+Dada la forma diferencial $\omega = (2xy + z)\,dx + (x^2 + 2yz)\,dy + (x + y^2)\,dz$:
+\begin{enumerate}[label=(\alph*)]
+    \item Verifica si cumple la condición de compatibilidad de derivadas cruzadas $\partial_i \omega_j = \partial_j \omega_i$ para todos los pares de índices.
+    \item Encuentra una función escalar potencial $f(x, y, z)$ tal que $\omega = df$.
+    \item Calcula la integral de línea $\int_C \omega$ a lo largo de la curva helicoidal $\vec{r}(t) = (\cos t, \sin t, t)$ para $t \in [0, 2\pi]$ utilizando el potencial $f$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 6: Trabajo Mecánico y Formas Inexactas}
+Considera la fuerza en el plano dada por $\vec{F}(x, y) = \langle -y, x \rangle$.
+\begin{enumerate}[label=(\alph*)]
+    \item Escribe la forma diferencial de trabajo $\delta W = \vec{F} \cdot d\vec{r} = -y\,dx + x\,dy$.
+    \item Calcula el trabajo total $W = \oint_C \delta W$ sobre la circunferencia unitaria $C$ orientada en sentido antihorario parametrizada por $x = \cos t$, $y = \sin t$ ($t \in [0, 2\pi]$).
+    \item A partir del resultado anterior, justifica por qué $\delta W$ no puede ser el diferencial de ninguna función univaluada de estado $U(x, y)$.
+\end{enumerate}
+\end{infobox}
+
+\end{document}

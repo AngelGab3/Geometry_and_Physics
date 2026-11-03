@@ -1,0 +1,268 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Semana 3: El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones}}}\\[0.15cm]
+{\large\textbf{Rigidez, ortogonalidad, orientación, no-conmutatividad y rotaciones infinitesimales}}\\[0.3cm]
+{\large\textcolor{graymuted}{Notas de Estudio --- Módulo 0: El Arsenal Indicial y Geométrico}}\\[0.2cm]
+\end{center}
+
+\vspace{0.2cm}
+
+% =====================================================================
+\manualsection[1. Rigidez y Matrices Ortogonales]{1. La Física de la Rigidez: De la Preservación de Distancias a $R^T R = I$}
+
+¿Qué distingue físicamente al movimiento de un cuerpo rígido (como un giroscopio, una roca o una molécula indeformable) de la deformación de un fluido o un resorte elástico? 
+
+La respuesta fundamental es la \textbf{invarianza de las distancias internas}: si dos partículas del cuerpo están separadas por un vector $\vec{v}$, después de que el cuerpo gire el nuevo vector $\vec{v}'$ debe conservar exactamente la misma longitud. Más aún, si tomamos dos vectores cualesquiera $\vec{u}$ y $\vec{v}$ adheridos al cuerpo rígido, el ángulo relativo entre ellos no puede alterarse.
+
+\begin{intuitionbox}{Deducción de la Condición Ortogonal}
+Sea $R: \R^n \to \R^n$ una transformación lineal que asigna a cada vector $\vec{v}$ su posición rotada $\vec{v}' = R\vec{v}$.
+Exigimos que para cualesquiera dos vectores $\vec{u}, \vec{v} \in \R^n$ se conserve su producto interno euclidiano:
+\[
+\langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle.
+\]
+Usando la definición de la transpuesta matricial en producto interno ($\langle A\vec{x}, \vec{y} \rangle = \langle \vec{x}, A^T \vec{y} \rangle$), el miembro izquierdo se reescribe como:
+\[
+\langle \vec{u}, R^T (R\vec{v}) \rangle = \langle \vec{u}, \vec{v} \rangle \quad \Longleftrightarrow \quad \langle \vec{u}, (R^T R - I)\vec{v} \rangle = 0.
+\]
+Dado que esta igualdad debe cumplirse de manera idéntica para todos los vectores $\vec{u}, \vec{v} \in \R^n$, concluimos necesariamente:
+\[
+\boxed{R^T R = I} \quad \Longleftrightarrow \quad R^{-1} = R^T.
+\]
+\end{intuitionbox}
+
+\begin{theorembox}{Definición Formal: Grupo Ortogonal $O(n)$}
+Una matriz real $R \in \mathcal{M}_{n\times n}(\R)$ se denomina \textbf{ortogonal} si satisface $R^T R = I$. El conjunto de todas estas transformaciones forma el \textbf{Grupo Ortogonal} $O(n)$:
+\[
+O(n) \equiv \{ R \in \mathcal{M}_{n\times n}(\R) \mid R^T R = I \}.
+\]
+Las columnas de una matriz ortogonal $R = [\vec{c}_1 \mid \dots \mid \vec{c}_n]$ constituyen siempre una \textbf{base ortonormal} de $\R^n$, pues la condición matricial equivale en índices a:
+\[
+(R^T)_{ki} R_{kj} = R_{ik} R_{jk} = \delta_{ij} \quad \Longleftrightarrow \quad \vec{c}_i \cdot \vec{c}_j = \delta_{ij}.
+\]
+\end{theorembox}
+
+% =====================================================================
+\manualsection[2. Rotaciones en el Plano: El Grupo SO(2)]{2. Construcción Columna a Columna de Rotaciones en 2D: $SO(2)$}
+
+Para encontrar la forma explícita de una rotación en el plano por un ángulo $\theta$ en sentido antihorario, no necesitamos memorizar matrices: basta seguir el destino de los dos vectores de la base canónica ortonormal $\{\hat{e}_1, \hat{e}_2\}$.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+    % Ejes originales
+    \draw[-{Stealth}, color=graymuted] (-0.4,0) -- (3.6,0) node[right, font=\footnotesize] {$x$};
+    \draw[-{Stealth}, color=graymuted] (0,-0.4) -- (0,3.3) node[above, font=\footnotesize] {$y$};
+
+    \coordinate (O) at (0,0);
+    \coordinate (E1) at (2.4, 0);
+    \coordinate (E2) at (0, 2.4);
+
+    % Base rotada
+    \coordinate (RE1) at ({2.4*cos(35)}, {2.4*sin(35)});
+    \coordinate (RE2) at ({-2.4*sin(35)}, {2.4*cos(35)});
+
+    % Vectores base originales
+    \draw[-{Stealth[length=2.8mm]}, line width=1.3pt, color=graymuted] (O) -- (E1) node[below=2pt, font=\small\bfseries] {$\hat{e}_1$};
+    \draw[-{Stealth[length=2.8mm]}, line width=1.3pt, color=graymuted] (O) -- (E2) node[left=2pt, font=\small\bfseries] {$\hat{e}_2$};
+
+    % Vectores rotados
+    \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=orangeacc] (O) -- (RE1) node[above right=1pt, font=\small\bfseries] {$R\hat{e}_1$};
+    \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=navyaccent] (O) -- (RE2) node[above left=1pt, font=\small\bfseries] {$R\hat{e}_2$};
+
+    % Angulo theta para e1
+    \draw[color=orangeacc, thick] (1.0, 0) arc (0:35:1.0);
+    \node[color=orangeacc, font=\footnotesize\bfseries] at (1.25, 0.35) {$\theta$};
+
+    % Angulo theta para e2
+    \draw[color=navyaccent, thick] (0, 1.0) arc (90:125:1.0);
+    \node[color=navyaccent, font=\footnotesize\bfseries] at (-0.35, 1.25) {$\theta$};
+
+    % Proyecciones dashed
+    \draw[dashed, color=graymuted] (RE1) -- ({2.4*cos(35)}, 0) node[midway, right=1pt, font=\scriptsize] {$\sin\theta$};
+    \draw[dashed, color=graymuted] (RE1) -- (0, {2.4*sin(35)});
+    \node[below=2pt, font=\scriptsize, color=graymuted] at ({2.4*cos(35)}, 0) {$\cos\theta$};
+\end{tikzpicture}
+\end{center}
+
+Al rotar por un ángulo $\theta$:
+\begin{align*}
+R(\theta)\hat{e}_1 &= \cos\theta\,\hat{e}_1 + \sin\theta\,\hat{e}_2 = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \\
+R(\theta)\hat{e}_2 &= -\sin\theta\,\hat{e}_1 + \cos\theta\,\hat{e}_2 = \begin{pmatrix} -\sin\theta \\ \cos\theta \end{pmatrix}.
+\end{align*}
+Colocando estos dos vectores columna lado a lado en la matriz:
+\[
+\boxed{R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}}
+\]
+Calculando su determinante:
+\[
+\det R(\theta) = \cos^2\theta - (-\sin^2\theta) = \cos^2\theta + \sin^2\theta = +1.
+\]
+
+% =====================================================================
+\manualsection[3. El Espejo y la Orientación: SO(n) vs O(n)]{3. Rotaciones Propias frente a Reflexiones: ¿Por qué $\det R = +1$?}
+
+Si tomamos el determinante a ambos lados de la condición de rigidez $R^T R = I$:
+\[
+\det(R^T R) = \det(R^T)\det(R) = (\det R)^2 = \det(I) = 1 \quad \implies \quad \det R = \pm 1.
+\]
+Esta bifurcación divide a las transformaciones ortogonales en dos clases geométricas disjuntas:
+
+\begin{theorembox}{Definición Formal: Grupo Especial Ortogonal $SO(n)$}
+\begin{itemize}
+    \item \textbf{Rotaciones Propias ($\det R = +1$):} Preservan el volumen y la orientación espacial (regla de la mano derecha). Constituyen el \textbf{Grupo Especial Ortogonal}:
+    \[
+    SO(n) \equiv \{ R \in O(n) \mid \det R = +1 \}.
+    \]
+    \item \textbf{Reflexiones e Inversiones Impropias ($\det R = -1$):} Preservan distancias pero invierten la orientación (como un espejo que cambia una mano derecha por una mano izquierda). No pueden alcanzarse mediante un giro continuo desde la identidad $I$.
+\end{itemize}
+\end{theorembox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+    % Panel Izquierdo: Rotacion (orientacion preservada)
+    \begin{scope}[xshift=-4.5cm]
+        \coordinate (O) at (0,0);
+        \draw[-{Stealth}, color=orangeacc, line width=1.5pt] (O) -- (2.2, 0.4) node[right, font=\footnotesize\bfseries] {$\vec{u}'$};
+        \draw[-{Stealth}, color=navyaccent, line width=1.5pt] (O) -- (-0.4, 2.2) node[above, font=\footnotesize\bfseries] {$\vec{v}'$};
+        \draw[color=orangeacc, ->, thick] (1.0, 0.18) arc (10:75:1.0);
+        \node[font=\scriptsize\bfseries] at (1.0, 1.2) {Sentido horario/antihorario};
+        \node[font=\small\bfseries, align=center] at (1.0, -0.8) {(a) Rotación Propia: $\det R = +1$\\[-2pt]{\scriptsize Mano derecha conservada}};
+    \end{scope}
+
+    % Panel Derecho: Espejo (orientacion invertida)
+    \begin{scope}[xshift=3.0cm]
+        \draw[line width=1.5pt, color=graymuted] (0, -0.8) -- (0, 2.7) node[above, font=\footnotesize\bfseries] {Espejo};
+        \coordinate (O) at (0,0);
+        \draw[-{Stealth}, color=orangeacc, line width=1.5pt] (O) -- (2.0, 0.6) node[right, font=\footnotesize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth}, color=navyaccent, line width=1.5pt] (O) -- (0.6, 2.0) node[above right, font=\footnotesize\bfseries] {$\vec{v}$};
+
+        \draw[-{Stealth}, color=orangeacc, dashed, line width=1.5pt] (O) -- (-2.0, 0.6) node[left, font=\footnotesize\bfseries] {$\vec{u}^*$};
+        \draw[-{Stealth}, color=navyaccent, dashed, line width=1.5pt] (O) -- (-0.6, 2.0) node[above left, font=\footnotesize\bfseries] {$\vec{v}^*$};
+        \node[font=\small\bfseries, align=center] at (0, -0.8) {(b) Reflexión: $\det R = -1$\\[-2pt]{\scriptsize Mano derecha se vuelve izquierda}};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+% =====================================================================
+\manualsection[4. Rotaciones en 3D: SO(3) y Matrices Canónicas]{4. Rotaciones en el Espacio: $SO(3)$ Alrededor de los Ejes Coordinados}
+
+En el espacio tridimensional $\R^3$, rotar alrededor de un eje coordinado deja dicho eje inmóvil y actúa como una rotación bidimensional $SO(2)$ en el plano perpendicular:
+
+\begin{align*}
+R_x(\psi) &= \begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\psi & -\sin\psi \\ 0 & \sin\psi & \cos\psi \end{pmatrix}, \qquad
+R_y(\theta) = \begin{pmatrix} \cos\theta & 0 & \sin\theta \\ 0 & 1 & 0 \\ -\sin\theta & 0 & \cos\theta \end{pmatrix}, \\
+R_z(\phi) &= \begin{pmatrix} \cos\phi & -\sin\phi & 0 \\ \sin\phi & \cos\phi & 0 \\ 0 & 0 & 1 \end{pmatrix}.
+\end{align*}
+Cada una satisface $R_i^T R_i = I$ y $\det(R_i) = +1$.
+
+% =====================================================================
+\manualsection[5. No-Conmutatividad de SO(3)]{5. La No-Conmutatividad en 3D: El Experimento del Libro}
+
+Una diferencia fundamental entre dos y tres dimensiones es que mientras dos rotaciones planas siempre conmutan ($R(\theta_1)R(\theta_2) = R(\theta_2)R(\theta_1) = R(\theta_1+\theta_2)$), \textbf{las rotaciones en el espacio tridimensional no conmutan}:
+\[
+R_x(\pi/2) R_z(\pi/2) \neq R_z(\pi/2) R_x(\pi/2).
+\]
+
+\begin{center}
+\begin{tikzpicture}[scale=0.92]
+    % Camino 1: Primero Z luego X
+    \begin{scope}[xshift=-4.6cm]
+        \node[font=\footnotesize\bfseries, color=orangeacc] at (1.5, 3.2) {Camino 1: Primero $R_z(\pi/2)$, luego $R_x(\pi/2)$};
+        \draw[fill=creambg, draw=blackmain, line width=1pt] (0,0) rectangle (2.6, 2.0);
+        \node[font=\scriptsize\bfseries] at (1.3, 1.0) {Portada arriba};
+        \draw[-{Stealth}, line width=1.3pt, color=orangeacc] (2.9, 1.0) -- (4.1, 1.0) node[midway, above=1pt, font=\scriptsize] {$R_z$};
+        \draw[fill=orangebg, draw=orangeacc, line width=1pt] (4.4,0) rectangle (6.4, 2.6);
+        \node[font=\scriptsize\bfseries, color=navyaccent] at (5.4, 1.3) {Giro en plano};
+    \end{scope}
+
+    % Desigualdad
+    \node[font=\LARGE\bfseries, color=navyaccent] at (2.6, 1.0) {$\neq$};
+
+    % Camino 2: Primero X luego Z
+    \begin{scope}[xshift=3.4cm]
+        \node[font=\footnotesize\bfseries, color=navyaccent] at (1.5, 3.2) {Camino 2: Primero $R_x(\pi/2)$, luego $R_z(\pi/2)$};
+        \draw[fill=creambg, draw=blackmain, line width=1pt] (0,0) rectangle (2.6, 2.0);
+        \node[font=\scriptsize\bfseries] at (1.3, 1.0) {Portada arriba};
+        \draw[-{Stealth}, line width=1.3pt, color=navyaccent] (2.9, 1.0) -- (4.1, 1.0) node[midway, above=1pt, font=\scriptsize] {$R_x$};
+        \draw[fill=navyaccent!15, draw=navyaccent, line width=1pt] (4.4,0) rectangle (7.0, 1.2);
+        \node[font=\scriptsize\bfseries, color=blackmain] at (5.7, 0.6) {Lomo arriba};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
+
+Esta falta de conmutatividad significa algebraicamente que el grupo $SO(3)$ es \textbf{no abeliano}.
+
+% =====================================================================
+\manualsection[6. Teorema de Euler y Rotaciones Infinitesimales]{6. El Teorema de Rotación de Euler y la Velocidad Angular $\vec{\omega}$}
+
+\manualsubsection{El Teorema de Rotación de Euler: El Eje Fijo}
+Todo cuerpo que rota en el espacio tridimensional mantiene al menos una línea fija que no se mueve: el \textbf{eje de rotación}.
+
+\begin{theorembox}{Teorema de Euler}
+Para toda matriz de rotación $R \in SO(3)$, existe al menos un vector no nulo $\vec{v} \neq \vec{0}$ tal que:
+\[
+R\vec{v} = \vec{v}.
+\]
+Es decir, $\lambda = 1$ es siempre un valor propio de toda matriz de rotación en 3D.
+\end{theorembox}
+
+\noindent\textit{Demostración:} Consideremos el determinante $\det(R - I)$:
+\begin{align*}
+\det(R - I) &= \det(R - R R^T) = \det[R(I - R^T)] = \det(R)\det[(I - R)^T] \\
+&= (+1)\det(I - R) = (-1)^3 \det(R - I) = -\det(R - I).
+\end{align*}
+Un número real igual a su propio negativo debe ser cero: $2\det(R - I) = 0 \implies \det(R - I) = 0$. Por el teorema fundamental del álgebra lineal, el sistema homogéneo $(R - I)\vec{v} = \vec{0}$ tiene soluciones no triviales.
+
+\manualsubsection{Rotaciones Infinitesimales: De Matrices a la Velocidad Angular}
+Consideremos una rotación muy pequeña alrededor del origen que se aparta de la identidad en un parámetro infinitesimal $\delta\theta \ll 1$:
+\[
+R(\delta\theta) \approx I + \Omega\,\delta\theta.
+\]
+Si exigimos la condición de rigidez $R^T R = I$:
+\[
+(I + \Omega^T\,\delta\theta)(I + \Omega\,\delta\theta) = I + (\Omega + \Omega^T)\delta\theta + \mathcal{O}(\delta\theta^2) = I.
+\]
+Para que el término de primer orden se anule, la matriz generadora $\Omega$ debe ser \textbf{antisimétrica}:
+\[
+\boxed{\Omega^T = -\Omega} \quad \Longleftrightarrow \quad \Omega_{ij} = -\Omega_{ji}.
+\]
+Toda matriz real antisimétrica de $3 \times 3$ contiene solo 3 parámetros independientes $(\omega_1, \omega_2, \omega_3)$:
+\[
+\Omega = \begin{pmatrix} 0 & -\omega_3 & \omega_2 \\ \omega_3 & 0 & -\omega_1 \\ -\omega_2 & \omega_1 & 0 \end{pmatrix}.
+\]
+Al multiplicar por un vector de posición $\vec{r} = (x, y, z)^T$:
+\[
+\Omega\vec{r} = \begin{pmatrix} -\omega_3 y + \omega_2 z \\ \omega_3 x - \omega_1 z \\ -\omega_2 x + \omega_1 y \end{pmatrix} = \vec{\omega} \times \vec{r}, \qquad \text{donde } \vec{\omega} = \begin{pmatrix} \omega_1 \\ \omega_2 \\ \omega_3 \end{pmatrix}.
+\]
+Así, la derivada temporal de la posición de un punto en un sólido rígido en rotación pura es exactamente:
+\[
+\boxed{\dot{\vec{r}} = \vec{\omega} \times \vec{r}}
+\]
+La matriz antisimétrica $\Omega$ y el producto vectorial $\vec{\omega}\times$ representan el mismo objeto físico.
+
+% =====================================================================
+\manualsection[7. Rotaciones vs. Traslaciones]{7. Rotaciones frente a Traslaciones: Dos Naturalezas Geométricas}
+
+Para concluir, contrastamos las rotaciones con las traslaciones espaciales:
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Propiedad} & \textbf{Rotación $R \in SO(3)$} & \textbf{Traslación $T_{\vec{a}}$} \\ \hline
+Definición & $\vec{x}' = R\vec{x}$ & $\vec{x}' = \vec{x} + \vec{a}$ \\ \hline
+Linealidad & Lineal ($R(\alpha\vec{u}+\beta\vec{v})=\alpha R\vec{u}+\beta R\vec{v}$) & No lineal si $\vec{a}\neq\vec{0}$ (afín) \\ \hline
+Punto fijo & Siempre fija el origen $R\vec{0} = \vec{0}$ y todo el eje $\vec{v}$ & Ningún punto fijo si $\vec{a}\neq\vec{0}$ \\ \hline
+Álgebra de composición & No conmutativa en 3D ($R_1 R_2 \neq R_2 R_1$) & Siempre conmutativa ($T_{\vec{a}}T_{\vec{b}} = T_{\vec{b}}T_{\vec{a}}$) \\ \hline
+\end{tabular}
+\end{center}
+
+\end{document}

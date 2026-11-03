@@ -428,7 +428,7 @@
 % ---------------------------------------------------------------------
 \begin{frame}{Demostración de la Fórmula BAC--CAB}
   \footnotesize
-  Escribimos la $i$-ésima componente del doble producto cruz utilizando la representación tensorial del producto vectorial:
+  Escribimos la $i$-ésima componente del doble producto cruz utilizando la expresión indicial del producto cruz:
   \[
   [\vec{A} \times (\vec{B} \times \vec{C})]_i = \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k = \epsilon_{ijk} A_j (\epsilon_{kmn} B_m C_n)
   \]
@@ -453,7 +453,7 @@
 % ---------------------------------------------------------------------
 % SLIDE 17: TEOREMA DE CONTRACCIÓN SIMÉTRICO-ANTISIMÉTRICO
 % ---------------------------------------------------------------------
-\begin{frame}{Teorema: Contracción de Tensores Simétricos y Antisimétricos}
+\begin{frame}{Teorema: Contracción de Objetos Simétricos y Antisimétricos}
   \begin{block}{Enunciado del Teorema}
     \footnotesize
     Sea $S_{ij}$ un objeto simétrico ($S_{ij} = S_{ji}$) y sea $A_{ij}$ un objeto antisimétrico ($A_{ij} = -A_{ji}$) bajo el intercambio de dos índices. Entonces su contracción total se anula idénticamente:
@@ -581,7 +581,7 @@
       \[
       \mathbf{\det(M) = \epsilon_{ijk} M_{i1} M_{j2} M_{k3}}
       \]
-      \textbf{Identidad Tensorial Fundamental:}\\[2pt]
+      \textbf{Identidad Indicial Fundamental:}\\[2pt]
       Si evaluamos las columnas bajo índices arbitrarios $(a, b, c)$:
       \[
       \boxed{\epsilon_{ijk} M_{ia} M_{jb} M_{kc} = \det(M)\,\epsilon_{abc}}
@@ -609,7 +609,7 @@
   \vspace{0.2cm}
   \small
   \begin{enumerate}\itemsep14pt
-    \item ¿Por qué la contracción de un tensor simétrico ($S_{ij} = S_{ji}$) con uno antisimétrico ($A_{ij} = -A_{ji}$) es idénticamente cero ($S_{ij}A_{ij} = 0$), con total independencia del sistema de coordenadas elegido?
+    \item ¿Por qué la contracción de un objeto o matriz simétrica ($S_{ij} = S_{ji}$) con uno antisimétrico ($A_{ij} = -A_{ji}$) es idénticamente cero ($S_{ij}A_{ij} = 0$), con total independencia del sistema de coordenadas elegido?
     \item ¿Cómo asegura el convenio de índices de Einstein que todas las identidades deducidas sean invariantes ante rotaciones y elecciones arbitrarias de los ejes?
     \item ¿De qué manera la Identidad Maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$ unifica el álgebra del doble producto cruz con la conservación de la energía cinética en presencia de campos magnéticos?
   \end{enumerate}

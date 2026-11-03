@@ -295,7 +295,7 @@ La potencia mecánica instantánea (trabajo realizado por unidad de tiempo) tran
 \[
 P = q\,\epsilon_{ijk} (v_i v_j) B_k.
 \]
-Como el producto diádico de velocidades $S_{ij} \equiv v_i v_j$ es perfectamente simétrico bajo $i \leftrightarrow j$ ($v_i v_j = v_j v_i$) y el tensor de Levi-Civita $\epsilon_{ijk}$ es totalmente antisimétrico en $(i, j)$, su contracción se anula idénticamente por el lema anterior:
+Como el producto diádico de velocidades $S_{ij} \equiv v_i v_j$ es perfectamente simétrico bajo $i \leftrightarrow j$ ($v_i v_j = v_j v_i$) y el símbolo de Levi-Civita $\epsilon_{ijk}$ es totalmente antisimétrico en $(i, j)$, su contracción se anula idénticamente por el lema anterior:
 \[
 \mathbf{P = \frac{dE_{\text{cin}}}{dt} = 0}.
 \]
@@ -341,12 +341,12 @@ Si ahora agrupamos los tres vectores como las tres columnas de una matriz $3 \ti
 \mathbf{\det(M) = \epsilon_{ijk} M_{i1} M_{j2} M_{k3}}.
 \]
 ¿Y qué ocurre si permutamos el orden de las tres columnas tomando índices arbitrarios $(a, b, c)$ en lugar de $(1, 2, 3)$? Intercambiar dos columnas invierte la orientación de la caja y cambia el signo del volumen exactamente igual que $\epsilon_{abc}$. Por lo tanto, descubrimos la identidad fundamental del determinante:
-\begin{theorembox}{Identidad Tensorial del Determinante}
+\begin{theorembox}{El Determinante en Notación de Índices}
 Para cualquier matriz $M$ de $3 \times 3$:
 \[
 \mathbf{\epsilon_{ijk} M_{ia} M_{jb} M_{kc} = \det(M)\,\epsilon_{abc}}.
 \]
 \end{theorembox}
-\textbf{Significado geométrico:} Esta identidad tensorial sintetiza cómo el símbolo $\epsilon_{abc}$ actúa como un detector del factor de escala volumétrico generado por la matriz $M$. Cuando $a, b, c$ forman una permutación par de $1, 2, 3$, recuperamos $\det(M)$; si dos columnas coinciden, el miembro izquierdo se anula por antisimetría, reflejando el colapso del paralelepípedo a volumen cero.
+\textbf{Significado geométrico:} Esta identidad indicial sintetiza cómo el símbolo $\epsilon_{abc}$ actúa como un detector del factor de escala volumétrico generado por la matriz $M$. Cuando $a, b, c$ forman una permutación par de $1, 2, 3$, recuperamos $\det(M)$; si dos columnas coinciden, el miembro izquierdo se anula por antisimetría, reflejando el colapso del paralelepípedo a volumen cero.
 
 \end{document}

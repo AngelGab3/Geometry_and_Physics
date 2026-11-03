@@ -257,10 +257,10 @@ Para cualesquiera dos vectores $\vec{u} = \langle u_1, u_2, u_3 \rangle$ y $\vec
 \end{tikzpicture}
 \end{center}
 
-\manualsubsection{Espacios Prehilbertianos y Métricas Anisótropas}
+\manualsubsection{Axiomatización del Producto Interno y Métricas Ponderadas}
 
-\begin{theorembox}{Definición Formal: Espacio con Producto Interno (Prehilbertiano)}
-Sea $V$ un espacio vectorial real. Un \textbf{producto interno} (o forma bilineal métrica simétrica definida positiva) es una función $\langle \cdot, \cdot \rangle: V \times V \to \R$ que satisface, para cualesquiera $\vec{u}, \vec{v}, \vec{w} \in V$ y cualquier escalar $c \in \R$:
+\begin{theorembox}{Definición Formal: Espacio Vectorial con Producto Interno}
+Sea $V$ un espacio vectorial real. Un \textbf{producto interno} es una función $\langle \cdot, \cdot \rangle: V \times V \to \R$ que asigna a cada par de vectores $\vec{u}, \vec{v}$ un número real satisfaciendo, para cualesquiera $\vec{u}, \vec{v}, \vec{w} \in V$ y cualquier escalar $c \in \R$:
 \begin{enumerate}
     \item \textbf{Simetría:} $\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle$.
     \item \textbf{Bilinealidad:} $\langle c\vec{u} + \vec{w}, \vec{v} \rangle = c\langle \vec{u}, \vec{v} \rangle + \langle \vec{w}, \vec{v} \rangle$.
@@ -272,14 +272,34 @@ Sea $V$ un espacio vectorial real. Un \textbf{producto interno} (o forma bilinea
     \[
     \langle \vec{u}, \vec{v} \rangle_{\text{can}} = \vec{u}\cdot\vec{v} = \sum_{i=1}^n u_i v_i.
     \]
-    Bajo este producto, el espacio es perfectamente isotrópico y el lugar geométrico de los vectores unitarios $\{\vec{x} \in \R^n \mid \|\vec{x}\| = 1\}$ es una esfera perfecta.
-    \item \textbf{Productos métricos ponderados y anisótropos:} Si $G \in M_{n\times n}(\R)$ es una matriz simétrica ($G = G^T$) y estrictamente definida positiva ($\vec{x}^T G \vec{x} > 0$ para todo $\vec{x} \neq \vec{0}$):
+    Bajo este producto, el espacio es perfectamente isotrópico y el conjunto de vectores unitarios $\{\vec{x} \in \R^n \mid \|\vec{x}\| = 1\}$ describe una esfera euclidiana estándar.
+    \item \textbf{Productos métricos ponderados (Medios anisótropos):} En la física de medios continuos o cristales donde el material opone mayor rigidez a lo largo de ciertos ejes, podemos introducir ponderaciones positivas $k_1, k_2, \dots, k_n > 0$:
     \[
-    \langle \vec{u}, \vec{v} \rangle_G \equiv \vec{u}^T G \vec{v} = \sum_{i,j=1}^n G_{ij} u_i v_j.
+    \langle \vec{u}, \vec{v} \rangle_* \equiv \sum_{i=1}^n k_i u_i v_i = k_1 u_1 v_1 + k_2 u_2 v_2 + \cdots + k_n u_n v_n.
     \]
-    En un medio elástico o un cristal anisótropo donde las ondas viajan a distintas velocidades según la dirección, la matriz $G$ actúa como una métrica no trivial que deforma las esferas euclidianas en \textbf{elipsoides métricos}.
+    Bajo este producto interno, la «circunferencia unitaria» dada por $k_1 x_1^2 + k_2 x_2^2 = 1$ deja de ser circular y se deforma geométricamente en una \textbf{elipse métrica}.
 \end{itemize}
 \end{theorembox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+    % Panel Izquierdo: Circulo unitario canónico
+    \begin{scope}[xshift=-4.0cm]
+        \draw[color=graymuted, thin, -{Stealth}] (-1.9,0) -- (1.9,0) node[right, font=\footnotesize] {$x_1$};
+        \draw[color=graymuted, thin, -{Stealth}] (0,-1.9) -- (0,1.9) node[above, font=\footnotesize] {$x_2$};
+        \draw[line width=1.5pt, color=navyaccent] (0,0) circle (1.2cm);
+        \node[color=navyaccent, font=\small\bfseries] at (0, -2.15) {(a) Métrica canónica: $x_1^2 + x_2^2 = 1$};
+    \end{scope}
+
+    % Panel Derecho: Elipse métrica ponderada
+    \begin{scope}[xshift=4.0cm]
+        \draw[color=graymuted, thin, -{Stealth}] (-1.9,0) -- (1.9,0) node[right, font=\footnotesize] {$x_1$};
+        \draw[color=graymuted, thin, -{Stealth}] (0,-1.9) -- (0,1.9) node[above, font=\footnotesize] {$x_2$};
+        \draw[line width=1.6pt, color=orangeacc] (0,0) ellipse (1.4cm and 0.7cm);
+        \node[color=orangeacc, font=\small\bfseries] at (0, -2.15) {(b) Métrica ponderada: $x_1^2 + 4x_2^2 = 1$};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
 
 \manualsubsection{Espacios Normados, Cauchy-Schwarz y la Desigualdad Triangular}
 
@@ -302,7 +322,7 @@ Esta definición tiene sentido geométrico garantizado porque el cociente siempr
 \end{infobox}
 
 \begin{theorembox}{Teorema Fundamental: La Desigualdad de Cauchy-Schwarz}
-Sea $(V, \langle \cdot, \cdot \rangle)$ un espacio prehilbertiano real con norma inducida $\|\vec{u}\| = \sqrt{\langle \vec{u}, \vec{u} \rangle}$. Para cualesquiera vectores $\vec{u}, \vec{v} \in V$:
+Sea $V$ un espacio vectorial real dotado de un producto interno $\langle \cdot, \cdot \rangle$ y su norma inducida $\|\vec{u}\| = \sqrt{\langle \vec{u}, \vec{u} \rangle}$. Para cualesquiera vectores $\vec{u}, \vec{v} \in V$:
 \[
 \boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\| \|\vec{v}\|}
 \]
@@ -339,6 +359,41 @@ La igualdad $|\langle \vec{u}, \vec{v} \rangle| = \|\vec{u}\|\|\vec{v}\|$ se ver
     La igualdad $\Delta = 0$ ocurre si y solo si existe un $\lambda_0$ tal que $\|\vec{u} + \lambda_0\vec{v}\| = 0$, lo que implica $\vec{u} = -\lambda_0\vec{v}$ (dependencia lineal). \hfill $\blacksquare$
 \end{enumerate}
 \end{theorembox}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+    % Panel Izquierdo: Cauchy-Schwarz
+    \begin{scope}[xshift=-4.2cm]
+        \coordinate (O) at (0,0);
+        \coordinate (V) at (4.0,0);
+        \coordinate (U) at (2.6, 2.0);
+        \coordinate (P) at (2.6,0);
+
+        \draw[-{Stealth[length=2.5mm]}, line width=1.3pt, color=graymuted] (O) -- (V) node[right, font=\footnotesize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth[length=2.5mm]}, line width=1.5pt, color=blackmain] (O) -- (U) node[midway, above left=1pt, font=\footnotesize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth[length=2.5mm]}, line width=2.0pt, color=orangeacc] (O) -- (P) node[midway, below=3pt, font=\footnotesize\bfseries] {$\frac{|\langle\vec{u},\vec{v}\rangle|}{\|\vec{v}\|}$};
+        \draw[dashed, color=navyaccent, thick] (P) -- (U);
+
+        \draw[color=navyaccent, thin] (2.35,0) -- (2.35,0.25) -- (2.6,0.25);
+        \node[font=\footnotesize\bfseries] at (2.0, -1.0) {(a) Cauchy-Schwarz: cateto $\le$ hipotenusa};
+    \end{scope}
+
+    % Panel Derecho: Desigualdad Triangular
+    \begin{scope}[xshift=3.5cm]
+        \coordinate (O) at (0,0);
+        \coordinate (U) at (2.5, 0.4);
+        \coordinate (S) at (3.5, 2.2);
+
+        \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=navyaccent] (O) -- (U) node[midway, below=2pt, font=\footnotesize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=navyaccent] (U) -- (S) node[midway, right=2pt, font=\footnotesize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth[length=2.5mm]}, line width=1.8pt, color=orangeacc] (O) -- (S) node[midway, above left=1pt, font=\footnotesize\bfseries] {$\vec{u}+\vec{v}$};
+
+        \fill[blackmain] (O) circle (2pt) node[below left=1pt, font=\scriptsize] {Inicio};
+        \fill[blackmain] (S) circle (2pt) node[above right=1pt, font=\scriptsize] {Fin};
+        \node[font=\footnotesize\bfseries] at (1.8, -1.0) {(b) Desigualdad triangular: camino directo $\le$ rodeo};
+    \end{scope}
+\end{tikzpicture}
+\end{center}
 
 \begin{theorembox}{Teorema: La Desigualdad Triangular}
 En todo espacio vectorial con producto interno $(V, \langle \cdot, \cdot \rangle)$, la norma inducida satisface la \textbf{desigualdad triangular}:

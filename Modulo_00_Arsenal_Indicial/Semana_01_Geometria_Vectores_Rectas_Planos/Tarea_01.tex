@@ -75,7 +75,7 @@ Considera el plano $\Pi \subset \R^3$ generado paramétricamente desde el punto 
 \end{infobox}
 
 \begin{infobox}{Problema 4: La Identidad del Paralelogramo, Polarización y Métricas Anisótropas}
-En clase formalizamos los espacios prehilbertianos $(V, \langle \cdot, \cdot \rangle)$, donde el producto interno define de manera natural la noción métrica de longitud mediante $\|\vec{u}\| = \sqrt{\langle \vec{u}, \vec{u} \rangle}$.
+En clase formalizamos cómo todo producto interno en un espacio vectorial real $V$ induce de manera natural la noción métrica de longitud mediante $\|\vec{u}\| = \sqrt{\langle \vec{u}, \vec{u} \rangle}$.
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{La Ley del Paralelogramo:} A partir de la bilinealidad y simetría del producto interno, demuestra que para cualesquiera dos vectores $\vec{u}, \vec{v} \in V$ se cumple rigurosamente:
     \[
@@ -87,11 +87,11 @@ En clase formalizamos los espacios prehilbertianos $(V, \langle \cdot, \cdot \ra
         \langle \vec{u}, \vec{v} \rangle = \frac{1}{4}\left(\|\vec{u} + \vec{v}\|^2 - \|\vec{u} - \vec{v}\|^2\right).
     \]
     ¿Por qué una norma que no satisfaga la ley del paralelogramo (por ejemplo, la norma del taxista $\|\vec{x}\|_1 = |x_1| + |x_2|$) no puede provenir de ningún producto interno?
-    \item \textbf{Métricas Anisótropas en $\R^2$:} Considera el producto interno generalizado definido mediante la matriz métrica $G = \begin{pmatrix} 1 & 0 \\ 0 & 4 \end{pmatrix}$:
+    \item \textbf{Métricas Anisótropas en $\R^2$:} Considera la operación ponderada definida en el plano $\R^2$ por:
     \[
-        \langle \vec{x}, \vec{y} \rangle_G \equiv \vec{x}^T G \vec{y} = x_1 y_1 + 4 x_2 y_2, \qquad \vec{x}, \vec{y} \in \R^2.
+        \langle \vec{x}, \vec{y} \rangle_* = x_1 y_1 + 4 x_2 y_2, \qquad \vec{x} = \langle x_1, x_2 \rangle, \quad \vec{y} = \langle y_1, y_2 \rangle.
     \]
-    Verifica que $\langle \cdot, \cdot \rangle_G$ satisface los tres axiomas de producto interno. Escribe la ecuación cartesiana de la «circunferencia unitaria» $\|\vec{x}\|_G = 1$ y explica por qué esta métrica describe un medio físico deformable o anisótropo donde las distancias en el eje vertical $x_2$ se ponderan cuatro veces más que en el eje horizontal $x_1$.
+    Verifica que $\langle \cdot, \cdot \rangle_*$ satisface los tres axiomas de producto interno. Escribe la ecuación cartesiana de la «circunferencia unitaria» $\|\vec{x}\|_* = 1$ y explica por qué esta regla describe un medio físico anisótropo donde las deformaciones en el eje vertical $x_2$ experimentan una rigidez cuatro veces mayor que en el eje horizontal $x_1$.
 \end{enumerate}
 \end{infobox}
 

@@ -51,37 +51,52 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 4: DEFINICIÓN FORMAL - ESPACIO AFÍN DE WEYL
+% SLIDE 4: DEFINICIÓN FORMAL - ESPACIO AFÍN DE WEYL CON TIKZ
 % ---------------------------------------------------------------------
 \begin{frame}{El Espacio Afín: Axiomática de Weyl}
-  \begin{block}{Definición Formal de Espacio Afín}
-    \footnotesize
-    Un \textbf{espacio afín} asociado a un espacio vectorial real $V$ es un conjunto no vacío $A$ junto con una aplicación $+: A \times V \to A$ (la \emph{traslación} de un punto por un vector) que satisface:
-    \begin{enumerate}
-      \itemsep2pt
-      \item \textbf{Identidad del neutro:} Para todo punto $P \in A$, \ $P + \vec{0} = P$.
-      \item \textbf{Compatibilidad con la suma vectorial:} Para todo $P \in A$ y $\vec{u}, \vec{v} \in V$,
-      \[
-      (P + \vec{u}) + \vec{v} = P + (\vec{u} + \vec{v}).
-      \]
-      \item \textbf{Acción libre y transitiva (Vector entre dos puntos):} Para cualesquiera $P, Q \in A$, existe un \textbf{único} vector en $V$, denotado por $\vec{v} = \overrightarrow{PQ} = Q - P$, tal que:
-      \[
-      P + \vec{v} = Q.
-      \]
-    \end{enumerate}
-  \end{block}
-  \vspace{0.08cm}
   \begin{columns}[c]
-    \begin{column}{0.49\textwidth}
-      \footnotesize
-      \textbf{Identidad de Chasles:} Para cualesquiera $P, Q, R \in A$:
-      \[
-      (Q - P) + (R - Q) = R - P \iff \overrightarrow{PQ} + \overrightarrow{QR} = \overrightarrow{PR}.
-      \]
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Definición de Espacio Afín $(A, V, +)$}
+        \scriptsize
+        Un conjunto de puntos $A$ y un espacio vectorial $V$ con una traslación $+: A \times V \to A$ que satisface:
+        \begin{enumerate}
+          \itemsep1pt
+          \item $P + \vec{0} = P$ para todo $P \in A$.
+          \item $(P + \vec{u}) + \vec{v} = P + (\vec{u} + \vec{v})$.
+          \item \textbf{Vector entre dos puntos:} Para cada par $(P, Q)$, existe un \textbf{único} vector $Q - P \in V$ tal que $P + (Q - P) = Q$.
+        \end{enumerate}
+      \end{block}
+      \vspace{0.05cm}
+      \scriptsize
+      \textbf{Relación de Chasles:} $(Q - P) + (R - Q) = R - P$.\\[2pt]
+      \textbf{Principio Físico:} No hay origen universal; el espacio es homogéneo.
     \end{column}
-    \begin{column}{0.49\textwidth}
-      \footnotesize
-      \textbf{Significado Físico:} El espacio físico no posee un origen absoluto. Todos los puntos son geométricamente homogéneos.
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.82]
+        \coordinate (P) at (0.3, 0.4);
+        \coordinate (Q) at (3.2, 0.9);
+        \coordinate (R) at (1.8, 2.8);
+        \coordinate (O) at (-0.7, -0.6);
+
+        % Chasles triangle
+        \draw[-{Stealth}, line width=1.5pt, color=orangeacc] (P) -- (Q) node[midway, below=2pt, font=\scriptsize\bfseries] {$\vec{u} = Q - P$};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (Q) -- (R) node[midway, right=2pt, font=\scriptsize\bfseries] {$\vec{v} = R - Q$};
+        \draw[-{Stealth}, line width=1.7pt, color=blackmain] (P) -- (R) node[midway, above left=1pt, font=\scriptsize\bfseries] {$R - P = \vec{u}+\vec{v}$};
+
+        % Points
+        \fill[blackmain] (P) circle (2.2pt) node[below left=1pt, font=\scriptsize\bfseries] {$P$};
+        \fill[blackmain] (Q) circle (2.2pt) node[below right=1pt, font=\scriptsize\bfseries] {$Q$};
+        \fill[blackmain] (R) circle (2.2pt) node[above=2pt, font=\scriptsize\bfseries] {$R$};
+
+        % Dashed origin
+        \draw[dashed, color=graymuted, -{Stealth}] (O) -- (P) node[pos=0.5, left=1pt, font=\tiny] {$\vec{r}_P$};
+        \draw[dashed, color=graymuted, -{Stealth}] (O) -- (Q) node[pos=0.5, right=1pt, font=\tiny] {$\vec{r}_Q$};
+        \fill[graymuted] (O) circle (1.8pt) node[below left=1pt, font=\tiny\bfseries] {$O$};
+      \end{tikzpicture}
+      \vspace{0.05cm}
+
+      {\scriptsize Identidad de Chasles e independencia del origen $O$.}
     \end{column}
   \end{columns}
 \end{frame}
@@ -94,7 +109,7 @@
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
-        \item \textbf{Espacio Afín vs. Espacio Vectorial:} Un punto $P$ es una ubicación; la diferencia $\vec{v} = P_1 - P_0$ es un \textbf{vector} que pertenece a un espacio con elemento cero $\vec{0}$.
+        \item \textbf{Espacio Afín vs. Espacio Vectorial:} Un punto $P$ es una ubicación; la diferencia $\vec{v} = P_1 - P_0$ es un \textbf{vector} en un espacio con neutro $\vec{0}$.
         \item \textbf{Definición Formal $(V, +, \cdot)$ sobre $\R$:} Conjunto cerrado bajo suma $\vec{u}+\vec{v}$ y producto escalar $a\vec{u}$ ($a \in \R$) con \textbf{8 axiomas}:
         \begin{enumerate}
           \scriptsize
@@ -142,47 +157,104 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 7: DEFINICIÓN FORMAL - PRODUCTO INTERNO GENERAL
+% SLIDE 7: DE LA LEY DE COSENOS AL PRODUCTO PUNTO CON TIKZ
 % ---------------------------------------------------------------------
-\begin{frame}{Espacios Prehilbertianos: El Producto Interno General}
-  \begin{block}{Definición Formal de Producto Interno sobre $\R$}
-    \footnotesize
-    Sea $V$ un espacio vectorial real. Un \textbf{producto interno} es una aplicación bilineal $\langle \cdot, \cdot \rangle: V \times V \to \R$ que satisface, para todos $\vec{u}, \vec{v}, \vec{w} \in V$ y $c \in \R$:
-    \begin{enumerate}
-      \itemsep1pt
-      \item \textbf{Simetría:} $\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle$.
-      \item \textbf{Bilinealidad:} $\langle c\vec{u} + \vec{w}, \vec{v} \rangle = c\langle \vec{u}, \vec{v} \rangle + \langle \vec{w}, \vec{v} \rangle$.
-      \item \textbf{Definida positiva:} $\langle \vec{u}, \vec{u} \rangle \ge 0$, con igualdad si y solo si $\vec{u} = \vec{0}$.
-    \end{enumerate}
-  \end{block}
-  \vspace{0.08cm}
+\begin{frame}{De la Ley de Cosenos al Producto Punto}
   \begin{columns}[c]
-    \begin{column}{0.49\textwidth}
+    \begin{column}{0.54\textwidth}
       \footnotesize
-      \textbf{Producto Canónico en $\R^n$:}
+      \textbf{¿Cómo medir el ángulo $\theta$ entre dos vectores?}\\[4pt]
+      En el triángulo formado por $\vec{u}$, $\vec{v}$ y la resta $\vec{u}-\vec{v}$, la \textbf{Ley de los Cosenos} establece:
       \[
-      \langle \vec{u}, \vec{v} \rangle_{\text{can}} = \vec{u}\cdot\vec{v} = \sum_{i=1}^n u_i v_i.
+      \|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos\theta
       \]
-      Las superficies de nivel $\langle \vec{x}, \vec{x} \rangle = 1$ son esferas isotrópicas clásicas.
+      Desarrollando en componentes cartesianas en $\R^3$:
+      \[
+      \sum_{i=1}^3 (u_i - v_i)^2 = \sum_{i=1}^3 (u_i^2 + v_i^2) - 2\sum_{i=1}^3 u_i v_i
+      \]
+      Los términos cuadráticos se cancelan y emerge el \textbf{producto punto}:
+      \[
+      \boxed{\vec{u}\cdot\vec{v} \equiv \sum_{i=1}^3 u_i v_i = \|\vec{u}\|\|\vec{v}\|\cos\theta}
+      \]
     \end{column}
-    \begin{column}{0.49\textwidth}
-      \footnotesize
-      \textbf{Métricas Anisótropas Generales:}
-      \[
-      \langle \vec{u}, \vec{v} \rangle_G = \vec{u}^T G \vec{v} = \sum_{i,j} G_{ij} u_i v_j,
-      \]
-      con $G = G^T$ simétrica definida positiva. Las esferas unitarias se deforman en \textbf{elipses métricas}.
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        \coordinate (O) at (0,0);
+        \coordinate (U) at (3.2, 0.4);
+        \coordinate (V) at (1.5, 2.3);
+
+        \draw[-{Stealth}, line width=1.5pt, color=blackmain] (O) -- (U) node[midway, below=2pt, font=\scriptsize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth}, line width=1.5pt, color=blackmain] (O) -- (V) node[midway, left=2pt, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (V) -- (U) node[midway, above right=1pt, font=\scriptsize\bfseries] {$\vec{w} = \vec{u} - \vec{v}$};
+
+        \pic[draw=navyaccent, fill=navyaccent!15, angle radius=0.65cm, "$\theta$", font=\scriptsize\bfseries] {angle = U--O--V};
+
+        \fill[blackmain] (O) circle (2pt) node[below left=1pt, font=\scriptsize] {$O$};
+      \end{tikzpicture}
+      \vspace{0.1cm}
+
+      {\scriptsize El triángulo fundamental: $\|\vec{u}-\vec{v}\|^2$ conecta el álgebra de coordenadas con el ángulo $\theta$.}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 8: DEFINICIÓN FORMAL - ESPACIOS NORMADOS
+% SLIDE 8: AXIOMAS DEL PRODUCTO INTERNO Y MÉTRICAS CON TIKZ
 % ---------------------------------------------------------------------
-\begin{frame}{Espacios Normados: La Geometría de Longitudes y Ángulos}
+\begin{frame}{Axiomas del Producto Interno y Métricas Ponderadas}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Definición de Producto Interno $\langle \vec{u}, \vec{v} \rangle$}
+        \scriptsize
+        Una operación bilineal $\langle \cdot, \cdot \rangle: V \times V \to \R$ que satisface:
+        \begin{enumerate}
+          \itemsep1pt
+          \item \textbf{Simetría:} $\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle$.
+          \item \textbf{Bilinealidad:} $\langle c\vec{u} + \vec{w}, \vec{v} \rangle = c\langle \vec{u}, \vec{v} \rangle + \langle \vec{w}, \vec{v} \rangle$.
+          \item \textbf{Positividad:} $\langle \vec{u}, \vec{u} \rangle \ge 0$, con igualdad $\iff \vec{u} = \vec{0}$.
+        \end{enumerate}
+      \end{block}
+      \vspace{0.05cm}
+      \scriptsize
+      \textbf{Métricas Ponderadas (Medios Anisótropos):}\\[2pt]
+      En física, las direcciones pueden tener distinta rigidez:
+      \[
+      \langle \vec{u}, \vec{v} \rangle_{\text{aniso}} = u_1 v_1 + 4 u_2 v_2
+      \]
+      La «circunferencia unitaria» se deforma en una elipse.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        % Canonical circle
+        \draw[color=graymuted, thin, -{Stealth}] (-1.6,0) -- (1.6,0) node[right, font=\tiny] {$x_1$};
+        \draw[color=graymuted, thin, -{Stealth}] (0,-1.6) -- (0,1.6) node[above, font=\tiny] {$x_2$};
+        \draw[line width=1.3pt, color=navyaccent] (0,0) circle (1.1cm);
+        \node[color=navyaccent, font=\scriptsize\bfseries] at (0, -1.35) {$\|\vec{x}\|_{\text{can}} = 1$};
+
+        % Anisotropic ellipse
+        \begin{scope}[xshift=2.9cm]
+          \draw[color=graymuted, thin, -{Stealth}] (-1.6,0) -- (1.6,0) node[right, font=\tiny] {$x_1$};
+          \draw[color=graymuted, thin, -{Stealth}] (0,-1.6) -- (0,1.6) node[above, font=\tiny] {$x_2$};
+          \draw[line width=1.5pt, color=orangeacc] (0,0) ellipse (1.1cm and 0.55cm);
+          \node[color=orangeacc, font=\scriptsize\bfseries] at (0, -1.35) {$x_1^2 + 4x_2^2 = 1$};
+        \end{scope}
+      \end{tikzpicture}
+      \vspace{0.05cm}
+
+      {\scriptsize Geometría isotrópica (círculo) vs. medio anisótropo (elipse métrica).}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 9: ESPACIOS NORMADOS Y DEFINICIÓN DE ÁNGULO
+% ---------------------------------------------------------------------
+\begin{frame}{Espacios Normados y la Definición Geométrica de Ángulo}
   \begin{block}{Definición Formal de Norma}
     \footnotesize
-    Una \textbf{norma} en un espacio vectorial real $V$ es una función $\|\cdot\|: V \to \R_{\ge 0}$ que asigna a cada vector una magnitud geométrica satisfaciendo:
+    Una \textbf{norma} en $V$ es una función $\|\cdot\|: V \to \R_{\ge 0}$ que asigna a cada vector su longitud satisfaciendo:
     \begin{enumerate}
       \itemsep1pt
       \item \textbf{No-degeneración:} $\|\vec{u}\| = 0 \iff \vec{u} = \vec{0}$.
@@ -194,11 +266,11 @@
   \begin{columns}[c]
     \begin{column}{0.51\textwidth}
       \footnotesize
-      \textbf{Norma Inducida por un Producto Interno:}
+      \textbf{Norma Inducida por el Producto Interno:}
       \[
       \boxed{\|\vec{u}\| \equiv \sqrt{\langle \vec{u}, \vec{u} \rangle}}
       \]
-      Todo producto interno induce de manera natural una norma euclidiana que mide longitudes reales.
+      Todo producto interno define intrínsecamente la distancia entre puntos: $d(P, Q) = \|Q - P\|$.
     \end{column}
     \begin{column}{0.46\textwidth}
       \footnotesize
@@ -206,99 +278,180 @@
       \[
       \boxed{\cos\theta \equiv \frac{\langle \vec{u}, \vec{v} \rangle}{\|\vec{u}\|\|\vec{v}\|}, \quad \theta \in [0, \pi]}
       \]
-      Esta definición geométrica es consistente gracias a la Desigualdad de Cauchy-Schwarz.
+      \textbf{Pregunta crucial:} ¿Cómo garantizamos que este cociente siempre viva en $[-1, 1]$?
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 9: DEMOSTRACIÓN MAGISTRAL - CAUCHY-SCHWARZ
+% SLIDE 10: TEOREMA DE CAUCHY-SCHWARZ CON TIKZ
 % ---------------------------------------------------------------------
 \begin{frame}{Teorema Fundamental: La Desigualdad de Cauchy-Schwarz}
-  \begin{block}{Enunciado del Teorema}
-    \footnotesize
-    En todo espacio prehilbertiano $(V, \langle \cdot, \cdot \rangle)$ con norma inducida $\|\cdot\|$:
-    \[
-    \boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|}
-    \]
-    La igualdad se cumple si y solo si $\{\vec{u}, \vec{v}\}$ son linealmente dependientes.
-  \end{block}
-  \begin{block}{Demostración (Cátedra Magistral)}
-    \scriptsize
-    \begin{enumerate}
-      \itemsep2pt
-      \item Si $\vec{v} = \vec{0}$, la desigualdad se cumple trivialmente ($0 \le 0$). Supongamos $\vec{v} \neq \vec{0}$.
-      \item Por la positividad del producto interno, para cualquier escalar $\lambda \in \R$ se cumple:
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{block}{Enunciado del Teorema}
+        \footnotesize
+        Para cualesquiera vectores $\vec{u}, \vec{v}$ en un espacio con producto interno:
+        \[
+        \boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|}
+        \]
+        La igualdad se alcanza si y solo si $\vec{u}$ y $\vec{v}$ son linealmente dependientes ($\vec{u} = c\vec{v}$).
+      \end{block}
+      \vspace{0.1cm}
+      \footnotesize
+      \textbf{Garantía Geométrica:}
       \[
-      P(\lambda) \equiv \|\vec{u} + \lambda \vec{v}\|^2 = \langle \vec{u} + \lambda \vec{v},\; \vec{u} + \lambda \vec{v} \rangle \ge 0.
+      -1 \le \frac{\langle \vec{u}, \vec{v} \rangle}{\|\vec{u}\|\|\vec{v}\|} \le 1
       \]
-      \item Expandiendo por bilinealidad y simetría obtenemos un trinomio cuadrático en $\lambda$:
-      \[
-      P(\lambda) = \|\vec{u}\|^2 + 2\lambda\langle \vec{u}, \vec{v} \rangle + \lambda^2 \|\vec{v}\|^2 \ge 0 \qquad (\forall \lambda \in \R).
-      \]
-      \item Como el coeficiente cuadrático es $\|\vec{v}\|^2 > 0$ y $P(\lambda) \ge 0$ no cambia de signo, su discriminante $\Delta = B^2 - 4AC \le 0$:
-      \[
-      (2\langle \vec{u}, \vec{v} \rangle)^2 - 4\|\vec{v}\|^2 \|\vec{u}\|^2 \le 0 \implies 4\langle \vec{u}, \vec{v} \rangle^2 \le 4\|\vec{u}\|^2 \|\vec{v}\|^2 \implies |\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|. \quad \blacksquare
-      \]
-    \end{enumerate}
-  \end{block}
+      Asegura que el ángulo $\theta$ entre cualquier par de vectores está siempre matemáticamente bien definido.
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        \coordinate (O) at (0,0);
+        \coordinate (V) at (3.6,0);
+        \coordinate (U) at (2.4, 1.8);
+        \coordinate (P) at (2.4,0);
+
+        \draw[-{Stealth}, line width=1.3pt, color=graymuted] (O) -- (V) node[right, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=1.5pt, color=blackmain] (O) -- (U) node[midway, above left=1pt, font=\scriptsize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth}, line width=2pt, color=orangeacc] (O) -- (P) node[midway, below=3pt, font=\scriptsize\bfseries] {$\frac{|\langle\vec{u},\vec{v}\rangle|}{\|\vec{v}\|}$};
+        \draw[dashed, color=navyaccent, thick] (P) -- (U);
+
+        \draw[color=navyaccent, thin] (2.15,0) -- (2.15,0.25) -- (2.4,0.25);
+        \pic[draw=orangeacc, angle radius=0.6cm, "$\theta$", font=\scriptsize] {angle = V--O--U};
+      \end{tikzpicture}
+      \vspace{0.08cm}
+
+      {\scriptsize La proyección ortogonal (cateto) nunca puede superar a la hipotenusa $\|\vec{u}\|$.}
+    \end{column}
+  \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 10: DEMOSTRACIÓN MAGISTRAL - DESIGUALDAD TRIANGULAR
+% SLIDE 11: DEMOSTRACIÓN DE CAUCHY-SCHWARZ (SLIDE DEDICADA)
 % ---------------------------------------------------------------------
-\begin{frame}{Teorema: La Desigualdad Triangular}
-  \begin{block}{Enunciado del Teorema}
-    \footnotesize
-    En todo espacio prehilbertiano $(V, \langle \cdot, \cdot \rangle)$, la norma inducida $\|\vec{u}\| \equiv \sqrt{\langle\vec{u},\vec{u}\rangle}$ satisface:
-    \[
-    \boxed{\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|}
-    \]
-  \end{block}
-  \begin{block}{Demostración (Cátedra Magistral)}
-    \scriptsize
-    Desarrollamos el cuadrado de la norma por bilinealidad y acotamos mediante Cauchy-Schwarz:
-    \begin{align*}
-      \|\vec{u} + \vec{v}\|^2 &= \langle \vec{u} + \vec{v},\; \vec{u} + \vec{v} \rangle = \|\vec{u}\|^2 + 2\langle \vec{u}, \vec{v} \rangle + \|\vec{v}\|^2 \\
-      &\le \|\vec{u}\|^2 + 2|\langle \vec{u}, \vec{v} \rangle| + \|\vec{v}\|^2 \qquad \text{(pues $\langle \vec{u}, \vec{v} \rangle \le |\langle \vec{u}, \vec{v} \rangle|$)} \\
-      &\le \|\vec{u}\|^2 + 2\|\vec{u}\|\|\vec{v}\| + \|\vec{v}\|^2 \qquad \text{(por el Teorema de Cauchy-Schwarz)} \\
-      &= (\|\vec{u}\| + \|\vec{v}\|)^2.
-    \end{align*}
-    Tomando la raíz cuadrada positiva a ambos lados (monotonía estricta en $\R_{\ge 0}$), concluimos:
-    \[
-    \|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|. \qquad \blacksquare
-    \]
-  \end{block}
+\begin{frame}{Demostración de la Desigualdad de Cauchy-Schwarz}
+  \footnotesize
+  Sea $\vec{v} \neq \vec{0}$ (si $\vec{v} = \vec{0}$, la desigualdad $0 \le 0$ es trivial). Consideremos la combinación $\vec{u} + \lambda\vec{v}$ para cualquier escalar $\lambda \in \R$.
+  \vspace{0.15cm}
+
+  Por la propiedad de positividad definida del producto interno, la longitud al cuadrado nunca es negativa:
+  \[
+  P(\lambda) \equiv \|\vec{u} + \lambda \vec{v}\|^2 = \langle \vec{u} + \lambda \vec{v},\; \vec{u} + \lambda \vec{v} \rangle \ge 0 \qquad (\forall \lambda \in \R)
+  \]
+  Expandiendo por bilinealidad y simetría obtenemos un polinomio cuadrático en $\lambda$:
+  \[
+  P(\lambda) = \|\vec{u}\|^2 + 2\lambda\langle \vec{u}, \vec{v} \rangle + \lambda^2 \|\vec{v}\|^2 \ge 0
+  \]
+  Como el coeficiente principal es $A = \|\vec{v}\|^2 > 0$ y la parábola $P(\lambda)$ nunca cruza por debajo del eje horizontal ($P(\lambda) \ge 0$), la ecuación $P(\lambda) = 0$ tiene a lo más una raíz real.
+  \vspace{0.15cm}
+
+  Por tanto, su discriminante $\Delta = B^2 - 4AC$ no puede ser estrictamente positivo:
+  \[
+  \Delta = (2\langle \vec{u}, \vec{v} \rangle)^2 - 4\|\vec{v}\|^2 \|\vec{u}\|^2 \le 0 \implies 4\langle \vec{u}, \vec{v} \rangle^2 \le 4\|\vec{u}\|^2 \|\vec{v}\|^2
+  \]
+  Dividiendo entre $4$ y extrayendo la raíz cuadrada positiva a ambos miembros:
+  \[
+  \boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|} \qquad \blacksquare
+  \]
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 11: DEDUCCIÓN GUIADA - PROYECCIÓN ORTOGONAL
+% SLIDE 12: TEOREMA DE LA DESIGUALDAD TRIANGULAR CON TIKZ
+% ---------------------------------------------------------------------
+\begin{frame}{Teorema Fundamental: La Desigualdad Triangular}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Enunciado del Teorema}
+        \footnotesize
+        Para cualesquiera vectores $\vec{u}, \vec{v}$ en un espacio con producto interno y norma inducida:
+        \[
+        \boxed{\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|}
+        \]
+        La igualdad se alcanza si y solo si $\vec{u} = c\vec{v}$ con $c \ge 0$ (vectores colineales en el mismo sentido).
+      \end{block}
+      \vspace{0.1cm}
+      \footnotesize
+      \textbf{Significado Físico y Geométrico:}\\[2pt]
+      En cualquier triángulo, la distancia en línea recta entre el inicio y el final es estrictamente menor o igual que la suma de los tramos individuales (el rodeo).
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.92]
+        \coordinate (O) at (0,0);
+        \coordinate (U) at (2.8, 0.4);
+        \coordinate (V) at (1.2, 2.0);
+        \coordinate (S) at ($(U)+(V)$);
+
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (O) -- (U) node[midway, below=2pt, font=\scriptsize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (U) -- (S) node[midway, right=2pt, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=2pt, color=orangeacc] (O) -- (S) node[midway, above left=1pt, font=\scriptsize\bfseries] {$\vec{u}+\vec{v}$};
+
+        \fill[blackmain] (O) circle (2pt) node[below left=1pt, font=\tiny] {Inicio};
+        \fill[blackmain] (S) circle (2pt) node[above right=1pt, font=\tiny] {Fin};
+      \end{tikzpicture}
+      \vspace{0.08cm}
+
+      {\scriptsize El camino directo $\|\vec{u}+\vec{v}\|$ frente al camino poligonal $\|\vec{u}\|+\|\vec{v}\|$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 13: DEMOSTRACIÓN DE LA DESIGUALDAD TRIANGULAR (SLIDE DEDICADA)
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración de la Desigualdad Triangular}
+  \footnotesize
+  Calculamos el cuadrado de la norma del vector suma $\vec{u}+\vec{v}$ expandiendo por bilinealidad y simetría:
+  \[
+  \|\vec{u} + \vec{v}\|^2 = \langle \vec{u} + \vec{v},\; \vec{u} + \vec{v} \rangle = \|\vec{u}\|^2 + 2\langle \vec{u}, \vec{v} \rangle + \|\vec{v}\|^2
+  \]
+  Dado que para cualquier número real $x \le |x|$, acotamos el término cruzado por su valor absoluto:
+  \[
+  \|\vec{u} + \vec{v}\|^2 \le \|\vec{u}\|^2 + 2|\langle \vec{u}, \vec{v} \rangle| + \|\vec{v}\|^2
+  \]
+  Aplicando directamente el \textbf{Teorema de Cauchy-Schwarz} ($|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$):
+  \[
+  \|\vec{u} + \vec{v}\|^2 \le \|\vec{u}\|^2 + 2\|\vec{u}\|\|\vec{v}\| + \|\vec{v}\|^2
+  \]
+  El miembro derecho es exactamente el desarrollo del trinomio cuadrado perfecto:
+  \[
+  \|\vec{u} + \vec{v}\|^2 \le (\|\vec{u}\| + \|\vec{v}\|)^2
+  \]
+  Puesto que tanto $\|\vec{u}+\vec{v}\|$ como $\|\vec{u}\|+\|\vec{v}\|$ son cantidades no negativas, extraemos la raíz cuadrada a ambos lados conservando el orden:
+  \[
+  \boxed{\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|} \qquad \blacksquare
+  \]
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 14: DEDUCCIÓN GUIADA - PROYECCIÓN ORTOGONAL
 % ---------------------------------------------------------------------
 \begin{frame}{Descomposición de Fuerzas y Proyección Ortogonal}
   \begin{block}{Descomposición Ortogonal sobre una Dirección Fija}
     \footnotesize
-    Considera el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{w} = \vec{u} - \vec{v}$, con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$.
+    Considera una fuerza $\vec{F}$ que empuja un objeto guiado por un riel recto con vector director $\vec{v} \neq \vec{0}$. Queremos descomponer $\vec{F}$ en dos partes mutuamente perpendiculares:
+    \[
+    \vec{F} = \vec{F}_\parallel + \vec{F}_\perp, \qquad \vec{F}_\parallel = c\vec{v}, \quad \vec{F}_\perp \cdot \vec{v} = 0.
+    \]
     \begin{enumerate}
       \itemsep2pt
-      \item[(a)] \textbf{De la Ley de Cosenos al Álgebra:} Sabemos geométricamente que $\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos\theta$. Expande algebraicamente $(u_1 - v_1)^2 + (u_2 - v_2)^2 + (u_3 - v_3)^2$ e iguala ambas expresiones. ¿Qué combinación algebraica sobrevive?
-      \item[(b)] \textbf{Descomposición sobre un Riel:} Una fuerza $\vec{F}$ jala un vagón sobre un riel con dirección $\vec{v}$. Escribe $\vec{F} = \vec{F}_\parallel + \vec{F}_\perp$, donde $\vec{F}_\parallel = c\vec{v}$ es paralela al riel y $\vec{F}_\perp$ es perpendicular ($\vec{F}_\perp \cdot \vec{v} = 0$). Toma el producto punto con $\vec{v}$ para despejar el escalar $c$.
-      \item[(c)] \textbf{Componente normal:} Halla la componente $\vec{F}_\perp$ que presiona lateralmente el riel exclusivamente a partir de las componentes de $\vec{F}$ y $\vec{v}$, sin calcular $\theta$.
+      \item[(a)] Toma el producto escalar de la ecuación con $\vec{v}$: $\vec{F}\cdot\vec{v} = c(\vec{v}\cdot\vec{v}) + \vec{F}_\perp\cdot\vec{v}$. Usando la ortogonalidad de $\vec{F}_\perp$, despeja el escalar $c$.
+      \item[(b)] Escribe la fórmula vectorial explícita de $\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$ y de la fuerza normal al riel $\vec{F}_\perp$.
+      \item[(c)] Verifica que $\|\vec{F}\|^2 = \|\vec{F}_\parallel\|^2 + \|\vec{F}_\perp\|^2$ calculando directamente $\langle \vec{F}_\parallel + \vec{F}_\perp, \vec{F}_\parallel + \vec{F}_\perp \rangle$.
     \end{enumerate}
   \end{block}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 12: TEORÍA Y TIKZ - PROYECCIONES
+% SLIDE 15: TEORÍA Y TIKZ - PROYECCIONES
 % ---------------------------------------------------------------------
 \begin{frame}{El Teorema de Descomposición Ortogonal y Proyecciones}
   \begin{columns}[c]
     \begin{column}{0.53\textwidth}
       \footnotesize
       \begin{itemize}
-        \item \textbf{Producto Punto y Coseno:}
-        \[
-        \vec{u}\cdot\vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 = \|\vec{u}\|\|\vec{v}\|\cos\theta
-        \]
         \item \textbf{Proyección Ortogonal sobre $\vec{v}$:}
         \[
         \boxed{\text{proy}_{\vec{v}}(\vec{u}) = \left(\frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|^2}\right)\vec{v}}
@@ -342,7 +495,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 13: PREGUNTAS DEDICADAS - GEOMETRÍA MÉTRICA
+% SLIDE 16: PREGUNTAS DEDICADAS - GEOMETRÍA MÉTRICA
 % ---------------------------------------------------------------------
 \begin{frame}{Geometría Métrica y Proyecciones}
   \vspace{0.2cm}
@@ -355,7 +508,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 14: TEORÍA Y TIKZ - RECTA
+% SLIDE 17: TEORÍA Y TIKZ - RECTA
 % ---------------------------------------------------------------------
 \begin{frame}{La Ecuación Vectorial de la Recta}
   \begin{columns}[c]
@@ -405,7 +558,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 15: DEDUCCIÓN GUIADA - PRODUCTO CRUZ
+% SLIDE 18: DEDUCCIÓN GUIADA - PRODUCTO CRUZ
 % ---------------------------------------------------------------------
 \begin{frame}{Ortogonalidad Simultánea y Producto Vectorial}
   \begin{block}{Construcción de una Dirección Perpendicular Conjunta}
@@ -424,7 +577,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 16: TEORÍA Y TIKZ - PRODUCTO CRUZ
+% SLIDE 19: TEORÍA Y TIKZ - PRODUCTO CRUZ
 % ---------------------------------------------------------------------
 \begin{frame}{El Producto Cruz: Magnitud, Área y Orientación}
   \begin{columns}[c]
@@ -473,7 +626,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 17: PREGUNTAS DEDICADAS - ORIENTACIÓN Y PRODUCTO CRUZ
+% SLIDE 20: PREGUNTAS DEDICADAS - ORIENTACIÓN Y PRODUCTO CRUZ
 % ---------------------------------------------------------------------
 \begin{frame}{Orientación Espacial y Álgebra del Producto Cruz}
   \vspace{0.2cm}
@@ -486,7 +639,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 18: DEDUCCIÓN GUIADA - PLANO
+% SLIDE 21: DEDUCCIÓN GUIADA - PLANO
 % ---------------------------------------------------------------------
 \begin{frame}{Geometría del Plano: Descripción Paramétrica e Implícita}
   \begin{block}{Parametrización Bidimensional vs. Ecuación Normal}
@@ -502,7 +655,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 19: TEORÍA Y TIKZ - PLANOS Y FOLIACIONES
+% SLIDE 22: TEORÍA Y TIKZ - PLANOS Y FOLIACIONES
 % ---------------------------------------------------------------------
 \begin{frame}{Planos en $\R^3$: Subespacios de Dimensión 2 y Foliaciones}
   \begin{columns}[c]
@@ -546,7 +699,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 20: DEDUCCIÓN GUIADA - INTERSECCIÓN
+% SLIDE 23: DEDUCCIÓN GUIADA - INTERSECCIÓN
 % ---------------------------------------------------------------------
 \begin{frame}{Intersección de Planos y Sistemas de Restricciones}
   \begin{block}{Determinación de la Recta de Intersección}
@@ -560,7 +713,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 21: TEORÍA Y TIKZ - INTERSECCIÓN Y DISTANCIA
+% SLIDE 24: TEORÍA Y TIKZ - INTERSECCIÓN Y DISTANCIA
 % ---------------------------------------------------------------------
 \begin{frame}{Geometría de la Intersección y Distancia a un Plano}
   \begin{columns}[c]
@@ -601,7 +754,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 22: PREGUNTAS DE CIERRE - SÍNTESIS ESTRUCTURAL
+% SLIDE 25: PREGUNTAS DE CIERRE - SÍNTESIS ESTRUCTURAL
 % ---------------------------------------------------------------------
 \begin{frame}{De la Geometría a la Estructura Lineal}
   \vspace{0.2cm}

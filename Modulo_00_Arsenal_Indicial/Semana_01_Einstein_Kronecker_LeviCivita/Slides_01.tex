@@ -1,0 +1,291 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+\usepackage{../../Common/course_slides}
+\usepackage{../../Common/course_macros}
+\usepackage[spanish,provide=*]{babel}
+
+\title[Semana 1: Arsenal Indicial y Levi-Civita]{Notación de Einstein, $\delta_{ij}$ y Levi-Civita $\epsilon_{ijk}$}
+\subtitle{Demoliendo identidades vectoriales en 3 renglones}
+\author{Geometría y Física I}
+\institute{Licenciatura en Física}
+\date{}
+
+\begin{document}
+
+% ---------------------------------------------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{1. La Crisis del Cálculo Vectorial Tradicional}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      ¿Cómo se demuestra la identidad del doble producto cruz?
+      \[
+      \vec{A} \times (\vec{B} \times \vec{C}) = \vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})
+      \]
+      \begin{itemize}
+        \item En cálculo tradicional: expandir componentes con determinantes de $\hat{i}, \hat{j}, \hat{k}$.
+        \item Resultado: **2 páginas completas** de álgebra mecánica.
+        \item Riesgo altísimo de error en signos cruzados.
+      \end{itemize}
+      \vspace{0.2cm}
+      \alert{\textbf{Pregunta física:}} ¿Por qué una propiedad geométrica del espacio debe ser tan difícil de calcular?
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{block}{El Problema de Fondo}
+        El método tradicional nos obliga a escribir \textbf{tres veces} la misma ecuación:
+        \begin{itemize}
+          \item Una para $x$
+          \item Una para $y$
+          \item Una para $z$
+        \end{itemize}
+        ignora la simetría de permutación del espacio.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{2. El Convenio de Suma de Einstein}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \textbf{Paso 1: Unificar las coordenadas}
+      \[
+      (x, y, z) \quad \longrightarrow \quad (x_1, x_2, x_3) = x_i \quad (i = 1, 2, 3)
+      \]
+      \vspace{0.1cm}
+      \textbf{Paso 2: La regla de Einstein (1916)}
+      \begin{block}{Convenio de Suma}
+        Si un índice aparece repetido exactamente \textbf{dos veces} en un monomio, se suma sobre él:
+        \[
+        \vec{A}\cdot\vec{B} = \sum_{i=1}^3 A_i B_i \quad \equiv \quad \mathbf{A_i B_i}
+        \]
+      \end{block}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{exampleblock}{Índices Mudos vs. Libres}
+        \begin{itemize}
+          \item \textbf{Mudo (suma):} Aparece dos veces. Se puede renombrar:
+          \[ A_i B_i = A_k B_k \]
+          \item \textbf{Libre:} Aparece una sola vez por término. Dicta la componente:
+          \[ v_i = A_i + B_i \]
+        \end{itemize}
+      \end{exampleblock}
+      \vspace{0.1cm}
+      \alert{\textbf{Regla de oro:}} ¡Nunca repetir un índice tres veces en un mismo término!
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{3. La Delta de Kronecker $\delta_{ij}$: El Interruptor}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{block}{Definición Tensorial}
+        \[
+        \delta_{ij} = \begin{cases} 1 & \text{si } i = j \\ 0 & \text{si } i \neq j \end{cases}
+        \]
+        Representa la matriz identidad $3 \times 3$.
+      \end{block}
+      \vspace{0.2cm}
+      \textbf{La Delta como Filtro de Sustitución:}
+      \[
+      \delta_{ij} A_j = \delta_{i1} A_1 + \delta_{i2} A_2 + \delta_{i3} A_3 = \mathbf{A_i}
+      \]
+      \begin{itemize}
+        \item Apaga todos los términos donde $j \neq i$.
+        \item Deja pasar únicamente el valor donde $j = i$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{exampleblock}{Propiedades Fundamentales}
+        \begin{itemize}
+          \item \textbf{Traza (dimensión del espacio):}
+          \[
+          \delta_{ii} = \delta_{11} + \delta_{22} + \delta_{33} = \mathbf{3}
+          \]
+          \item \textbf{Composición:}
+          \[
+          \delta_{ij}\delta_{jk} = \delta_{ik}
+          \]
+          \item \textbf{Contracción total:}
+          \[
+          \delta_{ij}\delta_{ij} = \delta_{ii} = 3
+          \]
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{4. Levi-Civita $\epsilon_{ijk}$: El Reloj de Permutaciones}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      El símbolo $\epsilon_{ijk}$ codifica la orientación en $\R^3$:
+      \begin{block}{Definición de $\epsilon_{ijk}$ (27 componentes)}
+        \[
+        \epsilon_{ijk} = \begin{cases}
+        +1 & \text{permutación par } (1, 2, 3) \\
+        -1 & \text{permutación impar } (1, 2, 3) \\
+        0 & \text{si se repite algún índice}
+        \end{cases}
+        \]
+      \end{block}
+      \begin{itemize}
+        \item $+1$: $\epsilon_{123} = \epsilon_{231} = \epsilon_{312}$
+        \item $-1$: $\epsilon_{132} = \epsilon_{213} = \epsilon_{321}$
+        \item $0$: Todas las demás (21 componentes)
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.9]
+        \draw[line width=1.5pt, color=orangeacc] (0,0) circle (1.4cm);
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=3pt] at (90:1.4cm) {1};
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=3pt] at (330:1.4cm) {2};
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=3pt] at (210:1.4cm) {3};
+        \draw[-{Stealth[length=2.5mm]}, line width=1.5pt, color=orangeacc] (70:1.7cm) arc (70:10:1.7cm) node[midway, right=1pt, font=\scriptsize\bfseries, color=orangeacc] {$+1$};
+        \draw[-{Stealth[length=2.5mm]}, line width=1.5pt, color=orangeacc] (310:1.7cm) arc (310:250:1.7cm);
+        \draw[-{Stealth[length=2.5mm]}, line width=1.5pt, color=orangeacc] (190:1.7cm) arc (190:130:1.7cm);
+        \node[font=\footnotesize\bfseries, align=center] at (0,0) {Sentido\\Horario};
+      \end{tikzpicture}
+      \vspace{0.1cm}
+      \begin{alertblock}{El Producto Cruz en Índices}
+        \[
+        \mathbf{(\vec{A} \times \vec{B})_i = \epsilon_{ijk} A_j B_k}
+        \]
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{5. La Identidad Maestra $\epsilon-\delta$}
+  ¿Qué ocurre al multiplicar dos productos cruz? Aparece la contracción de dos símbolos $\epsilon$:
+  \begin{block}{Identidad Maestra Universal}
+    \[
+    \mathbf{\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}}
+    \]
+  \end{block}
+  \vspace{0.2cm}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{Mnemotecnia Visual}
+        \[
+        \epsilon_{i\mathbf{j}\mathbf{k}}\epsilon_{i\mathbf{m}\mathbf{n}} = 
+        \delta_{\mathbf{j}\mathbf{m}}\delta_{\mathbf{k}\mathbf{n}} - \delta_{\mathbf{j}\mathbf{n}}\delta_{\mathbf{k}\mathbf{m}}
+        \]
+        \begin{itemize}
+          \item $(+) \rightarrow$ primero con primero ($jm$), segundo con segundo ($kn$).
+          \item $(-) \rightarrow$ cruzados: extremos ($jn$) e internos ($km$).
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Contracciones Derivadas}
+        Al contraer más índices:
+        \begin{itemize}
+          \item $\epsilon_{ijk}\epsilon_{ij\ell} = 2\delta_{k\ell}$
+          \item $\epsilon_{ijk}\epsilon_{ijk} = 6$
+        \end{itemize}
+        ¡El número total de permutaciones no nulas es $3! = 6$!
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{6. La Demolición de $\vec{A} \times (\vec{B} \times \vec{C})$ en 3 Líneas}
+  \textbf{Objetivo:} Probar que $[\vec{A} \times (\vec{B} \times \vec{C})]_i = [\vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})]_i$.
+  \vspace{0.2cm}
+  \begin{exampleblock}{La Demostración}
+    \begin{enumerate}
+      \item \textbf{Escribir en índices:}
+      \[
+      [\vec{A} \times (\vec{B} \times \vec{C})]_i = \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k = \epsilon_{ijk} A_j (\epsilon_{kmn} B_m C_n) = \epsilon_{kij}\epsilon_{kmn} A_j B_m C_n
+      \]
+      \item \textbf{Aplicar la identidad $\epsilon-\delta$ sobre el índice común $k$:}
+      \[
+      = (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n
+      \]
+      \item \textbf{Filtrar con las deltas y reconocer los productos punto:}
+      \[
+      = \delta_{im} B_m (\delta_{jn} A_j C_n) - \delta_{in} C_n (\delta_{jm} A_j B_m) = B_i (\vec{A}\cdot\vec{C}) - C_i (\vec{A}\cdot\vec{B}) \quad \blacksquare
+      \]
+    \end{enumerate}
+  \end{exampleblock}
+  \centering
+  \alert{\textbf{¡Exactamente 3 renglones sin abrir un solo determinante cartesiano!}}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{7. Física: ¿Por qué la Fuerza Magnética no hace Trabajo?}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      Fuerza de Lorentz sobre una carga $q$:
+      \[
+      \vec{F} = q(\vec{v} \times \vec{B}) \implies F_i = q\,\epsilon_{ijk} v_j B_k
+      \]
+      La potencia instantánea transmitida es:
+      \[
+      P = \vec{F}\cdot\vec{v} = F_i v_i = q\,\mathbf{\epsilon_{ijk} v_i v_j} B_k
+      \]
+      \begin{block}{Simetría vs. Antisimetría}
+        \begin{itemize}
+          \item $v_i v_j$ es simétrico ($v_i v_j = v_j v_i$).
+          \item $\epsilon_{ijk}$ es antisimétrico ($\epsilon_{jik} = -\epsilon_{ijk}$).
+          \item La contracción simétrico-antisimétrico es \textbf{cero}:
+          \[
+          \mathbf{\epsilon_{ijk} v_i v_j = 0} \implies P = \frac{dE_k}{dt} = 0
+          \]
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{alertblock}{Conclusión Física}
+        El campo magnético modifica la dirección de la velocidad pero \textbf{jamás cambia la energía cinética} de una partícula cargada.
+      \end{alertblock}
+      \vspace{0.2cm}
+      \begin{block}{Momento Angular Central}
+        Torque $\vec{\tau} = \vec{r}\times\vec{F}$:
+        \[
+        \tau_i = \epsilon_{ijk} x_j (g(r)x_k) = g(r)\epsilon_{ijk} x_j x_k = 0
+        \]
+        $\implies \vec{L} = \vec{r}\times\vec{p}$ se conserva.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{8. Resumen y Puente hacia la Semana 02}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Lo que conquistamos hoy}
+        \begin{itemize}
+          \item Convenio de Einstein: sumas automáticas sobre índices mudos.
+          \item $\delta_{ij}$: filtro de sustitución e identidad.
+          \item $\epsilon_{ijk}$: geometría alternante del producto cruz.
+          \item Identidad $\epsilon-\delta$: identidades vectoriales resueltas en 3 líneas.
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{La Pregunta para la Semana 02}
+        Si rotamos los ejes coordenados de nuestro laboratorio:
+        \begin{itemize}
+          \item ¿Cómo cambian las componentes de un vector?
+          \item ¿Por qué una rotación exige $R^T R = I$ y $\det R = +1$?
+          \item ¿En qué se diferencia rotar un sistema de trasladarlo?
+        \end{itemize}
+      \end{exampleblock}
+      \vspace{0.1cm}
+      \centering
+      \textcolor{orangeacc}{\textbf{Semana 02: El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones}}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\end{document}

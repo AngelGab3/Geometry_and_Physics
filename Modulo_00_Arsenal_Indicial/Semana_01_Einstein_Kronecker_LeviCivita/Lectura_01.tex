@@ -1,0 +1,305 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Semana 1: Notación de Einstein, Delta de Kronecker y Símbolo de Levi-Civita}}}\\[0.15cm]
+{\large\textbf{El fin del álgebra vectorial engorrosa: demoliendo identidades en 3 líneas}}\\[0.3cm]
+{\large\textcolor{graymuted}{Notas de Estudio --- Nivel Licenciatura}}\\[0.2cm]
+\end{center}
+
+\vspace{0.2cm}
+
+% =====================================================================
+\manualsection[1. La Crisis del Cálculo Vectorial]{1. La Crisis del Cálculo Vectorial Tradicional}
+
+En los cursos tradicionales de cálculo de una y varias variables, el álgebra vectorial se enseña casi exclusivamente mediante los vectores unitarios cartesianos $\{\hat{i}, \hat{j}, \hat{k}\}$ y la regla mnemotécnica del determinante $3 \times 3$ para el producto cruz:
+\[
+\vec{A} \times \vec{B} = \det \begin{pmatrix} \hat{i} & \hat{j} & \hat{k} \\ A_x & A_y & A_z \\ B_x & B_y & B_z \end{pmatrix} = (A_y B_z - A_z B_y)\hat{i} - (A_x B_z - A_z B_x)\hat{j} + (A_x B_y - A_y B_x)\hat{k}.
+\]
+Aunque este esquema resulta familiar para calcular torques o momentos angulares simples, se convierte en una auténtica pesadilla cuando necesitamos demostrar identidades físicas fundamentales.
+
+\begin{intuitionbox}{El drama de la identidad BAC--CAB}
+Consideremos la célebre identidad del doble producto cruz:
+\[
+\vec{A} \times (\vec{B} \times \vec{C}) = \vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B}).
+\]
+Si intentamos demostrar esta igualdad por fuerza bruta expandiendo las tres componentes cartesianas, debemos calcular primero el vector intermedio $\vec{D} = \vec{B}\times\vec{C}$, luego cruzarlo con $\vec{A}$ componente a componente, y finalmente sumar y restar términos artificiales como $A_x B_x C_x$. El cálculo suele tomar **dos páginas completas de álgebra propensa a errores de signos**.
+
+¿Por qué algo tan geométrico como orientar planos en el espacio requiere un esfuerzo algebraico tan ciego? La razón es clara: el formalismo tradicional nos obliga a escribir tres veces la misma ecuación (una para $x$, una para $y$, una para $z$) sin explotar la simetría de permutación del espacio tridimensional.
+\end{intuitionbox}
+
+En esta primera semana construiremos las tres herramientas fundamentales que transformarán este cálculo agotador en una deducción transparente de **tres renglones**:
+\begin{enumerate}
+    \item El \term{convenio de suma de Einstein}, que elimina la notación redundante de sumatorias.
+    \item La \term{delta de Kronecker} $\delta_{ij}$, que actúa como un filtro e interruptor algebraico.
+    \item El \term{símbolo de Levi-Civita} $\epsilon_{ijk}$, que codifica la orientación y la alternancia geométrica del producto cruz.
+\end{enumerate}
+
+% =====================================================================
+\manualsection[2. Notación de Einstein]{2. El Convenio de Suma de Einstein y los Índices Libres vs. Mudos}
+
+El primer paso consiste en unificar los nombres de los ejes espaciales. En lugar de escribir $(x, y, z)$, denotamos las coordenadas como $(x_1, x_2, x_3)$ o genéricamente $x_i$, donde el índice latino $i \in \{1, 2, 3\}$. De igual forma, las componentes de un vector $\vec{A}$ se escriben $(A_1, A_2, A_3)$.
+
+Bajo esta convención, el producto punto euclidiano tradicional entre dos vectores es:
+\[
+\vec{A}\cdot\vec{B} = A_1 B_1 + A_2 B_2 + A_3 B_3 = \sum_{i=1}^3 A_i B_i.
+\]
+En 1916, mientras formulaba la Relatividad General, Albert Einstein notó que escribir el símbolo $\sum$ era completamente redundante: cada vez que calculamos una contracción física, el índice de la sumatoria aparece exactamente **dos veces**.
+
+\begin{theorembox}{Convenio de Suma de Einstein}
+Si un índice literal aparece exactamente \textbf{dos veces} en un mismo término monomio, se sobreentiende una sumatoria sobre todo el rango de valores de dicho índice (típicamente de $1$ a $3$ en el espacio euclidiano):
+\[
+A_i B_i \equiv \sum_{i=1}^3 A_i B_i = A_1 B_1 + A_2 B_2 + A_3 B_3.
+\]
+\end{theorembox}
+
+\manualsubsection{Índices Mudos vs. Índices Libres}
+Para operar sin errores en cálculo tensorial, es indispensable distinguir dos clases de índices:
+\begin{itemize}
+    \item \term{Índice Mudo (o de suma):} Es aquel que aparece dos veces en un término. Es una variable interna muda que puede renombrarse arbitrariamente sin alterar el valor de la expresión:
+    \[
+    A_i B_i = A_k B_k = A_m B_m = \vec{A}\cdot\vec{B}.
+    \]
+    \item \term{Índice Libre:} Es aquel que aparece exactamente **una vez** en cada término de una ecuación. Representa la componente vectorial que sobrevive tras las sumas:
+    \[
+    v_i = A_i + B_i \quad \Longleftrightarrow \quad \begin{cases} v_1 = A_1 + B_1 \\ v_2 = A_2 + B_2 \\ v_3 = A_3 + B_3 \end{cases}
+    \]
+\end{itemize}
+
+\begin{infobox}[pureblack]{Las Dos Reglas de Oro de los Índices}
+\begin{enumerate}
+    \item \textbf{Conservación de índices libres:} El número y nombre de los índices libres debe ser exactamente el mismo a ambos lados de una igualdad. La expresión $v_i = A_j$ carece de sentido matemático.
+    \item \textbf{Prohibido repetir más de dos veces:} Un índice jamás puede aparecer tres o cuatro veces en un mismo monomio. Una expresión como $A_i B_i C_i$ es inválida. Si necesitas sumar sobre varios vectores, debes usar letras distintas: $(A_i B_i)(C_j D_j)$.
+\end{enumerate}
+\end{infobox}
+
+% =====================================================================
+\manualsection[3. Delta de Kronecker]{3. La Delta de Kronecker $\delta_{ij}$: El Filtro de Sustitución}
+
+¿Cómo escribimos la matriz identidad o un operador de proyección en notación de índices? Introducimos la \term{delta de Kronecker}:
+
+\begin{theorembox}{Definición de la Delta de Kronecker}
+Para cualesquiera índices $i, j \in \{1, 2, 3\}$, se define:
+\[
+\delta_{ij} = \begin{cases} 1 & \text{si } i = j, \\ 0 & \text{si } i \neq j. \end{cases}
+\]
+Matricialmente, $\delta_{ij}$ son las entradas de la matriz identidad $3 \times 3$:
+\[
+(\delta_{ij}) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix}.
+\]
+\end{theorembox}
+
+\begin{intuitionbox}{La Delta como Filtro / Interruptor de Sustitución}
+Cuando la delta de Kronecker se contrae con las componentes de un vector $A_j$, actúa como un **filtro selector**:
+\[
+\delta_{ij} A_j = \delta_{i1} A_1 + \delta_{i2} A_2 + \delta_{i3} A_3.
+\]
+De los tres términos de la suma, dos se apagan a cero inmediatamente. El único término sobreviviente es aquel donde el índice mudo $j$ coincide con el índice libre $i$. Por lo tanto:
+\[
+\mathbf{\delta_{ij} A_j = A_i}.
+\]
+\textbf{Regla operativa:} Contraer $\delta_{ij}$ con cualquier tensor consiste simplemente en borrar la delta y reemplazar el índice repetido $j$ por el índice $i$.
+\end{intuitionbox}
+
+\begin{examplebox}{Cálculo de la Traza de la Delta}
+¿Cuánto vale la contracción consigo misma $\delta_{ii}$?
+\[
+\delta_{ii} = \delta_{11} + \delta_{22} + \delta_{33} = 1 + 1 + 1 = 3.
+\]
+En un espacio de dimensión $n$, la contracción $\delta_{ii} = n$ mide la dimensión del espacio. Asimismo:
+\[
+\delta_{ij}\delta_{jk} = \delta_{ik}, \qquad \delta_{ij}\delta_{ij} = \delta_{ii} = 3.
+\]
+\end{examplebox}
+
+% =====================================================================
+\manualsection[4. Levi-Civita $\epsilon_{ijk}$]{4. El Símbolo de Levi-Civita $\epsilon_{ijk}$: Geometría de Permutaciones}
+
+El producto cruz entre dos vectores es una operación puramente antisimétrica: $\vec{A} \times \vec{B} = -\vec{B} \times \vec{A}$, lo que implica que $\vec{A} \times \vec{A} = \vec{0}$. Para codificar esta alternancia introducimos el \term{símbolo de Levi-Civita} en $\R^3$.
+
+\begin{theorembox}{Definición del Símbolo de Levi-Civita}
+El símbolo $\epsilon_{ijk}$ (con $i, j, k \in \{1, 2, 3\}$) es un objeto con $3^3 = 27$ componentes definido por:
+\[
+\epsilon_{ijk} = \begin{cases} 
++1 & \text{si } (i, j, k) \text{ es una permutación par (cíclica) de } (1, 2, 3), \\
+-1 & \text{si } (i, j, k) \text{ es una permutación impar (anticíclica) de } (1, 2, 3), \\
+0 & \text{si dos o más índices son iguales.}
+\end{cases}
+\]
+\end{theorembox}
+
+\begin{center}
+\begin{tikzpicture}[scale=1.1]
+    % Clock circle
+    \draw[line width=1.5pt, color=orangeacc] (0,0) circle (1.6cm);
+    
+    % Nodes 1, 2, 3
+    \node[circle, fill=blackmain, text=white, font=\bfseries\large, inner sep=4pt] (N1) at (90:1.6cm) {1};
+    \node[circle, fill=blackmain, text=white, font=\bfseries\large, inner sep=4pt] (N2) at (330:1.6cm) {2};
+    \node[circle, fill=blackmain, text=white, font=\bfseries\large, inner sep=4pt] (N3) at (210:1.6cm) {3};
+    
+    % Direction arrows (clockwise = +1)
+    \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=orangeacc] (70:1.9cm) arc (70:10:1.9cm) node[midway, right=2pt, font=\bfseries\small, color=orangeacc] {$+1$ (horario)};
+    \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=orangeacc] (310:1.9cm) arc (310:250:1.9cm);
+    \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=orangeacc] (190:1.9cm) arc (190:130:1.9cm);
+
+    % Legend
+    \node[align=center, font=\small] at (0, 0) {\textbf{Permutación}\\\textbf{Cíclica}};
+\end{tikzpicture}
+\end{center}
+
+De las 27 componentes posibles:
+\begin{itemize}
+    \item **Solo 3 componentes valen $+1$** (sentido horario):
+    \[
+    \epsilon_{123} = \epsilon_{231} = \epsilon_{312} = +1.
+    \]
+    \item **Solo 3 componentes valen $-1$** (sentido antihorario, intercambio de un par):
+    \[
+    \epsilon_{132} = \epsilon_{213} = \epsilon_{321} = -1.
+    \]
+    \item **Las 21 componentes restantes valen $0$** (por ejemplo, $\epsilon_{112} = \epsilon_{323} = 0$).
+\end{itemize}
+
+\begin{theorembox}{El Producto Cruz en Notación de Índices}
+La $i$-ésima componente del producto cruz entre $\vec{A}$ y $\vec{B}$ es exactamente:
+\[
+\mathbf{(\vec{A} \times \vec{B})_i = \epsilon_{ijk} A_j B_k}.
+\]
+\end{theorembox}
+
+\begin{examplebox}{Comprobación para la Componente $x$ ($i = 1$)}
+Evaluemos la primera componente según la fórmula:
+\[
+(\vec{A} \times \vec{B})_1 = \epsilon_{1jk} A_j B_k = \epsilon_{123} A_2 B_3 + \epsilon_{132} A_3 B_2 = (+1)A_2 B_3 + (-1)A_3 B_2 = A_2 B_3 - A_3 B_2.
+\]
+¡Recuperamos exactamente $A_y B_z - A_z B_y$ sin necesidad de dibujar determinantes $3\times 3$!
+\end{examplebox}
+
+% =====================================================================
+\manualsection[5. La Identidad Maestra]{5. La Identidad Maestra $\epsilon-\delta$: El Puente Fundamental}
+
+El poder absoluto del álgebra de índices reside en contraer dos símbolos de Levi-Civita que comparten un índice común.
+
+\begin{theorembox}{Identidad Maestra de Contracción $\epsilon-\delta$}
+Al sumar sobre el primer índice compartido $i$, se cumple la identidad universal:
+\[
+\mathbf{\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}}.
+\]
+\end{theorembox}
+
+\begin{intuitionbox}{Mnemotecnia Visual para Recordar la Identidad}
+Observa con atención el orden de los índices en el segundo miembro:
+\[
+\epsilon_{i\mathbf{j}\mathbf{k}}\epsilon_{i\mathbf{m}\mathbf{n}} = 
+\delta_{\mathbf{j}\mathbf{m}}\delta_{\mathbf{k}\mathbf{n}} - \delta_{\mathbf{j}\mathbf{n}}\delta_{\mathbf{k}\mathbf{m}}.
+\]
+\begin{itemize}
+    \item El término positivo empareja **los primeros con los primeros** ($j$ con $m$) y **los segundos con los segundos** ($k$ con $n$).
+    \item El término negativo invierte el emparejamiento con un signo menos cruzado: **los extremos** ($j$ con $n$) y **los internos** ($k$ con $m$).
+\end{itemize}
+Dado que el símbolo $\epsilon_{ijk}$ es invariante bajo permutaciones cíclicas ($\epsilon_{ijk} = \epsilon_{jki} = \epsilon_{kij}$), si el índice compartido se encuentra en otra posición, basta rotarlo cíclicamente para aplicar la fórmula.
+\end{intuitionbox}
+
+% =====================================================================
+\manualsection[6. Laboratorio de Demolición]{6. Laboratorio de Demolición: Identidades Vectoriales en 3 Líneas}
+
+Pongamos a prueba el arsenal demostrando las identidades vectoriales más famosas de la física matemática.
+
+\manualsubsection{Demostración 1: La Identidad BAC--CAB}
+Queremos probar que $\vec{A} \times (\vec{B} \times \vec{C}) = \vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})$.
+
+\begin{examplebox}{Demostración en 3 Renglones}
+Analizamos la $i$-ésima componente del miembro izquierdo:
+\begin{align*}
+[\vec{A} \times (\vec{B} \times \vec{C})]_i &= \epsilon_{ijk} A_j (\vec{B} \times \vec{C})_k \\
+&= \epsilon_{ijk} A_j \big(\epsilon_{kmn} B_m C_n\big) = \epsilon_{kij}\epsilon_{kmn} A_j B_m C_n.
+\end{align*}
+Aplicamos la identidad maestra $\epsilon-\delta$ sobre el índice compartido $k$:
+\[
+\epsilon_{kij}\epsilon_{kmn} = \delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}.
+\]
+Sustituyendo y contrayendo con las deltas:
+\begin{align*}
+[\vec{A} \times (\vec{B} \times \vec{C})]_i &= (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n \\
+&= \delta_{im} B_m (\delta_{jn} A_j C_n) - \delta_{in} C_n (\delta_{jm} A_j B_m) \\
+&= B_i (A_j C_j) - C_i (A_j B_j).
+\end{align*}
+Reconociendo los productos escalares $A_j C_j = \vec{A}\cdot\vec{C}$ y $A_j B_j = \vec{A}\cdot\vec{B}$:
+\[
+[\vec{A} \times (\vec{B} \times \vec{C})]_i = B_i (\vec{A}\cdot\vec{C}) - C_i (\vec{A}\cdot\vec{B}) = [\vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})]_i \quad \blacksquare
+\]
+\end{examplebox}
+
+\manualsubsection{Demostración 2: La Identidad de Lagrange}
+Demostremos la relación entre las normas del producto cruz y el producto punto:
+\[
+|\vec{A} \times \vec{B}|^2 = |\vec{A}|^2|\vec{B}|^2 - (\vec{A}\cdot\vec{B})^2.
+\]
+
+\begin{examplebox}{Demostración en 2 Renglones}
+Por definición de norma euclidiana:
+\[
+|\vec{A} \times \vec{B}|^2 = (\vec{A} \times \vec{B})_i (\vec{A} \times \vec{B})_i = (\epsilon_{ijk} A_j B_k)(\epsilon_{imn} A_m B_n) = \epsilon_{ijk}\epsilon_{imn} A_j B_k A_m B_n.
+\]
+Usando directamente la identidad $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$:
+\begin{align*}
+|\vec{A} \times \vec{B}|^2 &= (\delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}) A_j B_k A_m B_n \\
+&= (A_j A_j)(B_k B_k) - (A_j B_j)(B_k A_k) \\
+&= |\vec{A}|^2 |\vec{B}|^2 - (\vec{A}\cdot\vec{B})^2 \quad \blacksquare
+\end{align*}
+\end{examplebox}
+
+% =====================================================================
+\manualsection[7. Aplicaciones en Física]{7. Aplicaciones en Física: Momento Angular y Fuerza de Lorentz}
+
+\manualsubsection{1. El Teorema de Simetría vs. Antisimetría}
+Una de las propiedades más poderosas en física teórica es la contracción entre un tensor simétrico y uno antisimétrico.
+
+\begin{theorembox}{Anulación de Contracción Simétrico--Antisimétrico}
+Si $S_{ij} = S_{ji}$ es simétrico y $A_{ij} = -A_{ji}$ es antisimétrico, entonces:
+\[
+\mathbf{S_{ij} A_{ij} = 0}.
+\]
+\end{theorembox}
+*Demostración:* Como los índices $i$ y $j$ son mudos, podemos renombrarlos $i \leftrightarrow j$:
+\[
+S_{ij} A_{ij} = S_{ji} A_{ji} = (S_{ij})(-A_{ij}) = -S_{ij} A_{ij} \implies 2 S_{ij} A_{ij} = 0 \implies S_{ij} A_{ij} = 0.
+\]
+
+\manualsubsection{2. ¿Por qué el campo magnético no realiza trabajo?}
+La fuerza de Lorentz magnética sobre una carga $q$ con velocidad $\vec{v}$ es:
+\[
+F_i = q\,\epsilon_{ijk} v_j B_k.
+\]
+La potencia instantánea transmitida a la partícula es el producto escalar de la fuerza y la velocidad:
+\[
+P = \vec{F}\cdot\vec{v} = F_i v_i = q\,\epsilon_{ijk} v_i v_j B_k.
+\]
+Notemos que el producto $v_i v_j$ es perfectamente **simétrico** bajo el intercambio de $i$ y $j$ ($v_i v_j = v_j v_i$), mientras que $\epsilon_{ijk}$ es **antisimétrico** ($\epsilon_{jik} = -\epsilon_{ijk}$). Por el teorema anterior:
+\[
+\mathbf{P = 0}.
+\]
+El campo magnético desvía la trayectoria sin alterar la energía cinética de la partícula. ¡Demostrado rigurosamente en un solo renglón!
+
+\manualsubsection{3. Momento Angular y Torque Central}
+El momento angular de una partícula puntual es $\vec{L} = \vec{r}\times\vec{p}$, y el torque de una fuerza es $\vec{\tau} = \vec{r}\times\vec{F}$:
+\[
+L_i = \epsilon_{ijk} x_j p_k, \qquad \tau_i = \epsilon_{ijk} x_j F_k.
+\]
+Si la fuerza es central, $\vec{F} = f(r)\hat{r} = \frac{f(r)}{r}\vec{r}$, sus componentes son $F_k = g(r) x_k$. Entonces:
+\[
+\tau_i = \epsilon_{ijk} x_j \big(g(r) x_k\big) = g(r)\,\epsilon_{ijk} x_j x_k = 0 \quad (\text{pues } x_j x_k \text{ es simétrico}).
+\]
+Por lo tanto, $\frac{d\vec{L}}{dt} = \vec{\tau} = \vec{0}$, garantizando la conservación del momento angular en campos gravitacionales o electrostáticos.
+
+\end{document}

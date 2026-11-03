@@ -1,0 +1,115 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Tarea 1: Notación de Einstein, Delta de Kronecker y Levi-Civita}}}\\[0.2cm]
+{\large\textcolor{graymuted}{Nivel: Licenciatura en Física --- Módulo 0: Arsenal Indicial}}\\[0.25cm]
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent\textbf{Instrucciones:} Resuelve detalladamente los siguientes problemas. Todos los cálculos deben realizarse utilizando el convenio de suma de Einstein, la delta de Kronecker $\delta_{ij}$ y el símbolo de Levi-Civita $\epsilon_{ijk}$. No se permite expandir por componentes cartesianas tradicionales $(x, y, z)$. Justifica cada paso algebraico con sus propiedades geométricas.
+
+% =====================================================================
+\manualsection{Parte A: Intuición Visual y Combinatoria de Índices}
+
+\begin{infobox}{Problema 1: Anatomía del tensor de Levi-Civita}
+El símbolo de Levi-Civita en $\R^3$ posee $3^3 = 27$ componentes en total.
+\begin{enumerate}[label=(\alph*)]
+    \item Escribe las tres matrices $3 \times 3$ correspondientes a fijar el primer índice:
+    \[
+    M^{(1)}_{jk} \equiv \epsilon_{1jk}, \qquad M^{(2)}_{jk} \equiv \epsilon_{2jk}, \qquad M^{(3)}_{jk} \equiv \epsilon_{3jk}.
+    \]
+    \item Identifica cuántas componentes son exactamente iguales a cero, cuántas valen $+1$ y cuántas valen $-1$.
+    \item Explica geométricamente por qué cualquier entrada con dos índices repetidos ($\epsilon_{iik}$, etc.) debe anularse si interpretamos a $\epsilon_{ijk}$ como el volumen orientado de los vectores base $(\hat{e}_i, \hat{e}_j, \hat{e}_k)$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 2: El reloj de permutaciones y paridad}
+Considera el reloj de permutaciones cíclicas $(1 \to 2 \to 3 \to 1)$.
+\begin{enumerate}[label=(\alph*)]
+    \item Determina el valor numérico ($+1$, $-1$ o $0$) de cada una de las siguientes componentes sin calcular determinantes:
+    \[
+    \epsilon_{312}, \qquad \epsilon_{213}, \qquad \epsilon_{323}, \qquad \epsilon_{231}, \qquad \epsilon_{132}.
+    \]
+    \item Demuestra que el símbolo de Levi-Civita es completamente antisimétrico bajo el intercambio de cualquier par de índices adyacentes:
+    \[
+    \epsilon_{ijk} = -\epsilon_{jik} = -\epsilon_{ikj} = -\epsilon_{kji}.
+    \]
+    \item Demuestra que es completamente simétrico bajo permutaciones cíclicas completas:
+    \[
+    \epsilon_{ijk} = \epsilon_{jki} = \epsilon_{kij}.
+    \]
+\end{enumerate}
+\end{infobox}
+
+% =====================================================================
+\manualsection{Parte B: Cálculo y Demolición en Índices}
+
+\begin{infobox}{Problema 3: Contracciones completas de $\epsilon$ y $\delta$}
+Utilizando la identidad maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$, calcula el valor escalar numérico de las siguientes expresiones en $\R^3$:
+\begin{enumerate}[label=(\alph*)]
+    \item $\delta_{ii}$ (la traza de la delta).
+    \item $\delta_{ij}\delta_{jk}\delta_{ki}$.
+    \item $\epsilon_{ijk}\epsilon_{ijm}$ (contracción de dos índices compartidos).
+    \item $\epsilon_{ijk}\epsilon_{ijk}$ (contracción total de los tres índices). ¿Qué relación tiene este número con el factorial $3!$?
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 4: La Identidad de Lagrange}
+La identidad de Lagrange relaciona las magnitudes del producto cruz y el producto punto:
+\[
+|\vec{A} \times \vec{B}|^2 = |\vec{A}|^2|\vec{B}|^2 - (\vec{A}\cdot\vec{B})^2.
+\]
+Demuestra esta identidad en **no más de tres líneas** escribiendo el miembro izquierdo como $(\vec{A}\times\vec{B})_i (\vec{A}\times\vec{B})_i$ y aplicando la identidad maestra $\epsilon-\delta$.
+\end{infobox}
+
+\begin{infobox}{Problema 5: Producto escalar de dos productos cruz}
+Demuestra en notación de índices que para cuatro vectores arbitrarios $\vec{A}, \vec{B}, \vec{C}, \vec{D} \in \R^3$:
+\[
+(\vec{A} \times \vec{B}) \cdot (\vec{C} \times \vec{D}) = (\vec{A}\cdot\vec{C})(\vec{B}\cdot\vec{D}) - (\vec{A}\cdot\vec{D})(\vec{B}\cdot\vec{C}).
+\]
+\textit{Pista:} Escribe el producto escalar como $(\vec{A}\times\vec{B})_i (\vec{C}\times\vec{D})_i$ y aplica la contracción $\epsilon_{ijk}\epsilon_{imn}$.
+\end{infobox}
+
+% =====================================================================
+\manualsection{Parte C: Problemas Físicos Aplicados}
+
+\begin{infobox}{Problema 6: Trabajo magnético y contracción simétrico-antisimétrico}
+Una partícula de masa $m$ y carga eléctrica $q$ se mueve en el espacio bajo la acción de un campo magnético estático $\vec{B}(\vec{r})$. La ecuación de movimiento de Newton-Lorentz es:
+\[
+m \frac{d\vec{v}}{dt} = q(\vec{v} \times \vec{B}).
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Escribe esta ecuación diferencial vectorial en componentes de índices $i \in \{1, 2, 3\}$.
+    \item Multiplica escalarmente por la velocidad $v_i$ para calcular la tasa de cambio de la energía cinética:
+    \[
+    \frac{d}{dt}\left(\frac{1}{2}m v_i v_i\right).
+    \]
+    \item Demuestra rigurosamente, utilizando el argumento de contracción de un tensor simétrico ($v_i v_j$) con uno antisimétrico ($\epsilon_{ijk}$), que la energía cinética de la partícula es estrictamente constante en el tiempo.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 7: Conservación del momento angular en campos centrales}
+El momento angular de una partícula respecto al origen es $\vec{L} = \vec{r} \times \vec{p}$.
+\begin{enumerate}[label=(\alph*)]
+    \item Escribe la componente $L_i$ en notación de índices.
+    \item Calcula la derivada temporal $\frac{dL_i}{dt}$ usando la regla del producto:
+    \[
+    \frac{d L_i}{dt} = \epsilon_{ijk} \dot{x}_j p_k + \epsilon_{ijk} x_j \dot{p}_k.
+    \]
+    \item Demuestra que el primer término $\epsilon_{ijk} \dot{x}_j p_k$ se anula idénticamente porque $\vec{p} = m\vec{v} = m\dot{\vec{r}}$.
+    \item Si la fuerza es central, $\vec{F} = \dot{\vec{p}} = f(r)\frac{\vec{r}}{r}$, demuestra que el torque $\tau_i = \epsilon_{ijk} x_j F_k$ se anula idénticamente. Concluye la conservación de $\vec{L}$.
+\end{enumerate}
+\end{infobox}
+
+\end{document}

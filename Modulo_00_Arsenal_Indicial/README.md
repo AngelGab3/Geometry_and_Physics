@@ -65,6 +65,6 @@
 
 | Semana | Tema | Lectura | Slides | Tarea | Estado |
 | :---: | :--- | :---: | :---: | :---: | :---: |
-| **01** | Notación de Einstein, $\delta_{ij}$ y Levi-Civita | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | Por iniciar |
+| **01** | Notación de Einstein, $\delta_{ij}$ y Levi-Civita | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |
 | **02** | Rotaciones $SO(2), SO(3)$ y Traslaciones | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
 | **03** | Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |

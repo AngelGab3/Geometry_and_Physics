@@ -143,7 +143,39 @@ Al calcular rotaciones sucesivas alrededor de ejes distintos, el orden de aplica
 R_x(\pi/2) R_z(\pi/2) = \begin{pmatrix} 0 & -1 & 0 \\ 0 & 0 & -1 \\ 1 & 0 & 0 \end{pmatrix} \neq
 R_z(\pi/2) R_x(\pi/2) = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}.
 \]
-El conmutador matricial $[A, B] \equiv AB - BA \neq 0$ mide directamente la falta de conmutatividad.
+El conmutador matricial $[A, B] \equiv AB - BA \neq 0$ mide directamente la falta de conmutatividad. En tres dimensiones, el orden en el que se gira un objeto altera su orientación física final.
+
+\manualsubsection{4. El Teorema de Rotación de Euler: Todo Giro Posee un Eje Fijo}
+Antes de calcular rotaciones en torno a una dirección arbitraria, una pregunta geométrica fundamental es: \textbf{¿Por qué cualquier movimiento rígido tridimensional con un punto fijo equivale a rotar alrededor de un eje?}
+
+\begin{theorembox}{Teorema de Rotación de Euler (1776)}
+Para toda rotación espacial propia $R \in SO(3)$, existe al menos un vector no nulo $\hat{n} \in \R^3$ tal que:
+\[
+\mathbf{R\hat{n} = \hat{n}}.
+\]
+Es decir, $\lambda = 1$ es siempre un autovalor de $R$, y la recta dirigida por $\hat{n}$ permanece inmóvil durante el giro.
+\end{theorembox}
+
+\textbf{Demostración:}
+El autovector $\hat{n}$ existe si y sólo si el sistema homogéneo $(R - I)\hat{n} = \vec{0}$ admite soluciones no triviales, lo cual equivale a la anulación del determinante característico: $\det(R - I) = 0$.
+
+Como $R \in SO(3)$, se cumple $R^T R = I$ y $\det(R) = \det(R^T) = +1$. Factorizamos la transpuesta dentro del determinante:
+\[
+\det(R - I) = \det\big(R^T(R - I)\big) = \det(R^T R - R^T) = \det(I - R^T).
+\]
+Utilizando la invariancia del determinante bajo transposición ($\det(A^T) = \det(A)$):
+\[
+\det(I - R^T) = \det\big((I - R^T)^T\big) = \det(I - R).
+\]
+En dimensión impar $n = 3$, al extraer el factor escalar $(-1)$ de cada una de las tres filas:
+\[
+\det(I - R) = \det\big(-(R - I)\big) = (-1)^3 \det(R - I) = -\det(R - I).
+\]
+Igualando el inicio con el final de la cadena de identidades:
+\[
+\det(R - I) = -\det(R - I) \implies 2\det(R - I) = 0 \implies \mathbf{\det(R - I) = 0}. \qquad \blacksquare
+\]
+Normalizando el vector solución $(\hat{n} = \vec{v}/\|\vec{v}\|)$, obtenemos el eje unitario invariante.
 
 % =====================================================================
 \manualsection[5. Rotación Alrededor de un Eje Arbitrario]{5. Rotación Alrededor de un Eje Arbitrario: La Fórmula de Rodrigues}
@@ -295,15 +327,63 @@ La velocidad instantánea de un punto en un sólido rígido en rotación pura es
 \]
 
 % =====================================================================
-\manualsection[8. Rotaciones frente a Traslaciones]{8. Contraste Estructural: Rotaciones frente a Traslaciones}
+\manualsection[8. Rotaciones frente a Traslaciones]{8. Contraste Estructural: Rotaciones frente a Traslaciones y el Grupo Euclídeo $SE(3)$}
+
+El movimiento más general de un sólido rígido en el espacio euclidiano no es una rotación pura, sino la composición de un giro $R \in SO(3)$ con un desplazamiento en línea recta $\vec{a} \in \R^3$. Esta transformación combinada:
+\[
+\vec{x}' = R\vec{x} + \vec{a}
+\]
+constituye una \textbf{transformación afín}. El conjunto de todas estas operaciones dotado de la composición de funciones forma el \textbf{Grupo de Movimientos Rígidos} o \textbf{Grupo Euclídeo Especial} $SE(3)$.
+
+\begin{theorembox}{El Grupo Euclídeo Especial $SE(3)$}
+Un elemento de $SE(3)$ se representa por el par $(R, \vec{a})$, donde $R \in SO(3)$ y $\vec{a} \in \R^3$. Al componer sucesivamente dos movimientos rígidos:
+\[
+\vec{x}'' = R_2(R_1 \vec{x} + \vec{a}_1) + \vec{a}_2 = (R_2 R_1)\vec{x} + (R_2 \vec{a}_1 + \vec{a}_2).
+\]
+La ley de grupo en $SE(3)$ está dada por:
+\[
+\mathbf{(R_2, \vec{a}_2) \cdot (R_1, \vec{a}_1) = (R_2 R_1, \; R_2\vec{a}_1 + \vec{a}_2)}.
+\]
+Esta estructura donde la rotación $R_2$ altera al vector de traslación $\vec{a}_1$ define algebraicamente un \textbf{producto semidirecto}: $SE(3) = SO(3) \ltimes \R^3$.
+\end{theorembox}
+
+\manualsubsection{Puntos frente a Vectores de Desplazamiento}
+En la Semana 01 aprendimos que los puntos $P \in \mathcal{E}^3$ representan ubicaciones absolutas en el espacio, mientras que los vectores $\vec{v} = P_2 - P_1$ representan desplazamientos relativos. Esta distinción se manifiesta con total claridad en $SE(3)$:
+\begin{itemize}
+    \item Los \textbf{puntos} se trasladan: si $P' = RP + \vec{a}$, la traslación modifica físicamente la posición de cada punto.
+    \item Los \textbf{vectores} son invariantes ante traslaciones: al restar las posiciones de dos puntos transformados:
+    \[
+    \vec{v}' = P'_2 - P'_1 = (R P_2 + \vec{a}) - (R P_1 + \vec{a}) = R(P_2 - P_1) = \mathbf{R\vec{v}}.
+    \]
+    ¡El vector de traslación $\vec{a}$ se cancela exactamente! Las traslaciones mueven ubicaciones, pero dejan absolutamente inalterados a los vectores físicos.
+\end{itemize}
+
+\manualsubsection{Representación Matricial Mediante Coordenadas Homogéneas}
+Para unificar la rotación lineal y la traslación afín en una sola multiplicación matricial ordinaria, se introducen las \textbf{coordenadas homogéneas} en $\R^4$:
+\[
+\begin{pmatrix} \vec{x}' \\ 1 \end{pmatrix} = \begin{pmatrix} R & \vec{a} \\ \vec{0}^T & 1 \end{pmatrix} \begin{pmatrix} \vec{x} \\ 1 \end{pmatrix}.
+\]
+Observa la elegancia de esta formulación matricial:
+\begin{itemize}
+    \item Para un \textbf{punto}, la cuarta componente es $1$, lo que activa la traslación $\vec{a}$:
+    \[
+    \begin{pmatrix} R & \vec{a} \\ \vec{0}^T & 1 \end{pmatrix} \begin{pmatrix} \vec{x} \\ 1 \end{pmatrix} = \begin{pmatrix} R\vec{x} + \vec{a} \\ 1 \end{pmatrix}.
+    \]
+    \item Para un \textbf{vector} (diferencia de dos puntos con cuarta componente $1 - 1 = 0$), la traslación se apaga automáticamente:
+    \[
+    \begin{pmatrix} R & \vec{a} \\ \vec{0}^T & 1 \end{pmatrix} \begin{pmatrix} \vec{v} \\ 0 \end{pmatrix} = \begin{pmatrix} R\vec{v} \\ 0 \end{pmatrix}.
+    \]
+\end{itemize}
 
 \begin{center}
+\small
 \begin{tabular}{|l|c|c|}
 \hline
 \textbf{Propiedad} & \textbf{Rotación $R \in SO(3)$} & \textbf{Traslación $T_{\vec{a}}$} \\ \hline
 Definición de acción & $\vec{x}' = R\vec{x}$ & $\vec{x}' = \vec{x} + \vec{a}$ \\ \hline
 Naturaleza algebraica & Lineal ($R(\alpha\vec{u}+\beta\vec{v})=\alpha R\vec{u}+\beta R\vec{v}$) & Afín (no lineal si $\vec{a}\neq\vec{0}$) \\ \hline
-Puntos invariantes & Fija el origen $R\vec{0} = \vec{0}$ y todo el eje $\hat{n}$ & Ningún punto fijo si $\vec{a}\neq\vec{0}$ \\ \hline
+Puntos invariantes & Fija el origen y todo el eje $\hat{n}$ & Ningún punto fijo si $\vec{a}\neq\vec{0}$ \\ \hline
+Acción sobre vectores $\Delta\vec{x}$ & Transforma por giro $R\Delta\vec{x}$ & Invariante ($\Delta\vec{x}' = \Delta\vec{x}$) \\ \hline
 Conmutatividad de grupo & No abeliano en 3D ($R_1 R_2 \neq R_2 R_1$) & Siempre abeliano ($T_{\vec{a}}T_{\vec{b}} = T_{\vec{b}}T_{\vec{a}}$) \\ \hline
 \end{tabular}
 \end{center}

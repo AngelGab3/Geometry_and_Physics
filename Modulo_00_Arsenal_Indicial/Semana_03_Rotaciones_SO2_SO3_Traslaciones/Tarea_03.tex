@@ -82,11 +82,32 @@ En un plano con base canónica $\{\hat{e}_1, \hat{e}_2\}$, se considera el vecto
 \end{enumerate}
 \end{infobox}
 
-\begin{infobox}{Problema 6: Rotaciones Infinitesimales, Velocidad Angular y Traslaciones}
+\begin{infobox}{Problema 6: Rotaciones Infinitesimales y el Vector Velocidad Angular}
 \begin{enumerate}[label=(\alph*)]
-    \item Considera una rotación dependiente del tiempo $R(t)$ con $R(0) = I$. A partir de la identidad $R(t)^T R(t) = I$, deriva respecto al tiempo en $t=0$ y demuestra que la matriz $\Omega \equiv \dot{R}(0)$ es antisimétrica ($\Omega^T = -\Omega$).
-    \item Si $\Omega = \begin{pmatrix} 0 & -\omega_3 & \omega_2 \\ \omega_3 & 0 & -\omega_1 \\ -\omega_2 & \omega_1 & 0 \end{pmatrix}$, demuestra que $\Omega\vec{r} = \vec{\omega} \times \vec{r}$.
-    \item Considera una traslación pura $T_{\vec{a}}(\vec{x}) = \vec{x} + \vec{a}$ y una rotación pura $R(\vec{x}) = R\vec{x}$. Muestra mediante un contraejemplo simple que en general $R(T_{\vec{a}}(\vec{x})) \neq T_{\vec{a}}(R\vec{x})$.
+    \item Considera una rotación dependiente del tiempo $R(t)$ que parte del reposo con $R(0) = I$. A partir de la identidad de rigidez $R(t)^T R(t) = I$, deriva respecto al tiempo en $t=0$ y demuestra que la matriz $\Omega \equiv \dot{R}(0)$ es estrictamente antisimétrica ($\Omega^T = -\Omega$).
+    \item Si $\Omega = \begin{pmatrix} 0 & -\omega_3 & \omega_2 \\ \omega_3 & 0 & -\omega_1 \\ -\omega_2 & \omega_1 & 0 \end{pmatrix}$ y $\vec{\omega} = (\omega_1, \omega_2, \omega_3)^T$, demuestra mediante multiplicación directa que para cualquier posición $\vec{r} = (x, y, z)^T$:
+    \[
+    \Omega\vec{r} = \vec{\omega} \times \vec{r}.
+    \]
+    \item Demuestra que para cualquier vector $\vec{x}$, el producto escalar $\vec{x} \cdot (\Omega\vec{x}) = 0$. Explica por qué este resultado garantiza físicamente que la distancia de una partícula al origen permanece constante en una rotación pura.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 7: El Grupo Euclídeo Especial $SE(2)$ y Coordenadas Homogéneas}
+En robótica y mecánica analítica, un movimiento rígido en el plano combina una rotación de ángulo $\theta$ con una traslación $\vec{a} = (a_1, a_2)^T$. Representamos esta operación afín como una matriz de $3 \times 3$ actuando sobre coordenadas homogéneas:
+\[
+M(\theta, \vec{a}) = \begin{pmatrix} \cos\theta & -\sin\theta & a_1 \\ \sin\theta & \cos\theta & a_2 \\ 0 & 0 & 1 \end{pmatrix}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Multiplica dos matrices de este tipo, $M(\theta_2, \vec{a}_2) M(\theta_1, \vec{a}_1)$, y demuestra que el producto reproduce la regla de composición de $SE(2)$:
+    \[
+    R_{\text{total}} = R(\theta_1 + \theta_2), \qquad \vec{a}_{\text{total}} = \vec{a}_2 + R(\theta_2)\vec{a}_1.
+    \]
+    \item Demuestra que la matriz inversa en coordenadas homogéneas está dada por:
+    \[
+    M(\theta, \vec{a})^{-1} = \begin{pmatrix} R(\theta)^T & -R(\theta)^T \vec{a} \\ \vec{0}^T & 1 \end{pmatrix}.
+    \]
+    \item Aplica la matriz $M(\theta, \vec{a})$ a un punto $P = (x, y, 1)^T$ y a un vector de desplazamiento $\vec{v} = (v_x, v_y, 0)^T$. Explica a partir de la cuarta fila por qué la traslación $\vec{a}$ desplaza la ubicación del punto pero deja inalterado al vector relativo.
 \end{enumerate}
 \end{infobox}
 

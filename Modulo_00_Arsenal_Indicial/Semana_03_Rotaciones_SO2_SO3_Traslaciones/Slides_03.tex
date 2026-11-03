@@ -3,8 +3,8 @@
 \usepackage{../../Common/course_macros}
 \usepackage[spanish,provide=*]{babel}
 
-\title[Semana 3: Rotaciones $SO(2), SO(3)$ y Traslaciones]{El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones}
-\subtitle{Rigidez, Definición Formal de Grupo, Fórmula de Rodrigues y Transformaciones Activas/Pasivas}
+\title[Semana 3: Rotaciones y Traslaciones]{El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones}
+\subtitle{Rigidez, Definición Formal de Grupo, Fórmula de Rodrigues y Transformaciones Afines}
 \author{Geometría y Física I: Mecánica Clásica y Formas de Cartan}
 \institute{}
 \date{}
@@ -21,7 +21,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 2: PREGUNTAS DE ACTIVACIÓN (DESDE SEMANA 02)
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN (DESDE SEMANA 02) - LIENZO LIMPIO
 % ---------------------------------------------------------------------
 \begin{frame}{Invarianza Geométrica bajo Transformaciones Lineales}
   \vspace{0.1cm}
@@ -41,46 +41,77 @@
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep6pt
+      \begin{itemize}\itemsep2pt
         \item \textbf{Conservación de la Métrica Euclidiana:}
         Un cuerpo rígido mantiene invariantes las distancias relativas y los ángulos entre partículas bajo cualquier movimiento:
         \[
         \langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle, \quad \forall \vec{u}, \vec{v} \in \R^n.
         \]
-        \item \textbf{La Condición Ortogonal:}
-        Usando la definición de operador transpuesto $\langle \vec{x}, A\vec{y} \rangle = \langle A^T\vec{x}, \vec{y} \rangle$:
+        \item \textbf{La Condición Matricial Ortogonal:}
+        Usando la transpuesta $\langle \vec{x}, A\vec{y} \rangle = \langle A^T\vec{x}, \vec{y} \rangle$:
         \[
         \langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, R^T R\vec{v} \rangle = \langle \vec{u}, I\vec{v} \rangle.
         \]
-        Dado que esto es válido para todo par $\vec{u}, \vec{v}$, se deduce:
+        \item \textbf{Inversa como Transpuesta:}
         \[
         \boxed{R^T R = I \quad \Longleftrightarrow \quad R^{-1} = R^T}
         \]
         \item \textbf{Ortonormalidad de Columnas:}
-        Si $R = [\vec{c}_1 \mid \vec{c}_2 \mid \cdots \mid \vec{c}_n]$, la condición matricial equivale a $\vec{c}_i \cdot \vec{c}_j = \delta_{ij}$. Las columnas de $R$ forman una base ortonormal de $\R^n$.
+        Si $R = [\vec{c}_1 \mid \vec{c}_2 \mid \cdots \mid \vec{c}_n]$, la condición equivale a $\vec{c}_i \cdot \vec{c}_j = \delta_{ij}$. Las columnas forman una base ortonormal de $\R^n$.
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.9]
+      \begin{tikzpicture}[scale=0.92]
         \coordinate (O) at (0,0);
-        \draw[dashed, color=graymuted, line width=0.8pt] (O) -- (2.2, 0);
-        \draw[dashed, color=graymuted, line width=0.8pt] (O) -- (0, 2.2);
-        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (O) -- (2.0, 0.5) node[right, font=\scriptsize\bfseries] {$\vec{c}_1 = R\hat{e}_1$};
-        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (O) -- (-0.5, 2.0) node[above, font=\scriptsize\bfseries] {$\vec{c}_2 = R\hat{e}_2$};
-        \draw[color=orangeacc, thick] (0.8, 0) arc (0:14:0.8);
-        \node[font=\tiny, color=orangeacc] at (1.0, 0.15) {$\theta$};
-        \draw[color=navyaccent, thick] (0, 0.8) arc (90:104:0.8);
-        \node[font=\tiny, color=navyaccent] at (-0.2, 1.0) {$\theta$};
+        \draw[dashed, color=graymuted, line width=0.8pt] (O) -- (2.3, 0);
+        \draw[dashed, color=graymuted, line width=0.8pt] (O) -- (0, 2.3);
+        \draw[-{Stealth[length=2.5mm]}, line width=1.6pt, color=orangeacc] (O) -- (2.1, 0.55) node[right, font=\scriptsize\bfseries] {$\vec{c}_1 = R\hat{e}_1$};
+        \draw[-{Stealth[length=2.5mm]}, line width=1.6pt, color=navyaccent] (O) -- (-0.55, 2.1) node[above, font=\scriptsize\bfseries] {$\vec{c}_2 = R\hat{e}_2$};
+        \draw[color=orangeacc, thick] (0.8, 0) arc (0:15:0.8);
+        \node[font=\tiny\bfseries, color=orangeacc] at (1.05, 0.16) {$\theta$};
+        \draw[color=navyaccent, thick] (0, 0.8) arc (90:105:0.8);
+        \node[font=\tiny\bfseries, color=navyaccent] at (-0.2, 1.05) {$\theta$};
+        \fill[blackmain] (O) circle (2pt);
       \end{tikzpicture}
-      \vspace{0.1cm}
+      \vspace{0.15cm}
       {\scriptsize Preservación de la ortonormalidad: $\vec{c}_i \cdot \vec{c}_j = \delta_{ij}$.}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 4: PREGUNTAS SOBRE RIGIDEZ Y DETERMINANTE
+% SLIDE 4: DEMOSTRACIÓN DEDICADA DE RIGIDEZ E ISOMETRÍA
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración: Equivalencia entre Rigidez e Isometría Ortogonal}
+  \footnotesize
+  \textbf{Teorema:} Un operador lineal $R: \R^n \to \R^n$ preserva el producto interno euclidiano si y sólo si su matriz asociada satisface $R^T R = I$.
+
+  \vspace{0.2cm}
+  \textbf{Demostración:}
+  \begin{enumerate}\itemsep5pt
+    \item \textbf{Necesidad ($\implies$):} Supongamos que $\langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle$ para todos los vectores $\vec{u}, \vec{v} \in \R^n$.
+    Por la definición de operador transpuesto en $\R^n$:
+    \[
+    \langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, R^T(R\vec{v}) \rangle = \langle \vec{u}, (R^T R)\vec{v} \rangle.
+    \]
+    Restando la igualdad inicial:
+    \[
+    \langle \vec{u}, (R^T R - I)\vec{v} \rangle = 0, \quad \forall \vec{u}, \vec{v} \in \R^n.
+    \]
+    Tomando $\vec{u} = (R^T R - I)\vec{v}$, la no-degeneración de la norma euclidiana implica:
+    \[
+    \|(R^T R - I)\vec{v}\|^2 = 0 \implies (R^T R - I)\vec{v} = \vec{0}, \quad \forall \vec{v} \in \R^n \implies \boxed{R^T R = I}.
+    \]
+    \item \textbf{Suficiencia ($\impliedby$):} Si $R^T R = I$, entonces:
+    \[
+    \langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, R^T R \vec{v} \rangle = \langle \vec{u}, I\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle. \qquad \blacksquare
+    \]
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 5: PREGUNTAS SOBRE RIGIDEZ Y DETERMINANTE - LIENZO LIMPIO
 % ---------------------------------------------------------------------
 \begin{frame}{Estructura de las Matrices Ortogonales}
   \vspace{0.2cm}
@@ -94,17 +125,17 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 5: DEFINICIÓN FORMAL DE GRUPO Y EL GRUPO ORTOGONAL O(n)
+% SLIDE 6: DEFINICIÓN FORMAL DE GRUPO Y EL GRUPO ORTOGONAL O(n)
 % ---------------------------------------------------------------------
 \begin{frame}{Axiomas de Grupo y el Grupo Ortogonal $O(n)$}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep5pt
+      \begin{itemize}\itemsep2pt
         \item \textbf{Definición Formal de Grupo $(G, \cdot)$:}
-        Un conjunto $G$ dotado de una operación binaria $(\cdot)$ es un grupo si cumple:
-        \begin{enumerate}\scriptsize
-          \item \textbf{Clausura:} $\forall g_1, g_2 \in G \implies g_1 \cdot g_2 \in G$.
+        Un conjunto $G$ con una operación binaria $(\cdot)$ es un grupo si cumple:
+        \begin{enumerate}\scriptsize\itemsep2pt
+          \item \textbf{Cerradura:} $\forall g_1, g_2 \in G \implies g_1 \cdot g_2 \in G$.
           \item \textbf{Asociatividad:} $(g_1 \cdot g_2) \cdot g_3 = g_1 \cdot (g_2 \cdot g_3)$.
           \item \textbf{Elemento Neutro:} $\exists\, e \in G \text{ tal que } g \cdot e = e \cdot g = g$.
           \item \textbf{Elemento Inverso:} $\forall g \in G, \exists\, g^{-1} \in G \text{ tal que } g \cdot g^{-1} = e$.
@@ -113,7 +144,7 @@
         \[
         \boxed{O(n) \equiv \{R \in \mathcal{M}_{n\times n}(\R) \mid R^T R = I\}}
         \]
-        \item \textbf{Verificación de Clausura e Inverso:}
+        \item \textbf{Verificación de Cerradura e Inverso:}
         \[
         (R_1 R_2)^T (R_1 R_2) = R_2^T (R_1^T R_1) R_2 = R_2^T I R_2 = I.
         \]
@@ -128,7 +159,7 @@
         \[
         O(n) = SO(n) \cup O^-(n)
         \]
-        \begin{itemize}\itemsep4pt
+        \begin{itemize}\itemsep2pt
           \item $SO(n)$: matrices con $\det R = +1$ (contiene a la identidad $I$).
           \item $O^-(n)$: matrices con $\det R = -1$ (reflexiones e inversiones).
         \end{itemize}
@@ -139,18 +170,18 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 6: EL GRUPO ESPECIAL ORTOGONAL SO(n)
+% SLIDE 7: ROTACIONES PROPIAS Y EL GRUPO ESPECIAL ORTOGONAL SO(n)
 % ---------------------------------------------------------------------
 \begin{frame}{Rotaciones Propias y el Grupo Especial Ortogonal $SO(n)$}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep3pt
+      \begin{itemize}\itemsep2pt
         \item \textbf{Definición de $SO(n)$:}
         \[
         \boxed{SO(n) \equiv \{R \in O(n) \mid \det R = +1\}}
         \]
-        Es un subgrupo de $O(n)$: el producto de dos matrices con $\det R = +1$ tiene $\det = +1$, y $\det(R^{-1}) = +1$.
+        Es un subgrupo conexo de $O(n)$: el producto de matrices con $\det = +1$ tiene $\det = +1$, y $\det(R^{-1}) = +1$.
         \item \textbf{Conservación de la Orientación y $\epsilon_{ijk}$:}
         En $\R^3$, la transformación de tres vectores $\{\vec{u}, \vec{v}, \vec{w}\}$ preserva su producto triple:
         \[
@@ -163,13 +194,14 @@
     \end{column}
     \begin{column}{0.41\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.82]
+      \begin{tikzpicture}[scale=0.88]
         \draw[line width=1.4pt, color=graymuted] (0, -0.6) -- (0, 2.3) node[above, font=\tiny\bfseries] {Plano Espejo};
         \coordinate (O) at (0,0);
-        \draw[-{Stealth}, color=orangeacc, line width=1.4pt] (O) -- (1.8, 0.5) node[right, font=\tiny\bfseries] {$\vec{u}$};
-        \draw[-{Stealth}, color=navyaccent, line width=1.4pt] (O) -- (0.5, 1.8) node[above right, font=\tiny\bfseries] {$\vec{v}$};
-        \draw[-{Stealth}, color=orangeacc, dashed, line width=1.4pt] (O) -- (-1.8, 0.5) node[left, font=\tiny\bfseries] {$S\vec{u}$};
-        \draw[-{Stealth}, color=navyaccent, dashed, line width=1.4pt] (O) -- (-0.5, 1.8) node[above left, font=\tiny\bfseries] {$S\vec{v}$};
+        \draw[-{Stealth[length=2.2mm]}, color=orangeacc, line width=1.5pt] (O) -- (1.8, 0.5) node[right, font=\tiny\bfseries] {$\vec{u}$};
+        \draw[-{Stealth[length=2.2mm]}, color=navyaccent, line width=1.5pt] (O) -- (0.5, 1.8) node[above right, font=\tiny\bfseries] {$\vec{v}$};
+        \draw[-{Stealth[length=2.2mm]}, color=orangeacc, dashed, line width=1.5pt] (O) -- (-1.8, 0.5) node[left, font=\tiny\bfseries] {$S\vec{u}$};
+        \draw[-{Stealth[length=2.2mm]}, color=navyaccent, dashed, line width=1.5pt] (O) -- (-0.5, 1.8) node[above left, font=\tiny\bfseries] {$S\vec{v}$};
+        \fill[blackmain] (O) circle (2pt);
       \end{tikzpicture}
       \vspace{0.1cm}
       {\scriptsize Reflexión especular: $\det S = -1$ invierte el sentido de giro.}
@@ -178,20 +210,20 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 7: ROTACIONES EN EL PLANO SO(2)
+% SLIDE 8: ROTACIONES EN EL PLANO SO(2)
 % ---------------------------------------------------------------------
 \begin{frame}{Rotaciones en el Plano: El Grupo Conmutativo $SO(2)$}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep5pt
-        \item \textbf{Construcción Geométrica:}
+      \begin{itemize}\itemsep2pt
+        \item \textbf{Construcción Geométrica Columna a Columna:}
         Girando la base ortonormal $\{\hat{e}_1, \hat{e}_2\}$ un ángulo $\theta$ en sentido antihorario:
         \[
         R(\theta)\hat{e}_1 = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \quad
         R(\theta)\hat{e}_2 = \begin{pmatrix} -\sin\theta \\ \cos\theta \end{pmatrix}.
         \]
-        La matriz general adopta la forma:
+        La matriz adopta la forma canónica:
         \[
         \boxed{R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}}
         \]
@@ -210,9 +242,10 @@
         \coordinate (O) at (0,0);
         \draw[-{Stealth}, color=graymuted, line width=0.8pt] (-0.3,0) -- (2.3,0) node[right, font=\tiny] {$x$};
         \draw[-{Stealth}, color=graymuted, line width=0.8pt] (0,-0.3) -- (0,2.3) node[above, font=\tiny] {$y$};
-        \draw[-{Stealth}, color=orangeacc, line width=1.5pt] (O) -- (1.8,0.7) node[right, font=\scriptsize\bfseries] {$\vec{v}' = R\vec{v}$};
-        \draw[-{Stealth}, color=navyaccent, line width=1.5pt] (O) -- (1.5,1.2) node[above right, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth[length=2.5mm]}, color=orangeacc, line width=1.6pt] (O) -- (1.8,0.7) node[right, font=\scriptsize\bfseries] {$\vec{v}' = R\vec{v}$};
+        \draw[-{Stealth[length=2.5mm]}, color=navyaccent, line width=1.6pt] (O) -- (1.5,1.2) node[above right, font=\scriptsize\bfseries] {$\vec{v}$};
         \draw[color=orangeacc, thick, ->] (0.8, 0.64) arc (38:21:0.8);
+        \fill[blackmain] (O) circle (2pt);
       \end{tikzpicture}
       \vspace{0.1cm}
       {\scriptsize Isomorfismo geométrico: $SO(2) \cong U(1) \cong S^1$.}
@@ -221,7 +254,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 8: PREGUNTAS SOBRE SO(2) Y REFLEXIONES
+% SLIDE 9: PREGUNTAS SOBRE SO(2) Y REFLEXIONES - LIENZO LIMPIO
 % ---------------------------------------------------------------------
 \begin{frame}{Simetrías Planas y Naturaleza de las Reflexiones}
   \vspace{0.2cm}
@@ -235,13 +268,13 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 9: ROTACIONES EN R^3 Y NO-CONMUTATIVIDAD
+% SLIDE 10: ROTACIONES EN R^3 Y NO-CONMUTATIVIDAD
 % ---------------------------------------------------------------------
 \begin{frame}{Rotaciones Espaciales y la No-Conmutatividad de $SO(3)$}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep4pt
+      \begin{itemize}\itemsep3pt
         \item \textbf{Rotaciones Alrededor de los Ejes Coordenados:}
         {\tiny
         \[
@@ -249,7 +282,7 @@
         R_z(\beta) = \begin{pmatrix} \cos\beta & -\sin\beta & 0 \\ \sin\beta & \cos\beta & 0 \\ 0 & 0 & 1 \end{pmatrix}.
         \]
         }
-        \item \textbf{Composición con Ángulos Rectos ($\pi/2$):}
+        \item \textbf{Composición con Giros de $\pi/2$ ($90^\circ$):}
         {\scriptsize
         \begin{align*}
         R_x\left(\frac{\pi}{2}\right) R_z\left(\frac{\pi}{2}\right) &= \begin{pmatrix} 0 & -1 & 0 \\ 0 & 0 & -1 \\ 1 & 0 & 0 \end{pmatrix}, \\
@@ -258,249 +291,439 @@
         }
         \item \textbf{El Grupo $SO(3)$ es No Abeliano:}
         $R_x R_z \neq R_z R_x$. El conmutador $[R_x, R_z] \neq 0$.
-        El orden secuencial de los giros en 3D altera el estado final.
+        El orden secuencial de los giros tridimensionales altera el estado físico final.
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.75]
-        \draw[fill=creambg, draw=blackmain, line width=1pt] (0,0) rectangle (2.2, 1.4);
-        \node[font=\tiny\bfseries] at (1.1, 0.7) {Estado Inicial};
-        \draw[-{Stealth}, line width=1.2pt, color=orangeacc] (2.4, 0.7) -- (3.2, 0.7);
-        \draw[fill=orangebg, draw=orangeacc, line width=1pt] (3.4, 0) rectangle (5.0, 1.4);
-        \node[font=\tiny\bfseries, color=navyaccent] at (4.2, 0.7) {$R_x(\frac{\pi}{2}) R_z(\frac{\pi}{2})$};
+      \begin{tikzpicture}[scale=0.76]
+        \draw[fill=creambg, draw=blackmain, line width=1pt] (0,0) rectangle (2.2, 1.3);
+        \node[font=\tiny\bfseries] at (1.1, 0.65) {Estado Inicial};
+        \draw[-{Stealth}, line width=1.2pt, color=orangeacc] (2.3, 0.65) -- (3.2, 0.65);
+        \draw[fill=orangebg, draw=orangeacc, line width=1pt] (3.3, 0) rectangle (5.0, 1.3);
+        \node[font=\tiny\bfseries, color=navyaccent] at (4.15, 0.65) {$R_x(\frac{\pi}{2}) R_z(\frac{\pi}{2})$};
 
-        \node[font=\normalsize\bfseries, color=navyaccent] at (2.4, -0.6) {$\neq$};
+        \node[font=\normalsize\bfseries, color=navyaccent] at (2.5, -0.65) {$\neq$};
 
-        \draw[fill=navyaccent!15, draw=navyaccent, line width=1pt] (3.4, -1.8) rectangle (5.0, -0.4);
-        \node[font=\tiny\bfseries, color=blackmain] at (4.2, -1.1) {$R_z(\frac{\pi}{2}) R_x(\frac{\pi}{2})$};
+        \draw[fill=navyaccent!15, draw=navyaccent, line width=1pt] (3.3, -1.8) rectangle (5.0, -0.5);
+        \node[font=\tiny\bfseries, color=blackmain] at (4.15, -1.15) {$R_z(\frac{\pi}{2}) R_x(\frac{\pi}{2})$};
       \end{tikzpicture}
-      \vspace{0.1cm}
+      \vspace{0.15cm}
       {\scriptsize La no-conmutatividad física de los giros en tres dimensiones.}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 10: TEOREMA DE EULER Y EL EJE INVARIANTE
+% SLIDE 11: TEOREMA DE ROTACIÓN DE EULER Y EL EJE INVARIANTE
 % ---------------------------------------------------------------------
-\begin{frame}{El Teorema de Rotación de Euler y la Geometría del Eje Fijo}
+\begin{frame}{Teorema de Rotación de Euler y la Existencia del Eje Fijo}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep5pt
-        \item \textbf{Teorema de Euler sobre Rotaciones:}
-        Toda rotación tridimensional $R \in SO(3)$ deja al menos una dirección invariante: existe un vector unitario $\hat{n} \in \R^3$ tal que
+      \begin{block}{Enunciado del Teorema de Euler (1776)}
+        Toda rotación espacial propia $R \in SO(3)$ deja al menos una dirección invariante: existe un vector no nulo $\hat{n} \in \R^3$ tal que
         \[
         R\hat{n} = \hat{n} \quad (\lambda = 1 \text{ es autovalor de } R).
         \]
-        \item \textbf{Demostración Algebraica:}
-        Evaluemos el determinante característico para $\lambda = 1$:
+      \end{block}
+      \begin{itemize}\itemsep2pt
+        \item \textbf{Eje de Rotación:}
+        La recta dirigida a lo largo de $\hat{n}$ permanece fija punto por punto bajo la acción del giro.
+        \item \textbf{Subespacio Ortogonal Complementario:}
+        En el plano bidimensional perpendicular a $\hat{n}$, la matriz actúa como una rotación plana ordinaria de ángulo $\theta \in [0, \pi]$.
+        \item \textbf{Parámetros de Toda Rotación:}
+        Un eje unitario $\hat{n} \in S^2$ (2 grados de libertad) y un ángulo $\theta \in S^1$ (1 grado de libertad): $2 + 1 = 3$ grados de libertad en $SO(3)$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.92]
+        \coordinate (O) at (0,0);
+        \coordinate (N) at (0, 2.6);
+        \draw[-{Stealth[length=2.5mm]}, line width=2pt, color=orangeacc] (O) -- (N) node[above, font=\scriptsize\bfseries] {$\hat{n}$ (Eje fijo)};
+        \draw[dashed, color=navyaccent!60, line width=1pt] (0, 1.3) ellipse (1.6cm and 0.5cm);
+        \draw[-{Stealth[length=2mm]}, line width=1.5pt, color=navyaccent] (0, 1.3) -- (1.4, 1.05) node[right, font=\tiny\bfseries] {$\vec{v}_\perp$};
+        \draw[-{Stealth[length=2mm]}, line width=1.5pt, color=orangeacc!80!black] (0, 1.3) -- (-0.5, 1.6) node[left, font=\tiny\bfseries] {$R\vec{v}_\perp$};
+        \draw[color=orangeacc, thick, ->] (0.7, 1.18) arc (-15:105:0.7 and 0.22);
+        \fill[blackmain] (O) circle (2pt);
+      \end{tikzpicture}
+      \vspace{0.1cm}
+      {\scriptsize Autovalor unitario $\lambda = 1$: eje de rotación $\hat{n}$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 12: DEMOSTRACIÓN DEDICADA DEL TEOREMA DE EULER
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración del Teorema de Rotación de Euler}
+  \footnotesize
+  Deseamos demostrar que para cualquier $R \in SO(3)$, el polinomio característico evaluado en $\lambda = 1$ se anula idénticamente, es decir, $\det(R - I) = 0$.
+
+  \vspace{0.2cm}
+  \textbf{Paso a paso:}
+  \begin{enumerate}\itemsep4pt
+    \item Puesto que $R \in SO(3)$, sabemos que $R^T R = I$ y que $\det(R) = \det(R^T) = +1$.
+    \item Factorizamos la matriz transpuesta dentro del determinante:
+    \[
+    \det(R - I) = \det\big(R^T(R - I)\big) = \det(R^T R - R^T) = \det(I - R^T).
+    \]
+    \item Utilizando la propiedad de transposición de determinantes ($\det(A^T) = \det(A)$):
+    \[
+    \det(I - R^T) = \det\big((I - R^T)^T\big) = \det(I - R).
+    \]
+    \item Extraemos un factor escalar $(-1)$ de cada una de las filas de la matriz en dimensión $n = 3$:
+    \[
+    \det(I - R) = \det\big(-(R - I)\big) = (-1)^3 \det(R - I) = -\det(R - I).
+    \]
+    \item Igualando el inicio con el final de la cadena de igualdades:
+    \[
+    \det(R - I) = -\det(R - I) \implies 2\det(R - I) = 0 \implies \boxed{\det(R - I) = 0}
+    \]
+  \end{enumerate}
+  El sistema homogéneo $(R - I)\vec{v} = \vec{0}$ admite soluciones no triviales. Normalizando, existe $\hat{n}$ tal que $R\hat{n} = \hat{n}$. $\blacksquare$
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 13: PREGUNTAS SOBRE EL EJE INVARIANTE - LIENZO LIMPIO
+% ---------------------------------------------------------------------
+\begin{frame}{Geometría del Eje de Giro y Descomposición Ortogonal}
+  \vspace{0.2cm}
+  Analizando las consecuencias geométricas del Teorema de Euler:
+  \vspace{0.3cm}
+  \begin{enumerate}\itemsep14pt
+    \item ¿Por qué en dimensión par (por ejemplo en $\R^2$ o $\R^4$) el argumento $\det(R-I) = (-1)^n \det(R-I)$ deja de garantizar la existencia de un eje fijo?
+    \item Si $R\hat{n} = \hat{n}$ y consideramos un vector $\vec{v}_\perp$ ortogonal a $\hat{n}$ ($\vec{v}_\perp \cdot \hat{n} = 0$), demuestra algebraicamente que su vector rotado $R\vec{v}_\perp$ sigue siendo estrictamente ortogonal a $\hat{n}$.
+    \item Si dos rotaciones en $\R^3$ comparten exactamente el mismo eje invariante $\hat{n}$, ¿conmutan entre sí? Justifica la respuesta a partir de la estructura del plano perpendicular.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 14: DEDUCCIÓN GEOMÉTRICA DE RODRIGUES
+% ---------------------------------------------------------------------
+\begin{frame}{Geometría del Giro Alrededor de un Eje Arbitrario}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      Deseamos rotar un vector arbitrario $\vec{v} \in \R^3$ un ángulo $\theta$ en torno al eje unitario $\hat{n}$:
+      \begin{itemize}\itemsep2pt
+        \item \textbf{Descomposición Ortogonal (Semana 01):}
         \[
-        \det(R - I) = \det(R^T(I - R)) = \det(R^T)\det(-(R - I)).
+        \vec{v} = \vec{v}_\parallel + \vec{v}_\perp, \quad \vec{v}_\parallel = (\vec{v}\cdot\hat{n})\hat{n}, \quad \vec{v}_\perp = \vec{v} - (\vec{v}\cdot\hat{n})\hat{n}.
         \]
-        Como $\det(R^T) = +1$ y la dimensión es $n = 3$:
+        \item \textbf{Invarianza de la Componente Axial:}
+        Por el Teorema de Euler: $R\vec{v}_\parallel = \vec{v}_\parallel$.
+        \item \textbf{Base Ortogonal del Plano Perpendicular:}
+        Definimos el vector complementario $\vec{w} \equiv \hat{n} \times \vec{v} = \hat{n} \times \vec{v}_\perp$.
+        Se verifica: $\vec{w} \perp \vec{v}_\perp$, $\vec{w} \perp \hat{n}$ y $\|\vec{w}\| = \|\vec{v}_\perp\|$.
+        \item \textbf{Giro Plano en el Subespacio Normal:}
+        En la base ortogonal $\{\vec{v}_\perp, \hat{n}\times\vec{v}\}$, el giro de ángulo $\theta$ actúa según:
         \[
-        \det(R - I) = (-1)^3 \det(R - I) = -\det(R - I).
+        R\vec{v}_\perp = (\cos\theta)\vec{v}_\perp + (\sin\theta)(\hat{n}\times\vec{v}).
         \]
-        Por consiguiente, $2\det(R - I) = 0 \implies \det(R - I) = 0$.
-        \item \textbf{Significado Físico:}
-        Todo desplazamiento de un cuerpo rígido con un punto fijo equivale a un único giro de ángulo $\theta$ en torno a un eje fijo $\hat{n}$.
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.88]
         \coordinate (O) at (0,0);
-        \coordinate (N) at (0, 2.6);
-        \draw[-{Stealth}, line width=2pt, color=orangeacc] (O) -- (N) node[above, font=\scriptsize\bfseries] {$\hat{n}$ (Eje fijo)};
-        \draw[dashed, color=navyaccent!60, line width=1pt] (0, 1.3) ellipse (1.6cm and 0.5cm);
-        \draw[-{Stealth}, line width=1.4pt, color=navyaccent] (0, 1.3) -- (1.4, 1.05) node[right, font=\tiny\bfseries] {$\vec{v}_\perp$};
-        \draw[-{Stealth}, line width=1.4pt, color=orangeacc!80!black] (0, 1.3) -- (-0.5, 1.6) node[left, font=\tiny\bfseries] {$R\vec{v}_\perp$};
-        \draw[color=orangeacc, thick, ->] (0.7, 1.18) arc (-15:105:0.7 and 0.22);
+        \coordinate (N) at (0, 2.7);
+        \coordinate (V) at (2.1, 1.5);
+        \coordinate (Vpar) at (0, 1.5);
+        \draw[-{Stealth[length=2.5mm]}, line width=1.8pt, color=orangeacc] (O) -- (N) node[above, font=\scriptsize\bfseries] {$\hat{n}$};
+        \draw[-{Stealth[length=2.2mm]}, line width=1.5pt, color=blackmain] (O) -- (V) node[right, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth[length=2.2mm]}, line width=1.5pt, color=orangeacc!80!black] (O) -- (Vpar) node[left, font=\tiny\bfseries] {$\vec{v}_\parallel$};
+        \draw[dashed, color=navyaccent!50] (Vpar) circle (2.1cm and 0.65cm);
+        \draw[-{Stealth[length=2mm]}, line width=1.3pt, color=navyaccent] (Vpar) -- (V) node[midway, below, font=\tiny\bfseries] {$\vec{v}_\perp$};
+        \fill[blackmain] (O) circle (2pt);
       \end{tikzpicture}
       \vspace{0.1cm}
-      {\scriptsize Autovalor unitario $\lambda = 1$: eje instantáneo de rotación $\hat{n}$.}
+      {\scriptsize Base de rotación en el plano normal: $\{\vec{v}_\perp, \hat{n}\times\vec{v}\}$.}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 11: DEDUCCIÓN GEOMÉTRICA DE RODRIGUES
+% SLIDE 15: DEMOSTRACIÓN DEDICADA DE LA FÓRMULA DE RODRIGUES
 % ---------------------------------------------------------------------
-\begin{frame}{Deducción Geométrica de la Fórmula de Rodrigues}
-  \begin{columns}[c]
-    \begin{column}{0.56\textwidth}
-      \footnotesize
-      Para rotar un vector $\vec{v}$ un ángulo $\theta$ alrededor de un eje unitario $\hat{n}$:
-      \begin{itemize}\itemsep4pt
-        \item \textbf{Descomposición Ortogonal:}
-        $\vec{v} = \vec{v}_\parallel + \vec{v}_\perp$, donde:
-        \[
-        \vec{v}_\parallel = (\vec{v}\cdot\hat{n})\hat{n}, \qquad \vec{v}_\perp = \vec{v} - (\vec{v}\cdot\hat{n})\hat{n}.
-        \]
-        \item \textbf{Invarianza del Eje:}
-        La componente paralela no se altera bajo el giro: $R\vec{v}_\parallel = \vec{v}_\parallel$.
-        \item \textbf{Construcción de la Base en el Plano Normal:}
-        Definimos $\vec{w} \equiv \hat{n} \times \vec{v} = \hat{n} \times \vec{v}_\perp$.
-        Se verifica $\vec{w} \perp \vec{v}_\perp$ y $\|\vec{w}\| = \|\vec{v}_\perp\|$.
-        \item \textbf{Rotación Plana de $\vec{v}_\perp$:}
-        \[
-        R\vec{v}_\perp = \vec{v}_\perp \cos\theta + (\hat{n} \times \vec{v})\sin\theta.
-        \]
-        \item \textbf{Fórmula Vectorial de Rodrigues:}
-        Sumando $R\vec{v} = R\vec{v}_\parallel + R\vec{v}_\perp$:
-        \[
-        \boxed{R(\hat{n}, \theta)\vec{v} = \vec{v}\cos\theta + (\hat{n}\times\vec{v})\sin\theta + \hat{n}(\hat{n}\cdot\vec{v})(1 - \cos\theta)}
-        \]
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.41\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.85]
-        \coordinate (O) at (0,0);
-        \coordinate (N) at (0, 2.5);
-        \coordinate (V) at (2.0, 1.4);
-        \coordinate (Vpar) at (0, 1.4);
-        \draw[-{Stealth}, line width=1.8pt, color=orangeacc] (O) -- (N) node[above, font=\scriptsize\bfseries] {$\hat{n}$};
-        \draw[-{Stealth}, line width=1.4pt, color=blackmain] (O) -- (V) node[right, font=\scriptsize\bfseries] {$\vec{v}$};
-        \draw[-{Stealth}, line width=1.4pt, color=orangeacc!80!black] (O) -- (Vpar) node[left, font=\tiny\bfseries] {$\vec{v}_\parallel$};
-        \draw[dashed, color=navyaccent!50] (Vpar) circle (2.0cm and 0.6cm);
-        \draw[-{Stealth}, line width=1.2pt, color=navyaccent] (Vpar) -- (V) node[midway, below, font=\tiny\bfseries] {$\vec{v}_\perp$};
-      \end{tikzpicture}
-      \vspace{0.1cm}
-      {\scriptsize Proyección ortogonal y giro en el subespacio normal a $\hat{n}$.}
-    \end{column}
-  \end{columns}
+\begin{frame}{Demostración de la Fórmula Vectorial de Rodrigues}
+  \footnotesize
+  \textbf{Teorema:} La acción de una rotación de ángulo $\theta$ alrededor del eje unitario $\hat{n}$ sobre cualquier vector $\vec{v} \in \R^3$ está dada por:
+  \[
+  \boxed{R(\hat{n}, \theta)\vec{v} = \vec{v}\cos\theta + (\hat{n}\times\vec{v})\sin\theta + \hat{n}(\hat{n}\cdot\vec{v})(1 - \cos\theta)}
+  \]
+
+  \textbf{Demostración:}
+  \begin{enumerate}\itemsep4pt
+    \item Por la linealidad del operador de rotación $R$, descomponemos la acción en las dos componentes ortogonales:
+    \[
+    R\vec{v} = R(\vec{v}_\parallel + \vec{v}_\perp) = R\vec{v}_\parallel + R\vec{v}_\perp.
+    \]
+    \item La componente paralela al eje permanece invariante: $R\vec{v}_\parallel = \vec{v}_\parallel = (\hat{n}\cdot\vec{v})\hat{n}$.
+    \item En el plano ortogonal, el vector rota un ángulo $\theta$ en la base ortonormal formada por $\vec{v}_\perp$ y $\hat{n}\times\vec{v}$:
+    \[
+    R\vec{v}_\perp = (\cos\theta)\vec{v}_\perp + (\sin\theta)(\hat{n}\times\vec{v}).
+    \]
+    \item Sustituimos $\vec{v}_\perp = \vec{v} - (\hat{n}\cdot\vec{v})\hat{n}$ en la expresión anterior:
+    \[
+    R\vec{v}_\perp = (\cos\theta)\big[\vec{v} - (\hat{n}\cdot\vec{v})\hat{n}\big] + (\sin\theta)(\hat{n}\times\vec{v}) = \vec{v}\cos\theta - \hat{n}(\hat{n}\cdot\vec{v})\cos\theta + (\hat{n}\times\vec{v})\sin\theta.
+    \]
+    \item Sumamos ahora la componente paralela $R\vec{v}_\parallel = \hat{n}(\hat{n}\cdot\vec{v})$:
+    \[
+    R\vec{v} = \vec{v}\cos\theta + (\hat{n}\times\vec{v})\sin\theta + \hat{n}(\hat{n}\cdot\vec{v})(1 - \cos\theta). \qquad \blacksquare
+    \]
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 12: FORMA MATRICIAL Y GENERADOR ANTISIMÉTRICO
+% SLIDE 16: FORMA MATRICIAL Y GENERADOR ANTISIMÉTRICO
 % ---------------------------------------------------------------------
-\begin{frame}{Representación Matricial de Rodrigues y Álgebra Antisimétrica}
+\begin{frame}{El Operador Antisimétrico de Giro y Potencias de $K$}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep3pt
+      \begin{itemize}\itemsep2pt
         \item \textbf{El Operador Producto Cruz $K$:}
-        Definimos la matriz antisimétrica $K\vec{v} \equiv \hat{n} \times \vec{v}$ ($K_{ij} = -\epsilon_{ijk} n_k$):
+        Definimos la matriz antisimétrica asociada a $\hat{n}$ tal que $K\vec{v} \equiv \hat{n} \times \vec{v}$ ($K_{ij} = -\epsilon_{ijk} n_k$):
         \[
         K = \begin{pmatrix} 0 & -n_3 & n_2 \\ n_3 & 0 & -n_1 \\ -n_2 & n_1 & 0 \end{pmatrix}, \quad K^T = -K.
         \]
-        \item \textbf{Potencias de $K$ e Identidad Proyectiva:}
-        Usando $\hat{n} \times (\hat{n} \times \vec{v}) = \hat{n}(\hat{n}\cdot\vec{v}) - \vec{v}$, se obtiene $K^2 = \hat{n}\hat{n}^T - I$. Así:
+        \item \textbf{El Cuadrado $K^2$ e Identidad Proyectiva:}
+        Usando la fórmula BAC--CAB de la Semana 02:
         \[
-        \hat{n}(\hat{n}\cdot\vec{v}) = (I + K^2)\vec{v}.
+        K^2\vec{v} = \hat{n} \times (\hat{n} \times \vec{v}) = \hat{n}(\hat{n}\cdot\vec{v}) - \vec{v}(\hat{n}\cdot\hat{n}) = \hat{n}(\hat{n}\cdot\vec{v}) - \vec{v}.
         \]
-        \item \textbf{Fórmula Matricial de Rodrigues:}
+        En términos matriciales puros:
         \[
-        \boxed{R(\hat{n}, \theta) = I + (\sin\theta)K + (1 - \cos\theta)K^2}
+        K^2 = \hat{n}\hat{n}^T - I \implies \boxed{\hat{n}\hat{n}^T = I + K^2}
         \]
-        Esta forma cerrada coincide con la serie exponencial $e^{\theta K}$.
+        \item \textbf{Cierre Cíclico de Potencias:}
+        Multiplicando por $K$: $K^3 = K(\hat{n}\hat{n}^T - I) = \vec{0} - K = -K$.
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
       \footnotesize
-      \begin{block}{Traza e Invariante de Giro}
+      \begin{block}{Álgebra de Potencias de $K$}
         \scriptsize
-        Como $\mathrm{tr}(K) = 0$ y $\mathrm{tr}(K^2) = \mathrm{tr}(\hat{n}\hat{n}^T - I) = 1 - 3 = -2$:
+        Las potencias de $K$ colapsan cíclicamente:
+        \begin{align*}
+          K^3 &= -K \\
+          K^4 &= -K^2 \\
+          K^5 &= K \\
+          K^6 &= K^2
+        \end{align*}
+        Esto permite sumar la serie de Taylor exponencial de matrices en forma cerrada exacta:
         \[
-        \mathrm{tr}(R(\hat{n}, \theta)) = 3 - 2(1 - \cos\theta) = 1 + 2\cos\theta.
+        e^{\theta K} = \sum_{m=0}^\infty \frac{(\theta K)^m}{m!}
         \]
-        La traza depende únicamente del ángulo de rotación $\theta$, siendo completamente independiente de la orientación del eje $\hat{n}$.
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 13: ROTACIONES ACTIVAS FRENTE A PASIVAS
+% SLIDE 17: DEMOSTRACIÓN DEDICADA DE MATRIZ DE RODRIGUES Y TRAZA
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración de la Traza Invariante y Fórmula Matricial}
+  \footnotesize
+  \textbf{Teorema:} La matriz de rotación $R(\hat{n}, \theta)$ admite la forma matricial cerrada:
+  \[
+  \boxed{R(\hat{n}, \theta) = I + (\sin\theta)K + (1 - \cos\theta)K^2}
+  \]
+  y su traza depende exclusivamente del ángulo de rotación: $\boxed{\mathrm{tr}(R) = 1 + 2\cos\theta}$.
+
+  \textbf{Demostración:}
+  \begin{enumerate}\itemsep3pt
+    \item Aplicando la fórmula vectorial a un vector cualquiera $\vec{v}$:
+    \[
+    R\vec{v} = \vec{v}\cos\theta + (\sin\theta)K\vec{v} + (1 - \cos\theta)(I + K^2)\vec{v} = \big[I + (\sin\theta)K + (1 - \cos\theta)K^2\big]\vec{v}.
+    \]
+    Como es válida para todo $\vec{v}$, se deduce la identidad matricial cerrada.
+    \item Calculamos la traza usando la linealidad del operador $\mathrm{tr}$:
+    \[
+    \mathrm{tr}(R) = \mathrm{tr}(I) + (\sin\theta)\,\mathrm{tr}(K) + (1 - \cos\theta)\,\mathrm{tr}(K^2).
+    \]
+    \item Evaluamos cada término individual en dimensión 3:
+    \begin{itemize}\scriptsize
+      \item $\mathrm{tr}(I) = 1 + 1 + 1 = 3$.
+      \item $\mathrm{tr}(K) = 0$ (toda matriz antisimétrica tiene diagonal nula).
+      \item $\mathrm{tr}(K^2) = \mathrm{tr}(\hat{n}\hat{n}^T - I) = \mathrm{tr}(\hat{n}\hat{n}^T) - \mathrm{tr}(I) = (\hat{n}\cdot\hat{n}) - 3 = 1 - 3 = -2$.
+    \end{itemize}
+    \item Sustituyendo los valores escalares:
+    \[
+    \mathrm{tr}(R) = 3 + 0 - 2(1 - \cos\theta) = 3 - 2 + 2\cos\theta = 1 + 2\cos\theta. \qquad \blacksquare
+    \]
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 18: ROTACIONES ACTIVAS FRENTE A PASIVAS
 % ---------------------------------------------------------------------
 \begin{frame}{Transformaciones Activas frente a Transformaciones Pasivas}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep5pt
+      \begin{itemize}\itemsep2pt
         \item \textbf{Punto de Vista Activo (Rotación del Objeto):}
-        El sistema de coordenadas permanece fijo. El vector físico experimenta una traslación angular en el espacio:
+        El sistema de coordenadas permanece fijo. El vector físico experimenta una rotación física en el espacio:
         \[
-        \vec{v}' = R\vec{v} \iff v'^i = R^i{}_j v^j.
+        \vec{v}' = R\vec{v} \iff [v'] = R[v].
         \]
         \item \textbf{Punto de Vista Pasivo (Rotación de los Ejes):}
-        El vector físico $\vec{v}$ no se desplaza; lo que gira es la base de referencia $\{\hat{e}_i\} \to \{\hat{e}'_i\}$:
-        \[
-        \hat{e}'_i = R_{ji}\hat{e}_j.
-        \]
+        El vector físico $\vec{v}$ no se desplaza; lo que rota es la base de referencia: $\hat{e}'_i = R_{ji}\hat{e}_j$.
         \item \textbf{Transformación de Componentes Pasivas:}
-        Dado que el vector es invariante ($\vec{v} = v^i \hat{e}_i = v'^j \hat{e}'_j$), sus componentes se transforman de manera contragrediente:
+        Dado que $\vec{v} = v^i \hat{e}_i = v'^j \hat{e}'_j$, las componentes se transforman de forma inversa:
         \[
         \boxed{[v'] = R^{-1}[v] = R^T [v]}
         \]
-        Rotar activamente un vector un ángulo $\theta$ es equivalente a rotar los ejes coordenados un ángulo $-\theta$.
+        Rotar activamente un vector un ángulo $\theta$ es indistinguible de rotar los ejes un ángulo $-\theta$.
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.9]
+      \begin{tikzpicture}[scale=0.92]
         \coordinate (O) at (0,0);
-        \draw[-{Stealth}, color=graymuted, line width=0.8pt] (O) -- (2.2,0) node[right, font=\tiny] {$x$};
-        \draw[-{Stealth}, color=graymuted, line width=0.8pt] (O) -- (0,2.2) node[above, font=\tiny] {$y$};
-        \draw[-{Stealth}, color=orangeacc, line width=1.5pt] (O) -- (1.8, 1.2) node[right, font=\scriptsize\bfseries] {$\vec{v}$ (Fijo)};
-        \draw[-{Stealth}, dashed, color=navyaccent, line width=1pt] (O) -- (2.1, 0.6) node[right, font=\tiny] {$x'$};
-        \draw[-{Stealth}, dashed, color=navyaccent, line width=1pt] (O) -- (-0.6, 2.1) node[above, font=\tiny] {$y'$};
+        \draw[-{Stealth}, color=graymuted, line width=0.8pt] (O) -- (2.3,0) node[right, font=\tiny] {$x$};
+        \draw[-{Stealth}, color=graymuted, line width=0.8pt] (O) -- (0,2.3) node[above, font=\tiny] {$y$};
+        \draw[-{Stealth[length=2.5mm]}, color=orangeacc, line width=1.6pt] (O) -- (1.9, 1.25) node[right, font=\scriptsize\bfseries] {$\vec{v}$ (Fijo)};
+        \draw[-{Stealth}, dashed, color=navyaccent, line width=1.1pt] (O) -- (2.2, 0.6) node[right, font=\tiny] {$x'$};
+        \draw[-{Stealth}, dashed, color=navyaccent, line width=1.1pt] (O) -- (-0.6, 2.2) node[above, font=\tiny] {$y'$};
+        \draw[color=navyaccent, thick, ->] (1.3, 0) arc (0:15:1.3);
+        \node[font=\tiny\bfseries, color=navyaccent] at (1.5, 0.18) {$+\theta$};
+        \fill[blackmain] (O) circle (2pt);
       \end{tikzpicture}
-      \vspace{0.1cm}
+      \vspace{0.15cm}
       {\scriptsize Transformación pasiva: $[v'] = R^T [v]$.}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 14: ROTACIONES INFINITESIMALES Y VELOCIDAD ANGULAR
+% SLIDE 19: ROTACIONES INFINITESIMALES Y GENERADORES
 % ---------------------------------------------------------------------
-\begin{frame}{Rotaciones Infinitesimales y el Vector Velocidad Angular}
+\begin{frame}{Rotaciones Infinitesimales y la Aparición de $\Omega$}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep5pt
-        \item \textbf{Aproximación Infinitesimal en Torno a la Identidad:}
-        Para un intervalo de tiempo diferencial $dt$:
+      \begin{itemize}\itemsep2pt
+        \item \textbf{Evolución Continua desde el Reposo:}
+        Consideremos una rotación dependiente del tiempo $R(t)$ con $R(0) = I$. En un intervalo infinitesimal $dt$:
         \[
-        R(dt) \approx I + \Omega\, dt.
+        R(dt) \approx I + \Omega\, dt, \qquad \Omega \equiv \dot{R}(0).
         \]
-        \item \textbf{Imposición de Rigidez $R^T R = I$:}
+        \item \textbf{Imposición de la Condición de Rigidez:}
+        Exigimos $R(dt)^T R(dt) = I$ a primer orden en $dt$:
         \[
         (I + \Omega^T dt)(I + \Omega dt) \approx I + (\Omega^T + \Omega)dt + \mathcal{O}(dt^2) = I.
         \]
-        Se concluye necesariamente que el generador infinitesimal es antisimétrico:
+        \item \textbf{Antisimetría del Generador Infinitesimal:}
+        El coeficiente de $dt$ debe anularse idénticamente:
         \[
         \boxed{\Omega^T = -\Omega \iff \Omega_{ij} = -\Omega_{ji}}
         \]
-        \item \textbf{El Vector Velocidad Angular $\vec{\omega}$:}
-        Toda matriz antisimétrica $3\times 3$ tiene 3 componentes libres:
-        $\Omega_{ij} = -\epsilon_{ijk}\omega_k$. La acción sobre la posición es:
-        \[
-        \boxed{\dot{\vec{r}} = \Omega\vec{r} = \vec{\omega} \times \vec{r}}
-        \]
+        El álgebra de las rotaciones continuas está gobernada por matrices antisimétricas.
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.85]
-        \coordinate (O) at (0,0);
-        \draw[-{Stealth}, line width=2pt, color=orangeacc] (O) -- (0, 2.3) node[above, font=\scriptsize\bfseries] {$\vec{\omega}$};
-        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (O) -- (1.8, 0.7) node[right, font=\scriptsize\bfseries] {$\vec{r}$};
-        \draw[-{Stealth}, line width=2pt, color=blackmain] (1.8, 0.7) -- (1.8, 2.0) node[above, font=\scriptsize\bfseries] {$\dot{\vec{r}} = \vec{\omega} \times \vec{r}$};
-        \draw[color=orangeacc, thick, ->] (0.7, 1.6) arc (0:220:0.7 and 0.25);
-      \end{tikzpicture}
-      \vspace{0.1cm}
-      {\scriptsize Campo de velocidades instantáneas en la rotación pura.}
+      \footnotesize
+      \begin{block}{Parámetros Libres en $\R^3$}
+        \scriptsize
+        Toda matriz antisimétrica de $3 \times 3$ tiene exactamente $\frac{3(3-1)}{2} = 3$ grados de libertad independientes:
+        \[
+        \Omega = \begin{pmatrix} 0 & -\omega_3 & \omega_2 \\ \omega_3 & 0 & -\omega_1 \\ -\omega_2 & \omega_1 & 0 \end{pmatrix}
+        \]
+        Coincide con los tres ejes de rotación en el espacio físico tridimensional.
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 15: PREGUNTAS DE CONSOLIDACIÓN
+% SLIDE 20: CINEMÁTICA Y VELOCIDAD ANGULAR
+% ---------------------------------------------------------------------
+\begin{frame}{Cinemática del Sólido Rígido: De la Matriz a $\vec{\omega}\times\vec{r}$}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep2pt
+        \item \textbf{El Vector Velocidad Angular $\vec{\omega}$:}
+        Asociamos a la matriz antisimétrica $\Omega$ el vector axial $\vec{\omega} = (\omega_1, \omega_2, \omega_3)^T$:
+        \[
+        \Omega_{ij} = -\epsilon_{ijk}\omega_k.
+        \]
+        \item \textbf{Campo de Velocidades Instantáneas:}
+        La derivada temporal de la posición de una partícula $\vec{r}(t) = R(t)\vec{r}_0$ es:
+        \[
+        \dot{\vec{r}} = \dot{R}\vec{r}_0 = \Omega\vec{r} \iff \boxed{\dot{\vec{r}} = \vec{\omega} \times \vec{r}}
+        \]
+        \item \textbf{Ortogonalidad Cinematográfica:}
+        Usando la antisimetría demostrada en la Semana 02:
+        \[
+        \vec{r}\cdot\dot{\vec{r}} = \vec{r}\cdot(\vec{\omega}\times\vec{r}) = 0 \implies \frac{d}{dt}\|\vec{r}\|^2 = 0.
+        \]
+        La distancia al origen se conserva en todo instante.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.92]
+        \coordinate (O) at (0,0);
+        \draw[-{Stealth[length=2.5mm]}, line width=2pt, color=orangeacc] (O) -- (0, 2.4) node[above, font=\scriptsize\bfseries] {$\vec{\omega}$};
+        \draw[-{Stealth[length=2mm]}, line width=1.5pt, color=navyaccent] (O) -- (1.8, 0.7) node[right, font=\scriptsize\bfseries] {$\vec{r}$};
+        \draw[-{Stealth[length=2.5mm]}, line width=2pt, color=blackmain] (1.8, 0.7) -- (1.8, 2.1) node[above, font=\scriptsize\bfseries] {$\dot{\vec{r}} = \vec{\omega} \times \vec{r}$};
+        \draw[color=orangeacc, thick, ->] (0.7, 1.6) arc (0:220:0.7 and 0.25);
+        \fill[blackmain] (O) circle (2pt);
+      \end{tikzpicture}
+      \vspace{0.1cm}
+      {\scriptsize Campo tangencial: $\dot{\vec{r}} \perp \vec{r}$ y $\dot{\vec{r}} \perp \vec{\omega}$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 21: EL GRUPO EUCLÍDEO SE(3): ROTACIONES VS. TRASLACIONES
+% ---------------------------------------------------------------------
+\begin{frame}{El Grupo Euclídeo $SE(3)$: Rotaciones frente a Traslaciones}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep2pt
+        \item \textbf{Transformaciones Afines del Espacio:}
+        El movimiento rígido más general combina una rotación $R \in SO(3)$ y una traslación $\vec{a} \in \R^3$:
+        \[
+        \vec{x}' = R\vec{x} + \vec{a} \quad (\text{Acción afín sobre puntos})
+        \]
+        \item \textbf{Puntos vs. Vectores de Desplazamiento:}
+        Si $\Delta\vec{x} = P_2 - P_1$, la traslación se cancela exactamente:
+        \[
+        \Delta\vec{x}' = (R P_2 + \vec{a}) - (R P_1 + \vec{a}) = R\,\Delta\vec{x}.
+        \]
+        Las traslaciones mueven ubicaciones, pero dejan invariantes a los vectores físicos.
+        \item \textbf{Representación Matricial Homogénea:}
+        \[
+        \begin{pmatrix} \vec{x}' \\ 1 \end{pmatrix} = \begin{pmatrix} R & \vec{a} \\ \vec{0}^T & 1 \end{pmatrix} \begin{pmatrix} \vec{x} \\ 1 \end{pmatrix}
+        \]
+        Permite componer movimientos euclídeos mediante multiplicación matricial ordinaria.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \footnotesize
+      \begin{block}{No-Conmutatividad con Traslaciones}
+        \scriptsize
+        Rotar y luego trasladar no es lo mismo que trasladar y luego rotar:
+        \begin{align*}
+          T_{\vec{a}}(R\vec{x}) &= R\vec{x} + \vec{a} \\
+          R(T_{\vec{a}}\vec{x}) &= R(\vec{x} + \vec{a}) = R\vec{x} + R\vec{a}
+        \end{align*}
+        La traslación queda rotada por $R$. La estructura de $SE(3)$ es un \textbf{producto semidirecto}: $SO(3) \ltimes \R^3$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 22: PREGUNTAS DE CONSOLIDACIÓN FINAL - LIENZO LIMPIO
 % ---------------------------------------------------------------------
 \begin{frame}{Estructura Geométrica de las Rotaciones y Cinemática}
   \vspace{0.2cm}
@@ -508,8 +731,8 @@
   \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
     \item Demuestra que si $\Omega$ es una matriz antisimétrica, entonces para cualquier vector $\vec{x}$ se verifica idénticamente $\vec{x} \cdot (\Omega\vec{x}) = 0$. ¿Cuál es la interpretación física directa en términos de la potencia mecánica y la conservación de la distancia al origen?
-    \item Usando la fórmula de Rodrigues $R(\hat{n}, \theta) = I + (\sin\theta)K + (1 - \cos\theta)K^2$, verifica formalmente que $\mathrm{tr}(R) = 1 + 2\cos\theta$. ¿Por qué la traza no depende de la orientación espacial de $\hat{n}$?
-    \item En una rotación pasiva, ¿por qué los vectores de la base y las componentes contravariantes de un vector físico transforman mediante matrices inversas entre sí?
+    \item Usando la fórmula matricial de Rodrigues $R(\hat{n}, \theta) = I + (\sin\theta)K + (1 - \cos\theta)K^2$, demuestra formalmente que $\mathrm{tr}(R) = 1 + 2\cos\theta$. ¿Por qué la traza no depende de la orientación espacial de $\hat{n}$?
+    \item En una rotación pasiva de los ejes coordenados, ¿por qué los vectores de la base y las componentes de un vector físico invariante transforman mediante matrices transpuestas (inversas) entre sí?
   \end{enumerate}
 \end{frame}
 

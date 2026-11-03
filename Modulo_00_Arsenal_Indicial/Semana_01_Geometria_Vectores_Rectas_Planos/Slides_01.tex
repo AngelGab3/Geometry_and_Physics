@@ -95,24 +95,34 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 1: Puntos vs. Flechas y Movimiento Rectilíneo}
-  \begin{block}{Reto en clase (8 minutos)}
+\begin{frame}{Puntos, Vectores y Desplazamientos}
+  \begin{block}{Problema: La Invariancia del Desplazamiento}
     \footnotesize
     Una partícula parte de la posición $P_0 = (1, 2, 1)\,\text{m}$ y después de $1\,\text{s}$ pasa por $P_1 = (3, 5, 3)\,\text{m}$ moviéndose en línea recta a velocidad constante.
     \begin{enumerate}
-      \item[(a)] \textbf{La trampa de sumar ubicaciones:} ¿Tiene sentido físico «sumar el lugar $P_0$ con el lugar $P_1$»? ¿Qué le pasa a $P_0 + P_1$ si un segundo observador mueve el origen $(0,0,0)$ a otro punto del espacio?
-      \item[(b)] \textbf{El vector desplazamiento:} Calcula $\vec{v} = P_1 - P_0$. Demuestra que si trasladamos el origen sumando una constante $\vec{c}$ a todos los puntos ($P' = P + \vec{c}$), el vector $\vec{v}$ \textbf{no cambia}.
+      \itemsep2pt
+      \item[(a)] \textbf{La suma de posiciones:} ¿Tiene sentido físico o geométrico «sumar el lugar $P_0$ con el lugar $P_1$»? ¿Qué le pasa a $P_0 + P_1$ si un segundo observador mueve el origen a $(10, 0, 0)$?
+      \item[(b)] \textbf{El vector desplazamiento:} Calcula $\vec{v} = P_1 - P_0$. Demuestra que si trasladamos el origen sumando una constante $\vec{c} \in \R^3$ a todos los puntos ($P' = P + \vec{c}$), el vector $\vec{v}$ \textbf{no cambia}.
       \item[(c)] \textbf{Construcción de la recta:} Si la partícula mantiene su dirección $\vec{v}$ en todo instante $t \in \R$, escribe una fórmula para su posición $\vec{r}(t)$ y determina en qué instante $t$ alcanza la altura $z = 9\,\text{m}$.
     \end{enumerate}
   \end{block}
-  \begin{alertblock}{Pregunta Guía}
-    \footnotesize
-    ¿Qué propiedades algebraicas cumplen los desplazamientos y fuerzas ($\vec{u}+\vec{v}$, $c\vec{u}$) que los puntos fijos NO cumplen?
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Preguntas de Análisis: Espacio Afín y Álgebra de Vectores}
+  \begin{alertblock}{Cuestiones Conceptuales}
+    \small
+    \begin{enumerate}
+      \itemsep10pt
+      \item ¿Por qué la suma de dos puntos $P_1 + P_2$ carece de significado físico y geométrico, mientras que la diferencia $P_2 - P_1$ define un vector genuino?
+      \item ¿Qué diferencia estructural existe entre un \textbf{espacio afín} (donde no hay origen privilegiado) y un \textbf{espacio vectorial} (que contiene necesariamente al elemento neutro $\vec{0}$)?
+      \item Si la posición $\vec{r}$ depende del origen cartesiano, ¿por qué magnitudes dinámicas como la velocidad $\dot{\vec{r}}$, la aceleración $\ddot{\vec{r}}$ y las fuerzas $\vec{F}$ no dependen de dónde se ubique el origen?
+    \end{enumerate}
   \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 1A: Ley del Paralelogramo y Definición de Espacio Vectorial}
+\begin{frame}{El Espacio Vectorial Real: Definición Formal y Axiomas}
   \begin{columns}[c]
     \begin{column}{0.54\textwidth}
       \footnotesize
@@ -152,7 +162,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 1B: La Ecuación Vectorial de la Recta ($1$ Grado de Libertad)}
+\begin{frame}{La Ecuación Vectorial de la Recta}
   \begin{columns}[c]
     \begin{column}{0.48\textwidth}
       \footnotesize
@@ -200,23 +210,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 2: ¿Por qué el Producto Punto Mide Sombras?}
-  \begin{block}{Reto en clase (10 minutos)}
+\begin{frame}{Problema: Descomposición de Fuerzas y Proyección Ortogonal}
+  \begin{block}{Descomposición sobre un Riel}
     \footnotesize
     Considera el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{w} = \vec{u} - \vec{v}$, con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$.
     \begin{enumerate}
+      \itemsep2pt
       \item[(a)] \textbf{De la Ley de Cosenos al Álgebra:} Sabemos geométricamente que $\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos\theta$. Expande algebraicamente $(u_1 - v_1)^2 + (u_2 - v_2)^2 + (u_3 - v_3)^2$ e iguala ambas expresiones. ¿Qué combinación algebraica sobrevive?
       \item[(b)] \textbf{Descomposición sobre un Riel:} Una fuerza $\vec{F}$ jala un vagón sobre un riel con dirección $\vec{v}$. Escribe $\vec{F} = \vec{F}_\parallel + \vec{F}_\perp$, donde $\vec{F}_\parallel = c\vec{v}$ es paralela al riel y $\vec{F}_\perp$ es perpendicular ($\vec{F}_\perp \cdot \vec{v} = 0$). Toma el producto punto con $\vec{v}$ para despejar el escalar $c$.
+      \item[(c)] \textbf{Componente normal:} Halla la componente $\vec{F}_\perp$ que presiona lateralmente el riel exclusivamente a partir de las componentes de $\vec{F}$ y $\vec{v}$, sin calcular $\theta$.
     \end{enumerate}
   \end{block}
-  \begin{exampleblock}{Pregunta Clave}
-    \footnotesize
-    Si queremos conocer la componente normal $\vec{F}_\perp$ que presiona lateralmente el riel, ¿cómo la calculamos directamente a partir de las componentes de $\vec{F}$ y $\vec{v}$ sin medir el ángulo $\theta$?
-  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 2: Producto Interno, Norma y Proyecciones}
+\begin{frame}{El Producto Interno: Geometría, Axiomas y Proyecciones}
   \begin{columns}[c]
     \begin{column}{0.53\textwidth}
       \footnotesize
@@ -262,26 +270,37 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 3: Buscando un Vector Perpendicular a Dos Direcciones}
-  \begin{block}{Reto en clase (8 minutos)}
-    \footnotesize
-    Dos bordes de un panel solar están dados por los vectores $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$. Necesitamos instalar un sensor láser en dirección $\vec{n} = (n_1, n_2, n_3)$ que sea simultáneamente perpendicular a ambos bordes:
-    \[
-    \vec{u}\cdot\vec{n} = u_1 n_1 + u_2 n_2 + u_3 n_3 = 0, \qquad \vec{v}\cdot\vec{n} = v_1 n_1 + v_2 n_2 + v_3 n_3 = 0.
-    \]
+\begin{frame}{Preguntas de Análisis: Geometría del Producto Interno}
+  \begin{alertblock}{Cuestiones Conceptuales}
+    \small
     \begin{enumerate}
-      \item[(a)] Multiplica la primera ecuación por $v_3$ y la segunda por $u_3$, y réstalas para eliminar $n_3$. Verifica que obtienes $(u_1 v_3 - u_3 v_1)n_1 + (u_2 v_3 - u_3 v_2)n_2 = 0$.
-      \item[(b)] ¿Qué sucede si intercambias el orden de los vectores ($\vec{v} \times \vec{u}$ en vez de $\vec{u} \times \vec{v}$)? ¿Por qué el flujo de un fluido a través de una ventana necesita una normal con signo?
+      \itemsep10pt
+      \item ¿Por qué la proyección ortogonal $\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$ es el vector en la dirección de $\vec{v}$ que minimiza la distancia $\|\vec{u} - \lambda\vec{v}\|$ para todo $\lambda \in \R$?
+      \item ¿Cómo nos permite el signo algebraico de $\vec{u}\cdot\vec{v}$ clasificar el ángulo relativo (agudo si $>0$, perpendicular si $=0$, obtuso si $<0$) sin evaluar funciones trigonométricas?
+      \item ¿Por qué la descomposición $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$ es única y no depende de la orientación de los ejes cartesianos auxiliares?
     \end{enumerate}
-  \end{block}
-  \begin{alertblock}{Idea Clave}
-    \footnotesize
-    El producto cruz surge directamente de resolver el sistema de ortogonalidad simultánea $\vec{u}\cdot\vec{n}=0$ y $\vec{v}\cdot\vec{n}=0$.
   \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 3: Producto Cruz, Área del Paralelogramo y Orientación}
+\begin{frame}{Problema: Ortogonalidad Simultánea en $\R^3$}
+  \begin{block}{Construcción de un Vector Perpendicular a Dos Direcciones}
+    \footnotesize
+    Dos bordes coplanares de una placa triangular están dados por los vectores $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$. Buscamos un vector no nulo $\vec{n} = (n_1, n_2, n_3)$ que sea simultáneamente ortogonal a ambos bordes:
+    \[
+    \vec{u}\cdot\vec{n} = u_1 n_1 + u_2 n_2 + u_3 n_3 = 0, \qquad \vec{v}\cdot\vec{n} = v_1 n_1 + v_2 n_2 + v_3 n_3 = 0.
+    \]
+    \begin{enumerate}
+      \itemsep2pt
+      \item[(a)] Multiplica la primera ecuación por $v_3$ y la segunda por $u_3$, y réstalas para eliminar $n_3$. Obtén la relación entre $n_1$ y $n_2$: $(u_1 v_3 - u_3 v_1)n_1 + (u_2 v_3 - u_3 v_2)n_2 = 0$.
+      \item[(b)] Repite para las otras parejas y deduce la solución canónica $\vec{n} = (u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1)$.
+      \item[(c)] ¿Qué sucede si intercambias el orden de los vectores ($\vec{v}$ por $\vec{u}$)? ¿Por qué la orientación de la normal con signo es indispensable al calcular el flujo a través de una superficie?
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{El Producto Cruz: Magnitud, Área y Orientación}
   \begin{columns}[c]
     \begin{column}{0.53\textwidth}
       \footnotesize
@@ -328,11 +347,12 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 4: Dos Descripciones Duales del Mismo Plano}
-  \begin{block}{Reto en clase (10 minutos)}
+\begin{frame}{Problema: Dos Descripciones de un Mismo Plano}
+  \begin{block}{Parametrización vs. Ecuación Normal}
     \footnotesize
     Queremos describir una superficie plana $\Pi$ que pasa por $P_0 = (1,0,2)$ y es generada por los vectores $\vec{v}_1 = (1, 1, 0)$ y $\vec{v}_2 = (0, 1, 1)$.
     \begin{enumerate}
+      \itemsep2pt
       \item[(a)] \textbf{Descripción Interna (Paramétrica e Independencia Lineal):} Usamos dos coordenadas $(u,v) \in \R^2$ para movernos sobre el plano: $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$. ¿Qué ocurriría geométricamente si $\vec{v}_2$ fuera múltiplo escalar de $\vec{v}_1$?
       \item[(b)] \textbf{Descripción Externa (Ecuación Normal):} Podemos caracterizar el mismo plano mediante una sola ecuación que restrinja la dirección perpendicular. Calcula $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe $\vec{n}\cdot(\vec{r} - \vec{p}_0) = 0$ en la forma $n_1 x + n_2 y + n_3 z = d$.
       \item[(c)] \textbf{Familia de Planos Paralelos:} ¿Qué representa geométricamente variar $d$ en $x - y + z = d$ para $d = 0, 1, 2, 3, \dots$? Si una partícula experimenta el desplazamiento $\vec{w} = (2, -1, 3)$, ¿cuántos planos de esta familia atraviesa?
@@ -341,7 +361,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 4: Subespacios, Bases y la Semilla de las 1-Formas}
+\begin{frame}{Planos en $\R^3$: Subespacios de Dimensión 2 y Foliaciones}
   \begin{columns}[c]
     \begin{column}{0.51\textwidth}
       \footnotesize
@@ -354,8 +374,8 @@
           \item \textbf{Paramétrica ($2$ parámetros):} $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$.
           \item \textbf{Normal ($1$ restricción):} $\vec{n}\cdot(\vec{r}-\vec{p}_0) = 0 \iff n_1 x + n_2 y + n_3 z = c$.
         \end{itemize}
-        \item \textbf{Familia de Láminas Paralelas:}
-        Al variar $c \in \R$, la ecuación $\vec{n}\cdot\vec{r} = c$ forma una \textbf{pila de planos paralelos}. El producto $\vec{n}\cdot\vec{w}$ \textbf{cuenta cuántas láminas perfora $\vec{w}$}.
+        \item \textbf{Foliación por Planos Paralelos:}
+        Al variar $c \in \R$, la ecuación $\vec{n}\cdot\vec{r} = c$ forma una familia de planos paralelos. El producto $\vec{n}\cdot\vec{w}$ mide cuántas láminas perfora $\vec{w}$.
       \end{itemize}
     \end{column}
     \begin{column}{0.46\textwidth}
@@ -370,7 +390,7 @@
         \coordinate (A) at (1.5, 0.35);
         \coordinate (B) at (2.7, 3.55);
         \draw[-{Stealth}, line width=2pt, color=orangeacc] (A) -- (B);
-        \node[above=2pt, font=\scriptsize\bfseries, color=orangeacc] at (2.4, 3.95) {$\vec{w}$ perfora $\Delta c = \vec{n}\cdot\vec{w} = 3$ láminas};
+        \node[above=2pt, font=\scriptsize\bfseries, color=orangeacc] at (2.4, 3.95) {$\Delta c = \vec{n}\cdot\vec{w} = 3$};
 
         \foreach \t in {0, 0.333, 0.666, 1.0} {
           \fill[blackmain] ($(A)!\t!(B)$) circle (2.2pt);
@@ -383,25 +403,25 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 5: Intersección de Dos Planos y Distancia Mínima}
-  \begin{block}{Reto en clase (8 minutos)}
+\begin{frame}{Problema: Intersección de Dos Planos y Distancia Mínima}
+  \begin{block}{Determinación de la Recta de Intersección}
     \footnotesize
     Dos planos $\Pi_1$ y $\Pi_2$ tienen vectores normales $\vec{n}_1 = (1, 0, -1)$ y $\vec{n}_2 = (0, 1, 1)$, con ecuaciones $x - z = 1$ y $y + z = 2$.
     \begin{enumerate}
-      \item[(a)] \textbf{Conteo de Dimensión:} Estamos en $\R^3$ ($\dim = 3$). Cada plano impone $1$ restricción lineal independiente. ¿Qué dimensión tiene la intersección $\Pi_1 \cap \Pi_2$?
-      \item[(b)] \textbf{Dirección de la Recta de Intersección:} Si el vector director $\vec{v}$ de la recta $\mathcal{L} = \Pi_1 \cap \Pi_2$ vive dentro de $\Pi_1$ y también dentro de $\Pi_2$, ¿cómo es $\vec{v}$ respecto a $\vec{n}_1$ y $\vec{n}_2$? ¡Usa el producto cruz para encontrar $\vec{v}$ de inmediato!
+      \item[(a)] \textbf{Conteo de Dimensión:} Cada plano impone $1$ restricción lineal independiente en $\R^3$. ¿Qué dimensión tiene la intersección $\Pi_1 \cap \Pi_2$?
+      \item[(b)] \textbf{Dirección de la Recta:} Si el vector director $\vec{v}$ de la recta $\mathcal{L} = \Pi_1 \cap \Pi_2$ vive dentro de $\Pi_1$ y dentro de $\Pi_2$, ¿cómo es $\vec{v}$ respecto a $\vec{n}_1$ y $\vec{n}_2$? Usa el producto cruz para encontrar $\vec{v}$ de inmediato.
     \end{enumerate}
   \end{block}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 5: Síntesis Visual de la Semana 01}
+\begin{frame}{Geometría de la Intersección y Distancia a un Plano}
   \begin{columns}[c]
     \begin{column}{0.52\textwidth}
       \footnotesize
       \begin{itemize}
         \item \textbf{Distancia de un Punto $Q$ a un Plano $\Pi$:}
-        Proyectamos $\vec{q}-\vec{p}_0$ sobre la normal $\vec{n}$:
+        Proyección de $\vec{q}-\vec{p}_0$ sobre la normal unitaria:
         \[
         \boxed{D(Q,\Pi) = \frac{|\vec{n}\cdot(\vec{q}-\vec{p}_0)|}{\|\vec{n}\|} = \frac{|n_1 x_Q + n_2 y_Q + n_3 z_Q - d|}{\sqrt{n_1^2 + n_2^2 + n_3^2}}}
         \]
@@ -424,13 +444,26 @@
         \node[color=orangeacc, font=\scriptsize\bfseries, left=3pt] at (2.2, 3.2) {$\Pi_2$};
 
         \draw[color=blackmain, line width=2.0pt] (1.6, -0.3) -- (3.5, 2.3);
-        \draw[-{Stealth}, color=blackmain, line width=2.2pt] (2.1, 0.38) -- (3.25, 1.95) node[above right=2pt, font=\scriptsize\bfseries] {$\vec{v} = \vec{n}_1 \times \vec{n}_2$};
+        \draw[-{Stealth}, color=blackmain, line width=2.2pt] (2.1, 0.38) -- (3.25, 1.95) node[right=4pt, font=\scriptsize\bfseries] {$\vec{v} = \vec{n}_1 \times \vec{n}_2$};
 
-        \draw[-{Stealth}, color=navyaccent, line width=1.3pt] (2.3, 0.65) -- (1.1, 2.0) node[above left=-1pt, font=\scriptsize\bfseries] {$\vec{n}_1$};
+        \draw[-{Stealth}, color=navyaccent, line width=1.3pt] (2.3, 0.65) -- (1.0, 1.8) node[left=2pt, font=\scriptsize\bfseries] {$\vec{n}_1$};
         \draw[-{Stealth}, color=orangeacc, line width=1.3pt] (2.3, 0.65) -- (3.8, 0.35) node[above right=-1pt, font=\scriptsize\bfseries] {$\vec{n}_2$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Preguntas de Síntesis: De la Geometría a la Estructura Lineal}
+  \begin{alertblock}{Balance Conceptual}
+    \small
+    \begin{enumerate}
+      \itemsep10pt
+      \item ¿Cómo se relacionan la descripción interna de un plano (generada por 2 vectores independientes) y la descripción externa (restringida por 1 ecuación ortogonal)? ¿Por qué la suma de parámetros libres y restricciones es la dimensión total del espacio ($2 + 1 = 3$)?
+      \item ¿Por qué la intersección de dos planos linealmente independientes en $\R^3$ produce necesariamente una recta? ¿Cómo se generaliza este conteo de codimensión en dimensiones superiores?
+      \item ¿En qué sentido la familia de planos paralelos $\vec{n}\cdot\vec{r} = c$ mide desplazamientos de manera dual a un vector flecha ordinario?
+    \end{enumerate}
+  \end{alertblock}
 \end{frame}
 
 \end{document}

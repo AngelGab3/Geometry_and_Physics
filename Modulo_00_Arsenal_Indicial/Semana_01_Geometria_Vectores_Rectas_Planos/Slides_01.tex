@@ -87,11 +87,11 @@
     \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M3) -- (M4);
   \end{tikzpicture}
 
-  \vspace{0.3cm}
-  \begin{alertblock}{Meta de la Semana 01}
+  \vspace{0.25cm}
+  \begin{block}{Semana 01: Álgebra y Geometría en $\R^3$}
     \footnotesize
-    Construir desde cero la geometría de \textbf{puntos vs. vectores}, formalizar la definición de \textbf{Espacio Vectorial y Subespacio}, deducir el \textbf{producto punto y cruz}, y descubrir la \textbf{dualidad del plano} (semilla de las variedades y las 1-formas).
-  \end{alertblock}
+    Construir desde la física y la geometría la diferencia entre \textbf{puntos y vectores}, formalizar los axiomas de \textbf{Espacio Vectorial y Subespacio}, deducir el \textbf{producto punto y cruz}, y caracterizar la \textbf{dualidad del plano}.
+  \end{block}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -109,16 +109,15 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Preguntas de Análisis: Espacio Afín y Álgebra de Vectores}
-  \begin{alertblock}{Cuestiones Conceptuales}
-    \small
-    \begin{enumerate}
-      \itemsep10pt
-      \item ¿Por qué la suma de dos puntos $P_1 + P_2$ carece de significado físico y geométrico, mientras que la diferencia $P_2 - P_1$ define un vector genuino?
-      \item ¿Qué diferencia estructural existe entre un \textbf{espacio afín} (donde no hay origen privilegiado) y un \textbf{espacio vectorial} (que contiene necesariamente al elemento neutro $\vec{0}$)?
-      \item Si la posición $\vec{r}$ depende del origen cartesiano, ¿por qué magnitudes dinámicas como la velocidad $\dot{\vec{r}}$, la aceleración $\ddot{\vec{r}}$ y las fuerzas $\vec{F}$ no dependen de dónde se ubique el origen?
-    \end{enumerate}
-  \end{alertblock}
+\begin{frame}{Espacio Afín y la Naturaleza del Vector}
+  \vspace{0.2cm}
+  \small
+  \begin{enumerate}
+    \itemsep12pt
+    \item ¿Por qué la suma de dos puntos $P_1 + P_2$ carece de significado físico y geométrico, mientras que la diferencia $P_2 - P_1$ define un vector genuino?
+    \item ¿Qué diferencia estructural existe entre un \textbf{espacio afín} (donde no hay origen privilegiado) y un \textbf{espacio vectorial} (que contiene necesariamente al elemento neutro $\vec{0}$)?
+    \item Si la posición $\vec{r}$ depende del origen cartesiano, ¿por qué magnitudes dinámicas como la velocidad $\dot{\vec{r}}$, la aceleración $\ddot{\vec{r}}$ y las fuerzas $\vec{F}$ no dependen de dónde se ubique el origen?
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -270,16 +269,15 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Preguntas de Análisis: Geometría del Producto Interno}
-  \begin{alertblock}{Cuestiones Conceptuales}
-    \small
-    \begin{enumerate}
-      \itemsep10pt
-      \item ¿Por qué la proyección ortogonal $\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$ es el vector en la dirección de $\vec{v}$ que minimiza la distancia $\|\vec{u} - \lambda\vec{v}\|$ para todo $\lambda \in \R$?
-      \item ¿Cómo nos permite el signo algebraico de $\vec{u}\cdot\vec{v}$ clasificar el ángulo relativo (agudo si $>0$, perpendicular si $=0$, obtuso si $<0$) sin evaluar funciones trigonométricas?
-      \item ¿Por qué la descomposición $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$ es única y no depende de la orientación de los ejes cartesianos auxiliares?
-    \end{enumerate}
-  \end{alertblock}
+\begin{frame}{Geometría del Producto Interno y Proyecciones}
+  \vspace{0.2cm}
+  \small
+  \begin{enumerate}
+    \itemsep12pt
+    \item ¿Por qué la proyección ortogonal $\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$ es el vector en la dirección de $\vec{v}$ que minimiza la distancia $\|\vec{u} - \lambda\vec{v}\|$ para todo $\lambda \in \R$?
+    \item ¿Cómo nos permite el signo algebraico de $\vec{u}\cdot\vec{v}$ clasificar el ángulo relativo (agudo si $>0$, perpendicular si $=0$, obtuso si $<0$) sin evaluar funciones trigonométricas?
+    \item ¿Por qué la descomposición $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$ es única y no depende de la orientación de los ejes cartesianos auxiliares?
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -454,16 +452,15 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Preguntas de Síntesis: De la Geometría a la Estructura Lineal}
-  \begin{alertblock}{Balance Conceptual}
-    \small
-    \begin{enumerate}
-      \itemsep10pt
-      \item ¿Cómo se relacionan la descripción interna de un plano (generada por 2 vectores independientes) y la descripción externa (restringida por 1 ecuación ortogonal)? ¿Por qué la suma de parámetros libres y restricciones es la dimensión total del espacio ($2 + 1 = 3$)?
-      \item ¿Por qué la intersección de dos planos linealmente independientes en $\R^3$ produce necesariamente una recta? ¿Cómo se generaliza este conteo de codimensión en dimensiones superiores?
-      \item ¿En qué sentido la familia de planos paralelos $\vec{n}\cdot\vec{r} = c$ mide desplazamientos de manera dual a un vector flecha ordinario?
-    \end{enumerate}
-  \end{alertblock}
+\begin{frame}{De la Geometría a la Estructura Lineal}
+  \vspace{0.2cm}
+  \small
+  \begin{enumerate}
+    \itemsep12pt
+    \item ¿Cómo se relacionan la descripción interna de un plano (generada por 2 vectores independientes) y la descripción externa (restringida por 1 ecuación ortogonal)? ¿Por qué la suma de parámetros libres y restricciones es la dimensión total del espacio ($2 + 1 = 3$)?
+    \item ¿Por qué la intersección de dos planos linealmente independientes en $\R^3$ produce necesariamente una recta? ¿Cómo se generaliza este conteo de codimensión en dimensiones superiores?
+    \item ¿En qué sentido la familia de planos paralelos $\vec{n}\cdot\vec{r} = c$ mide desplazamientos de manera dual a un vector flecha ordinario?
+  \end{enumerate}
 \end{frame}
 
 \end{document}

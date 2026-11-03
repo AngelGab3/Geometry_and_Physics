@@ -83,6 +83,24 @@ Definimos el símbolo $\delta_{ij}$ como el producto escalar entre los vectores 
 \]
 \end{theorembox}
 
+\begin{center}
+\begin{tikzpicture}[scale=0.92]
+    \coordinate (O) at (0,0);
+    \coordinate (E1) at (2.4, -0.35);
+    \coordinate (E2) at (1.0, 1.3);
+    \coordinate (E3) at (0, 2.4);
+
+    \draw[-{Stealth[length=2.8mm]}, line width=1.6pt, color=navyaccent] (O) -- (E1) node[below right=-1pt, font=\small\bfseries] {$\hat{e}_1$};
+    \draw[-{Stealth[length=2.8mm]}, line width=1.6pt, color=navyaccent] (O) -- (E2) node[above right=-1pt, font=\small\bfseries] {$\hat{e}_2$};
+    \draw[-{Stealth[length=2.8mm]}, line width=1.6pt, color=orangeacc] (O) -- (E3) node[above=2pt, font=\small\bfseries] {$\hat{e}_3$};
+
+    \node[font=\footnotesize\bfseries, color=graymuted] at (1.2, -0.7) {$\hat{e}_1\cdot\hat{e}_1 = 1$};
+    \node[font=\footnotesize\bfseries, color=graymuted] at (-1.1, 1.2) {$\hat{e}_1\cdot\hat{e}_2 = 0$};
+
+    \fill[blackmain] (O) circle (2.2pt);
+\end{tikzpicture}
+\end{center}
+
 Al mismo tiempo, notamos que el símbolo de sumatoria $\sum_{j=1}^3$ aparece siempre que un índice (aquí la letra $j$) se repite dos veces en el mismo término. Siguiendo a Einstein, suprimimos el símbolo $\sum$ estableciendo que \textbf{todo índice repetido dos veces en un monomio implica suma automática de $1$ a $3$}.
 
 Con estas dos creaciones, la extracción de componentes se escribe de forma limpia:
@@ -221,16 +239,39 @@ En $\R^3$, la contracción de dos símbolos de Levi-Civita sobre un índice com�
 \textit{Lectura visual:} «Primero con primero y segundo con segundo ($\delta_{jm}\delta_{kn}$), MENOS primero con segundo y segundo con primero ($\delta_{jn}\delta_{km}$)».
 \end{theorembox}
 
+\begin{center}
+\begin{tikzpicture}[scale=0.92]
+    % Nodes left
+    \node[circle, draw=navyaccent, fill=navyaccent!10, font=\small\bfseries, inner sep=3pt] (J) at (0, 1.4) {$j$};
+    \node[circle, draw=navyaccent, fill=navyaccent!10, font=\small\bfseries, inner sep=3pt] (K) at (0, 0) {$k$};
+
+    % Nodes right
+    \node[circle, draw=orangeacc, fill=orangeacc!10, font=\small\bfseries, inner sep=3pt] (M) at (3.8, 1.4) {$m$};
+    \node[circle, draw=orangeacc, fill=orangeacc!10, font=\small\bfseries, inner sep=3pt] (N) at (3.8, 0) {$n$};
+
+    % Direct channel (+1)
+    \draw[-{Stealth[length=2.5mm]}, line width=1.6pt, color=navyaccent] (J) -- (M) node[pos=0.5, above=2pt, font=\footnotesize\bfseries] {$+1$ (Emparejamiento directo: $\delta_{jm}\delta_{kn}$)};
+    \draw[-{Stealth[length=2.5mm]}, line width=1.6pt, color=navyaccent] (K) -- (N);
+
+    % Crossed channel (-1)
+    \draw[-{Stealth[length=2.5mm]}, dashed, line width=1.4pt, color=orangeacc] (J) -- (N);
+    \draw[-{Stealth[length=2.5mm]}, dashed, line width=1.4pt, color=orangeacc] (K) -- (M) node[pos=0.75, above left=-1pt, font=\footnotesize\bfseries] {$-1$ ($\delta_{jn}\delta_{km}$)};
+\end{tikzpicture}
+\end{center}
+
 % =====================================================================
 \manualsection[5. La Recompensa]{5. La Recompensa: Demolición en 3 Líneas y Aplicaciones Físicas}
 
 Ahora que hemos construido nuestras herramientas desde los cimientos geométricos, resolvamos en tres renglones el problema que nos tomó dos páginas en la Sección 1.
 
 \begin{examplebox}{Demolición de la Identidad BAC--CAB en 3 Renglones}
+Deseamos calcular las componentes del vector $\vec{A} \times (\vec{B} \times \vec{C})$. Aplicando sucesivamente la definición indicial del producto cruz, la permutación cíclica $\epsilon_{ijk} = \epsilon_{kij}$, la identidad maestra $\epsilon-\delta$ y el filtrado de Kronecker:
 \begin{align*}
-[\vec{A} \times (\vec{B} \times \vec{C})]_i &= \epsilon_{ijk} A_j (\epsilon_{kmn} B_m C_n) = \epsilon_{kij}\epsilon_{kmn} A_j B_m C_n && \text{(1. Producto cruz en índices)} \\
-&= (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n && \text{(2. Identidad } \epsilon-\delta \text{)} \\
-&= B_i (A_j C_j) - C_i (A_j B_j) = [\vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})]_i \quad \blacksquare && \text{(3. Filtro de la delta)}
+[\vec{A} \times (\vec{B} \times \vec{C})]_i &= \epsilon_{ijk} A_j (\epsilon_{kmn} B_m C_n) \\
+&= \epsilon_{kij}\epsilon_{kmn} A_j B_m C_n \\
+&= (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n \\
+&= B_i (A_j C_j) - C_i (A_j B_j) \\
+&= [\vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})]_i \qquad \blacksquare
 \end{align*}
 ¡Observa por qué en la Sección 1 tuvimos que sumar y restar $A_x B_x C_x$! En la notación de índices, el término $j=i$ se cancela automáticamente entre $\delta_{im}\delta_{jn}$ y $-\delta_{in}\delta_{jm}$ sin que tengamos que hacer ningún truco manual.
 \end{examplebox}
@@ -246,15 +287,48 @@ S_{ij} A_{ij} = S_{ji} A_{ji} = (S_{ij})(-A_{ij}) = -S_{ij} A_{ij} \implies \mat
 \]
 
 \begin{examplebox}{Aplicación Física Inmediata: Fuerza Magnética de Lorentz}
-La fuerza magnética sobre una partícula de carga $q$ es $\vec{F} = q(\vec{v} \times \vec{B})$, o en índices $F_i = q\,\epsilon_{ijk} v_j B_k$. La potencia mecánica (trabajo por unidad de tiempo) es:
+La fuerza magnética sobre una partícula de carga $q$ con velocidad $\vec{v}$ inmersa en un campo magnético $\vec{B}$ es $\vec{F} = q(\vec{v} \times \vec{B})$, o en notación de índices:
 \[
-P = \vec{F}\cdot\vec{v} = F_i v_i = q\,\epsilon_{ijk} (v_i v_j) B_k.
+F_i = q\,\epsilon_{ijk} v_j B_k.
 \]
-Como $v_i v_j$ es simétrico bajo $i \leftrightarrow j$ y $\epsilon_{ijk}$ es antisimétrico bajo $i \leftrightarrow j$, su contracción es **idénticamente cero**:
+La potencia mecánica instantánea (trabajo realizado por unidad de tiempo) transferida a la partícula es el producto escalar $P = \vec{F}\cdot\vec{v} = F_i v_i$:
+\[
+P = q\,\epsilon_{ijk} (v_i v_j) B_k.
+\]
+Como el producto diádico de velocidades $S_{ij} \equiv v_i v_j$ es perfectamente simétrico bajo $i \leftrightarrow j$ ($v_i v_j = v_j v_i$) y el tensor de Levi-Civita $\epsilon_{ijk}$ es totalmente antisimétrico en $(i, j)$, su contracción se anula idénticamente por el lema anterior:
 \[
 \mathbf{P = \frac{dE_{\text{cin}}}{dt} = 0}.
 \]
-Un campo magnético estático jamás puede acelerar la rapidez de una partícula ni realizar trabajo mecánico.
+Un campo magnético estático jamás realiza trabajo mecánico ni modifica la energía cinética: desvía la dirección de la velocidad sin alterar su rapidez ($|\vec{v}| = \text{constante}$).
+
+\begin{center}
+\begin{tikzpicture}[scale=0.95]
+    % Circular orbit
+    \draw[dashed, color=graymuted, line width=0.85pt] (0,0) circle (1.5cm);
+    \coordinate (P) at (40:1.5cm);
+
+    % Magnetic field indicators (out of page)
+    \foreach \ang in {0, 90, 180, 270} {
+        \draw[color=navyaccent!50, line width=0.6pt] (\ang:0.8cm) circle (3pt);
+        \fill[navyaccent!50] (\ang:0.8cm) circle (1pt);
+    }
+    \node[font=\footnotesize\bfseries, color=navyaccent!70] at (0,0) {$\vec{B} \odot$};
+
+    % Particle
+    \fill[orangeacc] (P) circle (2.8pt) node[above right=2pt, font=\small\bfseries] {$q$};
+
+    % Velocity (tangential)
+    \draw[-{Stealth[length=2.5mm]}, line width=1.6pt, color=navyaccent] (P) -- ($(P)+(130:1.5cm)$) node[above left=-1pt, font=\small\bfseries] {$\vec{v}$};
+
+    % Force (radial inward, perpendicular to v)
+    \draw[-{Stealth[length=2.5mm]}, line width=1.6pt, color=orangeacc] (P) -- (0,0) node[midway, below right=-1pt, font=\small\bfseries] {$\vec{F} = q(\vec{v}\times\vec{B})$};
+
+    % Right angle symbol
+    \draw[color=blackmain, thin] ($(P)+(-0.25, 0.21)$) -- ($(P)+(-0.42, 0.05)$) -- ($(P)+(-0.17, -0.16)$);
+
+    \node[font=\footnotesize\bfseries, color=graymuted] at (2.2, -0.6) {$\vec{F} \perp \vec{v} \implies P = \vec{F}\cdot\vec{v} = 0$};
+\end{tikzpicture}
+\end{center}
 \end{examplebox}
 
 \manualsubsection{El Determinante como Volumen Orientado en Índices}
@@ -273,6 +347,6 @@ Para cualquier matriz $M$ de $3 \times 3$:
 \mathbf{\epsilon_{ijk} M_{ia} M_{jb} M_{kc} = \det(M)\,\epsilon_{abc}}.
 \]
 \end{theorembox}
-*(Guarda esta joya en la memoria: en la Semana 3 nos permitirá demostrar en un solo renglón por qué el producto cruz es invariante bajo rotaciones propias con $\det(R) = +1$, y en la Semana 4 explicará el factor Jacobiano en coordenadas curvilíneas).*
+\textbf{Significado geométrico:} Esta identidad tensorial sintetiza cómo el símbolo $\epsilon_{abc}$ actúa como un detector del factor de escala volumétrico generado por la matriz $M$. Cuando $a, b, c$ forman una permutación par de $1, 2, 3$, recuperamos $\det(M)$; si dos columnas coinciden, el miembro izquierdo se anula por antisimetría, reflejando el colapso del paralelepípedo a volumen cero.
 
 \end{document}

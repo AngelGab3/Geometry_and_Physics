@@ -14,31 +14,28 @@
 \setlength{\belowdisplayskip}{3pt}
 
 % ---------------------------------------------------------------------
+% SLIDE 1: PORTADA
+% ---------------------------------------------------------------------
 \begin{frame}
   \titlepage
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Geometría Vectorial y Proliferación de Componentes}
-  \begin{block}{Punto de Partida: Las Operaciones en $\R^3$}
-    \footnotesize
-    En la sesión anterior formalizamos las operaciones fundamentales con la base canónica $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$:
-    \begin{itemize}
-      \itemsep1pt
-      \item Producto punto y proyecciones: $\vec{u}\cdot\vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 = \|\vec{u}\|\|\vec{v}\|\cos\theta$.
-      \item Producto cruz y orientación: $\vec{u}\times\vec{v} = (u_2 v_3 - u_3 v_2)\hat{e}_1 + (u_3 v_1 - u_1 v_3)\hat{e}_2 + (u_1 v_2 - u_2 v_1)\hat{e}_3$.
-    \end{itemize}
-  \end{block}
-  \vspace{0.15cm}
-  \small
-  \begin{enumerate}
-    \itemsep8pt
-    \item Al calcular productos triples sucesivos como $\vec{A}\times(\vec{B}\times\vec{C})$, ¿cuántos términos individuales debemos multiplicar y sumar si usamos las expresiones de bachillerato?
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN GEOMÉTRICA (CANVAS LIMPIO)
+% ---------------------------------------------------------------------
+\begin{frame}{Geometría Vectorial y Proliferación de Términos}
+  \vspace{0.1cm}
+  En la sesión anterior formalizamos las operaciones vectoriales con la base canónica $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$:
+  \vspace{0.3cm}
+  \begin{enumerate}\itemsep14pt
+    \item Al calcular productos anidados como $\vec{A}\times(\vec{B}\times\vec{C})$ o $(\vec{A}\times\vec{B})\cdot(\vec{C}\times\vec{D})$, ¿cuántos términos individuales debemos multiplicar y sumar si usamos las expresiones cartesianas tradicionales?
     \item ¿Cómo podemos expresar la ortonormalidad de la base $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$ en una sola línea algebraica universal sin escribir matrices explícitas?
     \item ¿Es posible deducir identidades vectoriales complejas recurriendo únicamente a propiedades de simetría y permutaciones de índices?
   \end{enumerate}
 \end{frame}
 
+% ---------------------------------------------------------------------
+% SLIDE 3: DEDUCCIÓN GUIADA - LA CRISIS CARTESIANA
 % ---------------------------------------------------------------------
 \begin{frame}{El Doble Producto Cruz y la Extracción de Componentes}
   \begin{block}{Cálculo de Componentes y Ortogonalidad}
@@ -59,42 +56,77 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{La Base Canónica y el Filtro de Kronecker}
-  \vspace{0.2cm}
-  \small
-  \begin{enumerate}
-    \itemsep12pt
-    \item ¿Por qué el producto escalar $\hat{e}_i \cdot \hat{e}_j$ actúa como un filtro algebraico que selecciona una única componente eliminando todas las demás de la sumatoria?
-    \item ¿Qué principio matemático y geométrico garantiza que podemos renombrar cualquier índice repetido (mudo) por cualquier otra letra sin alterar el significado físico de la expresión?
-    \item ¿Por qué la contracción total $\delta_{ii} = \delta_{11} + \delta_{22} + \delta_{33} = 3$ representa invariablemente la dimensión del espacio físico?
-  \end{enumerate}
-\end{frame}
-
+% SLIDE 4: DEFINICIÓN FORMAL - BASE ORTONORMAL Y KRONECKER CON TIKZ
 % ---------------------------------------------------------------------
-\begin{frame}{La Delta de Kronecker y el Convenio de Suma de Einstein}
+\begin{frame}{La Base Ortonormal y la Delta de Kronecker}
   \begin{columns}[c]
-    \begin{column}{0.54\textwidth}
+    \begin{column}{0.55\textwidth}
       \begin{block}{Construcción Geométrica de $\delta_{ij}$}
         \footnotesize
         Es la \textbf{tabla de multiplicar de la base ortonormal}:
         \[
-        \mathbf{\delta_{ij} \equiv \hat{e}_i \cdot \hat{e}_j} = \begin{cases} 1 & \text{si } i = j \\ 0 & \text{si } i \neq j \end{cases}
+        \mathbf{\delta_{ij} \equiv \hat{e}_i \cdot \hat{e}_j} = \begin{cases} 1 & \text{si } i = j, \\ 0 & \text{si } i \neq j. \end{cases}
         \]
       \end{block}
+      \vspace{0.05cm}
       \footnotesize
-      \textbf{Convenio de Suma de Einstein:} Todo índice repetido en un monomio se suma automáticamente sobre su rango ($1$ a $3$):
-      \[
-      A_i = \hat{e}_i \cdot (A_j\hat{e}_j) = A_j(\hat{e}_i\cdot\hat{e}_j) \implies \mathbf{\delta_{ij} A_j = A_i}
-      \]
+      \begin{itemize}
+        \itemsep2pt
+        \item \textbf{Diagonal unitaria ($i=j$):} Longitud normalizada $\|\hat{e}_1\|^2 = \|\hat{e}_2\|^2 = \|\hat{e}_3\|^2 = 1$.
+        \item \textbf{Elementos fuera de la diagonal ($i\neq j$):} Ortogonalidad mutua $\hat{e}_1 \perp \hat{e}_2$, $\hat{e}_2 \perp \hat{e}_3$, $\hat{e}_3 \perp \hat{e}_1$.
+      \end{itemize}
     \end{column}
     \begin{column}{0.43\textwidth}
-      \begin{exampleblock}{Propiedades Fundamentales}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        \coordinate (O) at (0,0);
+        \coordinate (E1) at (2.2, -0.3);
+        \coordinate (E2) at (0.9, 1.2);
+        \coordinate (E3) at (0, 2.3);
+
+        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (O) -- (E1) node[below right=-1pt, font=\scriptsize\bfseries] {$\hat{e}_1$};
+        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (O) -- (E2) node[above right=-1pt, font=\scriptsize\bfseries] {$\hat{e}_2$};
+        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (O) -- (E3) node[above=1pt, font=\scriptsize\bfseries] {$\hat{e}_3$};
+
+        \node[font=\scriptsize, color=graymuted] at (1.1, -0.6) {$\hat{e}_1\cdot\hat{e}_1 = 1$};
+        \node[font=\scriptsize, color=graymuted] at (-0.9, 1.1) {$\hat{e}_1\cdot\hat{e}_2 = 0$};
+
+        \fill[blackmain] (O) circle (2pt);
+      \end{tikzpicture}
+      \vspace{0.05cm}
+
+      {\scriptsize Base ortonormal canónica: $\hat{e}_i \cdot \hat{e}_j = \delta_{ij}$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 5: DEFINICIÓN FORMAL - CONVENIO DE EINSTEIN
+% ---------------------------------------------------------------------
+\begin{frame}{El Convenio de Suma de Einstein y la Extracción de Componentes}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \textbf{Convenio de Suma de Einstein:}\\[2pt]
+      Todo índice repetido dos veces en un monomio se suma implícitamente de $1$ a $3$:
+      \[
+      \vec{A} = \sum_{j=1}^3 A_j \hat{e}_j \quad \xrightarrow{\text{Einstein}} \quad \mathbf{\vec{A} = A_j \hat{e}_j}
+      \]
+      \textbf{Propiedad Filtrante de la Delta:}\\[2pt]
+      Al proyectar $\vec{A}$ a lo largo de $\hat{e}_i$:
+      \[
+      A_i = \hat{e}_i \cdot \vec{A} = A_j (\hat{e}_i \cdot \hat{e}_j) \implies \mathbf{\delta_{ij} A_j = A_i}
+      \]
+      La delta actúa como un sustituidor de índices: reemplaza el índice sumado $j$ por el índice libre $i$.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{block}{Propiedades Fundamentales}
         \footnotesize
         \begin{itemize}
-          \itemsep2pt
-          \item \textbf{Producto escalar:}
+          \itemsep3pt
+          \item \textbf{Producto Escalar:}
           \[
-          \vec{A}\cdot\vec{B} = A_i B_j (\hat{e}_i\cdot\hat{e}_j) = \delta_{ij} A_i B_j = \mathbf{A_i B_i}
+          \vec{A}\cdot\vec{B} = \delta_{ij} A_i B_j = \mathbf{A_i B_i}
           \]
           \item \textbf{Traza (Dimensión de $\R^3$):}
           \[
@@ -102,17 +134,32 @@
           \]
           \item \textbf{Contracción de Deltas:}
           \[
-          \delta_{ik}\delta_{kj} = \delta_{ij}
+          \delta_{ik}\delta_{kj} = \mathbf{\delta_{ij}}
           \]
         \end{itemize}
-      \end{exampleblock}
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Construcción del Símbolo de Levi-Civita}
-  \begin{block}{El Producto Cruz y el Triple Producto Escalar}
+% SLIDE 6: PREGUNTAS DEDICADAS - KRONECKER Y EINSTEIN (CANVAS LIMPIO)
+% ---------------------------------------------------------------------
+\begin{frame}{La Base Canónica y el Filtro de Kronecker}
+  \vspace{0.2cm}
+  \small
+  \begin{enumerate}\itemsep14pt
+    \item ¿Por qué el producto escalar $\hat{e}_i \cdot \hat{e}_j$ actúa como un filtro algebraico que selecciona una única componente eliminando todas las demás de la sumatoria?
+    \item ¿Qué principio matemático y geométrico garantiza que podemos renombrar cualquier índice repetido (mudo) por cualquier otra letra sin alterar el significado físico de la expresión?
+    \item ¿Por qué la contracción total $\delta_{ii} = \delta_{11} + \delta_{22} + \delta_{33} = 3$ representa invariablemente la dimensión del espacio físico?
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 7: DEDUCCIÓN GUIADA - PRODUCTO CRUZ EN ÍNDICES
+% ---------------------------------------------------------------------
+\begin{frame}{El Producto Cruz y el Triple Producto Escalar}
+  \begin{block}{El Producto Cruz desde la Base}
     \footnotesize
     Multipliquemos dos vectores $\vec{A} = A_j\hat{e}_j$ y $\vec{B} = B_k\hat{e}_k$ mediante la propiedad distributiva:
     \[
@@ -131,11 +178,89 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
+% SLIDE 8: DEFINICIÓN FORMAL - LEVI-CIVITA Y TIKZ
+% ---------------------------------------------------------------------
+\begin{frame}{El Símbolo de Levi-Civita como Volumen Orientado}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Definición de $\epsilon_{ijk}$}
+        \footnotesize
+        $\mathbf{\epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)} = \text{Vol}(\hat{e}_i, \hat{e}_j, \hat{e}_k)$
+      \end{block}
+      \vspace{0.05cm}
+      \footnotesize
+      \begin{itemize}
+        \itemsep2pt
+        \item \textbf{Cubo derecho canónico:} $\epsilon_{123} = +1$.
+        \item \textbf{Ciclícidad ($+1$):} $\epsilon_{123} = \epsilon_{231} = \epsilon_{312} = +1$.
+        \item \textbf{Anticiclícidad ($-1$):} $\epsilon_{132} = \epsilon_{213} = \epsilon_{321} = -1$.
+        \item \textbf{Índices repetidos ($0$):} Aristas coplanares $\implies \epsilon_{iik} = 0$ ($21$ componentes nulas).
+      \end{itemize}
+      \vspace{0.05cm}
+      \textbf{Producto Cruz Universal:} $\mathbf{(\vec{A} \times \vec{B})_i = \epsilon_{ijk} A_j B_k}$.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.82]
+        \draw[line width=1.4pt, color=orangeacc] (0,0) circle (1.25cm);
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (90:1.25cm) {1};
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (330:1.25cm) {2};
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (210:1.25cm) {3};
+        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (68:1.55cm) arc (68:12:1.55cm) node[midway, right=1pt, font=\scriptsize\bfseries, color=orangeacc] {$+1$};
+        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (308:1.55cm) arc (308:252:1.55cm);
+        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (188:1.55cm) arc (188:132:1.55cm);
+        \node[font=\scriptsize\bfseries, align=center] at (0,0) {Volumen\\Orientado};
+      \end{tikzpicture}
+      \vspace{0.05cm}
+
+      {\scriptsize Permutaciones horarias (+1) vs. antihorarias (-1).}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 9: PROPIEDADES FORMALES - ANTISIMETRÍA TOTAL
+% ---------------------------------------------------------------------
+\begin{frame}{Permutaciones, Paridad y Antisimetría Total}
+  \begin{columns}[c]
+    \begin{column}{0.51\textwidth}
+      \footnotesize
+      \textbf{Antisimetría Completa:}\\[2pt]
+      El símbolo de Levi-Civita cambia de signo ante el intercambio de cualquier par de índices contiguos o separados:
+      \[
+      \mathbf{\epsilon_{ijk} = -\epsilon_{ikj} = -\epsilon_{jik} = -\epsilon_{kji}}
+      \]
+      \textbf{Conteo de Componentes en $\R^3$ ($3^3 = 27$):}
+      \begin{itemize}
+        \itemsep2pt
+        \item \textbf{Cero ($21$ componentes):} Al menos dos índices coinciden ($i=j$, $j=k$, o $i=k$).
+        \item \textbf{Positivas ($3$ componentes):} Permutaciones pares de $(1,2,3)$.
+        \item \textbf{Negativas ($3$ componentes):} Permutaciones impares de $(1,2,3)$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{El Triple Producto Escalar en Índices}
+        \footnotesize
+        El volumen orientado del paralelepípedo formado por tres vectores cualesquiera $\vec{u}, \vec{v}, \vec{w}$ es:
+        \[
+        \vec{u}\cdot(\vec{v}\times\vec{w}) = \mathbf{\epsilon_{ijk} u_i v_j w_k}
+        \]
+        La antisimetría total de $\epsilon_{ijk}$ reproduce inmediatamente las identidades cíclicas del cálculo vectorial:
+        \[
+        \vec{u}\cdot(\vec{v}\times\vec{w}) = \vec{v}\cdot(\vec{w}\times\vec{u}) = \vec{w}\cdot(\vec{u}\times\vec{v})
+        \]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 10: PREGUNTAS DEDICADAS - ANTISIMETRÍA Y ORIENTACIÓN (CANVAS LIMPIO)
+% ---------------------------------------------------------------------
 \begin{frame}{Antisimetría y Orientación del Espacio}
   \vspace{0.2cm}
   \small
-  \begin{enumerate}
-    \itemsep12pt
+  \begin{enumerate}\itemsep14pt
     \item ¿Cómo se traduce la no-conmutatividad del producto cruz ($\vec{A}\times\vec{B} = -\vec{B}\times\vec{A}$) en la antisimetría total $\epsilon_{ijk} = -\epsilon_{ikj} = -\epsilon_{jik}$ ante cualquier intercambio de dos índices?
     \item ¿Por qué el símbolo $\epsilon_{ijk}$ se anula idénticamente cuando dos índices coinciden ($\epsilon_{112} = 0$), y cómo se relaciona esto con el volumen de un paralelepípedo cuyas aristas son coplanares?
     \item De las $27$ componentes posibles de $\epsilon_{ijk}$ en $\R^3$, ¿por qué $21$ son nulas, $3$ valen $+1$ (permutaciones cíclicas) y $3$ valen $-1$ (permutaciones impares)?
@@ -143,43 +268,10 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{El Símbolo $\epsilon_{ijk}$ como Volumen Orientado de la Base}
-  \begin{columns}[c]
-    \begin{column}{0.56\textwidth}
-      \begin{block}{Construcción Geométrica}
-        \footnotesize
-        $\mathbf{\epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)} = \text{Vol}(\hat{e}_i, \hat{e}_j, \hat{e}_k)$
-      \end{block}
-      \footnotesize
-      \begin{itemize}
-        \itemsep2pt
-        \item \textbf{Índices repetidos ($\epsilon_{112} = 0$):} Aristas paralelas en el paralelepípedo $\implies$ \textbf{volumen nulo} ($21$ casos).
-        \item \textbf{Permutación cíclica ($(1,2,3), (2,3,1), (3,1,2)$):} Tríada derecha $\implies \mathbf{+1}$ ($3$ casos).
-        \item \textbf{Permutación impar ($(1,3,2), (2,1,3), (3,2,1)$):} Tríada izquierda $\implies \mathbf{-1}$ ($3$ casos).
-      \end{itemize}
-      \begin{alertblock}{Producto Cruz Universal}
-        \centering $\mathbf{(\vec{A} \times \vec{B})_i = \epsilon_{ijk} A_j B_k}$
-      \end{alertblock}
-    \end{column}
-    \begin{column}{0.41\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.78]
-        \draw[line width=1.4pt, color=orangeacc] (0,0) circle (1.2cm);
-        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (90:1.2cm) {1};
-        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (330:1.2cm) {2};
-        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (210:1.2cm) {3};
-        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (68:1.5cm) arc (68:12:1.5cm) node[midway, right=1pt, font=\scriptsize\bfseries, color=orangeacc] {$+1$};
-        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (308:1.5cm) arc (308:252:1.5cm);
-        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (188:1.5cm) arc (188:132:1.5cm);
-        \node[font=\scriptsize\bfseries, align=center] at (0,0) {Volumen\\Orientado};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
+% SLIDE 11: DEDUCCIÓN GUIADA - CONTRACCIÓN EPSILON-DELTA
 % ---------------------------------------------------------------------
-\begin{frame}{Contracción de Símbolos: La Identidad Maestra $\epsilon-\delta$}
-  \begin{block}{Emparejamiento de Índices en un Doble Producto Cruz}
+\begin{frame}{Emparejamiento de Índices en la Contracción $\epsilon_{ijk}\epsilon_{imn}$}
+  \begin{block}{Análisis por Conteo de Casos}
     \footnotesize
     Al calcular un producto cruz doble surge la contracción $\epsilon_{ijk}\epsilon_{imn}$ sobre el índice común $i$.
     Fijemos $\mathbf{i = 1}$ y analicemos el término $\epsilon_{1jk}\epsilon_{1mn}$:
@@ -198,7 +290,9 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Estructura de la Identidad $\epsilon_{ijk}\epsilon_{imn}$}
+% SLIDE 12: TEOREMA DE LA IDENTIDAD MAESTRA EPSILON-DELTA CON TIKZ
+% ---------------------------------------------------------------------
+\begin{frame}{Teorema Fundamental: La Identidad Maestra $\epsilon-\delta$}
   \begin{columns}[c]
     \begin{column}{0.54\textwidth}
       \begin{block}{Identidad Maestra Universal $\epsilon-\delta$}
@@ -207,83 +301,317 @@
         \mathbf{\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}}
         \]
       \end{block}
+      \vspace{0.05cm}
       \footnotesize
       \begin{itemize}
         \itemsep2pt
-        \item \textbf{Término Positivo ($\delta_{jm}\delta_{kn}$):} Emparejamiento directo (primer índice libre con primero, segundo con segundo).
-        \item \textbf{Término Negativo ($-\delta_{jn}\delta_{km}$):} Emparejamiento cruzado (invierte la orientación relativa).
+        \item \textbf{Canal Directo ($+1$):} $\delta_{jm}\delta_{kn}$ empareja primero con primero y segundo con segundo (conserva paridad).
+        \item \textbf{Canal Cruzado ($-1$):} $-\delta_{jn}\delta_{km}$ empareja primero con segundo y segundo con primero (invierte paridad).
       \end{itemize}
     \end{column}
-    \begin{column}{0.43\textwidth}
-      \begin{exampleblock}{Contracciones Sucesivas}
-        \footnotesize
-        Haciendo $m = j$ en la Identidad Maestra:
-        \[
-        \epsilon_{ijk}\epsilon_{ijn} = \delta_{jj}\delta_{kn} - \delta_{jn}\delta_{kj} = 3\delta_{kn} - \delta_{kn} = \mathbf{2\delta_{kn}}
-        \]
-        Haciendo además $n = k$:
-        \[
-        \epsilon_{ijk}\epsilon_{ijk} = 2\delta_{kk} = 2(3) = \mathbf{6} = 3!
-        \]
-        (El número total de orientaciones no nulas de la base).
-      \end{exampleblock}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        % Nodes left
+        \node[circle, draw=navyaccent, fill=navyaccent!10, font=\scriptsize\bfseries, inner sep=2pt] (J) at (0, 1.4) {$j$};
+        \node[circle, draw=navyaccent, fill=navyaccent!10, font=\scriptsize\bfseries, inner sep=2pt] (K) at (0, 0.2) {$k$};
+
+        % Nodes right
+        \node[circle, draw=orangeacc, fill=orangeacc!10, font=\scriptsize\bfseries, inner sep=2pt] (M) at (3.2, 1.4) {$m$};
+        \node[circle, draw=orangeacc, fill=orangeacc!10, font=\scriptsize\bfseries, inner sep=2pt] (N) at (3.2, 0.2) {$n$};
+
+        % Direct channel (+1)
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (J) -- (M) node[pos=0.5, above=1pt, font=\tiny\bfseries] {$+1$ ($\delta_{jm}$)};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (K) -- (N) node[pos=0.5, below=1pt, font=\tiny\bfseries] {$\delta_{kn}$};
+
+        % Crossed channel (-1)
+        \draw[-{Stealth}, dashed, line width=1.3pt, color=orangeacc] (J) -- (N);
+        \draw[-{Stealth}, dashed, line width=1.3pt, color=orangeacc] (K) -- (M) node[pos=0.75, above left=-2pt, font=\tiny\bfseries] {$-1$ ($\delta_{jn}\delta_{km}$)};
+      \end{tikzpicture}
+      \vspace{0.05cm}
+
+      {\scriptsize Canales de emparejamiento directo ($+1$) y cruzado ($-1$).}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Deducción de BAC--CAB y Potencia Magnética}
-  \begin{block}{Aplicaciones Físicas y Operacionales}
-    \footnotesize
-    \begin{enumerate}
-      \itemsep3pt
-      \item[(a)] \textbf{Fórmula BAC--CAB:} Completa la deducción de la componente $i$ de $\vec{A} \times (\vec{B} \times \vec{C})$ utilizando la identidad maestra:
-      \begin{align*}
-        [\vec{A} \times (\vec{B} \times \vec{C})]_i &= \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k = \epsilon_{kij}\epsilon_{kmn} A_j B_m C_n \\
-        &= (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n = \dots
-      \end{align*}
-      \item[(b)] \textbf{Física de Lorentz:} La fuerza magnética sobre una carga es $F_i = q\,\epsilon_{ijk} v_j B_k$. La potencia instantánea transmitida a la partícula es $P = \vec{F}\cdot\vec{v} = q\,\epsilon_{ijk} v_i v_j B_k$.
-      ¿Qué ocurre con la contracción $\epsilon_{ijk} v_i v_j$ al contraer un objeto simétrico con uno antisimétrico?
-    \end{enumerate}
-  \end{block}
+% SLIDE 13: DEMOSTRACIÓN DEDICADA DE LA IDENTIDAD MAESTRA
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración de la Identidad Maestra $\epsilon_{ijk}\epsilon_{imn}$}
+  \footnotesize
+  Consideremos el producto contraído sobre el índice común $i$:
+  \[
+  T_{jkmn} \equiv \sum_{i=1}^3 \epsilon_{ijk}\epsilon_{imn} = \epsilon_{1jk}\epsilon_{1mn} + \epsilon_{2jk}\epsilon_{2mn} + \epsilon_{3jk}\epsilon_{3mn}
+  \]
+  \begin{enumerate}
+    \itemsep1pt
+    \item \textbf{Condición de no anulación:} Para que un sumando con $i$ fijo sea no nulo, los pares ordenados $(j, k)$ y $(m, n)$ deben ser permutaciones de los dos índices restantes en $\{1, 2, 3\} \setminus \{i\}$.
+    \item \textbf{Unicidad del sumando:} Si $j \neq k$ y $m \neq n$, existe a lo más un único valor de $i \in \{1, 2, 3\}$ tal que $\{j, k\} = \{1, 2, 3\} \setminus \{i\}$. Por lo tanto, a lo más un solo término de la suma sobre $i$ es distinto de cero.
+    \item \textbf{Emparejamiento directo ($j = m$ y $k = n$):} En este caso, ambos símbolos son idénticos: $\epsilon_{ijk}\epsilon_{imn} = (\epsilon_{ijk})^2 = (\pm 1)^2 = +1$. Este comportamiento lo describe con exactitud el término $\delta_{jm}\delta_{kn}$.
+    \item \textbf{Emparejamiento cruzado ($j = n$ y $k = m$):} Aquí $(m, n)$ es la permutación transpuesta de $(j, k)$, por lo que $\epsilon_{imn} = \epsilon_{ikj} = -\epsilon_{ijk}$. Su producto vale $\epsilon_{ijk}(-\epsilon_{ijk}) = -1$. Este comportamiento lo describe con exactitud $-\delta_{jn}\delta_{km}$.
+    \item \textbf{Casos de anulación ($j = k$ o $m = n$):} Si $j = k$, $\epsilon_{ijk} = 0$ y $\delta_{jm}\delta_{jn} - \delta_{jn}\delta_{jm} = 0$, coincidiendo algebraicamente.
+  \end{enumerate}
+  Concluimos de forma universal:
+  \[
+  \boxed{\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}} \qquad \blacksquare
+  \]
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Simetría, Antisimetría y Trabajo Magnético}
+% SLIDE 14: LA ESCALERA DE CONTRACCIONES DE LEVI-CIVITA
+% ---------------------------------------------------------------------
+\begin{frame}{La Escalera de Contracciones de Levi-Civita}
   \begin{columns}[c]
-    \begin{column}{0.52\textwidth}
-      \begin{exampleblock}{(a) Demostración Directa de BAC--CAB}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Dos Índices Contraídos ($m = j$)}
         \footnotesize
+        Haciendo $m = j$ en la identidad maestra:
         \begin{align*}
-          [\vec{A}\times(\vec{B}\times\vec{C})]_i &= (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n \\
-          &= B_i(A_j C_j) - C_i(A_j B_j) \\
-          &= [\vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})]_i \quad \blacksquare
+          \epsilon_{ijk}\epsilon_{ijn} &= \delta_{jj}\delta_{kn} - \delta_{jn}\delta_{kj} \\
+          &= 3\delta_{kn} - \delta_{kn} \\
+          &= \mathbf{2\delta_{kn}}
         \end{align*}
-        ¡Se obtiene directamente mediante álgebra de deltas, sin adivinar términos intermedios!
-      \end{exampleblock}
+        \textbf{Interpretación combinatoria:}\\
+        Para un $k$ y $n$ fijados iguales ($k=n=3$), existen exactamente $2$ permutaciones no nulas: $(1, 2)$ y $(2, 1)$.
+      \end{block}
     \end{column}
-    \begin{column}{0.45\textwidth}
-      \begin{block}{(b) Contracción Simétrica-Antisimétrica}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{Tres Índices Contraídos ($n = k$)}
         \footnotesize
-        Como $v_i v_j = v_j v_i$ (simétrico) y $\epsilon_{jik} = -\epsilon_{ijk}$ (antisimétrico):
-        \[
-        \mathbf{\epsilon_{ijk} v_i v_j = 0} \implies P = \vec{F}\cdot\vec{v} = 0.
-        \]
-        El campo magnético estático realiza \textbf{trabajo nulo} sobre una carga puntual en todo instante.
+        Haciendo además $n = k$ en el resultado previo:
+        \begin{align*}
+          \epsilon_{ijk}\epsilon_{ijk} &= 2\delta_{kk} \\
+          &= 2(3) \\
+          &= \mathbf{6} = 3!
+        \end{align*}
+        \textbf{Interpretación geométrica:}\\
+        Representa la suma de los cuadrados de todas las componentes: exactamente $6$ ternas ordenadas corresponden a bases de volumen unitario ($\pm 1$).
       \end{block}
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{El Arsenal Indicial en la Física}
+% SLIDE 15: TEOREMA DEL DOBLE PRODUCTO CRUZ (BAC-CAB)
+% ---------------------------------------------------------------------
+\begin{frame}{Teorema: La Identidad del Doble Producto Cruz (BAC--CAB)}
+  \begin{block}{Enunciado del Teorema}
+    \footnotesize
+    Para cualesquiera tres vectores $\vec{A}, \vec{B}, \vec{C} \in \R^3$:
+    \[
+    \boxed{\vec{A} \times (\vec{B} \times \vec{C}) = \vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})}
+    \]
+  \end{block}
+  \vspace{0.1cm}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \textbf{Estructura Geométrica:}
+      \begin{itemize}
+        \itemsep2pt
+        \item El vector $\vec{D} = \vec{B}\times\vec{C}$ es perpendicular al plano generado por $\vec{B}$ y $\vec{C}$.
+        \item El vector $\vec{A}\times\vec{D}$ es ortogonal a $\vec{D}$, por lo que \textbf{reingresa al plano generado por $\vec{B}$ y $\vec{C}$}.
+        \item En consecuencia, $\vec{A}\times(\vec{B}\times\vec{C})$ debe ser combinación lineal de $\vec{B}$ y $\vec{C}$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \footnotesize
+      \textbf{Comparación con el Método Tradicional:}\\
+      En el cálculo por componentes cartesianas tuvimos que sumar y restar artificialmente $A_1 B_1 C_1$. En el álgebra indicial, esta cancelación ocurre de forma natural y transparente.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 16: DEMOSTRACIÓN DEDICADA DE BAC-CAB
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración de la Fórmula BAC--CAB}
+  \footnotesize
+  Escribimos la $i$-ésima componente del doble producto cruz utilizando la representación tensorial del producto vectorial:
+  \[
+  [\vec{A} \times (\vec{B} \times \vec{C})]_i = \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k = \epsilon_{ijk} A_j (\epsilon_{kmn} B_m C_n)
+  \]
+  Usando la simetría cíclica del símbolo de Levi-Civita para alinear el índice mudo $k$ en la primera posición ($\epsilon_{ijk} = \epsilon_{kij}$):
+  \[
+  [\vec{A} \times (\vec{B} \times \vec{C})]_i = (\epsilon_{kij}\epsilon_{kmn}) A_j B_m C_n
+  \]
+  Aplicamos la \textbf{Identidad Maestra $\epsilon-\delta$} $(\epsilon_{kij}\epsilon_{kmn} = \delta_{im}\delta_{jn} - \delta_{in}\delta_{jm})$:
+  \[
+  [\vec{A} \times (\vec{B} \times \vec{C})]_i = (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n = \delta_{im}\delta_{jn} A_j B_m C_n - \delta_{in}\delta_{jm} A_j B_m C_n
+  \]
+  Contraemos los índices usando la propiedad filtrante de la delta de Kronecker:
+  \[
+  \delta_{im} B_m = B_i, \quad \delta_{jn} A_j C_n = A_j C_j = \vec{A}\cdot\vec{C}, \qquad \delta_{in} C_n = C_i, \quad \delta_{jm} A_j B_m = A_j B_j = \vec{A}\cdot\vec{B}
+  \]
+  Sustituyendo obtenemos directamente:
+  \[
+  \boxed{[\vec{A} \times (\vec{B} \times \vec{C})]_i = B_i(\vec{A}\cdot\vec{C}) - C_i(\vec{A}\cdot\vec{B})} \qquad \blacksquare
+  \]
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 17: TEOREMA DE CONTRACCIÓN SIMÉTRICO-ANTISIMÉTRICO
+% ---------------------------------------------------------------------
+\begin{frame}{Teorema: Contracción de Tensores Simétricos y Antisimétricos}
+  \begin{block}{Enunciado del Teorema}
+    \footnotesize
+    Sea $S_{ij}$ un objeto simétrico ($S_{ij} = S_{ji}$) y sea $A_{ij}$ un objeto antisimétrico ($A_{ij} = -A_{ji}$) bajo el intercambio de dos índices. Entonces su contracción total se anula idénticamente:
+    \[
+    \boxed{S_{ij} A_{ij} = 0}
+    \]
+  \end{block}
+  \vspace{0.1cm}
+  \begin{columns}[c]
+    \begin{column}{0.51\textwidth}
+      \footnotesize
+      \textbf{Cancelación por Pares Simétricos:}\\[2pt]
+      En la sumatoria explícita:
+      \begin{itemize}
+        \itemsep2pt
+        \item Los términos diagonales ($i=j$) se anulan porque $A_{ii} = -A_{ii} \implies A_{ii} = 0$.
+        \item Cada par fuera de la diagonal se cancela exactamente:
+        \[
+        S_{12}A_{12} + S_{21}A_{21} = S_{12}A_{12} + S_{12}(-A_{12}) = 0
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \textbf{Importancia en la Física:}\\[2pt]
+      Permite demostrar leyes de conservación y teoremas de anulación instantánea sin desarrollar una sola sumatoria, como en la dinámica electromagnética y la hidrodinámica.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 18: DEMOSTRACIÓN DEDICADA DEL LEMA DE ANULACIÓN
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración del Lema de Anulación $S_{ij}A_{ij} = 0$}
+  \footnotesize
+  Llamemos escalar $K$ a la contracción total:
+  \[
+  K \equiv S_{ij} A_{ij}
+  \]
+  Dado que tanto $i$ como $j$ son \textbf{índices mudos sumados}, podemos renombrarlos libremente intercambiando las etiquetas $i \leftrightarrow j$:
+  \[
+  K = S_{ji} A_{ji}
+  \]
+  Utilizamos ahora las propiedades de simetría de cada objeto:
+  \begin{itemize}
+    \item Por la simetría de $S$: \ $S_{ji} = S_{ij}$.
+    \item Por la antisimetría de $A$: \ $A_{ji} = -A_{ij}$.
+  \end{itemize}
+  Sustituyendo estas relaciones en la expresión de $K$:
+  \[
+  K = (S_{ij})(-A_{ij}) = -S_{ij} A_{ij} = -K
+  \]
+  Hemos deducido que:
+  \[
+  K = -K \implies 2K = 0 \implies K = 0
+  \]
+  Por lo tanto:
+  \[
+  \boxed{S_{ij} A_{ij} = 0} \qquad \blacksquare
+  \]
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 19: DINÁMICA DE LORENTZ Y TRABAJO MAGNÉTICO CON TIKZ
+% ---------------------------------------------------------------------
+\begin{frame}{Dinámica de Lorentz y el Teorema del Trabajo Magnético Nulo}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \textbf{Fuerza Magnética de Lorentz:}\\
+      La fuerza sobre una carga puntual $q$ con velocidad $\vec{v}$ es:
+      \[
+      \vec{F} = q(\vec{v}\times\vec{B}) \iff F_i = q\,\epsilon_{ijk} v_j B_k
+      \]
+      \textbf{Potencia Mecánica Instantánea:}\\
+      El ritmo de transferencia de energía es $P = \vec{F}\cdot\vec{v} = F_i v_i$:
+      \[
+      P = q\,\epsilon_{ijk} (v_i v_j) B_k
+      \]
+      El término $S_{ij} \equiv v_i v_j$ es perfectamente simétrico ($v_i v_j = v_j v_i$), mientras que $\epsilon_{ijk}$ es antisimétrico en $(i, j)$:
+      \[
+      \boxed{P = \frac{dE_{\text{cin}}}{dt} = 0}
+      \]
+      El campo magnético \textbf{no realiza trabajo mecánico}: desvía la trayectoria sin alterar la rapidez.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        % Circle trajectory
+        \draw[dashed, color=graymuted, line width=0.8pt] (0,0) circle (1.4cm);
+        \coordinate (P) at (40:1.4cm);
+
+        % Particle
+        \fill[orangeacc] (P) circle (2.5pt) node[above right=1pt, font=\scriptsize\bfseries] {$q$};
+
+        % Velocity (tangent)
+        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (P) -- ($(P)+(130:1.4cm)$) node[above left=-1pt, font=\scriptsize\bfseries] {$\vec{v}$};
+
+        % Force (centripetal, toward origin)
+        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (P) -- (0,0) node[midway, below right=-1pt, font=\scriptsize\bfseries] {$\vec{F}$};
+
+        % Right angle symbol
+        \draw[color=blackmain, thin] ($(P)+(-0.25, 0.21)$) -- ($(P)+(-0.42, 0.05)$) -- ($(P)+(-0.17, -0.16)$);
+
+        % Magnetic field symbol
+        \node[circle, draw=blackmain, fill=creambg, inner sep=1pt, font=\tiny\bfseries] at (-0.7, -0.7) {$\odot$};
+        \node[font=\scriptsize\bfseries, color=blackmain] at (-0.35, -0.7) {$\vec{B}$};
+      \end{tikzpicture}
+      \vspace{0.05cm}
+
+      {\scriptsize Como $\vec{F} \perp \vec{v}$ en todo instante, la potencia $\vec{F}\cdot\vec{v} = 0$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 20: EL DETERMINANTE COMO FUNCIONAL MULTILINEAL
+% ---------------------------------------------------------------------
+\begin{frame}{El Determinante como Funcional de Volumen Multilineal}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \footnotesize
+      \textbf{El Determinante en Notación Indicial:}\\[2pt]
+      Si formamos una matriz $M \in M_{3\times 3}(\R)$ cuyas columnas son los vectores $\vec{u}, \vec{v}, \vec{w}$, su determinante es el volumen orientado:
+      \[
+      \mathbf{\det(M) = \epsilon_{ijk} M_{i1} M_{j2} M_{k3}}
+      \]
+      \textbf{Identidad Tensorial Fundamental:}\\[2pt]
+      Si evaluamos las columnas bajo índices arbitrarios $(a, b, c)$:
+      \[
+      \boxed{\epsilon_{ijk} M_{ia} M_{jb} M_{kc} = \det(M)\,\epsilon_{abc}}
+      \]
+      Esta relación condensa en un solo renglón el comportamiento de orientación de volúmenes bajo cualquier aplicación lineal en $\R^3$.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{block}{Propiedades Inmediatas}
+        \footnotesize
+        \begin{itemize}
+          \itemsep3pt
+          \item \textbf{Intercambio de Columnas:} Si intercambiamos dos columnas en $M$, $\epsilon_{abc}$ cambia de signo, reproduciendo $\det(M') = -\det(M)$.
+          \item \textbf{Columnas Iguales:} Si dos columnas coinciden ($a=b$), $\epsilon_{aac} = 0 \implies \det(M) = 0$.
+          \item \textbf{Matriz Identidad:} Si $M_{ij} = \delta_{ij}$, entonces $\epsilon_{ijk}\delta_{i1}\delta_{j2}\delta_{k3} = \epsilon_{123} = 1$.
+        \end{itemize}
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 21: PREGUNTAS DE CIERRE - SÍNTESIS ESTRUCTURAL (CANVAS LIMPIO)
+% ---------------------------------------------------------------------
+\begin{frame}{De los Índices a la Geometría Global}
   \vspace{0.2cm}
   \small
-  \begin{enumerate}
-    \itemsep12pt
-    \item ¿Por qué la contracción de un tensor simétrico ($S_{ij} = S_{ji}$) con uno antisimétrico ($A_{ij} = -A_{ji}$) es idénticamente cero ($S_{ij}A_{ij} = 0$), con independencia del sistema de coordenadas?
-    \item ¿Cómo asegura el convenio de índices de Einstein que todas las ecuaciones deducidas sean intrínsecamente independientes de elecciones auxiliares de nomenclatura?
-    \item ¿De qué manera la identidad maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$ unifica la descomposición ortogonal, los productos triples y la conservación de la energía cinética en presencia de fuerzas magnéticas?
+  \begin{enumerate}\itemsep14pt
+    \item ¿Por qué la contracción de un tensor simétrico ($S_{ij} = S_{ji}$) con uno antisimétrico ($A_{ij} = -A_{ji}$) es idénticamente cero ($S_{ij}A_{ij} = 0$), con total independencia del sistema de coordenadas elegido?
+    \item ¿Cómo asegura el convenio de índices de Einstein que todas las identidades deducidas sean invariantes ante rotaciones y elecciones arbitrarias de los ejes?
+    \item ¿De qué manera la Identidad Maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$ unifica el álgebra del doble producto cruz con la conservación de la energía cinética en presencia de campos magnéticos?
   \end{enumerate}
 \end{frame}
 

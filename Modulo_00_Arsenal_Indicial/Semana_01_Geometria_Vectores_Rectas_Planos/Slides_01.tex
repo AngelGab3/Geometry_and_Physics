@@ -3,8 +3,8 @@
 \usepackage{../../Common/course_macros}
 \usepackage[spanish,provide=*]{babel}
 
-\title[Semana 1: Geometría, Espacios Vectoriales, Rectas y Planos]{Geometría del Espacio Euclidiano: Vectores, Rectas y Planos}
-\subtitle{Introducción al Curso y Semana 01: De la geometría de flechas a la estructura de Espacio Vectorial}
+\title[Semana 1: Vectores, Rectas y Planos]{Geometría del Espacio Euclidiano: Vectores, Rectas y Planos}
+\subtitle{De la Geometría de Flechas a la Estructura de Espacio Vectorial en $\R^3$}
 \author{Geometría y Física I: Mecánica Clásica y Formas de Cartan}
 \institute{}
 \date{}
@@ -19,84 +19,22 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Bienvenida a Geometría y Física I: Propósito y Objetivos}
-  \begin{columns}[c]
-    \begin{column}{0.49\textwidth}
-      \begin{block}{¿Por qué existe este curso?}
-        \footnotesize
-        En los cursos introductorios las leyes físicas suelen presentarse como listas de fórmulas en coordenadas cartesianas. Este curso existe para tender el puente hacia el \textbf{lenguaje geométrico moderno} de la física:
-        \begin{itemize}
-          \item Comprender que los objetos físicos (fuerzas, velocidades, flujos, campos y estados mecánicos) tienen una \textbf{estructura geométrica propia}, independiente del sistema de coordenadas.
-          \item Unificar el álgebra lineal, el cálculo vectorial y la mecánica clásica bajo un marco visual y riguroso: el \textbf{cálculo exterior de Élie Cartan}.
-        \end{itemize}
-      \end{block}
-    \end{column}
-    \begin{column}{0.48\textwidth}
-      \begin{exampleblock}{¿Qué lograrás al terminar el semestre?}
-        \footnotesize
-        \begin{enumerate}
-          \item \textbf{Dominio algebraico y geométrico en $\R^n$:} Operar con soltura usando espacios vectoriales, notación indicial ($\delta_{ij}, \epsilon_{ijk}$), rotaciones en $SO(3)$ y métricas curvilíneas $g_{ij}$.
-          \item \textbf{Dominio de las Formas Diferenciales:} Visualizar y calcular con $k$-formas, producto cuña ($\wedge$), derivada exterior ($d$) y el Teorema Generalizado de Stokes $\int_{\partial\Omega}\omega = \int_\Omega d\omega$.
-          \item \textbf{Mecánica Geométrica:} Formular la dinámica lagrangiana en $TQ$ y hamiltoniana en $T^*Q$ mediante la forma simpléctica $\omega = dp_i \wedge dq^i$.
-        \end{enumerate}
-      \end{exampleblock}
-    \end{column}
-  \end{columns}
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN GEOMÉTRICA
+% ---------------------------------------------------------------------
+\begin{frame}{La Naturaleza Geométrica del Espacio Físico}
+  \vspace{0.1cm}
+  Al describir el movimiento, el equilibrio o las interacciones en el mundo físico:
+  \vspace{0.3cm}
+  \begin{enumerate}\itemsep14pt
+    \item Si las coordenadas $(x, y, z)$ de un objeto dependen de dónde elija el observador colocar su origen, ¿por qué magnitudes como la velocidad, la aceleración y las fuerzas no cambian al trasladar el sistema de referencia?
+    \item ¿Qué diferencia estructural existe entre una simple colección o lista de números y un objeto geométrico dotado de magnitud, dirección y reglas propias de transformación?
+    \item ¿Por qué la suma de dos posiciones en el espacio carece de significado geométrico, mientras que la resta de dos posiciones define un vector de desplazamiento genuino?
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Mapa de Ruta del Semestre (16 Semanas)}
-  \centering
-  \begin{tikzpicture}[scale=0.88, every node/.style={transform shape}]
-    \tikzstyle{modbox} = [rectangle, rounded corners=4pt, draw=navyaccent, fill=creambg, line width=1pt, text width=2.45cm, minimum height=2.2cm, align=center, font=\scriptsize]
-    \tikzstyle{modtitle} = [font=\scriptsize\bfseries, color=orangeacc]
-
-    \node[modbox] (M0) at (0,0) {
-      {\color{orangeacc}\textbf{MÓDULO 0}}\\[2pt]
-      \textbf{(Sem 01--04)}\\[3pt]
-      Vectores, Rectas, Planos, Índices $\delta_{ij}, \epsilon_{ijk}$, Rotaciones $SO(3)$ y Métrica $g_{ij}$
-    };
-
-    \node[modbox] (M1) at (3.25,0) {
-      {\color{orangeacc}\textbf{MÓDULO 1}}\\[2pt]
-      \textbf{(Sem 05--07)}\\[3pt]
-      Geometría Visual en $\R^n$: Espacio Tangente $T_p\R^n$, 1-Formas y Producto Cuña $\wedge$
-    };
-
-    \node[modbox] (M2) at (6.5,0) {
-      {\color{orangeacc}\textbf{MÓDULO 2}}\\[2pt]
-      \textbf{(Sem 08--10)}\\[3pt]
-      Cálculo de Cartan ($d$, $d^2=0$, $\iota_X$), Agujeros Topológicos y Marcos Móviles
-    };
-
-    \node[modbox] (M3) at (9.75,0) {
-      {\color{orangeacc}\textbf{MÓDULO 3}}\\[2pt]
-      \textbf{(Sem 11--13)}\\[3pt]
-      Estrella de Hodge $\star$, Teorema de Stokes en Celdas y Fibrado Tangente $TQ$
-    };
-
-    \node[modbox, fill=orangebg, draw=orangeacc] (M4) at (13.0,0) {
-      {\color{navyaccent}\textbf{MÓDULO 4}}\\[2pt]
-      \textbf{(Sem 14--16)}\\[3pt]
-      Mecánica Simpléctica en $T^*Q$, Forma $\omega$, Hamilton, Liouville y Toros de Arnold
-    };
-
-    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M0) -- (M1);
-    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M1) -- (M2);
-    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M2) -- (M3);
-    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M3) -- (M4);
-  \end{tikzpicture}
-
-  \vspace{0.25cm}
-  \begin{block}{Semana 01: Álgebra y Geometría en $\R^3$}
-    \footnotesize
-    Construir desde la física y la geometría la diferencia entre \textbf{puntos y vectores}, formalizar los axiomas de \textbf{Espacio Vectorial y Subespacio}, deducir el \textbf{producto punto y cruz}, y caracterizar la \textbf{dualidad del plano}.
-  \end{block}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Puntos, Vectores y Desplazamientos}
-  \begin{block}{Problema: La Invariancia del Desplazamiento}
+\begin{frame}{Invarianza del Desplazamiento y Espacio Afín}
+  \begin{block}{Desplazamiento Relativo entre Puntos}
     \footnotesize
     Una partícula parte de la posición $P_0 = (1, 2, 1)\,\text{m}$ y después de $1\,\text{s}$ pasa por $P_1 = (3, 5, 3)\,\text{m}$ moviéndose en línea recta a velocidad constante.
     \begin{enumerate}
@@ -112,11 +50,10 @@
 \begin{frame}{Espacio Afín y la Naturaleza del Vector}
   \vspace{0.2cm}
   \small
-  \begin{enumerate}
-    \itemsep12pt
-    \item ¿Por qué la suma de dos puntos $P_1 + P_2$ carece de significado físico y geométrico, mientras que la diferencia $P_2 - P_1$ define un vector genuino?
-    \item ¿Qué diferencia estructural existe entre un \textbf{espacio afín} (donde no hay origen privilegiado) y un \textbf{espacio vectorial} (que contiene necesariamente al elemento neutro $\vec{0}$)?
-    \item Si la posición $\vec{r}$ depende del origen cartesiano, ¿por qué magnitudes dinámicas como la velocidad $\dot{\vec{r}}$, la aceleración $\ddot{\vec{r}}$ y las fuerzas $\vec{F}$ no dependen de dónde se ubique el origen?
+  \begin{enumerate}\itemsep14pt
+    \item En un espacio afín, cualquier punto $P$ puede conectarse con otro $Q$ mediante un único vector $\vec{v} = Q - P$. ¿Cómo formaliza esta relación la noción de que el espacio físico es homogéneo y no posee un centro absoluto?
+    \item Si fijamos un origen arbitrario $O$, cada punto $P$ se identifica con un vector posición $\vec{r}_P = P - O$. ¿Qué ocurre con esta correspondencia biunívoca si cambiamos el origen a $O' = O + \vec{d}$?
+    \item ¿Por qué magnitudes vectoriales físicas como el momento lineal $\vec{p} = m\dot{\vec{r}}$ y el campo eléctrico $\vec{E}$ se suman siguiendo la regla del paralelogramo, pero sus puntos de aplicación pertenecen a un espacio afín?
   \end{enumerate}
 \end{frame}
 
@@ -209,8 +146,8 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Problema: Descomposición de Fuerzas y Proyección Ortogonal}
-  \begin{block}{Descomposición sobre un Riel}
+\begin{frame}{Descomposición de Fuerzas y Proyección Ortogonal}
+  \begin{block}{Descomposición Ortogonal sobre una Dirección Fija}
     \footnotesize
     Considera el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{w} = \vec{u} - \vec{v}$, con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$.
     \begin{enumerate}
@@ -273,7 +210,7 @@
   \vspace{0.2cm}
   \small
   \begin{enumerate}
-    \itemsep12pt
+    \itemsep14pt
     \item ¿Por qué la proyección ortogonal $\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$ es el vector en la dirección de $\vec{v}$ que minimiza la distancia $\|\vec{u} - \lambda\vec{v}\|$ para todo $\lambda \in \R$?
     \item ¿Cómo nos permite el signo algebraico de $\vec{u}\cdot\vec{v}$ clasificar el ángulo relativo (agudo si $>0$, perpendicular si $=0$, obtuso si $<0$) sin evaluar funciones trigonométricas?
     \item ¿Por qué la descomposición $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$ es única y no depende de la orientación de los ejes cartesianos auxiliares?
@@ -281,8 +218,8 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Problema: Ortogonalidad Simultánea en $\R^3$}
-  \begin{block}{Construcción de un Vector Perpendicular a Dos Direcciones}
+\begin{frame}{Ortogonalidad Simultánea y Producto Vectorial}
+  \begin{block}{Construcción de una Dirección Perpendicular Conjunta}
     \footnotesize
     Dos bordes coplanares de una placa triangular están dados por los vectores $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$. Buscamos un vector no nulo $\vec{n} = (n_1, n_2, n_3)$ que sea simultáneamente ortogonal a ambos bordes:
     \[
@@ -345,8 +282,19 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Problema: Dos Descripciones de un Mismo Plano}
-  \begin{block}{Parametrización vs. Ecuación Normal}
+\begin{frame}{Orientación Espacial y Álgebra del Producto Cruz}
+  \vspace{0.2cm}
+  \small
+  \begin{enumerate}\itemsep14pt
+    \item ¿Por qué el producto vectorial $\vec{u}\times\vec{v}$ genera un vector perpendicular al plano generado por $\vec{u}$ y $\vec{v}$ únicamente en $\R^3$, a diferencia del producto escalar que existe en cualquier $\R^n$?
+    \item ¿Por qué la propiedad de antisimetría $\vec{u}\times\vec{v} = -\vec{v}\times\vec{u}$ es la manifestación algebraica indispensable de la regla de la mano derecha y la orientación espacial?
+    \item Si la magnitud $\|\vec{u}\times\vec{v}\|$ mide el área del paralelogramo, ¿por qué el momento de una fuerza (torque) $\vec{\tau} = \vec{r}\times\vec{F}$ y el momento angular $\vec{L} = \vec{r}\times\vec{p}$ se construyen naturalmente con este producto?
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Geometría del Plano: Descripción Paramétrica e Implícita}
+  \begin{block}{Parametrización Bidimensional vs. Ecuación Normal}
     \footnotesize
     Queremos describir una superficie plana $\Pi$ que pasa por $P_0 = (1,0,2)$ y es generada por los vectores $\vec{v}_1 = (1, 1, 0)$ y $\vec{v}_2 = (0, 1, 1)$.
     \begin{enumerate}
@@ -401,7 +349,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Problema: Intersección de Dos Planos y Distancia Mínima}
+\begin{frame}{Intersección de Planos y Sistemas de Restricciones}
   \begin{block}{Determinación de la Recta de Intersección}
     \footnotesize
     Dos planos $\Pi_1$ y $\Pi_2$ tienen vectores normales $\vec{n}_1 = (1, 0, -1)$ y $\vec{n}_2 = (0, 1, 1)$, con ecuaciones $x - z = 1$ y $y + z = 2$.
@@ -415,11 +363,11 @@
 % ---------------------------------------------------------------------
 \begin{frame}{Geometría de la Intersección y Distancia a un Plano}
   \begin{columns}[c]
-    \begin{column}{0.52\textwidth}
+    \begin{column}{0.56\textwidth}
       \footnotesize
       \begin{itemize}
         \item \textbf{Distancia de un Punto $Q$ a un Plano $\Pi$:}
-        Proyección de $\vec{q}-\vec{p}_0$ sobre la normal unitaria:
+        Proyección de $\vec{q}-\vec{p}_0$ sobre la normal unitaria $\hat{n}$:
         \[
         \boxed{D(Q,\Pi) = \frac{|\vec{n}\cdot(\vec{q}-\vec{p}_0)|}{\|\vec{n}\|} = \frac{|n_1 x_Q + n_2 y_Q + n_3 z_Q - d|}{\sqrt{n_1^2 + n_2^2 + n_3^2}}}
         \]
@@ -430,7 +378,7 @@
         \]
       \end{itemize}
     \end{column}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.42\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.72]
         \fill[navyaccent!15, opacity=0.85] (0,0) -- (3.6,-0.6) -- (5.2,1.5) -- (1.6,2.1) -- cycle;
@@ -456,7 +404,7 @@
   \vspace{0.2cm}
   \small
   \begin{enumerate}
-    \itemsep12pt
+    \itemsep14pt
     \item ¿Cómo se relacionan la descripción interna de un plano (generada por 2 vectores independientes) y la descripción externa (restringida por 1 ecuación ortogonal)? ¿Por qué la suma de parámetros libres y restricciones es la dimensión total del espacio ($2 + 1 = 3$)?
     \item ¿Por qué la intersección de dos planos linealmente independientes en $\R^3$ produce necesariamente una recta? ¿Cómo se generaliza este conteo de codimensión en dimensiones superiores?
     \item ¿En qué sentido la familia de planos paralelos $\vec{n}\cdot\vec{r} = c$ mide desplazamientos de manera dual a un vector flecha ordinario?

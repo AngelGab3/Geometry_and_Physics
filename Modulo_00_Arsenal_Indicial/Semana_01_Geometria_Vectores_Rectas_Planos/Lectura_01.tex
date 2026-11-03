@@ -11,138 +11,159 @@
 
 \begin{center}
 {\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
-{\Large\textcolor{orangeacc}{\textbf{Semana 1: Geometría del Espacio Euclidiano: Vectores, Rectas y Planos}}}\\[0.15cm]
-{\large\textbf{De la suma de flechas y proyecciones a la geometría dual de rectas y planos en $\R^3$}}\\[0.3cm]
-{\large\textcolor{graymuted}{Notas de Clase Constructivistas --- Física e Ingeniería}}\\[0.2cm]
+{\Large\textcolor{orangeacc}{\textbf{Semana 1: Geometría del Espacio Euclidiano, Espacios Vectoriales, Rectas y Planos}}}\\[0.15cm]
+{\large\textbf{De la intuición geométrica de flechas y proyecciones a la estructura formal de $\R^3$}}\\[0.3cm]
+{\large\textcolor{graymuted}{Notas de Clase Constructivistas --- Licenciatura en Física e Ingeniería}}\\[0.2cm]
 \end{center}
 
 \vspace{0.2cm}
 
 % =====================================================================
-\manualsection[1. Puntos vs. Vectores y Suma]{1. Puntos vs. Flechas: ¿Cómo se suma el movimiento y la fuerza?}
+\manualsection[1. Puntos, Vectores y Espacio Vectorial]{1. Puntos vs. Flechas: De la Geometría del Movimiento a la Definición de Espacio Vectorial}
 
-Cuando un ingeniero diseña la estructura de un puente o un físico estudia la trayectoria de un satélite, conviven dos objetos geométricos que en la escritura cotidiana suelen confundirse porque ambos se escriben como ternas de números $(x, y, z)$, pero que físicamente tienen naturalezas opuestas:
+Cuando un ingeniero diseña la estructura de un puente o un físico estudia la trayectoria de un satélite, conviven dos objetos geométricos que en la escritura cotidiana suelen confundirse porque ambos se representan mediante ternas de números $(x, y, z)$, pero que física y matemáticamente tienen naturalezas opuestas:
 
 \begin{intuitionbox}{La Necesidad de Distinguir Ubicaciones de Desplazamientos}
 \begin{itemize}
-    \item \term{Un Punto $P = (x, y, z)$:} Es una \textbf{posición o ubicación fija} en el espacio (la esquina de un edificio, el nodo de una armadura metálica). No tiene sentido físico «sumar dos lugares» ni hablar de la longitud de un lugar.
-    \item \term{Un Vector $\vec{v} = \langle v_1, v_2, v_3 \rangle$:} Es una \textbf{instrucción de desplazamiento, velocidad o fuerza} que tiene magnitud, dirección y sentido. Si estás en el punto inicial $P_0 = (x_0, y_0, z_0)$ y te mueves hasta el punto final $P_1 = (x_1, y_1, z_1)$, el vector desplazamiento que los conecta es:
+    \item \term{Un Punto $P = (x, y, z)$:} Es una \textbf{posición o ubicación fija} en el espacio físico (la esquina de un edificio, el nodo de una armadura metálica). No tiene sentido físico «sumar dos lugares» ni hablar de la longitud de un lugar: si cambiamos el origen de nuestro sistema de medición, las coordenadas de $P$ cambian.
+    \item \term{Un Vector $\vec{v} = \langle v_1, v_2, v_3 \rangle$:} Es una \textbf{instrucción de desplazamiento, velocidad o fuerza} que posee magnitud, dirección y sentido. Si estás en el punto inicial $P_0 = (x_0, y_0, z_0)$ y te desplazas hasta el punto final $P_1 = (x_1, y_1, z_1)$, el vector desplazamiento que los conecta es:
     \[
-    \mathbf{\vec{v} = \overrightarrow{P_0 P_1} = P_1 - P_0 = \langle x_1 - x_0,\; y_1 - y_0,\; z_1 - z_0 \rangle}.
+    \vec{v} = \overrightarrow{P_0 P_1} = P_1 - P_0 = \langle x_1 - x_0,\; y_1 - y_0,\; z_1 - z_0 \rangle.
     \]
 \end{itemize}
-\textbf{Relación fundamental:} $\text{Punto final} = \text{Punto inicial} + \text{Vector desplazamiento}$ ($P_1 = P_0 + \vec{v}$).
+\textbf{Relación fundamental (Espacio Afín):} $\text{Punto final} = \text{Punto inicial} + \text{Vector desplazamiento}$ ($P_1 = P_0 + \vec{v}$). Si dos ingenieros eligen orígenes distintos ($P' = P + \vec{c}$), la diferencia $\vec{v}' = P'_1 - P'_0 = (P_1 + \vec{c}) - (P_0 + \vec{c}) = P_1 - P_0 = \vec{v}$ permanece \textbf{invariante}.
 \end{intuitionbox}
 
-\manualsubsection{Construcción Geométrica de la Suma y Resta de Vectores}
-¿Por qué sumamos vectores componente a componente: $\vec{u} + \vec{v} = \langle u_1+v_1, u_2+v_2, u_3+v_3 \rangle$?
+\manualsubsection{Construcción Geométrica de la Suma, Resta y Escalamiento}
+¿Por qué sumamos vectores componente a componente, $\vec{u} + \vec{v} = \langle u_1+v_1, u_2+v_2, u_3+v_3 \rangle$, y los multiplicamos por escalares reales $c\vec{u} = \langle c u_1, c u_2, c u_3 \rangle$?
 \begin{enumerate}
-    \item \textbf{Encadenamiento de desplazamientos (Regla punta con cola):} Si un robot se desplaza primero según $\vec{u}$ y desde ahí realiza un segundo desplazamiento $\vec{v}$, el desplazamiento neto desde el inicio hasta el final es la diagonal $\vec{u} + \vec{v}$.
-    \item \textbf{Fuerzas concurrentes (Ley del paralelogramo):} Si dos cables tiran de un mismo perno con fuerzas $\vec{u}$ y $\vec{v}$, el efecto conjunto es la diagonal principal del paralelogramo que forman.
-    \item \textbf{¿Y la otra diagonal del paralelogramo? (La Resta $\vec{u} - \vec{v}$):} Si buscamos el vector $\vec{w}$ que hay que sumarle a $\vec{v}$ para llegar a la punta de $\vec{u}$ ($\vec{v} + \vec{w} = \vec{u}$), despejamos $\mathbf{\vec{w} = \vec{u} - \vec{v}}$. Geométricamente, $\vec{u} - \vec{v}$ es la flecha que \textbf{nace en la punta de $\vec{v}$ y termina en la punta de $\vec{u}$}.
+    \item \textbf{Encadenamiento de desplazamientos (Regla punta con cola):} Si un robot se desplaza primero según $\vec{u}$ y desde ahí realiza un segundo desplazamiento $\vec{v}$, el desplazamiento neto desde el inicio hasta el final es la diagonal principal $\vec{u} + \vec{v}$.
+    \item \textbf{Fuerzas concurrentes (Ley del paralelogramo):} Si dos cables tiran de un mismo perno con fuerzas $\vec{u}$ y $\vec{v}$, su efecto conjunto es la diagonal principal del paralelogramo que generan.
+    \item \textbf{La segunda diagonal del paralelogramo (La Resta $\vec{u} - \vec{v}$):} Si buscamos el vector $\vec{w}$ que debemos sumarle a $\vec{v}$ para llegar a la punta de $\vec{u}$ ($\vec{v} + \vec{w} = \vec{u}$), despejamos $\vec{w} = \vec{u} - \vec{v}$. Geométricamente, $\vec{u} - \vec{v}$ es la flecha que \textbf{nace en la punta de $\vec{v}$ y termina en la punta de $\vec{u}$}.
 \end{enumerate}
 
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=0.95]
     % Panel Izquierdo: Puntos vs Vector Desplazamiento
-    \begin{scope}[xshift=-4.5cm]
+    \begin{scope}[xshift=-5.2cm]
         \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (3.8,0) node[right, font=\footnotesize] {$x$};
-        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,2.8) node[above, font=\footnotesize] {$y$};
+        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,2.9) node[above, font=\footnotesize] {$y$};
         
         \coordinate (P0) at (0.8, 0.7);
-        \coordinate (P1) at (3.1, 2.2);
+        \coordinate (P1) at (3.2, 2.3);
         
-        \draw[dashed, color=graymuted] (P0) -- (3.1, 0.7) node[midway, below, font=\scriptsize] {$x_1 - x_0$};
-        \draw[dashed, color=graymuted] (3.1, 0.7) -- (P1) node[midway, right, font=\scriptsize] {$y_1 - y_0$};
+        \draw[dashed, color=graymuted] (P0) -- (3.2, 0.7) node[midway, below=2pt, font=\scriptsize] {$x_1 - x_0$};
+        \draw[dashed, color=graymuted] (3.2, 0.7) -- (P1) node[midway, right=2pt, font=\scriptsize] {$y_1 - y_0$};
         
-        \draw[-{Stealth[length=3mm]}, line width=1.6pt, color=orangeacc] (P0) -- (P1) node[midway, above left=-1pt, font=\small\bfseries] {$\vec{v} = P_1 - P_0$};
-        \fill[blackmain] (P0) circle (2.2pt) node[below left, font=\footnotesize\bfseries] {$P_0$};
-        \fill[blackmain] (P1) circle (2.2pt) node[above right, font=\footnotesize\bfseries] {$P_1$};
-        \node[font=\footnotesize\bfseries, color=navyaccent] at (1.9, -0.65) {(a) Vector entre dos puntos};
+        \draw[-{Stealth[length=3mm]}, line width=1.6pt, color=orangeacc] (P0) -- (P1) node[midway, above left=1pt, font=\small\bfseries] {$\vec{v} = P_1 - P_0$};
+        \fill[blackmain] (P0) circle (2.2pt) node[below left=1pt, font=\footnotesize\bfseries] {$P_0$};
+        \fill[blackmain] (P1) circle (2.2pt) node[above right=1pt, font=\footnotesize\bfseries] {$P_1$};
+        \node[font=\footnotesize\bfseries] at (1.9, -0.8) {(a) Vector entre dos puntos};
     \end{scope}
 
-    % Panel Derecho: Paralelogramo suma y resta
-    \begin{scope}[xshift=1.5cm]
+    % Panel Derecho: Suma y Resta (Las dos diagonales bien separadas)
+    \begin{scope}[xshift=2.0cm]
         \coordinate (O) at (0,0);
-        \coordinate (U) at (2.8, 0.6);
-        \coordinate (V) at (1.0, 2.1);
-        \coordinate (SUM) at ($(U)+(V)$);
+        \coordinate (U) at (3.4, 0.3);
+        \coordinate (V) at (1.1, 2.4);
+        \coordinate (S) at ($(U)+(V)$);
         
-        \fill[creambg!90!orangebg] (O) -- (U) -- (SUM) -- (V) -- cycle;
-        \draw[dashed, line width=0.9pt, color=graymuted] (U) -- (SUM);
-        \draw[dashed, line width=0.9pt, color=graymuted] (V) -- (SUM);
+        \fill[orangeacc!6] (O) -- (U) -- (S) -- (V) -- cycle;
+        \draw[dashed, color=graymuted] (U) -- (S) (V) -- (S);
         
-        \draw[-{Stealth[length=3mm]}, line width=1.5pt, color=blackmain] (O) -- (U) node[midway, below=2pt, font=\small\bfseries] {$\vec{u}$};
-        \draw[-{Stealth[length=3mm]}, line width=1.5pt, color=blackmain] (O) -- (V) node[midway, left=2pt, font=\small\bfseries] {$\vec{v}$};
-        \draw[-{Stealth[length=3mm]}, line width=1.7pt, color=orangeacc] (O) -- (SUM) node[pos=0.65, below right=-1pt, font=\small\bfseries] {$\vec{u}+\vec{v}$};
-        \draw[-{Stealth[length=2.8mm]}, line width=1.4pt, color=navyaccent] (V) -- (U) node[pos=0.42, above right=-1pt, font=\footnotesize\bfseries] {$\vec{u}-\vec{v}$};
+        \draw[-{Stealth[length=3mm]}, line width=1.4pt, color=blackmain] (O) -- (U) node[midway, below=2pt, font=\small\bfseries] {$\vec{u}$};
+        \draw[-{Stealth[length=3mm]}, line width=1.4pt, color=blackmain] (O) -- (V) node[midway, left=2pt, font=\small\bfseries] {$\vec{v}$};
         
-        \fill[blackmain] (O) circle (2pt);
-        \node[font=\footnotesize\bfseries, color=navyaccent] at (1.9, -0.65) {(b) Diagonales: suma $\vec{u}+\vec{v}$ y resta $\vec{u}-\vec{v}$};
+        % Diagonal 1: Suma (etiqueta arriba de la punta S)
+        \draw[-{Stealth[length=3mm]}, line width=1.6pt, color=orangeacc] (O) -- (S) node[above right=0pt, font=\small\bfseries] {$\vec{u} + \vec{v}$};
+        
+        % Diagonal 2: Resta (etiqueta en el tramo inferior derecho)
+        \draw[-{Stealth[length=3mm]}, line width=1.4pt, color=navyaccent] (V) -- (U) node[pos=0.68, above right=2pt, font=\small\bfseries] {$\vec{u} - \vec{v}$};
+        
+        \node[font=\footnotesize\bfseries] at (2.2, -0.8) {(b) Diagonales: suma $\vec{u}+\vec{v}$ y resta $\vec{u}-\vec{v}$};
     \end{scope}
 \end{tikzpicture}
 \end{center}
 
+\manualsubsection{Formalización: Definición Axiomática de Espacio Vectorial}
+Observamos que tanto los vectores de desplazamiento en $\R^3$, como las fuerzas sobre una estructura, las velocidades de un fluido o incluso las funciones y campos físicos pueden sumarse entre sí y multiplicarse por números reales obedeciendo las mismas leyes geométricas. Para no tener que repetir demostraciones en cada contexto físico, la matemática destila estas reglas en una estructura universal:
+
+\begin{theorembox}{Definición Formal: Espacio Vectorial sobre $\R$}
+Un \textbf{espacio vectorial real} es un conjunto no vacío $V$ (cuyos elementos llamamos \emph{vectores}) equipado con dos operaciones: una \textbf{suma vectorial} $+: V \times V \to V$ y una \textbf{multiplicación por escalar} $\cdot: \R \times V \to V$, tales que para cualesquiera $\vec{u}, \vec{v}, \vec{w} \in V$ y cualesquiera escalares $a, b \in \R$ se satisfacen los siguientes \textbf{8 axiomas}:
+\begin{enumerate}
+    \item \textbf{Conmutatividad de la suma:} $\vec{u} + \vec{v} = \vec{v} + \vec{u}$ \quad (\emph{simetría del paralelogramo}).
+    \item \textbf{Asociatividad de la suma:} $(\vec{u} + \vec{v}) + \vec{w} = \vec{u} + (\vec{v} + \vec{w})$ \quad (\emph{suma poligonal sin importar cómo agrupemos}).
+    \item \textbf{Existencia del vector neutro (origen de vectores):} Existe un único vector $\vec{0} \in V$ tal que $\vec{v} + \vec{0} = \vec{v}$ para todo $\vec{v} \in V$.
+    \item \textbf{Existencia del inverso aditivo (vector opuesto):} Para cada $\vec{v} \in V$ existe $-\vec{v} \in V$ tal que $\vec{v} + (-\vec{v}) = \vec{0}$.
+    \item \textbf{Asociatividad mixta del producto por escalar:} $a(b\vec{v}) = (ab)\vec{v}$.
+    \item \textbf{Neutro escalar:} $1\vec{v} = \vec{v}$.
+    \item \textbf{Distributividad respecto a la suma de vectores:} $a(\vec{u} + \vec{v}) = a\vec{u} + a\vec{v}$ \quad (\emph{semejanza de triángulos al escalar}).
+    \item \textbf{Distributividad respecto a la suma de escalares:} $(a + b)\vec{v} = a\vec{v} + b\vec{v}$.
+\end{enumerate}
+En particular, el conjunto $\R^n = \{\langle v_1, \dots, v_n \rangle \mid v_i \in \R\}$ con la suma y el escalamiento componente a componente es el espacio vectorial real arquetípico.
+\end{theorembox}
+
 % =====================================================================
-\manualsection[2. Ecuación de la Recta]{2. La Ecuación de la Recta: Construyendo un Riel en el Espacio}
+\manualsection[2. Ecuación de la Recta y Subespacios 1D]{2. La Ecuación de la Recta: Construyendo un Riel en el Espacio}
 
-Supongamos que queremos describir matemáticamente un riel recto en el espacio tridimensional $\R^3$ (o la trayectoria de un dron que vuela en línea recta a velocidad constante). En el plano 2D solíamos escribir $y = mx + b$, pero en 3D **una sola ecuación lineal no describe una recta** (¡describe un plano, como veremos en la Sección 5!). ¿Cómo construimos entonces una recta en cualquier dimensión?
+Supongamos que queremos describir matemáticamente un riel recto en el espacio tridimensional $\R^3$ (o la trayectoria de un dron que vuela en línea recta a velocidad constante). En el plano 2D solíamos escribir $y = mx + b$, pero en 3D \textbf{una sola ecuación lineal no describe una recta} (¡describe un plano, como veremos en la Sección 5!). ¿Cómo construimos entonces una recta en cualquier dimensión?
 
-\begin{intuitionbox}{Construcción Cinemática de la Recta}
+\begin{infobox}{Construcción Cinemática de la Recta}
 Para trazar una recta solo necesitamos dos ingredientes físicos:
 \begin{enumerate}
-    \item \textbf{Un punto de anclaje inicial} $P_0 = (x_0, y_0, z_0)$ por donde pasa la recta (representado por su vector de posición desde el origen, $\vec{p}_0$).
-    \item \textbf{Un vector director (o velocidad)} $\vec{v} = \langle v_1, v_2, v_3 \rangle$ que nos indique en qué dirección caminar.
+    \item \textbf{Un punto de anclaje inicial $P_0 = (x_0, y_0, z_0)$} por donde pasa la recta (representado por su vector de posición desde el origen, $\vec{p}_0$).
+    \item \textbf{Un vector director no nulo $\vec{v} = \langle v_1, v_2, v_3 \rangle \neq \vec{0}$} que nos indique en qué dirección caminar.
 \end{enumerate}
 Si caminamos durante un tiempo (o parámetro de escala) $t \in \R$ a velocidad $\vec{v}$, nuestro desplazamiento desde $P_0$ es $t\vec{v}$. Por lo tanto, la posición $\vec{r}(t) = \langle x(t), y(t), z(t) \rangle$ de cualquier punto sobre la recta es:
-\end{intuitionbox}
+\end{infobox}
 
-\begin{theorembox}{Ecuación Vectorial y Paramétrica de la Recta}
-La recta que pasa por $\vec{p}_0$ con dirección $\vec{v}$ está dada por la función de un parámetro $t \in (-\infty, \infty)$:
+\begin{theorembox}{Ecuación Vectorial, Paramétrica y Simétrica de la Recta}
+La recta $\mathcal{L}$ que pasa por $\vec{p}_0$ con vector director $\vec{v} \neq \vec{0}$ está dada por la función de \textbf{un solo parámetro libre} $t \in \R$:
 \[
-\mathbf{\vec{r}(t) = \vec{p}_0 + t\vec{v}} \quad \Longleftrightarrow \quad
+\vec{r}(t) = \vec{p}_0 + t\vec{v} \quad \Longleftrightarrow \quad
 \begin{cases}
 x(t) = x_0 + t\,v_1 \\
 y(t) = y_0 + t\,v_2 \\
 z(t) = z_0 + t\,v_3
 \end{cases}
 \]
-Si $v_1, v_2, v_3 \neq 0$, despejando el parámetro común $t$ obtenemos la \textbf{forma simétrica}:
+Si $v_1, v_2, v_3 \neq 0$, al despejar el parámetro común $t$ obtenemos la \textbf{forma simétrica}:
 \[
-\frac{x - x_0}{v_1} = \frac{y - y_0}{v_2} = \frac{z - z_0}{v_3} \; (= t).
+\frac{x - x_0}{v_1} = \frac{y - y_0}{v_2} = \frac{z - z_0}{v_3} \quad (= t).
 \]
 \end{theorembox}
 
 \begin{center}
-\begin{tikzpicture}[scale=0.95]
-    \draw[-{Stealth}, color=graymuted] (0,0) -- (6.5,0) node[right, font=\footnotesize] {$x$};
-    \draw[-{Stealth}, color=graymuted] (0,0) -- (0,3.2) node[above, font=\footnotesize] {$y$};
-    \draw[-{Stealth}, color=graymuted] (0,0) -- (-1.2,-0.8) node[below left, font=\footnotesize] {$z$};
-    
+\begin{tikzpicture}[scale=1.0]
+    % Ejes 3D simulados
+    \draw[-{Stealth}, color=graymuted] (0,0) -- (5.8,0) node[right, font=\footnotesize] {$x$};
+    \draw[-{Stealth}, color=graymuted] (0,0) -- (0,3.5) node[above, font=\footnotesize] {$y$};
+    \draw[-{Stealth}, color=graymuted] (0,0) -- (-1.3,-0.9) node[below left, font=\footnotesize] {$z$};
+
     \coordinate (O) at (0,0);
-    \coordinate (P0) at (2.0, 1.3);
-    \coordinate (V) at (1.5, 0.5);
-    \coordinate (Pm1) at ($(P0)-1*(V)$);
-    \coordinate (P1) at ($(P0)+1*(V)$);
-    \coordinate (P2) at ($(P0)+2.2*(V)$);
-    
-    % The infinite line
-    \draw[line width=1.2pt, color=navyaccent!70, dashed] ($(P0)-1.5*(V)$) -- ($(P0)+2.7*(V)$);
-    
-    % Vectors from Origin
-    \draw[-{Stealth[length=2.8mm]}, line width=1.3pt, color=blackmain] (O) -- (P0) node[midway, above left=-2pt, font=\footnotesize\bfseries] {$\vec{p}_0$};
-    \draw[-{Stealth[length=2.8mm]}, line width=1.3pt, color=navyaccent] (O) -- (P2) node[midway, below right=-1pt, font=\footnotesize\bfseries] {$\vec{r}(t) = \vec{p}_0 + t\vec{v}$};
-    
-    % Direction vector v and t*v
-    \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=orangeacc] (P0) -- (P1) node[midway, above=2pt, font=\small\bfseries] {$\vec{v}$};
-    \draw[-{Stealth[length=2.8mm]}, line width=1.3pt, color=orangeacc!80!black] (P1) -- (P2) node[midway, above=2pt, font=\footnotesize] {$t\vec{v}$};
-    
-    % Points along the line
-    \fill[graymuted] (Pm1) circle (2pt) node[above left=-1pt, font=\scriptsize] {$t=-1$};
-    \fill[blackmain] (P0) circle (2.5pt) node[above=3pt, font=\footnotesize\bfseries] {$P_0\,(t=0)$};
-    \fill[orangeacc] (P1) circle (2.2pt) node[below=3pt, font=\scriptsize\bfseries] {$t=1$};
-    \fill[navyaccent] (P2) circle (2.5pt) node[above=3pt, font=\footnotesize\bfseries] {$P(t)$};
-    \fill[blackmain] (O) circle (2pt) node[below right, font=\footnotesize] {$O$};
+    \coordinate (P0) at (1.6, 1.3);
+    \coordinate (V) at (1.5, 0.7);
+    \coordinate (Pt) at ($(P0) + 1.9*(V)$);
+    \coordinate (Pneg) at ($(P0) - 0.7*(V)$);
+    \coordinate (Ppos) at ($(P0) + 2.4*(V)$);
+
+    % Linea recta extendida
+    \draw[dashed, line width=1.1pt, color=graymuted] (Pneg) -- (Ppos);
+    \draw[line width=1.3pt, color=blackmain] ($(P0)-0.25*(V)$) -- ($(P0)+2.1*(V)$);
+
+    % Vectores desde el origen O
+    \draw[-{Stealth[length=2.8mm]}, line width=1.2pt, color=navyaccent] (O) -- (P0) node[pos=0.55, below right=-1pt, font=\footnotesize\bfseries] {$\vec{p}_0$};
+    \draw[-{Stealth[length=2.8mm]}, line width=1.2pt, color=navyaccent] (O) -- (Pt) node[pos=0.65, below right=2pt, font=\footnotesize\bfseries] {$\vec{r}(t) = \vec{p}_0 + t\vec{v}$};
+
+    % Vector director v y multiplo tv sobre la recta
+    \draw[-{Stealth[length=3mm]}, line width=2.0pt, color=orangeacc] (P0) -- ($(P0)+(V)$) node[midway, above left=1pt, font=\small\bfseries] {$\vec{v}$};
+    \draw[-{Stealth[length=2.8mm]}, line width=1.3pt, color=orangeacc!80!black, dashed] ($(P0)+(V)$) -- (Pt) node[midway, above left=1pt, font=\footnotesize\bfseries] {$t\vec{v}$};
+
+    % Puntos sobre la recta (bien espaciados y lejos del eje y)
+    \fill[blackmain] (P0) circle (2.3pt) node[above left=2pt, font=\footnotesize\bfseries] {$P_0$};
+    \fill[orangeacc] ($(P0)+(V)$) circle (2pt) node[below right=1pt, font=\scriptsize\bfseries] {$t=1$};
+    \fill[blackmain] (Pt) circle (2.3pt) node[above right=1pt, font=\footnotesize\bfseries] {$P(t)$};
+    \node[below left, font=\footnotesize] at (O) {$O$};
 \end{tikzpicture}
 \end{center}
 
@@ -151,238 +172,267 @@ Observa que si derivamos la posición $\vec{r}(t) = \vec{p}_0 + t\vec{v}$ respec
 \[
 \frac{d\vec{r}}{dt} = \vec{v}.
 \]
-Esta sencilla ecuación de primer semestre encierra una idea profunda que explotaremos en el Módulo 1: **todo vector geométrico anclado en un punto $P_0$ puede verse como el vector velocidad de una curva que pasa por $P_0$ en $t=0$**.
+Esta sencilla ecuación de primer semestre encierra una idea profunda que explotaremos en el Módulo 1 (Semana 05): \textbf{todo vector geométrico anclado en un punto $P_0$ puede verse como el vector velocidad de una curva que pasa por $P_0$ en $t=0$}.
 \end{examplebox}
 
 % =====================================================================
-\manualsection[3. El Producto Punto y Proyecciones]{3. El Producto Punto: La Máquina de Proyectar Sombras}
+\manualsection[3. Producto Punto, Producto Interno y Proyecciones]{3. El Producto Punto: De la Ley de Cosenos al Producto Interno y Proyecciones}
 
-Imagina que empujas un vagón sobre un riel recto aplicando una fuerza $\vec{u}$ que forma un ángulo $\theta$ con la dirección del riel $\vec{v}$. Solo la parte de la fuerza que apunta a lo largo del riel realiza trabajo útil; la parte perpendicular solo presiona las ruedas contra el acero. ¿Cómo calculamos algebraicamente la sombra (proyección) de un vector sobre otro usando solo sus componentes?
+Imagina que empujas un vagón sobre un riel recto aplicando una fuerza $\vec{u}$ que forma un ángulo $\theta$ con la dirección del riel $\vec{v}$. Solo la parte de la fuerza que apunta a lo largo del riel realiza trabajo útil; la parte perpendicular solo presiona las ruedas contra el acero. ¿Cómo calculamos algebraicamente la sombra (proyección) de un vector sobre otro usando únicamente sus componentes?
 
 \manualsubsection{De la Ley de los Cosenos a la Suma de Productos}
-Consideremos el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{u} - \vec{v}$ (con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$). Por el Teorema de Pitágoras en coordenadas cartesianas, la longitud al cuadrado de cualquier vector $\vec{w}$ es $|\vec{w}|^2 = w_1^2 + w_2^2 + w_3^2$. Aplicando la **Ley de los Cosenos** a este triángulo:
+Consideremos el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{u} - \vec{v}$ (con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$). Por el Teorema de Pitágoras en coordenadas cartesianas, la longitud al cuadrado de cualquier vector $\vec{w}$ es $\|\vec{w}\|^2 = w_1^2 + w_2^2 + w_3^2$. Aplicando la \textbf{Ley de los Cosenos} a este triángulo:
 \[
-|\vec{u} - \vec{v}|^2 = |\vec{u}|^2 + |\vec{v}|^2 - 2|\vec{u}||\vec{v}|\cos\theta.
+\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos\theta.
 \]
-Si expandimos el miembro izquierdo en componentes, $(u_1 - v_1)^2 + (u_2 - v_2)^2 + (u_3 - v_3)^2$, los términos cuadrados $u_i^2$ y $v_i^2$ se cancelan exactamente con $|\vec{u}|^2 + |\vec{v}|^2$ del lado derecho, y tras dividir entre $-2$ descubrimos una identidad extraordinaria:
+Si expandimos el miembro izquierdo en componentes, $(u_1 - v_1)^2 + (u_2 - v_2)^2 + (u_3 - v_3)^2$, los términos cuadrados $u_i^2$ y $v_i^2$ se cancelan exactamente con $\|\vec{u}\|^2 + \|\vec{v}\|^2$ del lado derecho, y tras dividir entre $-2$ descubrimos una identidad extraordinaria:
 
-\begin{theorembox}{Construcción del Producto Punto (Escalar)}
-Para cualesquiera dos vectores $\vec{u} = \langle u_1, u_2, u_3 \rangle$ y $\vec{v} = \langle v_1, v_2, v_3 \rangle$:
+\begin{theorembox}{Construcción del Producto Punto y Descomposición Ortogonal}
+Para cualesquiera dos vectores $\vec{u} = \langle u_1, u_2, u_3 \rangle$ y $\vec{v} = \langle v_1, v_2, v_3 \rangle$ en $\R^3$:
 \[
-\mathbf{\vec{u} \cdot \vec{v} \equiv u_1 v_1 + u_2 v_2 + u_3 v_3 = |\vec{u}||\vec{v}|\cos\theta}.
+\vec{u} \cdot \vec{v} \equiv u_1 v_1 + u_2 v_2 + u_3 v_3 = \|\vec{u}\| \|\vec{v}\| \cos\theta.
 \]
 \begin{itemize}
     \item \textbf{Detector de perpendicularidad (Ortogonalidad):} Dos vectores no nulos son perpendiculares ($\theta = 90^\circ \iff \cos 90^\circ = 0$) si y solo si su producto punto es cero:
     \[
-    \mathbf{\vec{u} \perp \vec{v} \quad \Longleftrightarrow \quad \vec{u} \cdot \vec{v} = 0}.
+    \vec{u} \perp \vec{v} \quad \Longleftrightarrow \quad \vec{u} \cdot \vec{v} = 0.
     \]
-    \item \textbf{Sombra escalar y Vector Proyección:} La longitud con signo de la sombra de $\vec{u}$ sobre $\vec{v}$ es $u_\parallel = |\vec{u}|\cos\theta = \frac{\vec{u}\cdot\vec{v}}{|\vec{v}|}$. Multiplicando por el vector unitario $\hat{v} = \frac{\vec{v}}{|\vec{v}|}$, obtenemos la descomposición ortogonal completa:
+    \item \textbf{Sombra escalar y Vector Proyección:} La longitud con signo de la sombra de $\vec{u}$ sobre $\vec{v}$ es $u_\parallel = \|\vec{u}\|\cos\theta = \frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|}$. Multiplicando por el vector unitario $\hat{v} = \frac{\vec{v}}{\|\vec{v}\|}$, obtenemos la descomposición ortogonal completa $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$:
     \[
-    \mathbf{\text{proy}_{\vec{v}}(\vec{u}) = \left(\frac{\vec{u}\cdot\vec{v}}{|\vec{v}|^2}\right)\vec{v}}, \qquad
-    \mathbf{\vec{u}_\perp = \vec{u} - \text{proy}_{\vec{v}}(\vec{u})}.
+    \vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u}) = \left(\frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|^2}\right)\vec{v}, \qquad \vec{u}_\perp = \vec{u} - \text{proy}_{\vec{v}}(\vec{u}).
     \]
 \end{itemize}
 \end{theorembox}
 
 \begin{center}
 \begin{tikzpicture}[scale=1.05]
-    \coordinate (O) at (0,0);
-    \coordinate (V) at (5.2, 0);
-    \coordinate (U) at (3.2, 2.3);
-    \coordinate (PROJ) at (3.2, 0);
-    
-    % Light rays from top showing shadow
-    \foreach \x in {0.6, 1.3, 2.0, 2.7} {
-        \draw[-{Stealth[length=1.8mm]}, color=graymuted!60, line width=0.6pt] (\x, 2.7) -- (\x, 2.2);
+    % Rayos de luz verticales (analogía de la sombra)
+    \foreach \x in {0.5, 1.1, 1.7, 2.3, 2.9} {
+        \draw[-{Stealth[length=1.8mm]}, color=graymuted!60, line width=0.6pt] (\x, 2.5) -- (\x, 2.0);
     }
-    \node[font=\scriptsize, color=graymuted] at (1.65, 2.95) {Rayos perpendiculares al riel};
+    \node[font=\scriptsize\itshape, color=graymuted] at (1.7, 2.75) {Rayos perpendiculares al riel};
 
-    % Right angle symbol
-    \draw[color=graymuted, line width=0.8pt] (2.95, 0) -- (2.95, 0.25) -- (3.2, 0.25);
-    
-    % Angle arc
-    \draw[line width=1pt, color=orangeacc] (0.9,0) arc (0:35.7:0.9) node[midway, right=2pt, font=\footnotesize\bfseries] {$\theta$};
-    
-    % Projection line
-    \draw[dashed, line width=1.2pt, color=navyaccent] (PROJ) -- (U) node[midway, right=3pt, font=\footnotesize\bfseries] {$\vec{u}_\perp = \vec{u} - \text{proy}_{\vec{v}}(\vec{u})$};
-    
-    % Vectors
-    \draw[-{Stealth[length=2.8mm]}, line width=1.3pt, color=graymuted] (O) -- (V) node[right, font=\small\bfseries, color=blackmain] {$\vec{v}$ (dirección del riel)};
-    \draw[-{Stealth[length=3mm]}, line width=2.2pt, color=orangeacc] (O) -- (PROJ) node[midway, below=4pt, font=\footnotesize\bfseries] {$\text{proy}_{\vec{v}}(\vec{u}) = \frac{\vec{u}\cdot\vec{v}}{|\vec{v}|^2}\vec{v}$};
-    \draw[-{Stealth[length=3mm]}, line width=1.6pt, color=blackmain] (O) -- (U) node[above left, font=\small\bfseries] {$\vec{u}$};
-    
-    \fill[blackmain] (O) circle (2pt);
+    \coordinate (O) at (0,0);
+    \coordinate (V) at (4.8,0);
+    \coordinate (U) at (3.0, 2.0);
+    \coordinate (Proj) at (3.0, 0);
+
+    % Vector v (riel)
+    \draw[-{Stealth[length=3mm]}, line width=1.3pt, color=graymuted] (O) -- (V) node[right, font=\small\bfseries, color=blackmain] {$\vec{v}$ (dirección del riel)};
+
+    % Sombra proy_v(u)
+    \draw[-{Stealth[length=3mm]}, line width=2.2pt, color=orangeacc] (O) -- (Proj) node[midway, below=4pt, font=\small\bfseries] {$\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u}) = \frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|^2}\vec{v}$};
+
+    % Componente ortogonal u_perp
+    \draw[-{Stealth[length=3mm]}, line width=1.4pt, dashed, color=navyaccent] (Proj) -- (U) node[midway, right=4pt, font=\small\bfseries] {$\vec{u}_\perp = \vec{u} - \text{proy}_{\vec{v}}(\vec{u})$};
+
+    % Vector u
+    \draw[-{Stealth[length=3mm]}, line width=1.6pt, color=blackmain] (O) -- (U) node[midway, above left=2pt, font=\small\bfseries] {$\vec{u}$};
+
+    % Simbolo de angulo recto y angulo theta
+    \draw[color=navyaccent, line width=0.8pt] (2.75,0) -- (2.75,0.25) -- (3.0,0.25);
+    \draw[color=orangeacc, line width=0.9pt] (0.75,0) arc (0:33.7:0.75);
+    \node[color=orangeacc, font=\footnotesize\bfseries] at (0.95, 0.28) {$\theta$};
 \end{tikzpicture}
 \end{center}
+
+\begin{theorembox}{Definición Formal: Espacio Vectorial con Producto Interno (Euclidiano)}
+En un espacio vectorial real arbitrario $V$, un \textbf{producto interno} (o producto escalar) es una operación $\langle \cdot, \cdot \rangle: V \times V \to \R$ que asigna a cada par de vectores $\vec{u}, \vec{v} \in V$ un número real $\langle \vec{u}, \vec{v} \rangle$ satisfaciendo tres axiomas para todos $\vec{u}, \vec{v}, \vec{w} \in V$ y $a, b \in \R$:
+\begin{enumerate}
+    \item \textbf{Simetría:} $\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle$.
+    \item \textbf{Bilinealidad (Linealidad en cada entrada):} $\langle a\vec{u} + b\vec{v}, \vec{w} \rangle = a\langle \vec{u}, \vec{w} \rangle + b\langle \vec{v}, \vec{w} \rangle$.
+    \item \textbf{Positividad definida:} $\langle \vec{u}, \vec{u} \rangle \ge 0$, y $\langle \vec{u}, \vec{u} \rangle = 0 \iff \vec{u} = \vec{0}$.
+\end{enumerate}
+Todo producto interno induce una \textbf{norma (longitud)} $\|\vec{u}\| \equiv \sqrt{\langle \vec{u}, \vec{u} \rangle}$ que cumple la \textbf{Desigualdad de Cauchy-Schwarz} $|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$ y la \textbf{Desigualdad del Triángulo} $\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|$. En la Semana 04 veremos cómo esta estructura se generaliza mediante el \textbf{tensor métrico} $g_{ij}$.
+\end{theorembox}
 
 % =====================================================================
 \manualsection[4. El Producto Cruz y Áreas]{4. El Producto Cruz: Midiendo Áreas y Construyendo Normales}
 
 En problemas de ingeniería y física en 3D surge constantemente una necesidad geométrica clave: \textbf{dados dos vectores no paralelos $\vec{u}$ y $\vec{v}$, ¿cómo construimos un tercer vector $\vec{n}$ que sea simultáneamente perpendicular a ambos?} (Por ejemplo, el eje de giro de una tuerca al aplicar una llave inglesa, o el vector normal a una placa).
 
-\begin{intuitionbox}{Construyendo el Vector Perpendicular $\vec{n} = \vec{u} \times \vec{v}$ desde Cero}
-Buscamos un vector $\vec{n} = \langle n_1, n_2, n_3 \rangle$ que cumpla dos ecuaciones de ortogonalidad:
+\begin{infobox}{Construyendo el Vector Perpendicular $\vec{n} = \vec{u} \times \vec{v}$ desde Cero}
+Buscamos un vector $\vec{n} = \langle n_1, n_2, n_3 \rangle$ que cumpla dos ecuaciones de ortogonalidad simultáneas:
 \[
 \begin{cases}
-\vec{u}\cdot\vec{n} = u_1 n_1 + u_2 n_2 + u_3 n_3 = 0 \\
-\vec{v}\cdot\vec{n} = v_1 n_1 + v_2 n_2 + v_3 n_3 = 0
+\vec{u} \cdot \vec{n} = u_1 n_1 + u_2 n_2 + u_3 n_3 = 0 \\
+\vec{v} \cdot \vec{n} = v_1 n_1 + v_2 n_2 + v_3 n_3 = 0
 \end{cases}
 \]
 Si eliminamos $n_3$ multiplicando la primera ecuación por $v_3$ y restándole la segunda multiplicada por $u_3$, obtenemos:
 \[
-(u_1 v_3 - u_3 v_1)n_1 + (u_2 v_3 - u_3 v_2)n_2 = 0.
+(u_1 v_3 - u_3 v_1) n_1 + (u_2 v_3 - u_3 v_2) n_2 = 0.
 \]
-Esta igualdad se satisface de manera natural y simétrica eligiendo los determinantes $2 \times 2$ cruzados:
+Esta igualdad se satisface de manera natural y cíclica eligiendo los determinantes $2 \times 2$ cruzados:
 \[
 n_1 = u_2 v_3 - u_3 v_2, \qquad n_2 = u_3 v_1 - u_1 v_3, \qquad n_3 = u_1 v_2 - u_2 v_1.
 \]
-\end{intuitionbox}
+\end{infobox}
 
 \begin{theorembox}{Propiedades Geométricas del Producto Cruz $\vec{u} \times \vec{v}$}
 El vector $\vec{u} \times \vec{v} \equiv \langle u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1 \rangle$ cumple:
 \begin{enumerate}
-    \item \textbf{Ortogonalidad conjunta:} Es perpendicular tanto a $\vec{u}$ como a $\vec{v}$ ($\vec{u}\cdot(\vec{u}\times\vec{v}) = 0$).
+    \item \textbf{Ortogonalidad conjunta:} Es perpendicular tanto a $\vec{u}$ como a $\vec{v}$ ($\vec{u}\cdot(\vec{u}\times\vec{v}) = 0$ y $\vec{v}\cdot(\vec{u}\times\vec{v}) = 0$).
     \item \textbf{Magnitud = Área del paralelogramo:} Su longitud mide exactamente el área del paralelogramo generado por $\vec{u}$ y $\vec{v}$:
     \[
-    \mathbf{|\vec{u} \times \vec{v}| = |\vec{u}||\vec{v}|\sin\theta = \text{Área}(\vec{u}, \vec{v})}.
+    \|\vec{u} \times \vec{v}\| = \|\vec{u}\| \|\vec{v}\| \sin\theta = \text{Área}(\vec{u}, \vec{v}).
     \]
-    \item \textbf{Antisimetría:} Al intercambiar el orden de los vectores, el vector resultante invierte su sentido (regla de la mano derecha): $\mathbf{\vec{v} \times \vec{u} = -\vec{u} \times \vec{v}}$, y en particular $\vec{u} \times \vec{u} = \vec{0}$.
+    \item \textbf{Antisimetría y Orientación:} Al intercambiar el orden de los vectores, el vector resultante invierte su sentido (regla de la mano derecha): $\vec{v} \times \vec{u} = -\vec{u} \times \vec{v}$, y en particular $\vec{u} \times \vec{u} = \vec{0}$.
 \end{enumerate}
 \end{theorembox}
 
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
+\begin{tikzpicture}[scale=1.05]
     \coordinate (O) at (0,0);
-    \coordinate (U) at (3.2, -0.3);
-    \coordinate (V) at (1.4, 1.3);
-    \coordinate (SUM) at ($(U)+(V)$);
-    \coordinate (CROSS) at (0, 2.7);
-    
-    % Shaded parallelogram
-    \fill[orangebg] (O) -- (U) -- (SUM) -- (V) -- cycle;
-    \draw[dashed, color=orangeacc] (U) -- (SUM);
-    \draw[dashed, color=orangeacc] (V) -- (SUM);
-    
-    % Height of parallelogram
-    \draw[dotted, line width=1pt, color=navyaccent] (V) -- (1.4, -0.13) node[midway, right=1pt, font=\scriptsize\bfseries] {$h = |\vec{v}|\sin\theta$};
-    
-    % Right angle marks for cross product
-    \draw[color=graymuted] (0, 0.35) -- (0.32, 0.32) -- (0.32, -0.03);
-    \draw[color=graymuted] (0, 0.42) -- (0.25, 0.65) -- (0.25, 0.23);
-    
-    % Vectors
-    \draw[-{Stealth[length=3mm]}, line width=1.6pt, color=blackmain] (O) -- (U) node[below=2pt, font=\small\bfseries] {$\vec{u}$};
-    \draw[-{Stealth[length=3mm]}, line width=1.6pt, color=blackmain] (O) -- (V) node[above left=-1pt, font=\small\bfseries] {$\vec{v}$};
-    \draw[-{Stealth[length=3.2mm]}, line width=2pt, color=orangeacc] (O) -- (CROSS) node[left=2pt, font=\small\bfseries] {$\vec{u} \times \vec{v}$};
-    
-    % Area label inside parallelogram
-    \node[font=\footnotesize\bfseries, color=orangeacc!90!black] at (2.4, 0.5) {$\text{Área} = |\vec{u}\times\vec{v}|$};
-    \fill[blackmain] (O) circle (2pt);
+    \coordinate (U) at (4.2, -0.3);
+    \coordinate (V) at (1.5, 1.35);
+    \coordinate (S) at ($(U)+(V)$);
+    \coordinate (N) at (0, 2.7);
+
+    % Paralelogramo sombreado
+    \fill[orangeacc!12] (O) -- (U) -- (S) -- (V) -- cycle;
+    \draw[dashed, color=orangeacc!80!black] (U) -- (S) (V) -- (S);
+
+    % Altura del paralelogramo (con etiqueta a la derecha de la linea punteada sin chocar con v)
+    \draw[dashed, color=navyaccent, line width=0.9pt] (V) -- (1.42, -0.10);
+    \node[color=navyaccent, font=\scriptsize\bfseries, right=2pt] at (1.45, 0.42) {$h = \|\vec{v}\|\sin\theta$};
+    \draw[color=navyaccent] (1.42, -0.10) ++(0,0.18) -- ++(0.18,-0.02) -- ++(0,-0.18);
+
+    % Etiqueta de Área en la parte derecha despejada del paralelogramo
+    \node[font=\footnotesize\bfseries, color=orangeacc!85!black] at (3.75, 0.72) {$\text{Área} = \|\vec{u} \times \vec{v}\|$};
+
+    % Vectores u, v y u x v
+    \draw[-{Stealth[length=3mm]}, line width=1.5pt, color=blackmain] (O) -- (U) node[midway, below=3pt, font=\small\bfseries] {$\vec{u}$};
+    \draw[-{Stealth[length=3mm]}, line width=1.5pt, color=blackmain] (O) -- (V) node[midway, above left=2pt, font=\small\bfseries] {$\vec{v}$};
+    \draw[-{Stealth[length=3.2mm]}, line width=1.8pt, color=orangeacc] (O) -- (N) node[above, font=\small\bfseries] {$\vec{n} = \vec{u} \times \vec{v}$};
+
+    % Simbolo de perpendicularidad
+    \draw[color=graymuted] (0, 0.3) -- (0.28, 0.27) -- (0.28, -0.02);
+    \draw[color=graymuted] (0, 0.35) -- (0.22, 0.52) -- (0.22, 0.18);
 \end{tikzpicture}
 \end{center}
 
 % =====================================================================
-\manualsection[5. La Ecuación del Plano]{5. La Ecuación del Plano: Dos Visiones Duales y la Semilla de Cartan}
+\manualsection[5. El Plano, Subespacios y Bases]{5. La Ecuación del Plano: Dos Visiones Duales, Subespacios y la Semilla de Cartan}
 
-Llegamos al concepto geométrico más importante de esta primera semana. ¿Cómo describimos matemáticamente una superficie plana (un plano $\Pi$) en el espacio tridimensional $\R^3$? Existen **dos maneras duales** de hacerlo, y entender cómo se conectan es la llave maestra de toda la geometría diferencial:
+Llegamos al concepto geométrico más importante de esta primera semana. ¿Cómo describimos matemáticamente una superficie plana (un plano $\Pi$) en el espacio tridimensional $\R^3$? Existen \textbf{dos maneras duales} de hacerlo, y entender cómo se conectan es la llave maestra tanto del álgebra lineal como de la geometría diferencial:
 
 \manualsubsection{Visión 1 (Por Generación Interna): La Ecuación Paramétrica del Plano}
-Si nos paramos en un punto inicial $P_0$ del plano y elegimos **dos vectores directores no paralelos** $\vec{v}_1$ y $\vec{v}_2$ contenidos dentro del plano, podemos llegar a cualquier rincón del plano combinando pasos en ambas direcciones con dos parámetros independientes $(u, v) \in \R^2$:
+Si nos paramos en un punto inicial $P_0$ del plano y elegimos \textbf{dos vectores directores no colineales} $\vec{v}_1$ y $\vec{v}_2$ contenidos dentro del plano, podemos llegar a cualquier rincón del plano combinando pasos en ambas direcciones con dos parámetros independientes $(u, v) \in \R^2$:
 \[
-\mathbf{\vec{r}(u, v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2}.
+\vec{r}(u, v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2.
 \]
-*(Esta visión constructiva «desde adentro» con dos coordenadas locales $(u,v)$ es cómo describiremos las superficies curvas y variedades en el Módulo 3).*
+\textit{(Esta visión constructiva «desde adentro» con dos coordenadas locales $(u, v)$ es exactamente cómo describiremos las superficies curvas y variedades diferenciables en el Módulo 3).}
+
+\manualsubsection{Formalización: Subespacios Vectoriales, Independencia Lineal, Base y Dimensión}
+¿Qué significa rigurosamente que $\vec{v}_1$ y $\vec{v}_2$ «no sean colineales» y qué diferencia a un plano que pasa por el origen ($\vec{p}_0 = \vec{0}$) de uno que no pasa por el origen?
+
+\begin{theorembox}{Subespacio Vectorial, Independencia Lineal, Base y Dimensión}
+Sea $V$ un espacio vectorial real:
+\begin{enumerate}
+    \item \textbf{Subespacio Vectorial:} Un subconjunto no vacío $W \subset V$ es un \emph{subespacio vectorial} si contiene al vector cero ($\vec{0} \in W$) y es cerrado bajo combinaciones lineales: para cualesquiera $\vec{w}_1, \vec{w}_2 \in W$ y $a, b \in \R$, se cumple $a\vec{w}_1 + b\vec{w}_2 \in W$.
+    \begin{itemize}
+        \item En $\R^3$, las rectas $\{t\vec{v} \mid t \in \R\}$ y los planos $\{u\vec{v}_1 + v\vec{v}_2 \mid u,v \in \R\}$ \textbf{que pasan por el origen $\vec{0}$} son subespacios vectoriales. Si los trasladamos sumando $\vec{p}_0 \neq \vec{0}$, obtenemos \textbf{subespacios afines} $\Pi = \vec{p}_0 + W$.
+    \end{itemize}
+    \item \textbf{Combinación Lineal y Espacio Generado ($\text{span}$):} Dados vectores $\vec{v}_1, \dots, \vec{v}_k \in V$, el conjunto de todas sus combinaciones lineales $\text{span}\{\vec{v}_1, \dots, \vec{v}_k\} \equiv \{c_1\vec{v}_1 + \dots + c_k\vec{v}_k \mid c_i \in \R\}$ es el subespacio vectorial que generan.
+    \item \textbf{Independencia Lineal:} Los vectores $\{\vec{v}_1, \dots, \vec{v}_k\}$ son \emph{linealmente independientes} si la única forma de combinarlos para obtener el vector cero es que todos los coeficientes sean cero:
+    \[
+    c_1\vec{v}_1 + c_2\vec{v}_2 + \dots + c_k\vec{v}_k = \vec{0} \quad \Longrightarrow \quad c_1 = c_2 = \dots = c_k = 0.
+    \]
+    \item \textbf{Base y Dimensión:} Una \emph{base} de un espacio (o subespacio) $W$ es un conjunto de vectores linealmente independientes que generan todo $W$. El número de vectores en cualquier base es la \textbf{dimensión} ($\dim W$): una recta tiene $\dim = 1$, un plano tiene $\dim = 2$, y $\R^3$ tiene $\dim = 3$ con la \textbf{base canónica ortonormal}:
+    \[
+    \hat{e}_1 = \langle 1, 0, 0 \rangle, \qquad \hat{e}_2 = \langle 0, 1, 0 \rangle, \qquad \hat{e}_3 = \langle 0, 0, 1 \rangle.
+    \]
+\end{enumerate}
+\end{theorembox}
 
 \manualsubsection{Visión 2 (Por Restricción Externa): La Ecuación Normal del Plano}
-En el espacio 3D hay tres dimensiones de libertad. Un plano tiene dimensión 2, lo que significa que solo nos prohíbe movernos en **una única dirección perpendicular**: la dirección del \term{vector normal} $\vec{n} = \langle n_1, n_2, n_3 \rangle$ (el cual podemos obtener directamente de los vectores internos haciendo $\vec{n} = \vec{v}_1 \times \vec{v}_2$).
+En el espacio $\R^3$ tenemos $3$ dimensiones de libertad. Un plano tiene dimensión $2$, lo que significa que solo nos prohíbe movernos en \textbf{una única dirección perpendicular} ($3 - 2 = 1$ restricción): la dirección del \term{vector normal} $\vec{n} = \langle n_1, n_2, n_3 \rangle$ (el cual podemos obtener directamente de la base interna del plano haciendo $\vec{n} = \vec{v}_1 \times \vec{v}_2$).
 
 Un punto arbitrario $P = (x, y, z)$ pertenece al plano si y solo si el vector desplazamiento desde el punto base $P_0 = (x_0, y_0, z_0)$ hasta $P$, es decir $\vec{r} - \vec{p}_0$, es perpendicular a la normal $\vec{n}$:
 
 \begin{theorembox}{Ecuación Normal y Cartesiana del Plano}
 La condición geométrica de perpendicularidad $\vec{n} \perp (\vec{r} - \vec{p}_0)$ se escribe mediante el producto punto:
 \[
-\mathbf{\vec{n} \cdot (\vec{r} - \vec{p}_0) = 0} \quad \Longleftrightarrow \quad
-\mathbf{n_1(x - x_0) + n_2(y - y_0) + n_3(z - z_0) = 0}.
+\vec{n} \cdot (\vec{r} - \vec{p}_0) = 0 \quad \Longleftrightarrow \quad n_1(x - x_0) + n_2(y - y_0) + n_3(z - z_0) = 0.
 \]
 Agrupando la constante $c \equiv \vec{n}\cdot\vec{p}_0 = n_1 x_0 + n_2 y_0 + n_3 z_0$, obtenemos la ecuación general del plano:
 \[
-\mathbf{n_1 x + n_2 y + n_3 z = c}.
+n_1 x + n_2 y + n_3 z = c.
 \]
-\textbf{Lectura inmediata:} Los coeficientes $(n_1, n_2, n_3)$ que multiplican a $(x, y, z)$ en la ecuación lineal de un plano son siempre las componentes de su vector normal $\vec{n}$.
+\textbf{Lectura inmediata:} Los coeficientes $(n_1, n_2, n_3)$ que multiplican a $(x, y, z)$ en la ecuación lineal de un plano son siempre las componentes de su vector normal $\vec{n}$. (Nota: el plano pasa por el origen y es un subespacio vectorial si y solo si $c = 0$).
 \end{theorembox}
 
 \begin{center}
 \begin{tikzpicture}[scale=0.95]
-    % Left: Parametric vs Normal plane
-    \begin{scope}[xshift=-4.2cm]
-        % Tilted plane
-        \fill[creambg, draw=blackmain, line width=1pt] (0,0) -- (3.6,-0.3) -- (4.8,1.5) -- (1.2,1.8) -- cycle;
-        % Internal grid lines for (u,v)
-        \draw[color=graymuted!50, thin] (1.2,-0.1) -- (2.4,1.7);
-        \draw[color=graymuted!50, thin] (2.4,-0.2) -- (3.6,1.6);
-        \draw[color=graymuted!50, thin] (0.4,0.6) -- (4.0,0.3);
-        \draw[color=graymuted!50, thin] (0.8,1.2) -- (4.4,0.9);
-        
-        \coordinate (P0) at (1.5, 0.5);
-        \coordinate (P) at (3.5, 1.0);
-        \coordinate (N) at (1.5, 2.6);
-        
-        % Right angle mark
-        \draw[color=graymuted, line width=0.8pt] (1.5, 0.8) -- (1.8, 0.87) -- (1.8, 0.57);
-        
-        % Vectors inside plane and normal
-        \draw[-{Stealth[length=2.5mm]}, line width=1.3pt, color=navyaccent] (P0) -- (2.9, 0.38) node[below, font=\scriptsize\bfseries] {$\vec{v}_1$};
-        \draw[-{Stealth[length=2.5mm]}, line width=1.3pt, color=navyaccent] (P0) -- (2.1, 1.4) node[left, font=\scriptsize\bfseries] {$\vec{v}_2$};
-        \draw[-{Stealth[length=2.8mm]}, line width=1.5pt, color=blackmain] (P0) -- (P) node[midway, above=-1pt, font=\scriptsize\bfseries] {$\vec{r}-\vec{p}_0$};
-        \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=orangeacc] (P0) -- (N) node[above, font=\footnotesize\bfseries] {$\vec{n} = \vec{v}_1\times\vec{v}_2$};
-        
-        \fill[blackmain] (P0) circle (2pt) node[below left, font=\scriptsize\bfseries] {$P_0$};
-        \fill[blackmain] (P) circle (2pt) node[right, font=\scriptsize\bfseries] {$P(x,y,z)$};
-        \node[font=\footnotesize\bfseries, color=navyaccent] at (2.4, -0.8) {(a) Plano: $\vec{n}\cdot(\vec{r}-\vec{p}_0)=0$};
+    % Panel Izquierdo: Un plano individual con su normal y vectores internos
+    \begin{scope}[xshift=-4.6cm]
+        \coordinate (A) at (0,0);
+        \coordinate (B) at (4.1,-0.2);
+        \coordinate (C) at (5.3,1.5);
+        \coordinate (D) at (1.2,1.7);
+        \fill[creambg, draw=blackmain, line width=0.9pt] (A) -- (B) -- (C) -- (D) -- cycle;
+
+        \coordinate (P0) at (1.2, 0.55);
+        \coordinate (P) at (3.1, 0.95);
+        \coordinate (N) at (1.2, 2.55);
+
+        % Vectores directores v1 y v2
+        \draw[-{Stealth[length=2.4mm]}, line width=1.1pt, color=graymuted] (P0) -- (2.6, 0.45) node[below=1pt, font=\scriptsize\bfseries] {$\vec{v}_1$};
+        \draw[-{Stealth[length=2.4mm]}, line width=1.1pt, color=graymuted] (P0) -- (1.75, 1.35) node[left=1pt, font=\scriptsize\bfseries] {$\vec{v}_2$};
+
+        % Vector r - p0 en el plano
+        \draw[-{Stealth[length=2.8mm]}, line width=1.4pt, color=navyaccent] (P0) -- (P) node[midway, above=2pt, font=\scriptsize\bfseries] {$\vec{r} - \vec{p}_0$};
+
+        % Vector normal n
+        \draw[-{Stealth[length=3mm]}, line width=1.7pt, color=orangeacc] (P0) -- (N) node[above, font=\footnotesize\bfseries] {$\vec{n} = \vec{v}_1 \times \vec{v}_2$};
+
+        % Angulo recto
+        \draw[color=orangeacc] (1.2, 0.82) -- (1.45, 0.88) -- (1.45, 0.61);
+
+        \fill[blackmain] (P0) circle (2pt) node[below left=1pt, font=\scriptsize\bfseries] {$P_0$};
+        \fill[blackmain] (P) circle (2pt) node[right=2pt, font=\scriptsize\bfseries] {$P(x,y,z)$};
+        \node[font=\footnotesize\bfseries] at (2.6, -0.75) {(a) Plano: $\vec{n}\cdot(\vec{r}-\vec{p}_0) = 0$};
     \end{scope}
 
-    % Right: Stack of parallel planes (1-form seed!)
+    % Panel Derecho: Familia de planos paralelos (Semilla de 1-forma)
     \begin{scope}[xshift=2.2cm]
-        \foreach \y/\lbl in {-0.2/{c=1}, 0.6/{c=2}, 1.4/{c=3}} {
-            \fill[orangebg, fill opacity=0.75, draw=orangeacc, line width=0.9pt] (0,\y) -- (3.0,\y-0.25) -- (4.0,\y+0.85) -- (1.0,\y+1.1) -- cycle;
-            \node[font=\scriptsize\bfseries, color=orangeacc!90!black] at (3.6, \y+0.15) {$\lbl$};
+        \foreach \y/\lbl in {0/1, 0.85/2, 1.7/3} {
+            \fill[orangeacc!10, fill opacity=0.75, draw=orangeacc!80!black, line width=0.7pt]
+                (0,\y) -- (2.9,\y-0.15) -- (3.8,\y+0.75) -- (0.9,\y+0.9) -- cycle;
+            \node[right=2pt, font=\scriptsize\bfseries, color=orangeacc!90!black] at (3.8, \y+0.6) {$c = \lbl$};
         }
-        % Line piercing the stack of planes
-        \draw[line width=1.5pt, color=navyaccent] (1.2, -0.5) -- (1.6, 0.2);
-        \fill[navyaccent] (1.6, 0.2) circle (1.8pt);
-        \draw[line width=1.5pt, color=navyaccent] (1.6, 0.2) -- (2.05, 1.0);
-        \fill[navyaccent] (2.05, 1.0) circle (1.8pt);
-        \draw[line width=1.5pt, color=navyaccent] (2.05, 1.0) -- (2.5, 1.8);
-        \fill[navyaccent] (2.5, 1.8) circle (1.8pt);
-        \draw[-{Stealth[length=3mm]}, line width=1.7pt, color=navyaccent] (2.5, 1.8) -- (2.95, 2.6) node[above right, font=\footnotesize\bfseries] {$\vec{v}$};
-        
-        \node[font=\footnotesize\bfseries, color=navyaccent, align=center] at (2.0, -0.8) {(b) Familia $n_1 x + n_2 y + n_3 z = c$\\{\scriptsize (Semilla visual de una 1-forma)}};
+        % Vector v perforando las hojas
+        \draw[-{Stealth[length=3.2mm]}, line width=1.8pt, color=navyaccent] (1.3, -0.2) -- (2.6, 2.75) node[above, font=\small\bfseries] {$\vec{v}$};
+        \fill[navyaccent] (1.58, 0.43) circle (1.8pt);
+        \fill[navyaccent] (1.96, 1.29) circle (1.8pt);
+        \fill[navyaccent] (2.33, 2.14) circle (1.8pt);
+        \node[font=\footnotesize\bfseries, align=center] at (2.0, -0.75) {(b) Familia $n_1 x + n_2 y + n_3 z = c$\\[-2pt]{\scriptsize (Semilla visual de una 1-forma)}};
     \end{scope}
 \end{tikzpicture}
 \end{center}
 
 \begin{intuitionbox}{El Gran Puente hacia las Formas de Cartan (Figura b)}
-¿Qué ocurre si mantenemos fijo el vector normal $\vec{n} = \langle n_1, n_2, n_3 \rangle$ pero hacemos variar el número $c = 1, 2, 3, \dots$ en la ecuación $n_1 x + n_2 y + n_3 z = c$?\\
-Obtenemos una **familia de planos paralelos equiespaciados** que llenan el espacio como las hojas de un libro o las capas de una cebolla. Si ahora lanzamos un vector desplazamiento $\vec{v} = \langle v_1, v_2, v_3 \rangle$, el producto punto:
+¿Qué ocurre si mantenemos fijo el vector normal $\vec{n} = \langle n_1, n_2, n_3 \rangle$ pero hacemos variar el número $c = 1, 2, 3, \dots$ en la ecuación $n_1 x + n_2 y + n_3 z = c$?
+Obtenemos una \textbf{familia de planos paralelos equiespaciados} que llenan el espacio como las hojas de un libro o las capas de una cebolla. Si ahora lanzamos un vector desplazamiento $\vec{v} = \langle v_1, v_2, v_3 \rangle$, el producto punto:
 \[
-\vec{n}\cdot\vec{v} = n_1 v_1 + n_2 v_2 + n_3 v_3 = \Delta c
+\vec{n} \cdot \vec{v} = n_1 v_1 + n_2 v_2 + n_3 v_3 = \Delta c
 \]
-mide exactamente **cuántos planos de la familia fueron perforados por la flecha $\vec{v}$**. En el Módulo 1 descubrirás que esta familia de planos paralelos es la definición geométrica exacta de una **1-forma diferencial de Cartan**.
+mide exactamente \textbf{cuántos planos de la familia fueron perforados por la flecha $\vec{v}$}. En el Módulo 1 (Semana 06) descubrirás que esta familia de planos paralelos es la definición geométrica exacta de una \textbf{1-forma diferencial de Cartan} (un elemento del espacio dual $V^*$).
 \end{intuitionbox}
 
 % =====================================================================
 \manualsection[6. Intersección de Planos y Distancias]{6. Aplicaciones Geométricas: Distancias e Intersección de Planos}
 
 \manualsubsection{1. Distancia Mínima de un Punto a un Plano}
-Supongamos que tenemos un plano $\Pi$ con ecuación $\vec{n}\cdot(\vec{r} - \vec{p}_0) = 0$ (es decir, $n_1 x + n_2 y + n_3 z = c$) y un sensor ubicado en un punto externo $Q = (x_Q, y_Q, z_Q)$ fuera del plano. ¿Cuál es la distancia más corta $d$ desde $Q$ hasta el plano?
-
-No necesitamos cálculo diferencial ni minimizar funciones de dos variables: basta trazar cualquier vector desde un punto $P_0$ del plano hasta $Q$, es decir $\overrightarrow{P_0 Q} = \vec{q} - \vec{p}_0$, y **proyectar su sombra a lo largo de la dirección perpendicular $\vec{n}$** (usando la fórmula de la Sección 3):
+Supongamos que tenemos un plano $\Pi$ con ecuación $\vec{n}\cdot(\vec{r}-\vec{p}_0) = 0$ (es decir, $n_1 x + n_2 y + n_3 z = c$) y un sensor ubicado en un punto externo $Q = (x_Q, y_Q, z_Q)$ fuera del plano. ¿Cuál es la distancia más corta $d$ desde $Q$ hasta el plano?
+No necesitamos cálculo diferencial ni minimizar funciones de dos variables: basta trazar cualquier vector desde un punto $P_0$ del plano hasta $Q$, es decir $\overrightarrow{P_0 Q} = \vec{q} - \vec{p}_0$, y \textbf{proyectar su sombra a lo largo de la dirección perpendicular $\vec{n}$} (usando la fórmula de la Sección 3):
 \[
-\mathbf{d = \big|\text{proy}_{\vec{n}}(\vec{q} - \vec{p}_0)\big| = \frac{|\vec{n}\cdot(\vec{q} - \vec{p}_0)|}{|\vec{n}|} = \frac{|n_1 x_Q + n_2 y_Q + n_3 z_Q - c|}{\sqrt{n_1^2 + n_2^2 + n_3^2}}}.
+d = \left\|\text{proy}_{\vec{n}}(\vec{q} - \vec{p}_0)\right\| = \frac{|\vec{n}\cdot(\vec{q} - \vec{p}_0)|}{\|\vec{n}\|} = \frac{|n_1 x_Q + n_2 y_Q + n_3 z_Q - c|}{\sqrt{n_1^2 + n_2^2 + n_3^2}}.
 \]
 
 \manualsubsection{2. La Intersección de Dos Planos es una Recta}
-Dos paredes planas no paralelas $\Pi_1$ (con normal $\vec{n}_1$) y $\Pi_2$ (con normal $\vec{n}_2$) se cortan formando una esquina recta $L$:
+Dos paredes planas no paralelas $\Pi_1$ (con normal $\vec{n}_1$) y $\Pi_2$ (con normal $\vec{n}_2$) se cortan formando una esquina recta $\mathcal{L} = \Pi_1 \cap \Pi_2$:
 \[
 \begin{cases}
 \Pi_1: & n_{1x} x + n_{1y} y + n_{1z} z = c_1 \\
@@ -391,33 +441,31 @@ Dos paredes planas no paralelas $\Pi_1$ (con normal $\vec{n}_1$) y $\Pi_2$ (con 
 \]
 ¿Cómo encontramos el vector director $\vec{v}$ de la recta de intersección sin hacer álgebra larga?
 \begin{itemize}
-    \item Como la recta $L$ está contenida en el plano $\Pi_1$, su dirección $\vec{v}$ debe ser perpendicular a $\vec{n}_1$ ($\vec{v} \perp \vec{n}_1$).
-    \item Como la recta $L$ también está contenida en $\Pi_2$, su dirección $\vec{v}$ debe ser perpendicular a $\vec{n}_2$ ($\vec{v} \perp \vec{n}_2$).
-    \item Por lo que construimos en la Sección 4, el vector que es simultáneamente perpendicular a $\vec{n}_1$ y a $\vec{n}_2$ es su **producto cruz**:
+    \item Como la recta $\mathcal{L}$ está contenida en el plano $\Pi_1$, su dirección $\vec{v}$ debe ser perpendicular a $\vec{n}_1$ ($\vec{v} \perp \vec{n}_1$).
+    \item Como la recta $\mathcal{L}$ también está contenida en $\Pi_2$, su dirección $\vec{v}$ debe ser perpendicular a $\vec{n}_2$ ($\vec{v} \perp \vec{n}_2$).
+    \item Por lo que construimos en la Sección 4, el vector que es simultáneamente perpendicular a $\vec{n}_1$ y a $\vec{n}_2$ es su \textbf{producto cruz}:
     \[
-    \mathbf{\vec{v} = \vec{n}_1 \times \vec{n}_2}.
+    \vec{v} = \vec{n}_1 \times \vec{n}_2.
     \]
 \end{itemize}
 
 \begin{center}
-\begin{tikzpicture}[scale=1.0]
-    % Plane 1 (horizontal-ish)
-    \fill[creambg, draw=blackmain, line width=0.9pt] (-2.5,0) -- (1.8,-0.6) -- (3.2,0.8) -- (-1.1,1.4) -- cycle;
-    \node[font=\footnotesize\bfseries] at (-1.8, 0.25) {$\Pi_1$};
-    
-    % Plane 2 (tilted intersecting along a line)
-    \fill[orangebg, fill opacity=0.85, draw=orangeacc!90!black, line width=0.9pt] (-0.4,-0.3) -- (1.0,1.1) -- (0.6,2.9) -- (-0.8,1.5) -- cycle;
-    \node[font=\footnotesize\bfseries, color=orangeacc!90!black] at (0.4, 2.5) {$\Pi_2$};
-    
-    % Intersection line L and direction vector v = n1 x n2
-    \draw[line width=1.4pt, dashed, color=navyaccent] (-0.7,-0.6) -- (1.3,1.4);
-    \draw[-{Stealth[length=3mm]}, line width=2pt, color=navyaccent] (-0.2, -0.1) -- (0.8, 0.9) node[right=3pt, font=\footnotesize\bfseries] {$\vec{v} = \vec{n}_1 \times \vec{n}_2$};
-    
-    % Normal vectors n1 and n2
-    \coordinate (C) at (0.1, 0.2);
-    \draw[-{Stealth[length=2.8mm]}, line width=1.5pt, color=blackmain] (C) -- (0.1, 1.7) node[above left=-2pt, font=\footnotesize\bfseries] {$\vec{n}_1$};
-    \draw[-{Stealth[length=2.8mm]}, line width=1.5pt, color=orangeacc] (C) -- (1.5, -0.1) node[below right=-1pt, font=\footnotesize\bfseries] {$\vec{n}_2$};
-    \fill[blackmain] (C) circle (2pt);
+\begin{tikzpicture}[scale=0.95]
+    % Plano 1 (casi horizontal)
+    \fill[creambg, draw=blackmain, line width=0.8pt] (0,0) -- (4.2,-0.4) -- (5.6,1.2) -- (1.4,1.6) -- cycle;
+    \node[font=\footnotesize\bfseries] at (0.65, 0.25) {$\Pi_1$};
+
+    % Plano 2 (inclinado cortando a Plano 1)
+    \fill[orangeacc!12, fill opacity=0.82, draw=orangeacc!90!black, line width=0.9pt] (1.8,-0.2) -- (3.2,1.4) -- (3.2,3.4) -- (1.8,1.8) -- cycle;
+    \node[font=\footnotesize\bfseries, color=orangeacc!90!black, left=3pt] at (1.8, 2.3) {$\Pi_2$};
+
+    % Recta de interseccion L y vector director v = n1 x n2
+    \draw[dashed, line width=1.2pt, color=navyaccent] (1.45,-0.6) -- (3.65,1.9);
+    \draw[-{Stealth[length=3mm]}, line width=2.0pt, color=navyaccent] (2.15, 0.2) -- (3.35, 1.57) node[above right=2pt, font=\small\bfseries] {$\vec{v} = \vec{n}_1 \times \vec{n}_2$};
+
+    % Normales n1 y n2 (en espacio limpio)
+    \draw[-{Stealth[length=2.6mm]}, line width=1.3pt, color=blackmain] (2.3, 0.37) -- (1.1, 1.9) node[above left=-1pt, font=\footnotesize\bfseries] {$\vec{n}_1$};
+    \draw[-{Stealth[length=2.6mm]}, line width=1.3pt, color=orangeacc] (2.3, 0.37) -- (3.8, 0.15) node[above right=-1pt, font=\footnotesize\bfseries] {$\vec{n}_2$};
 \end{tikzpicture}
 \end{center}
 

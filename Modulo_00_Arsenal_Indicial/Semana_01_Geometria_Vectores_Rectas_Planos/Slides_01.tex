@@ -3,9 +3,9 @@
 \usepackage{../../Common/course_macros}
 \usepackage[spanish,provide=*]{babel}
 
-\title[Semana 1: Geometría de Vectores, Rectas y Planos]{Geometría del Espacio Euclidiano: Vectores, Rectas y Planos}
-\subtitle{De la suma de desplazamientos y proyecciones a la geometría dual del plano — Modalidad Taller}
-\author{Geometría y Física I}
+\title[Semana 1: Geometría, Espacios Vectoriales, Rectas y Planos]{Geometría del Espacio Euclidiano: Vectores, Rectas y Planos}
+\subtitle{Bienvenida al Curso y Semana 01: De la intuición de flechas a la estructura de Espacio Vectorial}
+\author{Geometría y Física I: Mecánica Clásica y Formas de Cartan}
 \institute{Licenciatura en Física e Ingeniería}
 \date{}
 
@@ -19,9 +19,91 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
+\begin{frame}{¡Bienvenidos a Geometría y Física I!}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{block}{Nuestra Filosofía: «La Necesidad Crea la Herramienta»}
+        \footnotesize
+        En este curso para \textbf{Física e Ingeniería} ninguna definición matemática caerá del cielo para memorizarse:
+        \begin{enumerate}
+          \item Partiremos siempre de un \textbf{problema físico o de ingeniería real} donde el cálculo ingenuo entra en crisis.
+          \item Construiremos primero la \textbf{intuición visual y geométrica}.
+          \item Destilaremos a partir de ella la \textbf{definición formal y axiomática} (espacios vectoriales, tensores, formas de Cartan, variedades).
+        \end{enumerate}
+      \end{block}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{exampleblock}{¿Cómo trabajaremos en cada sesión?}
+        \footnotesize
+        \begin{itemize}
+          \item \textbf{Modalidad Taller:} Alternaremos \textbf{Actividades en equipo} (retos cortos de 8--10 min) con \textbf{Discusiones grupales} y formalización.
+          \item \textbf{Tríptico Semanal:}
+          \begin{itemize}
+            \scriptsize
+            \item \texttt{Lectura\_XX.pdf}: Notas detalladas con figuras y teoremas.
+            \item \texttt{Slides\_XX.pdf}: Taller interactivo en clase.
+            \item \texttt{Tarea\_XX.pdf}: Construcción visual, algebraica y aplicada.
+          \end{itemize}
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Mapa de Ruta del Semestre (16 Semanas)}
+  \centering
+  \begin{tikzpicture}[scale=0.88, every node/.style={transform shape}]
+    \tikzstyle{modbox} = [rectangle, rounded corners=4pt, draw=navyaccent, fill=creambg, line width=1pt, text width=2.45cm, minimum height=2.2cm, align=center, font=\scriptsize]
+    \tikzstyle{modtitle} = [font=\scriptsize\bfseries, color=orangeacc]
+
+    \node[modbox] (M0) at (0,0) {
+      {\color{orangeacc}\textbf{MÓDULO 0}}\\[2pt]
+      \textbf{(Sem 01--04)}\\[3pt]
+      Vectores, Rectas, Planos, Índices $\delta_{ij}, \epsilon_{ijk}$, Rotaciones $SO(3)$ y Métrica $g_{ij}$
+    };
+
+    \node[modbox] (M1) at (3.25,0) {
+      {\color{orangeacc}\textbf{MÓDULO 1}}\\[2pt]
+      \textbf{(Sem 05--07)}\\[3pt]
+      Geometría Visual en $\R^n$: Espacio Tangente $T_p\R^n$, 1-Formas y Producto Cuña $\wedge$
+    };
+
+    \node[modbox] (M2) at (6.5,0) {
+      {\color{orangeacc}\textbf{MÓDULO 2}}\\[2pt]
+      \textbf{(Sem 08--10)}\\[3pt]
+      Cálculo de Cartan ($d$, $d^2=0$, $\iota_X$), Agujeros Topológicos y Marcos Móviles
+    };
+
+    \node[modbox] (M3) at (9.75,0) {
+      {\color{orangeacc}\textbf{MÓDULO 3}}\\[2pt]
+      \textbf{(Sem 11--13)}\\[3pt]
+      Estrella de Hodge $\star$, Teorema de Stokes en Celdas y Fibrado Tangente $TQ$
+    };
+
+    \node[modbox, fill=orangebg, draw=orangeacc] (M4) at (13.0,0) {
+      {\color{navyaccent}\textbf{MÓDULO 4}}\\[2pt]
+      \textbf{(Sem 14--16)}\\[3pt]
+      Mecánica Simpléctica en $T^*Q$, Forma $\omega$, Hamilton, Liouville y Toros de Arnold
+    };
+
+    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M0) -- (M1);
+    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M1) -- (M2);
+    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M2) -- (M3);
+    \draw[-{Stealth[length=2.5mm]}, line width=1.4pt, color=orangeacc] (M3) -- (M4);
+  \end{tikzpicture}
+
+  \vspace{0.3cm}
+  \begin{alertblock}{Meta de la Semana 01}
+    \footnotesize
+    Construir desde cero la geometría de \textbf{puntos vs. vectores}, formalizar la definición de \textbf{Espacio Vectorial y Subespacio}, deducir el \textbf{producto punto y cruz}, y descubrir la \textbf{dualidad del plano} (semilla de las variedades y las 1-formas).
+  \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
 \begin{frame}{Actividad 1: Puntos vs. Flechas y el Riel de un Dron}
   \begin{block}{Reto en clase (8 minutos)}
-    \small
+    \footnotesize
     Un dron de inspección despega desde la plataforma $P_0 = (1, 2, 1)\,\text{m}$ y después de $1\,\text{s}$ pasa por $P_1 = (3, 5, 3)\,\text{m}$ volando en línea recta a velocidad constante.
     \begin{enumerate}
       \item[(a)] \textbf{La trampa de sumar ubicaciones:} ¿Tiene sentido físico «sumar el lugar $P_0$ con el lugar $P_1$»? ¿Qué le pasa a $P_0 + P_1$ si un ingeniero civil mueve el origen $(0,0,0)$ a la esquina opuesta del edificio?
@@ -30,63 +112,94 @@
     \end{enumerate}
   \end{block}
   \begin{alertblock}{Pregunta Guía}
-    \small
-    ¿Cuántos parámetros libres (\emph{grados de libertad}) necesitas controlar para moverte a lo largo de una recta en $\R^3$?
+    \footnotesize
+    ¿Qué propiedades algebraicas cumplen los desplazamientos y fuerzas ($\vec{u}+\vec{v}$, $c\vec{u}$) que los puntos fijos NO cumplen?
   \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 1: Ley del Paralelogramo y la Recta Paramétrica}
+\begin{frame}{Discusión 1A: Ley del Paralelogramo y Definición de Espacio Vectorial}
   \begin{columns}[c]
-    \begin{column}{0.52\textwidth}
-      \small
+    \begin{column}{0.54\textwidth}
+      \footnotesize
       \begin{itemize}
-        \item \textbf{Punto vs. Vector:} Un punto $P$ es una ubicación; la diferencia $\vec{v} = P_1 - P_0$ es un \textbf{desplazamiento} invariante ante traslaciones del origen.
-        \item \textbf{Las dos diagonales del paralelogramo:}
-        \begin{itemize}
-          \footnotesize
-          \item $\vec{u} + \vec{v}$: diagonal principal (encadenar desplazamientos).
-          \item $\vec{u} - \vec{v}$: segunda diagonal (va de la punta de $\vec{v}$ a la punta de $\vec{u}$ porque $\vec{v} + (\vec{u}-\vec{v}) = \vec{u}$).
-        \end{itemize}
-        \item \textbf{Ecuación Vectorial de la Recta ($1$ parámetro $t$):}
-        \[
-        \boxed{\vec{r}(t) = \vec{p}_0 + t\vec{v}, \qquad t \in \R}
-        \]
-        \item \textbf{Semilla Geométrica (Semana 05):} La velocidad $\dot{\vec{r}}(t) = \vec{v}$ es el \textbf{vector tangente} a la trayectoria.
+        \item \textbf{Espacio Afín (Puntos) vs. Vectores:} Un punto $P$ es una ubicación; la diferencia $\vec{v} = P_1 - P_0$ es un \textbf{vector} invariante ante traslaciones del origen.
+        \item \textbf{Definición Formal de Espacio Vectorial Real $(V, +, \cdot)$:} Conjunto no vacío cerrado bajo suma $\vec{u}+\vec{v}$ y producto por escalar $a\vec{u}$ ($a \in \R$) que satisface \textbf{8 axiomas}:
+        \begin{enumerate}
+          \scriptsize
+          \item Conmutatividad: $\vec{u} + \vec{v} = \vec{v} + \vec{u}$.
+          \item Asociatividad: $(\vec{u}+\vec{v})+\vec{w} = \vec{u}+(\vec{v}+\vec{w})$.
+          \item Neutro aditivo único $\vec{0}$: $\vec{v} + \vec{0} = \vec{v}$.
+          \item Inverso aditivo $-\vec{v}$: $\vec{v} + (-\vec{v}) = \vec{0}$.
+          \item Asociatividad escalar: $a(b\vec{v}) = (ab)\vec{v}$ y neutro $1\vec{v} = \vec{v}$.
+          \item Distributividades: $a(\vec{u}+\vec{v}) = a\vec{u}+a\vec{v}$ y $(a+b)\vec{v} = a\vec{v}+b\vec{v}$.
+        \end{enumerate}
       \end{itemize}
     \end{column}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.43\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.68]
-        \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (6.0,0) node[right, font=\scriptsize] {$x$};
-        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,4.5) node[above, font=\scriptsize] {$y$};
-
-        \draw[dashed, color=navyaccent!50, line width=1pt] (0.1, 0.4) -- (5.9, 4.27);
-        \draw[color=navyaccent, line width=1.6pt] (0.7, 0.8) -- (5.5, 4.0) node[above left, font=\scriptsize\bfseries] {$\vec{r}(t) = \vec{p}_0 + t\vec{v}$};
-
-        \draw[-{Stealth}, thick, color=blackmain] (0,0) -- (1.6, 1.4) node[midway, below right=-2pt, font=\scriptsize] {$\vec{p}_0$};
-        \draw[-{Stealth}, thick, color=navyaccent] (0,0) -- (4.6, 3.4) node[midway, below right=-1pt, font=\scriptsize] {$\vec{r}(t)$};
-
-        \draw[-{Stealth}, line width=1.5pt, color=orangeacc] (1.6, 1.4) -- (3.1, 2.4) node[midway, above left=-2pt, font=\scriptsize\bfseries] {$\vec{v}$};
-        \draw[-{Stealth}, dashed, color=orangeacc, thick] (3.1, 2.4) -- (4.6, 3.4) node[midway, above left=-2pt, font=\scriptsize] {$t\vec{v}$};
-
-        \fill[blackmain] (1.6, 1.4) circle (2.2pt) node[above left=-1pt, font=\scriptsize] {$P_0$};
-        \fill[orangeacc] (3.1, 2.4) circle (2pt) node[below right=-2pt, font=\scriptsize] {$t=1$};
-        \fill[navyaccent] (4.6, 3.4) circle (2.2pt) node[above left=-1pt, font=\scriptsize] {$P(t)$};
-      \end{tikzpicture}
-
-      \vspace{0.1cm}
-      \begin{tikzpicture}[scale=0.62]
+      \begin{tikzpicture}[scale=0.82]
         \coordinate (O) at (0,0);
-        \coordinate (U) at (2.8, 0.5);
-        \coordinate (V) at (1.0, 2.0);
+        \coordinate (U) at (3.4, 0.3);
+        \coordinate (V) at (1.1, 2.3);
         \coordinate (S) at ($(U)+(V)$);
         \fill[orangeacc!8] (O) -- (U) -- (S) -- (V) -- cycle;
         \draw[dashed, color=graymuted] (U) -- (S) (V) -- (S);
-        \draw[-{Stealth}, line width=1.2pt, color=navyaccent] (O) -- (U) node[midway, below, font=\scriptsize\bfseries] {$\vec{u}$};
-        \draw[-{Stealth}, line width=1.2pt, color=blackmain] (O) -- (V) node[midway, left, font=\scriptsize\bfseries] {$\vec{v}$};
-        \draw[-{Stealth}, line width=1.4pt, color=orangeacc] (O) -- (S) node[midway, above left=-2pt, font=\scriptsize\bfseries] {$\vec{u}+\vec{v}$};
-        \draw[-{Stealth}, line width=1.2pt, color=navyaccent!80!black] (V) -- (U) node[midway, above right=-2pt, font=\scriptsize\bfseries] {$\vec{u}-\vec{v}$};
+        \draw[-{Stealth}, line width=1.4pt, color=blackmain] (O) -- (U) node[midway, below=2pt, font=\scriptsize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth}, line width=1.4pt, color=blackmain] (O) -- (V) node[midway, left=2pt, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (O) -- (S) node[above right=0pt, font=\scriptsize\bfseries] {$\vec{u}+\vec{v}$};
+        \draw[-{Stealth}, line width=1.4pt, color=navyaccent] (V) -- (U) node[pos=0.68, above right=2pt, font=\scriptsize\bfseries] {$\vec{u}-\vec{v}$};
+      \end{tikzpicture}
+      \vspace{0.1cm}
+
+      {\scriptsize Las dos diagonales: $\vec{u}+\vec{v}$ (suma) y $\vec{u}-\vec{v}$ (resta).}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusión 1B: La Ecuación Vectorial de la Recta ($1$ Grado de Libertad)}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Ecuación Vectorial de la Recta:}
+        \[
+        \boxed{\vec{r}(t) = \vec{p}_0 + t\vec{v}, \qquad t \in \R, \quad \vec{v} \neq \vec{0}}
+        \]
+        \item \textbf{Subespacio Vectorial 1D vs. Recta Afín:}
+        \begin{itemize}
+          \scriptsize
+          \item Si $\vec{p}_0 = \vec{0}$, el conjunto $W = \{t\vec{v} \mid t \in \R\}$ contiene a $\vec{0}$ y es un \textbf{subespacio vectorial de dimensión 1}.
+          \item Si $\vec{p}_0 \neq \vec{0}$, la recta $\mathcal{L} = \vec{p}_0 + W$ es un \textbf{subespacio afín} trasladado.
+        \end{itemize}
+        \item \textbf{Semilla Geométrica (Semana 05):} La derivada $\dot{\vec{r}}(t) = \vec{v}$ es el \textbf{vector tangente} a la curva.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.82]
+        \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (5.8,0) node[right, font=\scriptsize] {$x$};
+        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,3.8) node[above, font=\scriptsize] {$y$};
+
+        \coordinate (O) at (0,0);
+        \coordinate (P0) at (1.6, 1.3);
+        \coordinate (V) at (1.5, 0.7);
+        \coordinate (P1) at ($(P0)+(V)$);
+        \coordinate (Pt) at ($(P0)+2.1*(V)$);
+
+        \draw[dashed, color=navyaccent!50, line width=1pt] ($(P0)-0.7*(V)$) -- ($(P0)+2.5*(V)$);
+        \draw[color=navyaccent, line width=1.5pt] ($(P0)-0.3*(V)$) -- ($(P0)+2.2*(V)$);
+
+        \draw[-{Stealth}, thick, color=blackmain] (O) -- (P0) node[pos=0.55, below right=-1pt, font=\scriptsize\bfseries] {$\vec{p}_0$};
+        \draw[-{Stealth}, thick, color=navyaccent] (O) -- (Pt) node[pos=0.62, below right=2pt, font=\scriptsize\bfseries] {$\vec{r}(t) = \vec{p}_0 + t\vec{v}$};
+
+        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (P0) -- (P1) node[midway, above left=1pt, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, dashed, color=orangeacc, line width=1.2pt] (P1) -- (Pt) node[midway, above left=1pt, font=\scriptsize\bfseries] {$t\vec{v}$};
+
+        \fill[blackmain] (P0) circle (2.2pt) node[above left=2pt, font=\scriptsize\bfseries] {$P_0$};
+        \fill[orangeacc] (P1) circle (2pt) node[below right=1pt, font=\scriptsize] {$t=1$};
+        \fill[navyaccent] (Pt) circle (2.2pt) node[above right=1pt, font=\scriptsize\bfseries] {$P(t)$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -95,7 +208,7 @@
 % ---------------------------------------------------------------------
 \begin{frame}{Actividad 2: ¿Por qué el Producto Punto Mide Sombras?}
   \begin{block}{Reto en clase (10 minutos)}
-    \small
+    \footnotesize
     Considera el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{w} = \vec{u} - \vec{v}$, con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$.
     \begin{enumerate}
       \item[(a)] \textbf{De la Ley de Cosenos al Álgebra:} Sabemos geométricamente que $\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos\theta$. Expande algebraicamente $(u_1 - v_1)^2 + (u_2 - v_2)^2 + (u_3 - v_3)^2$ e iguala ambas expresiones. ¿Qué combinación algebraica sobrevive?
@@ -103,56 +216,52 @@
     \end{enumerate}
   \end{block}
   \begin{exampleblock}{Pregunta de Ingeniería}
-    \small
+    \footnotesize
     Si queremos saber qué parte de la fuerza $\vec{F}$ intenta descarrilar el vagón lateralmente ($\vec{F}_\perp$), ¿cómo la calculamos sin medir ningún ángulo $\theta$ con transportador?
   \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 2: La Máquina de Proyecciones y Descomposición Ortogonal}
+\begin{frame}{Discusión 2: Producto Interno, Norma y Proyecciones}
   \begin{columns}[c]
-    \begin{column}{0.52\textwidth}
-      \small
+    \begin{column}{0.53\textwidth}
+      \footnotesize
       \begin{itemize}
-        \item \textbf{Identidad Fundamental del Producto Punto:}
+        \item \textbf{Producto Punto (Geometría $\leftrightarrow$ Álgebra):}
         \[
         \vec{u}\cdot\vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 = \|\vec{u}\|\|\vec{v}\|\cos\theta
         \]
-        \item \textbf{Detector de Ortogonalidad:}
-        \[
-        \vec{u} \perp \vec{v} \iff \vec{u}\cdot\vec{v} = 0
-        \]
-        \item \textbf{Proyección Vectorial y Componente Normal:}
+        \item \textbf{Definición Formal de Producto Interno $\langle\vec{u},\vec{v}\rangle$:}
+        Operación simétrica ($\langle\vec{u},\vec{v}\rangle=\langle\vec{v},\vec{u}\rangle$), bilineal y definida positiva ($\langle\vec{u},\vec{u}\rangle \ge 0$, con igualdad $\iff \vec{u}=\vec{0}$). Induce la \textbf{norma} $\|\vec{u}\| = \sqrt{\langle\vec{u},\vec{u}\rangle}$.
+        \item \textbf{Proyección Ortogonal y Componente Normal:}
         \[
         \boxed{\text{proy}_{\vec{v}}(\vec{u}) = \left(\frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|^2}\right)\vec{v}, \quad \vec{u}_\perp = \vec{u} - \text{proy}_{\vec{v}}(\vec{u})}
         \]
-        \item \textbf{Semilla (Semana 04):} El producto punto es el caso euclidiano del \textbf{Tensor Métrico} $g_{ij}$.
       \end{itemize}
     \end{column}
-    \begin{column}{0.45\textwidth}
+    \begin{column}{0.44\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.82]
-        \foreach \x in {0.4, 1.0, 1.6, 2.2, 2.8, 3.4} {
-          \draw[-{Stealth}, color=orangeacc!60, thin, densely dashed] (\x, 3.3) -- (\x, 2.8);
+        \foreach \x in {0.4, 1.0, 1.6, 2.2, 2.8} {
+          \draw[-{Stealth}, color=orangeacc!60, thin, densely dashed] (\x, 3.1) -- (\x, 2.6);
         }
-        \node[color=orangeacc, font=\scriptsize\itshape] at (1.9, 3.55) {Rayos perpendiculares al riel};
+        \node[color=orangeacc, font=\scriptsize\itshape] at (1.6, 3.35) {Rayos perpendiculares al riel};
 
-        \draw[color=graymuted, line width=1pt] (-0.4,0) -- (5.0,0);
-        \node[below right, color=graymuted, font=\scriptsize] at (3.6, -0.05) {Dirección $\vec{v}$};
+        \draw[color=graymuted, line width=1pt] (-0.3,0) -- (4.8,0);
 
         \coordinate (O) at (0,0);
-        \coordinate (U) at (3.2, 2.4);
-        \coordinate (P) at (3.2, 0);
-        \coordinate (V) at (4.7, 0);
+        \coordinate (U) at (3.0, 2.2);
+        \coordinate (P) at (3.0, 0);
+        \coordinate (V) at (4.5, 0);
 
-        \draw[color=orangeacc, thick] (2.95, 0) -- (2.95, 0.25) -- (3.2, 0.25);
-        \draw[dashed, color=orangeacc, line width=1.1pt] (P) -- (U) node[midway, right, font=\scriptsize\bfseries] {$\vec{u}_\perp = \vec{u} - \vec{u}_\parallel$};
+        \draw[color=orangeacc, thick] (2.75, 0) -- (2.75, 0.25) -- (3.0, 0.25);
+        \draw[dashed, color=orangeacc, line width=1.1pt] (P) -- (U) node[midway, right=2pt, font=\scriptsize\bfseries] {$\vec{u}_\perp = \vec{u} - \vec{u}_\parallel$};
 
-        \draw[-{Stealth}, line width=1.3pt, color=blackmain] (O) -- (V) node[above, font=\scriptsize\bfseries] {$\vec{v}$};
-        \draw[-{Stealth}, line width=2.2pt, color=orangeacc] (O) -- (P) node[midway, below=2pt, font=\scriptsize\bfseries] {$\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$};
-        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (O) -- (U) node[midway, above left, font=\scriptsize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth}, line width=1.3pt, color=blackmain] (O) -- (V) node[above=1pt, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=2.2pt, color=orangeacc] (O) -- (P) node[midway, below=3pt, font=\scriptsize\bfseries] {$\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$};
+        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (O) -- (U) node[midway, above left=1pt, font=\scriptsize\bfseries] {$\vec{u}$};
 
-        \pic[draw=navyaccent, fill=navyaccent!10, angle radius=0.65cm, "$\theta$", font=\scriptsize] {angle = P--O--U};
+        \pic[draw=navyaccent, fill=navyaccent!10, angle radius=0.6cm, "$\theta$", font=\scriptsize] {angle = P--O--U};
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -161,7 +270,7 @@
 % ---------------------------------------------------------------------
 \begin{frame}{Actividad 3: Buscando un Vector Perpendicular a Dos Direcciones}
   \begin{block}{Reto en clase (8 minutos)}
-    \small
+    \footnotesize
     Dos bordes de un panel solar están dados por los vectores $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$. Necesitamos instalar un sensor láser en dirección $\vec{n} = (n_1, n_2, n_3)$ que sea simultáneamente perpendicular a ambos bordes:
     \[
     \vec{u}\cdot\vec{n} = u_1 n_1 + u_2 n_2 + u_3 n_3 = 0, \qquad \vec{v}\cdot\vec{n} = v_1 n_1 + v_2 n_2 + v_3 n_3 = 0.
@@ -172,8 +281,8 @@
     \end{enumerate}
   \end{block}
   \begin{alertblock}{Observación Constructivista}
-    \small
-    El producto cruz no es un truco de determinantes memorizado: nace directamente de resolver el sistema de ortogonalidad simultánea $\vec{u}\cdot\vec{n}=0$ y $\vec{v}\cdot\vec{n}=0$.
+    \footnotesize
+    El producto cruz nace directamente de resolver el sistema de ortogonalidad simultánea $\vec{u}\cdot\vec{n}=0$ y $\vec{v}\cdot\vec{n}=0$.
   \end{alertblock}
 \end{frame}
 
@@ -181,7 +290,7 @@
 \begin{frame}{Discusión 3: Producto Cruz, Área del Paralelogramo y Orientación}
   \begin{columns}[c]
     \begin{column}{0.53\textwidth}
-      \small
+      \footnotesize
       \begin{itemize}
         \item \textbf{Definición Algebraica:}
         \[
@@ -195,29 +304,30 @@
         \[
         \boxed{\vec{u}\times\vec{v} = -\vec{v}\times\vec{u} \implies \vec{u}\times\vec{u} = \vec{0}}
         \]
-        \item \textbf{Semilla Geométrica:} En la Semana 02 codificaremos esta antisimetría con $\epsilon_{ijk}$, y en la Semana 07 descubriremos que $\vec{u}\times\vec{v}$ es el disfraz en $\R^3$ del \textbf{producto exterior} $\vec{u}\wedge\vec{v}$.
+        \item \textbf{Semilla Geométrica:} En la Semana 02 codificaremos esta antisimetría con $\epsilon_{ijk}$, y en la Semana 07 veremos que $\vec{u}\times\vec{v}$ corresponde al \textbf{producto exterior} $\vec{u}\wedge\vec{v}$.
       \end{itemize}
     \end{column}
     \begin{column}{0.44\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.78]
+      \begin{tikzpicture}[scale=0.76]
         \coordinate (O) at (0,0);
-        \coordinate (U) at (3.2, -0.3);
-        \coordinate (V) at (1.3, 1.5);
+        \coordinate (U) at (3.4, -0.25);
+        \coordinate (V) at (1.4, 1.45);
         \coordinate (S) at ($(U)+(V)$);
-        \coordinate (N) at (0, 3.0);
-        \coordinate (NM) at (0, -1.5);
+        \coordinate (N) at (0, 2.8);
+        \coordinate (NM) at (0, -1.4);
 
         \fill[orangeacc!12] (O) -- (U) -- (S) -- (V) -- cycle;
         \draw[dashed, color=orangeacc, thick] (U) -- (S) (V) -- (S);
-        \node[color=blackmain, font=\scriptsize\bfseries] at (2.2, 0.6) {Área $= \|\vec{u}\times\vec{v}\|$};
+        \node[color=blackmain, font=\scriptsize\bfseries] at (2.75, 0.62) {Área $= \|\vec{u}\times\vec{v}\|$};
 
-        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (O) -- (U) node[below, font=\scriptsize\bfseries] {$\vec{u}$};
-        \draw[-{Stealth}, line width=1.5pt, color=blackmain] (O) -- (V) node[above left=-2pt, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (O) -- (U) node[midway, below=2pt, font=\scriptsize\bfseries] {$\vec{u}$};
+        \draw[-{Stealth}, line width=1.5pt, color=blackmain] (O) -- (V) node[above left=1pt, font=\scriptsize\bfseries] {$\vec{v}$};
         \draw[-{Stealth}, line width=1.8pt, color=orangeacc] (O) -- (N) node[above, font=\scriptsize\bfseries] {$\vec{n} = \vec{u}\times\vec{v}$};
         \draw[-{Stealth}, line width=1.2pt, dashed, color=graymuted] (O) -- (NM) node[below, font=\scriptsize] {$\vec{v}\times\vec{u} = -\vec{u}\times\vec{v}$};
 
-        \draw[-{Stealth}, color=orangeacc, thick] (1.1, -0.1) arc (-6:48:1.1) node[midway, right, font=\scriptsize\bfseries] {$\theta$};
+        \draw[-{Stealth}, color=orangeacc, thick] (0.95, -0.07) arc (-4:46:0.95);
+        \node[color=orangeacc, font=\scriptsize\bfseries] at (1.15, 0.32) {$\theta$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -226,53 +336,53 @@
 % ---------------------------------------------------------------------
 \begin{frame}{Actividad 4: Dos Ingenieros Describen el Mismo Plano}
   \begin{block}{Reto en clase (10 minutos)}
-    \small
-    Queremos describir la superficie plana de una mesa inclinada que pasa por $P_0 = (1,0,2)$ y contiene a los vectores directores $\vec{v}_1 = (1, 1, 0)$ y $\vec{v}_2 = (0, 1, 1)$.
+    \footnotesize
+    Queremos describir la superficie plana de una mesa inclinada que pasa por $P_0 = (1,0,2)$ y es generada por los vectores $\vec{v}_1 = (1, 1, 0)$ y $\vec{v}_2 = (0, 1, 1)$.
     \begin{enumerate}
-      \item[(a)] \textbf{Ingeniero A (Visión Paramétrica):} Usa dos coordenadas internas $(u,v) \in \R^2$ para caminar sobre la mesa desde $P_0$. Escribe $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$.
-      \item[(b)] \textbf{Ingeniero B (Visión Normal):} Prefiere una sola ecuación que ponga un «candado» a la dirección prohibida perpendicular a la mesa. Calcula $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe la condición $\vec{n}\cdot(\vec{r} - \vec{p}_0) = 0$ en la forma $n_1 x + n_2 y + n_3 z = d$.
-      \item[(c)] \textbf{La Familia de Planos Paralelos:} ¿Qué representa geométricamente cambiar el número $d$ en la ecuación $x - y + z = d$ para $d = 0, 1, 2, 3, \dots$? Si un proyectil se desplaza un vector $\vec{w} = (2, -1, 3)$, ¿cuántos planos de esa familia perfora?
+      \item[(a)] \textbf{Ingeniero A (Visión Paramétrica e Independencia Lineal):} Usa dos coordenadas internas $(u,v) \in \R^2$ para caminar sobre la mesa: $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$. ¿Qué pasaría si $\vec{v}_2$ fuera múltiplo de $\vec{v}_1$?
+      \item[(b)] \textbf{Ingeniero B (Visión Normal):} Prefiere una sola ecuación que ponga un «candado» a la dirección perpendicular a la mesa. Calcula $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe $\vec{n}\cdot(\vec{r} - \vec{p}_0) = 0$ en la forma $n_1 x + n_2 y + n_3 z = d$.
+      \item[(c)] \textbf{La Familia de Planos Paralelos:} ¿Qué representa geométricamente cambiar $d$ en $x - y + z = d$ para $d = 0, 1, 2, 3, \dots$? Si un proyectil se desplaza $\vec{w} = (2, -1, 3)$, ¿cuántos planos perfora?
     \end{enumerate}
   \end{block}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 4: Dualidad del Plano y las 1-Formas de Cartan}
+\begin{frame}{Discusión 4: Subespacios, Bases y la Semilla de las 1-Formas}
   \begin{columns}[c]
-    \begin{column}{0.48\textwidth}
-      \small
+    \begin{column}{0.51\textwidth}
+      \footnotesize
       \begin{itemize}
-        \item \textbf{1. Visión Paramétrica ($2$ parámetros):}
-        \[
-        \vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2
-        \]
-        \emph{Semilla de las Variedades Diferenciables (Semanas 05 y 13).}
-        \item \textbf{2. Visión Normal ($1$ restricción):}
-        \[
-        \vec{n}\cdot(\vec{r}-\vec{p}_0) = 0 \iff n_1 x + n_2 y + n_3 z = d
-        \]
-        \item \textbf{3. ¡La Semilla de las 1-Formas! (Semana 06):}
-        Al variar $c \in \R$, la función lineal $\alpha(\vec{r}) = n_1 x + n_2 y + n_3 z = c$ llena el espacio con una \textbf{pila de láminas paralelas}. El producto $\vec{n}\cdot\vec{w}$ \textbf{cuenta cuántas láminas perfora el vector $\vec{w}$}.
+        \item \textbf{Independencia Lineal, Base y Dimensión:}
+        $\{\vec{v}_1, \vec{v}_2\}$ son \emph{linealmente independientes} ($c_1\vec{v}_1+c_2\vec{v}_2=\vec{0} \implies c_1=c_2=0$) y forman una \textbf{base} del subespacio $W = \text{span}\{\vec{v}_1,\vec{v}_2\}$ ($\dim W = 2$).
+        \item \textbf{Dualidad del Plano $\Pi = \vec{p}_0 + W$:}
+        \begin{itemize}
+          \scriptsize
+          \item \textbf{Paramétrica ($2$ parámetros):} $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$.
+          \item \textbf{Normal ($1$ restricción):} $\vec{n}\cdot(\vec{r}-\vec{p}_0) = 0 \iff n_1 x + n_2 y + n_3 z = c$.
+        \end{itemize}
+        \item \textbf{Semilla de las 1-Formas (Semana 06):}
+        Al variar $c \in \R$, $\alpha(\vec{r}) = \vec{n}\cdot\vec{r} = c$ forma una \textbf{pila de láminas paralelas}. Evaluar $\vec{n}\cdot\vec{w}$ \textbf{cuenta cuántas láminas perfora $\vec{w}$}.
       \end{itemize}
     \end{column}
-    \begin{column}{0.49\textwidth}
+    \begin{column}{0.46\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.68]
-        \foreach \y/\lbl/\col in {0/{c=1}/navyaccent!10, 1.1/{c=2}/navyaccent!18, 2.2/{c=3}/navyaccent!26, 3.3/{c=4}/navyaccent!34} {
-          \fill[\col] (0,\y) -- (3.8,\y) -- (4.8,\y+0.8) -- (1.0,\y+0.8) -- cycle;
-          \draw[color=navyaccent, thin] (0,\y) -- (3.8,\y) -- (4.8,\y+0.8) -- (1.0,\y+0.8) -- cycle;
-          \node[right, font=\scriptsize, color=navyaccent] at (4.8, \y+0.55) {$\vec{n}\cdot\vec{r} = \lbl$};
+      \begin{tikzpicture}[scale=0.65]
+        \foreach \y/\lbl/\col in {0/{c=1}/navyaccent!10, 1.05/{c=2}/navyaccent!18, 2.1/{c=3}/navyaccent!26, 3.15/{c=4}/navyaccent!34} {
+          \fill[\col] (0,\y) -- (3.6,\y) -- (4.5,\y+0.75) -- (0.9,\y+0.75) -- cycle;
+          \draw[color=navyaccent, thin] (0,\y) -- (3.6,\y) -- (4.5,\y+0.75) -- (0.9,\y+0.75) -- cycle;
+          \node[right=2pt, font=\scriptsize, color=navyaccent] at (4.5, \y+0.5) {$\vec{n}\cdot\vec{r} = \lbl$};
         }
 
-        \coordinate (A) at (1.6, 0.4);
-        \coordinate (B) at (2.8, 3.7);
-        \draw[-{Stealth}, line width=2pt, color=orangeacc] (A) -- (B) node[above, font=\scriptsize\bfseries] {$\vec{w}$ perfora $\Delta c = \vec{n}\cdot\vec{w} = 3$ láminas};
+        \coordinate (A) at (1.5, 0.35);
+        \coordinate (B) at (2.7, 3.55);
+        \draw[-{Stealth}, line width=2pt, color=orangeacc] (A) -- (B);
+        \node[above=2pt, font=\scriptsize\bfseries, color=orangeacc] at (2.4, 3.95) {$\vec{w}$ perfora $\Delta c = \vec{n}\cdot\vec{w} = 3$ láminas};
 
         \foreach \t in {0, 0.333, 0.666, 1.0} {
-          \fill[blackmain] ($(A)!\t!(B)$) circle (2.3pt);
+          \fill[blackmain] ($(A)!\t!(B)$) circle (2.2pt);
         }
 
-        \draw[-{Stealth}, line width=1.4pt, color=blackmain] (0.7, 0.4) -- (0.7, 1.8) node[left, font=\scriptsize\bfseries] {$\vec{n}$};
+        \draw[-{Stealth}, line width=1.4pt, color=blackmain] (0.65, 0.35) -- (0.65, 1.65) node[left=1pt, font=\scriptsize\bfseries] {$\vec{n}$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -281,15 +391,15 @@
 % ---------------------------------------------------------------------
 \begin{frame}{Actividad 5: Intersección de Dos Planos y Distancia Mínima}
   \begin{block}{Reto en clase (8 minutos)}
-    \small
+    \footnotesize
     Dos fallas geológicas planas $\Pi_1$ y $\Pi_2$ tienen vectores normales $\vec{n}_1 = (1, 0, -1)$ y $\vec{n}_2 = (0, 1, 1)$, con ecuaciones $x - z = 1$ y $y + z = 2$.
     \begin{enumerate}
-      \item[(a)] \textbf{Conteo de Grados de Libertad:} Estamos en $\R^3$ ($3$ grados de libertad). Cada plano impone $1$ restricción lineal independiente. ¿Qué objeto geométrico de dimensión $3 - 2 = 1$ es la intersección $\Pi_1 \cap \Pi_2$?
+      \item[(a)] \textbf{Conteo de Dimensión:} Estamos en $\R^3$ ($\dim = 3$). Cada plano impone $1$ restricción lineal independiente. ¿Qué dimensión tiene la intersección $\Pi_1 \cap \Pi_2$?
       \item[(b)] \textbf{Dirección de la Recta de Intersección:} Si el vector director $\vec{v}$ de la recta $\mathcal{L} = \Pi_1 \cap \Pi_2$ vive dentro de $\Pi_1$ y también dentro de $\Pi_2$, ¿cómo es $\vec{v}$ respecto a $\vec{n}_1$ y $\vec{n}_2$? ¡Usa el producto cruz para encontrar $\vec{v}$ de inmediato!
     \end{enumerate}
   \end{block}
   \begin{exampleblock}{Puente Hacia el Futuro (Semana 07)}
-    \small
+    \footnotesize
     Superponer dos familias de planos ($\alpha_1$ y $\alpha_2$) forma una cuadrícula de tubos orientados en el espacio. Esa será exactamente la imagen geométrica de una \textbf{2-forma diferencial} $\alpha_1 \wedge \alpha_2$.
   \end{exampleblock}
 \end{frame}
@@ -298,7 +408,7 @@
 \begin{frame}{Discusión 5: Síntesis Visual de la Semana 01}
   \begin{columns}[c]
     \begin{column}{0.52\textwidth}
-      \small
+      \footnotesize
       \begin{itemize}
         \item \textbf{Distancia de un Punto $Q$ a un Plano $\Pi$:}
         Proyectamos $\vec{q}-\vec{p}_0$ sobre la normal $\vec{n}$:
@@ -310,25 +420,25 @@
         \[
         \boxed{\vec{v} = \vec{n}_1 \times \vec{n}_2}
         \]
-        \item \textbf{Próxima Semana (Semana 02):} Comprimiremos vectores, productos punto y cruz usando la \textbf{Notación de Einstein}, $\delta_{ij}$ y $\epsilon_{ijk}$.
+        \item \textbf{Próxima Semana (Semana 02):} Comprimiremos la expansión en la base ortonormal $\{\hat{e}_1,\hat{e}_2,\hat{e}_3\}$ usando \textbf{Notación de Einstein}, $\delta_{ij}$ y $\epsilon_{ijk}$.
       \end{itemize}
     \end{column}
     \begin{column}{0.45\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.72]
-        \fill[navyaccent!15, opacity=0.85] (0,0) -- (3.2,-0.7) -- (4.8,1.5) -- (1.6,2.2) -- cycle;
-        \draw[color=navyaccent, thick] (0,0) -- (3.2,-0.7) -- (4.8,1.5) -- (1.6,2.2) -- cycle;
-        \node[color=navyaccent, font=\scriptsize\bfseries] at (0.7, 0.25) {$\Pi_1$};
+        \fill[navyaccent!15, opacity=0.85] (0,0) -- (3.6,-0.6) -- (5.2,1.5) -- (1.6,2.1) -- cycle;
+        \draw[color=navyaccent, thick] (0,0) -- (3.6,-0.6) -- (5.2,1.5) -- (1.6,2.1) -- cycle;
+        \node[color=navyaccent, font=\scriptsize\bfseries] at (0.65, 0.25) {$\Pi_1$};
 
-        \fill[orangeacc!15, opacity=0.85] (1.1,-1.1) -- (2.5,2.4) -- (4.1,4.6) -- (2.7,1.1) -- cycle;
-        \draw[color=orangeacc, thick] (1.1,-1.1) -- (2.5,2.4) -- (4.1,4.6) -- (2.7,1.1) -- cycle;
-        \node[color=orangeacc, font=\scriptsize\bfseries] at (1.7, -0.6) {$\Pi_2$};
+        \fill[orangeacc!15, opacity=0.85] (1.3,-0.9) -- (2.7,2.4) -- (4.1,4.3) -- (2.7,1.0) -- cycle;
+        \draw[color=orangeacc, thick] (1.3,-0.9) -- (2.7,2.4) -- (4.1,4.3) -- (2.7,1.0) -- cycle;
+        \node[color=orangeacc, font=\scriptsize\bfseries, left=3pt] at (2.2, 3.2) {$\Pi_2$};
 
-        \draw[color=blackmain, line width=2.2pt] (1.5, -0.35) -- (3.6, 2.55);
-        \draw[-{Stealth}, color=blackmain, line width=2.2pt] (2.1, 0.48) -- (3.2, 2.0) node[right=2pt, font=\scriptsize\bfseries] {$\vec{v} = \vec{n}_1 \times \vec{n}_2$};
+        \draw[color=blackmain, line width=2.0pt] (1.6, -0.3) -- (3.5, 2.3);
+        \draw[-{Stealth}, color=blackmain, line width=2.2pt] (2.1, 0.38) -- (3.25, 1.95) node[above right=2pt, font=\scriptsize\bfseries] {$\vec{v} = \vec{n}_1 \times \vec{n}_2$};
 
-        \draw[-{Stealth}, color=navyaccent, line width=1.3pt] (2.4, 0.9) -- (1.3, 2.3) node[above left=-2pt, font=\scriptsize\bfseries] {$\vec{n}_1$};
-        \draw[-{Stealth}, color=orangeacc, line width=1.3pt] (2.4, 0.9) -- (4.0, 0.5) node[right, font=\scriptsize\bfseries] {$\vec{n}_2$};
+        \draw[-{Stealth}, color=navyaccent, line width=1.3pt] (2.3, 0.65) -- (1.1, 2.0) node[above left=-1pt, font=\scriptsize\bfseries] {$\vec{n}_1$};
+        \draw[-{Stealth}, color=orangeacc, line width=1.3pt] (2.3, 0.65) -- (3.8, 0.35) node[above right=-1pt, font=\scriptsize\bfseries] {$\vec{n}_2$};
       \end{tikzpicture}
     \end{column}
   \end{columns}

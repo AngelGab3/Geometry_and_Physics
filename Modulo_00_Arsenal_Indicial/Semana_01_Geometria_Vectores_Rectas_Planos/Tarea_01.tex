@@ -11,16 +11,16 @@
 
 \begin{center}
 {\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
-{\Large\textcolor{orangeacc}{\textbf{Tarea 1: Geometría de Vectores, Proyecciones, Rectas y Planos}}}\\[0.2cm]
+{\Large\textcolor{orangeacc}{\textbf{Tarea 1: Geometría de Vectores, Espacios Vectoriales, Rectas y Planos}}}\\[0.2cm]
 {\large\textcolor{graymuted}{Nivel: Licenciatura en Física e Ingeniería --- Módulo 0: Arsenal Indicial}}\\[0.25cm]
 \end{center}
 
 \vspace{0.2cm}
 
-\noindent\textbf{Instrucciones:} Esta tarea está diseñada para construir la intuición geométrica y física de vectores, proyecciones, rectas y planos en $\R^3$. No te limites a sustituir fórmulas: acompaña tus desarrollos de \textbf{esquemas geométricos claros} y explica el significado físico de cada proyección, vector normal o intersección.
+\noindent\textbf{Instrucciones:} Esta tarea está diseñada para construir tanto la intuición geométrica y física como el dominio formal de espacios vectoriales, subespacios, proyecciones, rectas y planos en $\R^3$. Acompaña tus desarrollos de \textbf{esquemas geométricos claros} y justifica formalmente cada paso.
 
 % =============================================================================
-\manualsection{Parte A: Construcción Visual y Geométrica}
+\manualsection{Parte A: Construcción Visual, Espacio Afín y Proyecciones}
 
 \begin{infobox}{Problema 1: Puntos vs. Vectores e Invariancia por Traslación en un Puente}
 Un ingeniero estructural coloca tres sensores en los nodos de una armadura metálica. Medidos desde la caseta de control $O = (0,0,0)$, las posiciones de los nodos son:
@@ -28,64 +28,67 @@ Un ingeniero estructural coloca tres sensores en los nodos de una armadura metá
     A = (2, 1, 3)\,\text{m}, \qquad B = (5, 5, 3)\,\text{m}, \qquad C = (1, 4, 7)\,\text{m}.
 \]
 \begin{enumerate}[label=(\alph*)]
-    \item Calcula los vectores de las barras $\vec{u} = \overrightarrow{AB} = B - A$ y $\vec{v} = \overrightarrow{AC} = C - A$, así como el vector del tercer lado $\vec{w} = \overrightarrow{BC} = C - B$. Verifica algebraica y geométricamente que $\vec{w} = \vec{v} - \vec{u}$ (ley del triángulo).
-    \item Un segundo ingeniero decide colocar su propio origen de coordenadas en el punto $O' = (10, -4, 2)\,\text{m}$, por lo que las nuevas coordenadas de cada punto son $P' = P - O'$. Calcula las nuevas coordenadas $A', B', C'$ y demuestra que los vectores de desplazamiento $\overrightarrow{A'B'}$ y $\overrightarrow{A'C'}$ permanecen \textbf{exactamente iguales}. ¿Qué sucedería en cambio si intentaras «sumar los puntos» $A + B$ en ambos sistemas?
-    \item Encuentra las coordenadas del centroide (centro de masa geométrico) del triángulo $\triangle ABC$ y demuestra que su posición física en el espacio no depende de dónde se elija el origen $O$.
+    \item Calcula los vectores de las barras $\vec{u} = \overrightarrow{AB} = B - A$ y $\vec{v} = \overrightarrow{AC} = C - A$, así como el vector del tercer lado $\vec{w} = \overrightarrow{BC} = C - B$. Verifica algebraica y geométricamente que $\vec{w} = \vec{v} - \vec{u}$ (segunda diagonal del paralelogramo).
+    \item Un segundo ingeniero coloca su propio origen de coordenadas en el punto $O' = (10, -4, 2)\,\text{m}$, por lo que las nuevas coordenadas de cada punto son $P' = P - O'$. Calcula las nuevas coordenadas $A', B', C'$ y demuestra que los vectores de desplazamiento $\overrightarrow{A'B'}$ y $\overrightarrow{A'C'}$ permanecen \textbf{exactamente iguales}. ¿Por qué el conjunto de puntos fijos es un \emph{espacio afín} y no un espacio vectorial canónico si no fijamos antes un origen?
+    \item Demuestra que la combinación baricéntrica $G = \frac{1}{3}A + \frac{1}{3}B + \frac{1}{3}C$ (centroide del triángulo $\triangle ABC$) sí define el mismo punto físico sin importar dónde se elija el origen $O$. (\emph{Pista:} Escribe $O'G = \frac{1}{3}(A-O') + \frac{1}{3}(B-O') + \frac{1}{3}(C-O')$ y usa que $\frac{1}{3}+\frac{1}{3}+\frac{1}{3}=1$).
 \end{enumerate}
 \end{infobox}
 
 \begin{infobox}{Problema 2: La Sombra de una Fuerza sobre un Riel Inclinado}
-Un bloque de inspección es empujado sobre un riel recto que apunta en la dirección del vector $\vec{v} = (3, 4, 0)$ mediante una fuerza externa $\vec{F} = (10, 5, 6)\,\text{N}$, como se muestra en la figura:
+Un bloque de inspección es empujado sobre un riel recto que apunta en la dirección del vector $\vec{v} = \langle 3, 4, 0 \rangle$ mediante una fuerza externa $\vec{F} = \langle 10, 5, 6 \rangle\,\text{N}$, como se muestra en la figura:
 
 \begin{center}
-\begin{tikzpicture}[scale=0.82]
-    \draw[color=graymuted, line width=2.2pt] (-0.5, 0) -- (6.0, 0);
-    \node[below, color=graymuted, font=\small\bfseries] at (5.0, -0.1) {Riel en dirección $\vec{v}$};
-
+\begin{tikzpicture}[scale=0.88]
     \coordinate (O) at (0.5, 0);
-    \coordinate (F) at (4.0, 2.4);
+    \coordinate (F) at (4.0, 2.3);
     \coordinate (Fp) at (4.0, 0);
 
-    \draw[color=orangeacc, thick] (3.7, 0) -- (3.7, 0.3) -- (4.0, 0.3);
+    % Riel
+    \draw[-{Stealth[length=2.8mm]}, color=graymuted, line width=1.8pt] (-0.4, 0) -- (6.2, 0) node[right, color=blackmain, font=\small\bfseries] {$\vec{v}$ (dirección del riel)};
 
-    \draw[dashed, color=orangeacc, line width=1.2pt] (Fp) -- (F) node[midway, right, font=\small\bfseries] {$\vec{F}_\perp$ (fuerza normal al riel)};
-    \draw[-{Stealth}, line width=2.2pt, color=orangeacc] (O) -- (Fp) node[midway, below=3pt, font=\small\bfseries] {$\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$};
-    \draw[-{Stealth}, line width=1.8pt, color=navyaccent] (O) -- (F) node[midway, above left, font=\small\bfseries] {$\vec{F} = (10,5,6)\,\text{N}$};
-    \fill[blackmain] (O) circle (2.5pt);
+    % Angulo recto
+    \draw[color=orangeacc, thick] (3.72, 0) -- (3.72, 0.28) -- (4.0, 0.28);
+
+    % Componentes
+    \draw[dashed, color=orangeacc, line width=1.2pt] (Fp) -- (F) node[midway, right=4pt, font=\small\bfseries] {$\vec{F}_\perp$ (fuerza normal al riel)};
+    \draw[-{Stealth[length=3mm]}, line width=2.2pt, color=orangeacc] (O) -- (Fp) node[midway, below=4pt, font=\small\bfseries] {$\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$};
+    \draw[-{Stealth[length=3mm]}, line width=1.8pt, color=navyaccent] (O) -- (F) node[midway, above left=2pt, font=\small\bfseries] {$\vec{F} = \langle 10,5,6 \rangle\,\text{N}$};
+    \fill[blackmain] (O) circle (2.4pt);
 \end{tikzpicture}
 \end{center}
 
 \begin{enumerate}[label=(\alph*)]
     \item Calcula la proyección ortogonal $\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$ que acelera el bloque a lo largo del riel.
-    \item Calcula la componente normal $\vec{F}_\perp = \vec{F} - \vec{F}_\parallel$ que presiona lateralmente el riel (y que la estructura del riel debe soportar para evitar que el bloque se descarrile).
-    \item Verifica explícitamente que $\vec{F}_\parallel \cdot \vec{F}_\perp = 0$ y que $\|\vec{F}\|^2 = \|\vec{F}_\parallel\|^2 + \|\vec{F}_\perp\|^2$ (Teorema de Pitágoras en $\R^3$).
+    \item Calcula la componente normal $\vec{F}_\perp = \vec{F} - \vec{F}_\parallel$ que presiona lateralmente el riel.
+    \item Verifica explícitamente que $\langle \vec{F}_\parallel, \vec{F}_\perp \rangle = 0$ y que $\|\vec{F}\|^2 = \|\vec{F}_\parallel\|^2 + \|\vec{F}_\perp\|^2$ (Teorema de Pitágoras a partir de la bilinealidad y simetría del producto interno).
     \item Si el bloque avanza una distancia de $10\,\text{m}$ a lo largo del riel en el sentido de $\vec{v}$, ¿cuánto trabajo mecánico $W = \vec{F}\cdot\Delta\vec{r}$ realiza la fuerza $\vec{F}$? Demuestra que $\vec{F}_\perp$ no realiza ningún trabajo.
 \end{enumerate}
 \end{infobox}
 
 % =============================================================================
-\manualsection{Parte B: Construcción Algebraica y Dualidad Recta-Plano}
+\manualsection{Parte B: Subespacios Vectoriales, Bases y Dualidad Recta-Plano}
 
-\begin{infobox}{Problema 3: Las Dos Caras del Plano y la Semilla de las 1-Formas}
-Considera el plano $\Pi \subset \R^3$ generado paramétricamente desde el punto $P_0 = (1, -1, 2)$ por los dos vectores directores $\vec{v}_1 = (2, 1, -1)$ y $\vec{v}_2 = (1, 3, 2)$:
+\begin{infobox}{Problema 3: Subespacios Vectoriales, las Dos Caras del Plano y 1-Formas}
+Considera el plano $\Pi \subset \R^3$ generado paramétricamente desde el punto $P_0 = (1, -1, 2)$ por los dos vectores directores $\vec{v}_1 = \langle 2, 1, -1 \rangle$ y $\vec{v}_2 = \langle 1, 3, 2 \rangle$:
 \[
     \vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2, \qquad (u,v) \in \R^2.
 \]
 \begin{enumerate}[label=(\alph*)]
-    \item Encuentra los puntos del plano correspondientes a $(u,v) = (1,0)$, $(0,1)$ y $(1,-1)$.
-    \item Construye un vector normal $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe la \textbf{ecuación normal (cartesiana)} del plano en la forma $n_1 x + n_2 y + n_3 z = d$. Verifica que los tres puntos del inciso (a) satisfacen tu ecuación normal.
-    \item \textbf{Visualizando una 1-Forma como Pila de Planos:} Considera ahora la familia de planos paralelos dada por la función lineal $\alpha(x,y,z) = n_1 x + n_2 y + n_3 z = c$ para todo $c \in \Z$. Si una partícula se desplaza desde el origen siguiendo el vector $\vec{w} = (1, 2, -1)$, ¿cuántas láminas enteras $\Delta c = \vec{n}\cdot\vec{w}$ perfora su movimiento? ¿Qué ocurre si el desplazamiento $\vec{w}$ es una combinación lineal $a\vec{v}_1 + b\vec{v}_2$ paralela al plano?
+    \item \textbf{Independencia Lineal y Base:} Demuestra formalmente que $\{\vec{v}_1, \vec{v}_2\}$ son linealmente independientes resolviendo $c_1\vec{v}_1 + c_2\vec{v}_2 = \vec{0}$, por lo que constituyen una \textbf{base} del subespacio vectorial $W = \text{span}\{\vec{v}_1, \vec{v}_2\}$ de dimensión $2$.
+    \item Construye un vector normal $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe la \textbf{ecuación normal (cartesiana)} del plano afín $\Pi = \vec{p}_0 + W$ en la forma $n_1 x + n_2 y + n_3 z = d$. ¿Es $\Pi$ un subespacio vectorial de $\R^3$? ¿Cuál es la ecuación cartesiana del subespacio vectorial paralelo $W$ que sí pasa por el origen $\vec{0}$?
+    \item \textbf{Visualizando una 1-Forma como Pila de Planos:} Considera la familia de planos paralelos dada por el funcional lineal $\alpha(x,y,z) = n_1 x + n_2 y + n_3 z = c$ para todo $c \in \Z$. Si una partícula se desplaza siguiendo el vector $\vec{w} = \langle 1, 2, -1 \rangle$, ¿cuántas láminas enteras $\Delta c = \vec{n}\cdot\vec{w}$ perfora su movimiento? ¿Qué ocurre si el desplazamiento $\vec{w}$ pertenece al subespacio $W = \text{span}\{\vec{v}_1, \vec{v}_2\}$?
 \end{enumerate}
 \end{infobox}
 
-\begin{infobox}{Problema 4: Demostración Geométrica de la Identidad de Lagrange en $\R^3$}
-Dados dos vectores cualesquiera $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$ en $\R^3$:
+\begin{infobox}{Problema 4: Demostración de Cauchy-Schwarz y la Identidad de Lagrange en $\R^3$}
+Dados dos vectores cualesquiera $\vec{u} = \langle u_1, u_2, u_3 \rangle$ y $\vec{v} = \langle v_1, v_2, v_3 \rangle$ en $\R^3$:
 \begin{enumerate}[label=(\alph*)]
-    \item Usando las interpretaciones geométricas $|\vec{u}\cdot\vec{v}| = \|\vec{u}\|\|\vec{v}\| |\cos\theta|$ y $\|\vec{u}\times\vec{v}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta$, explica en un renglón por qué la identidad pitagórica $\cos^2\theta + \sin^2\theta = 1$ implica inmediatamente:
+    \item Usando las interpretaciones geométricas $|\vec{u}\cdot\vec{v}| = \|\vec{u}\|\|\vec{v}\| |\cos\theta|$ y $\|\vec{u}\times\vec{v}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta$, explica por qué la identidad pitagórica $\cos^2\theta + \sin^2\theta = 1$ implica inmediatamente la \textbf{Identidad de Lagrange}:
     \[
-        \|\vec{u}\times\vec{v}\|^2 + (\vec{u}\cdot\vec{v})^2 = \|\vec{u}\|^2 \|\vec{v}\|^2.
+        \|\vec{u}\times\vec{v}\|^2 + (\vec{u}\cdot\vec{v})^2 = \|\vec{u}\|^2 \|\vec{v}\|^2,
     \]
-    \item Verifica algebraicamente que para $\vec{u} = (1, 2, -2)$ y $\vec{v} = (3, 0, 4)$ se cumple la identidad anterior, y úsala para calcular el área del triángulo cuyos lados son $\vec{u}$ y $\vec{v}$.
+    y deduce de ella la \textbf{Desigualdad de Cauchy-Schwarz} $|\vec{u}\cdot\vec{v}| \le \|\vec{u}\|\|\vec{v}\|$. ¿Bajo qué condición geométrica entre $\vec{u}$ y $\vec{v}$ se alcanza la igualdad?
+    \item Verifica algebraicamente la identidad para $\vec{u} = \langle 1, 2, -2 \rangle$ y $\vec{v} = \langle 3, 0, 4 \rangle$, y úsala para calcular el área del triángulo cuyos lados son $\vec{u}$ y $\vec{v}$.
 \end{enumerate}
 \end{infobox}
 
@@ -93,24 +96,26 @@ Dados dos vectores cualesquiera $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v
 \manualsection{Parte C: Aplicaciones en Física e Ingeniería}
 
 \begin{infobox}{Problema 5: Intersección de un Rayo Láser con un Panel Solar y Reflexión Óptica}
-Un colector solar plano $\Pi$ está descrito por la ecuación $2x - y + 2z = 12$ (con coordenadas en metros). Desde un emisor situado en $E = (1, 3, 8)\,\text{m}$ se dispara un haz láser en la dirección del vector $\vec{d} = (1, -1, -2)$.
+Un colector solar plano $\Pi$ está descrito por la ecuación $2x - y + 2z = 12$ (con coordenadas en metros). Desde un emisor situado en $E = (1, 3, 8)\,\text{m}$ se dispara un haz láser en la dirección del vector $\vec{d} = \langle 1, -1, -2 \rangle$.
 
 \begin{center}
-\begin{tikzpicture}[scale=0.8]
-    \fill[navyaccent!12] (0,0) -- (5.2,0) -- (6.4,1.6) -- (1.2,1.6) -- cycle;
-    \draw[color=navyaccent, line width=1.2pt] (0,0) -- (5.2,0) -- (6.4,1.6) -- (1.2,1.6) -- cycle;
-    \node[color=navyaccent, font=\small\bfseries] at (5.0, 0.35) {Panel Solar $\Pi$};
+\begin{tikzpicture}[scale=0.88]
+    % Panel solar (paralelogramo mas bajo y amplio)
+    \fill[navyaccent!10] (0,0) -- (6.0,0) -- (7.0,1.1) -- (1.0,1.1) -- cycle;
+    \draw[color=navyaccent, line width=1.2pt] (0,0) -- (6.0,0) -- (7.0,1.1) -- (1.0,1.1) -- cycle;
+    \node[color=navyaccent, font=\small\bfseries, right=4pt] at (6.5, 0.55) {Panel Solar $\Pi$};
 
-    \coordinate (I) at (3.2, 0.8);
-    \coordinate (E) at (1.2, 3.2);
-    \coordinate (N) at (3.2, 2.9);
-    \coordinate (R) at (5.2, 3.2);
+    \coordinate (I) at (3.7, 0.55);
+    \coordinate (E) at (1.3, 3.2);
+    \coordinate (N) at (3.7, 3.15);
+    \coordinate (R) at (6.1, 3.2);
 
-    \draw[-{Stealth}, dashed, color=blackmain, line width=1.3pt] (I) -- (N) node[above, font=\small\bfseries] {$\vec{n}$};
-    \draw[-{Stealth}, color=orangeacc, line width=1.6pt] (E) -- (I) node[midway, below left, font=\small\bfseries] {Rayo incidente $\vec{d}$};
-    \draw[-{Stealth}, color=navyaccent, line width=1.6pt] (I) -- (R) node[midway, below right, font=\small\bfseries] {Rayo reflejado $\vec{d}_{\text{ref}}$};
+    % Normal y rayos (etiquetas en espacio libre por encima del panel)
+    \draw[-{Stealth[length=2.8mm]}, dashed, color=blackmain, line width=1.3pt] (I) -- (N) node[above, font=\small\bfseries] {$\vec{n}$};
+    \draw[-{Stealth[length=3mm]}, color=orangeacc, line width=1.6pt] (E) -- (I) node[pos=0.36, below left=3pt, font=\small\bfseries] {Rayo incidente $\vec{d}$};
+    \draw[-{Stealth[length=3mm]}, color=navyaccent, line width=1.6pt] (I) -- (R) node[pos=0.64, below right=3pt, font=\small\bfseries] {Rayo reflejado $\vec{d}_{\text{ref}}$};
 
-    \fill[orangeacc] (E) circle (2.2pt) node[above left, font=\small\bfseries] {$E(1,3,8)$};
+    \fill[orangeacc] (E) circle (2.3pt) node[above left=1pt, font=\small\bfseries] {$E(1,3,8)$};
     \fill[blackmain] (I) circle (2.4pt) node[below=2pt, font=\small\bfseries] {$I$ (Impacto)};
 \end{tikzpicture}
 \end{center}

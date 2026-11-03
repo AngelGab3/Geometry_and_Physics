@@ -165,16 +165,71 @@ Para coordenadas esféricas, $\det(g) = (1)(r^2)(r^2\sin^2\theta) = r^4\sin^2\th
 
 En termodinámica y mecánica elemental encontramos dos tipos de cantidades infinitesimales que suelen anotarse de forma similar pero obedecen leyes matemáticas radicalmente distintas:
 \begin{itemize}
-    \item \textbf{Diferenciales Exactos ($df$):} Corresponden a cambios de una \textbf{función de estado} o potencial $f(x, y, z)$. Por el teorema fundamental del cálculo, su integral sobre cualquier curva que conecte $A$ con $B$ depende exclusivamente de los extremos:
+    \item \textbf{Diferenciales Exactos ($df$):} Corresponden a cambios infinitesimales de una \textbf{función de estado} o potencial $f(x, y, z)$. Por el Teorema Fundamental del Cálculo para integrales de línea, su valor depende exclusivamente de los puntos extremos:
     \[
-    \int_A^B df = f(B) - f(A), \qquad \oint df = 0.
+    \int_{\mathcal{C}_A^B} df = f(B) - f(A), \qquad \oint_\mathcal{C} df = 0.
     \]
-    La forma diferencial $\omega = df = \frac{\partial f}{\partial x^i}dx^i$ cumple la condición de compatibilidad de derivadas cruzadas $\partial_i (\partial_j f) = \partial_j (\partial_i f)$.
-    \item \textbf{Diferenciales Inexactos ($\delta W, \delta Q$):} Corresponden a magnitudes que dependen de la \textbf{trayectoria específica} seguida en el espacio, como el trabajo mecánico realizado por una fuerza de fricción o el calor intercambiado:
+    Representan magnitudes conservativas, como la energía potencial electrostática o gravitatoria.
+    \item \textbf{Diferenciales Inexactos ($\delta W, \delta Q$):} Corresponden a magnitudes que dependen de la \textbf{trayectoria específica} seguida en el espacio, como el trabajo mecánico realizado por una fuerza no conservativa o el calor en un ciclo termodinámico:
     \[
     W = \int_\gamma \delta W = \int_\gamma \vec{F}\cdot d\vec{r}.
     \]
-    En general, para un diferencial inexacto $\oint \delta W \neq 0$.
+    Para un diferencial inexacto, la circulación neta sobre un camino cerrado en general no se anula: $\oint_\mathcal{C} \delta W \neq 0$.
 \end{itemize}
+
+\manualsubsection{El Criterio de Integrabilidad de Schwarz}
+¿Cómo determinamos si una forma diferencial dada $\omega = P(x,y)\,dx + Q(x,y)\,dy$ es exacta sin tener que adivinar previamente su función potencial?
+
+\begin{theorembox}{Criterio de Integrabilidad de Schwarz}
+Sea $\omega = P(x, y)\,dx + Q(x, y)\,dy$ una forma diferencial con coeficientes $\mathcal{C}^1$ en una región abierta y simplemente conexa. La forma $\omega$ es exacta ($\omega = df$) si y sólo si satisface la condición de simetría de derivadas cruzadas:
+\[
+\mathbf{\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} \quad \Longleftrightarrow \quad \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 0}.
+\]
+\end{theorembox}
+
+\textbf{Demostración:}
+\begin{enumerate}
+    \item \textbf{Necesidad ($\implies$):} Si $\omega = df$, entonces por definición de diferencial total:
+    \[
+    df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy = P\,dx + Q\,dy \implies P = \frac{\partial f}{\partial x}, \quad Q = \frac{\partial f}{\partial y}.
+    \]
+    Derivando cruzadamente $P$ respecto a $y$ y $Q$ respecto a $x$:
+    \[
+    \frac{\partial P}{\partial y} = \frac{\partial^2 f}{\partial y \partial x}, \qquad \frac{\partial Q}{\partial x} = \frac{\partial^2 f}{\partial x \partial y}.
+    \]
+    Por el Teorema de Schwarz, las derivadas parciales de segundo orden de una función suave conmutan ($\frac{\partial^2 f}{\partial y \partial x} = \frac{\partial^2 f}{\partial x \partial y}$). Por lo tanto: $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$.
+    \item \textbf{Suficiencia ($\impliedby$):} En un dominio sin agujeros (estrellado o simplemente conexo), si $\partial_y P = \partial_x Q$, la función potencial se construye directamente mediante la integral de línea independiente de trayectoria:
+    \[
+    f(x, y) = \int_{(x_0, y_0)}^{(x, y)} \big(P(x', y')dx' + Q(x', y')dy'\big). \qquad \blacksquare
+    \]
+\end{enumerate}
+
+\manualsubsection{La Topología del Dominio y el Campo de Vórtice}
+¿Es suficiente que la condición local $\partial_y P = \partial_x Q$ se cumpla para asegurar que el trabajo en cualquier trayectoria cerrada sea cero? \textbf{La respuesta es no}, y la razón reside en la \textbf{topología del espacio}.
+
+Consideremos el célebre campo vectorial en el plano perforado $\R^2 \setminus \{(0,0)\}$:
+\[
+\vec{F}(x, y) = \frac{-y\,\hat{i} + x\,\hat{j}}{x^2 + y^2} \iff \omega = \frac{-y\,dx + x\,dy}{x^2 + y^2}.
+\]
+Calculando las derivadas parciales cruzadas para cualquier punto fuera del origen:
+\[
+\frac{\partial P}{\partial y} = \frac{-(x^2 + y^2) - (-y)(2y)}{(x^2 + y^2)^2} = \frac{y^2 - x^2}{(x^2 + y^2)^2}, \qquad
+\frac{\partial Q}{\partial x} = \frac{(x^2 + y^2) - x(2x)}{(x^2 + y^2)^2} = \frac{y^2 - x^2}{(x^2 + y^2)^2}.
+\]
+La condición de rotacional nulo $\partial_y P = \partial_x Q$ se cumple rigurosamente en todo el dominio. Sin embargo, si calculamos la circulación a lo largo de una circunferencia unitaria $\mathcal{C}$ parametrizada por $x(t) = \cos t$, $y(t) = \sin t$ con $t \in [0, 2\pi]$:
+\[
+\oint_\mathcal{C} \omega = \int_0^{2\pi} \frac{-\sin t(-\sin t\,dt) + \cos t(\cos t\,dt)}{\cos^2 t + \sin^2 t} = \int_0^{2\pi} 1\,dt = \mathbf{2\pi \neq 0}.
+\]
+¿Por qué falló el teorema? Porque localmente $\omega = d\theta$ (la diferencial del ángulo polar), pero el ángulo $\theta$ es una función multivaluada que da un salto de $2\pi$ al completar una vuelta. El agujero en el origen impide encoger la curva a un punto sin salirse del dominio.
+
+\manualsubsection{El Salto a la Geometría Intrínseca}
+Con este resultado culmina el **Módulo 00**:
+\begin{enumerate}
+    \item En la Semana 01 aprendimos a distinguir puntos de vectores.
+    \item En la Semana 02 construimos el lenguaje indicial de Einstein y Levi-Civita.
+    \item En la Semana 03 exploramos las transformaciones rígidas lineales $SO(3)$ y afines $SE(3)$.
+    \item En esta Semana 04 descubrimos cómo la matriz Jacobiana $J$ y el tensor métrico $g_{ab} = J^T J$ permiten medir distancias reales en cualquier sistema de coordenadas no lineal.
+\end{enumerate}
+Este marco matemático nos deja en el umbral perfecto del **Módulo 01**, donde los vectores dejarán de verse como flechas euclidianas rígidas para revelarse como **derivaciones tangenciales**, y las formas diferenciales como **láminas geométricas** capaces de integrar la física sin depender de ningún sistema de referencia.
 
 \end{document}

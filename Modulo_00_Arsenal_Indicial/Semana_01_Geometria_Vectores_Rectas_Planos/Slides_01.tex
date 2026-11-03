@@ -14,6 +14,8 @@
 \setlength{\belowdisplayskip}{3pt}
 
 % ---------------------------------------------------------------------
+% SLIDE 1: PORTADA
+% ---------------------------------------------------------------------
 \begin{frame}
   \titlepage
 \end{frame}
@@ -33,7 +35,9 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Invarianza del Desplazamiento y Espacio Afín}
+% SLIDE 3: DEDUCCIÓN GUIADA - DESPLAZAMIENTO
+% ---------------------------------------------------------------------
+\begin{frame}{Invarianza del Desplazamiento y Acción de Vectores}
   \begin{block}{Desplazamiento Relativo entre Puntos}
     \footnotesize
     Una partícula parte de la posición $P_0 = (1, 2, 1)\,\text{m}$ y después de $1\,\text{s}$ pasa por $P_1 = (3, 5, 3)\,\text{m}$ moviéndose en línea recta a velocidad constante.
@@ -47,32 +51,59 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Espacio Afín y la Naturaleza del Vector}
-  \vspace{0.2cm}
-  \small
-  \begin{enumerate}\itemsep14pt
-    \item En un espacio afín, cualquier punto $P$ puede conectarse con otro $Q$ mediante un único vector $\vec{v} = Q - P$. ¿Cómo formaliza esta relación la noción de que el espacio físico es homogéneo y no posee un centro absoluto?
-    \item Si fijamos un origen arbitrario $O$, cada punto $P$ se identifica con un vector posición $\vec{r}_P = P - O$. ¿Qué ocurre con esta correspondencia biunívoca si cambiamos el origen a $O' = O + \vec{d}$?
-    \item ¿Por qué magnitudes vectoriales físicas como el momento lineal $\vec{p} = m\dot{\vec{r}}$ y el campo eléctrico $\vec{E}$ se suman siguiendo la regla del paralelogramo, pero sus puntos de aplicación pertenecen a un espacio afín?
-  \end{enumerate}
+% SLIDE 4: DEFINICIÓN FORMAL - ESPACIO AFÍN DE WEYL
+% ---------------------------------------------------------------------
+\begin{frame}{El Espacio Afín: Axiomática de Weyl}
+  \begin{block}{Definición Formal de Espacio Afín}
+    \footnotesize
+    Un \textbf{espacio afín} asociado a un espacio vectorial real $V$ es un conjunto no vacío $A$ junto con una aplicación $+: A \times V \to A$ (la \emph{traslación} de un punto por un vector) que satisface:
+    \begin{enumerate}
+      \itemsep2pt
+      \item \textbf{Identidad del neutro:} Para todo punto $P \in A$, \ $P + \vec{0} = P$.
+      \item \textbf{Compatibilidad con la suma vectorial:} Para todo $P \in A$ y $\vec{u}, \vec{v} \in V$,
+      \[
+      (P + \vec{u}) + \vec{v} = P + (\vec{u} + \vec{v}).
+      \]
+      \item \textbf{Acción libre y transitiva (Vector entre dos puntos):} Para cualesquiera $P, Q \in A$, existe un \textbf{único} vector en $V$, denotado por $\vec{v} = \overrightarrow{PQ} = Q - P$, tal que:
+      \[
+      P + \vec{v} = Q.
+      \]
+    \end{enumerate}
+  \end{block}
+  \vspace{0.08cm}
+  \begin{columns}[c]
+    \begin{column}{0.49\textwidth}
+      \footnotesize
+      \textbf{Identidad de Chasles:} Para cualesquiera $P, Q, R \in A$:
+      \[
+      (Q - P) + (R - Q) = R - P \iff \overrightarrow{PQ} + \overrightarrow{QR} = \overrightarrow{PR}.
+      \]
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \footnotesize
+      \textbf{Significado Físico:} El espacio físico no posee un origen absoluto. Todos los puntos son geométricamente homogéneos.
+    \end{column}
+  \end{columns}
 \end{frame}
 
+% ---------------------------------------------------------------------
+% SLIDE 5: DEFINICIÓN FORMAL - ESPACIO VECTORIAL
 % ---------------------------------------------------------------------
 \begin{frame}{El Espacio Vectorial Real: Definición Formal y Axiomas}
   \begin{columns}[c]
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
-        \item \textbf{Espacio Afín (Puntos) vs. Vectores:} Un punto $P$ es una ubicación; la diferencia $\vec{v} = P_1 - P_0$ es un \textbf{vector} invariante ante traslaciones del origen.
-        \item \textbf{Definición Formal de Espacio Vectorial Real $(V, +, \cdot)$:} Conjunto no vacío cerrado bajo suma $\vec{u}+\vec{v}$ y producto por escalar $a\vec{u}$ ($a \in \R$) que satisface \textbf{8 axiomas}:
+        \item \textbf{Espacio Afín vs. Espacio Vectorial:} Un punto $P$ es una ubicación; la diferencia $\vec{v} = P_1 - P_0$ es un \textbf{vector} que pertenece a un espacio con elemento cero $\vec{0}$.
+        \item \textbf{Definición Formal $(V, +, \cdot)$ sobre $\R$:} Conjunto cerrado bajo suma $\vec{u}+\vec{v}$ y producto escalar $a\vec{u}$ ($a \in \R$) con \textbf{8 axiomas}:
         \begin{enumerate}
           \scriptsize
           \item Conmutatividad: $\vec{u} + \vec{v} = \vec{v} + \vec{u}$.
           \item Asociatividad: $(\vec{u}+\vec{v})+\vec{w} = \vec{u}+(\vec{v}+\vec{w})$.
           \item Neutro aditivo único $\vec{0}$: $\vec{v} + \vec{0} = \vec{v}$.
           \item Inverso aditivo $-\vec{v}$: $\vec{v} + (-\vec{v}) = \vec{0}$.
-          \item Asociatividad escalar: $a(b\vec{v}) = (ab)\vec{v}$ y neutro $1\vec{v} = \vec{v}$.
-          \item Distributividades: $a(\vec{u}+\vec{v}) = a\vec{u}+a\vec{v}$ y $(a+b)\vec{v} = a\vec{v}+b\vec{v}$.
+          \item Asociatividad escalar: $a(b\vec{v}) = (ab)\vec{v}$ y $1\vec{v} = \vec{v}$.
+          \item Distributividades: $a(\vec{u}+\vec{v}) = a\vec{u}+a\vec{v}$, \ $(a+b)\vec{v} = a\vec{v}+b\vec{v}$.
         \end{enumerate}
       \end{itemize}
     \end{column}
@@ -98,6 +129,234 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
+% SLIDE 6: PREGUNTAS DEDICADAS - ESPACIO AFÍN Y VECTORES
+% ---------------------------------------------------------------------
+\begin{frame}{Espacio Afín y la Naturaleza del Vector}
+  \vspace{0.2cm}
+  \small
+  \begin{enumerate}\itemsep14pt
+    \item En un espacio afín, cualquier punto $P$ puede conectarse con otro $Q$ mediante un único vector $\vec{v} = Q - P$. ¿Cómo formaliza esta relación la noción de que el espacio físico es homogéneo y no posee un centro absoluto?
+    \item Si fijamos un origen arbitrario $O$, cada punto $P$ se identifica con un vector posición $\vec{r}_P = P - O$. ¿Qué ocurre con esta correspondencia biunívoca si cambiamos el origen a $O' = O + \vec{d}$?
+    \item ¿Por qué magnitudes vectoriales físicas como el momento lineal $\vec{p} = m\dot{\vec{r}}$ y el campo eléctrico $\vec{E}$ se suman siguiendo la regla del paralelogramo, pero sus puntos de aplicación pertenecen a un espacio afín?
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 7: DEFINICIÓN FORMAL - PRODUCTO INTERNO GENERAL
+% ---------------------------------------------------------------------
+\begin{frame}{Espacios Prehilbertianos: El Producto Interno General}
+  \begin{block}{Definición Formal de Producto Interno sobre $\R$}
+    \footnotesize
+    Sea $V$ un espacio vectorial real. Un \textbf{producto interno} es una aplicación bilineal $\langle \cdot, \cdot \rangle: V \times V \to \R$ que satisface, para todos $\vec{u}, \vec{v}, \vec{w} \in V$ y $c \in \R$:
+    \begin{enumerate}
+      \itemsep1pt
+      \item \textbf{Simetría:} $\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle$.
+      \item \textbf{Bilinealidad:} $\langle c\vec{u} + \vec{w}, \vec{v} \rangle = c\langle \vec{u}, \vec{v} \rangle + \langle \vec{w}, \vec{v} \rangle$.
+      \item \textbf{Definida positiva:} $\langle \vec{u}, \vec{u} \rangle \ge 0$, con igualdad si y solo si $\vec{u} = \vec{0}$.
+    \end{enumerate}
+  \end{block}
+  \vspace{0.08cm}
+  \begin{columns}[c]
+    \begin{column}{0.49\textwidth}
+      \footnotesize
+      \textbf{Producto Canónico en $\R^n$:}
+      \[
+      \langle \vec{u}, \vec{v} \rangle_{\text{can}} = \vec{u}\cdot\vec{v} = \sum_{i=1}^n u_i v_i.
+      \]
+      Las superficies de nivel $\langle \vec{x}, \vec{x} \rangle = 1$ son esferas isotrópicas clásicas.
+    \end{column}
+    \begin{column}{0.49\textwidth}
+      \footnotesize
+      \textbf{Métricas Anisótropas Generales:}
+      \[
+      \langle \vec{u}, \vec{v} \rangle_G = \vec{u}^T G \vec{v} = \sum_{i,j} G_{ij} u_i v_j,
+      \]
+      con $G = G^T$ simétrica definida positiva. Las esferas unitarias se deforman en \textbf{elipses métricas}.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 8: DEFINICIÓN FORMAL - ESPACIOS NORMADOS
+% ---------------------------------------------------------------------
+\begin{frame}{Espacios Normados: La Geometría de Longitudes y Ángulos}
+  \begin{block}{Definición Formal de Norma}
+    \footnotesize
+    Una \textbf{norma} en un espacio vectorial real $V$ es una función $\|\cdot\|: V \to \R_{\ge 0}$ que asigna a cada vector una magnitud geométrica satisfaciendo:
+    \begin{enumerate}
+      \itemsep1pt
+      \item \textbf{No-degeneración:} $\|\vec{u}\| = 0 \iff \vec{u} = \vec{0}$.
+      \item \textbf{Homogeneidad absoluta:} $\|c\vec{u}\| = |c|\|\vec{u}\|$ para todo $c \in \R$ y $\vec{u} \in V$.
+      \item \textbf{Desigualdad triangular:} $\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|$.
+    \end{enumerate}
+  \end{block}
+  \vspace{0.08cm}
+  \begin{columns}[c]
+    \begin{column}{0.51\textwidth}
+      \footnotesize
+      \textbf{Norma Inducida por un Producto Interno:}
+      \[
+      \boxed{\|\vec{u}\| \equiv \sqrt{\langle \vec{u}, \vec{u} \rangle}}
+      \]
+      Todo producto interno induce de manera natural una norma euclidiana que mide longitudes reales.
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \footnotesize
+      \textbf{Definición Intrínseca del Ángulo:}
+      \[
+      \boxed{\cos\theta \equiv \frac{\langle \vec{u}, \vec{v} \rangle}{\|\vec{u}\|\|\vec{v}\|}, \quad \theta \in [0, \pi]}
+      \]
+      Esta definición geométrica es consistente gracias a la Desigualdad de Cauchy-Schwarz.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 9: DEMOSTRACIÓN MAGISTRAL - CAUCHY-SCHWARZ
+% ---------------------------------------------------------------------
+\begin{frame}{Teorema Fundamental: La Desigualdad de Cauchy-Schwarz}
+  \begin{block}{Enunciado del Teorema}
+    \footnotesize
+    En todo espacio prehilbertiano $(V, \langle \cdot, \cdot \rangle)$ con norma inducida $\|\cdot\|$:
+    \[
+    \boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|}
+    \]
+    La igualdad se cumple si y solo si $\{\vec{u}, \vec{v}\}$ son linealmente dependientes.
+  \end{block}
+  \begin{block}{Demostración (Cátedra Magistral)}
+    \scriptsize
+    \begin{enumerate}
+      \itemsep2pt
+      \item Si $\vec{v} = \vec{0}$, la desigualdad se cumple trivialmente ($0 \le 0$). Supongamos $\vec{v} \neq \vec{0}$.
+      \item Por la positividad del producto interno, para cualquier escalar $\lambda \in \R$ se cumple:
+      \[
+      P(\lambda) \equiv \|\vec{u} + \lambda \vec{v}\|^2 = \langle \vec{u} + \lambda \vec{v},\; \vec{u} + \lambda \vec{v} \rangle \ge 0.
+      \]
+      \item Expandiendo por bilinealidad y simetría obtenemos un trinomio cuadrático en $\lambda$:
+      \[
+      P(\lambda) = \|\vec{u}\|^2 + 2\lambda\langle \vec{u}, \vec{v} \rangle + \lambda^2 \|\vec{v}\|^2 \ge 0 \qquad (\forall \lambda \in \R).
+      \]
+      \item Como el coeficiente cuadrático es $\|\vec{v}\|^2 > 0$ y $P(\lambda) \ge 0$ no cambia de signo, su discriminante $\Delta = B^2 - 4AC \le 0$:
+      \[
+      (2\langle \vec{u}, \vec{v} \rangle)^2 - 4\|\vec{v}\|^2 \|\vec{u}\|^2 \le 0 \implies 4\langle \vec{u}, \vec{v} \rangle^2 \le 4\|\vec{u}\|^2 \|\vec{v}\|^2 \implies |\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|. \quad \blacksquare
+      \]
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 10: DEMOSTRACIÓN MAGISTRAL - DESIGUALDAD TRIANGULAR
+% ---------------------------------------------------------------------
+\begin{frame}{Teorema: La Desigualdad Triangular}
+  \begin{block}{Enunciado del Teorema}
+    \footnotesize
+    En todo espacio prehilbertiano $(V, \langle \cdot, \cdot \rangle)$, la norma inducida $\|\vec{u}\| \equiv \sqrt{\langle\vec{u},\vec{u}\rangle}$ satisface:
+    \[
+    \boxed{\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|}
+    \]
+  \end{block}
+  \begin{block}{Demostración (Cátedra Magistral)}
+    \scriptsize
+    Desarrollamos el cuadrado de la norma por bilinealidad y acotamos mediante Cauchy-Schwarz:
+    \begin{align*}
+      \|\vec{u} + \vec{v}\|^2 &= \langle \vec{u} + \vec{v},\; \vec{u} + \vec{v} \rangle = \|\vec{u}\|^2 + 2\langle \vec{u}, \vec{v} \rangle + \|\vec{v}\|^2 \\
+      &\le \|\vec{u}\|^2 + 2|\langle \vec{u}, \vec{v} \rangle| + \|\vec{v}\|^2 \qquad \text{(pues $\langle \vec{u}, \vec{v} \rangle \le |\langle \vec{u}, \vec{v} \rangle|$)} \\
+      &\le \|\vec{u}\|^2 + 2\|\vec{u}\|\|\vec{v}\| + \|\vec{v}\|^2 \qquad \text{(por el Teorema de Cauchy-Schwarz)} \\
+      &= (\|\vec{u}\| + \|\vec{v}\|)^2.
+    \end{align*}
+    Tomando la raíz cuadrada positiva a ambos lados (monotonía estricta en $\R_{\ge 0}$), concluimos:
+    \[
+    \|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|. \qquad \blacksquare
+    \]
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 11: DEDUCCIÓN GUIADA - PROYECCIÓN ORTOGONAL
+% ---------------------------------------------------------------------
+\begin{frame}{Descomposición de Fuerzas y Proyección Ortogonal}
+  \begin{block}{Descomposición Ortogonal sobre una Dirección Fija}
+    \footnotesize
+    Considera el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{w} = \vec{u} - \vec{v}$, con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$.
+    \begin{enumerate}
+      \itemsep2pt
+      \item[(a)] \textbf{De la Ley de Cosenos al Álgebra:} Sabemos geométricamente que $\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos\theta$. Expande algebraicamente $(u_1 - v_1)^2 + (u_2 - v_2)^2 + (u_3 - v_3)^2$ e iguala ambas expresiones. ¿Qué combinación algebraica sobrevive?
+      \item[(b)] \textbf{Descomposición sobre un Riel:} Una fuerza $\vec{F}$ jala un vagón sobre un riel con dirección $\vec{v}$. Escribe $\vec{F} = \vec{F}_\parallel + \vec{F}_\perp$, donde $\vec{F}_\parallel = c\vec{v}$ es paralela al riel y $\vec{F}_\perp$ es perpendicular ($\vec{F}_\perp \cdot \vec{v} = 0$). Toma el producto punto con $\vec{v}$ para despejar el escalar $c$.
+      \item[(c)] \textbf{Componente normal:} Halla la componente $\vec{F}_\perp$ que presiona lateralmente el riel exclusivamente a partir de las componentes de $\vec{F}$ y $\vec{v}$, sin calcular $\theta$.
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 12: TEORÍA Y TIKZ - PROYECCIONES
+% ---------------------------------------------------------------------
+\begin{frame}{El Teorema de Descomposición Ortogonal y Proyecciones}
+  \begin{columns}[c]
+    \begin{column}{0.53\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Producto Punto y Coseno:}
+        \[
+        \vec{u}\cdot\vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 = \|\vec{u}\|\|\vec{v}\|\cos\theta
+        \]
+        \item \textbf{Proyección Ortogonal sobre $\vec{v}$:}
+        \[
+        \boxed{\text{proy}_{\vec{v}}(\vec{u}) = \left(\frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|^2}\right)\vec{v}}
+        \]
+        \item \textbf{Componente Perpendicular (Normal):}
+        \[
+        \boxed{\vec{u}_\perp = \vec{u} - \text{proy}_{\vec{v}}(\vec{u}), \qquad \vec{u}_\perp \cdot \vec{v} = 0}
+        \]
+        \item \textbf{Ortogonalidad Pitagórica:}
+        \[
+        \|\vec{u}\|^2 = \|\text{proy}_{\vec{v}}(\vec{u})\|^2 + \|\vec{u}_\perp\|^2
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.82]
+        \foreach \x in {0.4, 1.0, 1.6, 2.2, 2.8} {
+          \draw[-{Stealth}, color=orangeacc!60, thin, densely dashed] (\x, 3.1) -- (\x, 2.6);
+        }
+        \node[color=orangeacc, font=\scriptsize\itshape] at (1.6, 3.35) {Rayos perpendiculares al riel};
+
+        \draw[color=graymuted, line width=1pt] (-0.3,0) -- (4.8,0);
+
+        \coordinate (O) at (0,0);
+        \coordinate (U) at (3.0, 2.2);
+        \coordinate (P) at (3.0, 0);
+        \coordinate (V) at (4.5, 0);
+
+        \draw[color=orangeacc, thick] (2.75, 0) -- (2.75, 0.25) -- (3.0, 0.25);
+        \draw[dashed, color=orangeacc, line width=1.1pt] (P) -- (U) node[midway, right=2pt, font=\scriptsize\bfseries] {$\vec{u}_\perp = \vec{u} - \vec{u}_\parallel$};
+
+        \draw[-{Stealth}, line width=1.3pt, color=blackmain] (O) -- (V) node[above=1pt, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=2.2pt, color=orangeacc] (O) -- (P) node[midway, below=3pt, font=\scriptsize\bfseries] {$\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$};
+        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (O) -- (U) node[midway, above left=1pt, font=\scriptsize\bfseries] {$\vec{u}$};
+
+        \pic[draw=navyaccent, fill=navyaccent!10, angle radius=0.6cm, "$\theta$", font=\scriptsize] {angle = P--O--U};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 13: PREGUNTAS DEDICADAS - GEOMETRÍA MÉTRICA
+% ---------------------------------------------------------------------
+\begin{frame}{Geometría Métrica y Proyecciones}
+  \vspace{0.2cm}
+  \small
+  \begin{enumerate}\itemsep14pt
+    \item ¿Por qué la proyección ortogonal $\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$ es el vector en la dirección de $\vec{v}$ que minimiza la distancia $\|\vec{u} - \lambda\vec{v}\|$ para todo $\lambda \in \R$?
+    \item ¿Cómo nos permite el signo algebraico de $\vec{u}\cdot\vec{v}$ clasificar el ángulo relativo (agudo si $>0$, perpendicular si $=0$, obtuso si $<0$) sin evaluar funciones trigonométricas?
+    \item ¿Por qué la descomposición $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$ es única y no depende de la orientación de los ejes cartesianos auxiliares?
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 14: TEORÍA Y TIKZ - RECTA
+% ---------------------------------------------------------------------
 \begin{frame}{La Ecuación Vectorial de la Recta}
   \begin{columns}[c]
     \begin{column}{0.48\textwidth}
@@ -111,7 +370,7 @@
         \begin{itemize}
           \scriptsize
           \item Si $\vec{p}_0 = \vec{0}$, el conjunto $W = \{t\vec{v} \mid t \in \R\}$ contiene a $\vec{0}$ y es un \textbf{subespacio vectorial de dimensión 1}.
-          \item Si $\vec{p}_0 \neq \vec{0}$, la recta $\mathcal{L} = \vec{p}_0 + W$ es un \textbf{subespacio afín} trasladado.
+          \item Si $\vec{p}_0 \neq \vec{0}$, la recta $\mathcal{L} = \vec{p}_0 + W$ es una \textbf{variedad lineal afín} trasladada.
         \end{itemize}
         \item \textbf{Vector Tangente a una Curva:} La derivada $\dot{\vec{r}}(t) = \vec{v}$ representa la velocidad instantánea del movimiento rectilíneo.
       \end{itemize}
@@ -146,77 +405,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Descomposición de Fuerzas y Proyección Ortogonal}
-  \begin{block}{Descomposición Ortogonal sobre una Dirección Fija}
-    \footnotesize
-    Considera el triángulo formado por los vectores $\vec{u}$, $\vec{v}$ y su diferencia $\vec{w} = \vec{u} - \vec{v}$, con ángulo $\theta$ entre $\vec{u}$ y $\vec{v}$.
-    \begin{enumerate}
-      \itemsep2pt
-      \item[(a)] \textbf{De la Ley de Cosenos al Álgebra:} Sabemos geométricamente que $\|\vec{u} - \vec{v}\|^2 = \|\vec{u}\|^2 + \|\vec{v}\|^2 - 2\|\vec{u}\|\|\vec{v}\|\cos\theta$. Expande algebraicamente $(u_1 - v_1)^2 + (u_2 - v_2)^2 + (u_3 - v_3)^2$ e iguala ambas expresiones. ¿Qué combinación algebraica sobrevive?
-      \item[(b)] \textbf{Descomposición sobre un Riel:} Una fuerza $\vec{F}$ jala un vagón sobre un riel con dirección $\vec{v}$. Escribe $\vec{F} = \vec{F}_\parallel + \vec{F}_\perp$, donde $\vec{F}_\parallel = c\vec{v}$ es paralela al riel y $\vec{F}_\perp$ es perpendicular ($\vec{F}_\perp \cdot \vec{v} = 0$). Toma el producto punto con $\vec{v}$ para despejar el escalar $c$.
-      \item[(c)] \textbf{Componente normal:} Halla la componente $\vec{F}_\perp$ que presiona lateralmente el riel exclusivamente a partir de las componentes de $\vec{F}$ y $\vec{v}$, sin calcular $\theta$.
-    \end{enumerate}
-  \end{block}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{El Producto Interno: Geometría, Axiomas y Proyecciones}
-  \begin{columns}[c]
-    \begin{column}{0.53\textwidth}
-      \footnotesize
-      \begin{itemize}
-        \item \textbf{Producto Punto (Geometría $\leftrightarrow$ Álgebra):}
-        \[
-        \vec{u}\cdot\vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 = \|\vec{u}\|\|\vec{v}\|\cos\theta
-        \]
-        \item \textbf{Definición Formal de Producto Interno $\langle\vec{u},\vec{v}\rangle$:}
-        Operación simétrica ($\langle\vec{u},\vec{v}\rangle=\langle\vec{v},\vec{u}\rangle$), bilineal y definida positiva ($\langle\vec{u},\vec{u}\rangle \ge 0$, con igualdad $\iff \vec{u}=\vec{0}$). Induce la \textbf{norma} $\|\vec{u}\| = \sqrt{\langle\vec{u},\vec{u}\rangle}$.
-        \item \textbf{Proyección Ortogonal y Componente Normal:}
-        \[
-        \boxed{\text{proy}_{\vec{v}}(\vec{u}) = \left(\frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|^2}\right)\vec{v}, \quad \vec{u}_\perp = \vec{u} - \text{proy}_{\vec{v}}(\vec{u})}
-        \]
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.44\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.82]
-        \foreach \x in {0.4, 1.0, 1.6, 2.2, 2.8} {
-          \draw[-{Stealth}, color=orangeacc!60, thin, densely dashed] (\x, 3.1) -- (\x, 2.6);
-        }
-        \node[color=orangeacc, font=\scriptsize\itshape] at (1.6, 3.35) {Rayos perpendiculares al riel};
-
-        \draw[color=graymuted, line width=1pt] (-0.3,0) -- (4.8,0);
-
-        \coordinate (O) at (0,0);
-        \coordinate (U) at (3.0, 2.2);
-        \coordinate (P) at (3.0, 0);
-        \coordinate (V) at (4.5, 0);
-
-        \draw[color=orangeacc, thick] (2.75, 0) -- (2.75, 0.25) -- (3.0, 0.25);
-        \draw[dashed, color=orangeacc, line width=1.1pt] (P) -- (U) node[midway, right=2pt, font=\scriptsize\bfseries] {$\vec{u}_\perp = \vec{u} - \vec{u}_\parallel$};
-
-        \draw[-{Stealth}, line width=1.3pt, color=blackmain] (O) -- (V) node[above=1pt, font=\scriptsize\bfseries] {$\vec{v}$};
-        \draw[-{Stealth}, line width=2.2pt, color=orangeacc] (O) -- (P) node[midway, below=3pt, font=\scriptsize\bfseries] {$\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$};
-        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (O) -- (U) node[midway, above left=1pt, font=\scriptsize\bfseries] {$\vec{u}$};
-
-        \pic[draw=navyaccent, fill=navyaccent!10, angle radius=0.6cm, "$\theta$", font=\scriptsize] {angle = P--O--U};
-      \end{tikzpicture}
-    \end{column}
-  \end{columns}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Geometría del Producto Interno y Proyecciones}
-  \vspace{0.2cm}
-  \small
-  \begin{enumerate}
-    \itemsep14pt
-    \item ¿Por qué la proyección ortogonal $\vec{u}_\parallel = \text{proy}_{\vec{v}}(\vec{u})$ es el vector en la dirección de $\vec{v}$ que minimiza la distancia $\|\vec{u} - \lambda\vec{v}\|$ para todo $\lambda \in \R$?
-    \item ¿Cómo nos permite el signo algebraico de $\vec{u}\cdot\vec{v}$ clasificar el ángulo relativo (agudo si $>0$, perpendicular si $=0$, obtuso si $<0$) sin evaluar funciones trigonométricas?
-    \item ¿Por qué la descomposición $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$ es única y no depende de la orientación de los ejes cartesianos auxiliares?
-  \end{enumerate}
-\end{frame}
-
+% SLIDE 15: DEDUCCIÓN GUIADA - PRODUCTO CRUZ
 % ---------------------------------------------------------------------
 \begin{frame}{Ortogonalidad Simultánea y Producto Vectorial}
   \begin{block}{Construcción de una Dirección Perpendicular Conjunta}
@@ -234,6 +423,8 @@
   \end{block}
 \end{frame}
 
+% ---------------------------------------------------------------------
+% SLIDE 16: TEORÍA Y TIKZ - PRODUCTO CRUZ
 % ---------------------------------------------------------------------
 \begin{frame}{El Producto Cruz: Magnitud, Área y Orientación}
   \begin{columns}[c]
@@ -282,6 +473,8 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
+% SLIDE 17: PREGUNTAS DEDICADAS - ORIENTACIÓN Y PRODUCTO CRUZ
+% ---------------------------------------------------------------------
 \begin{frame}{Orientación Espacial y Álgebra del Producto Cruz}
   \vspace{0.2cm}
   \small
@@ -292,6 +485,8 @@
   \end{enumerate}
 \end{frame}
 
+% ---------------------------------------------------------------------
+% SLIDE 18: DEDUCCIÓN GUIADA - PLANO
 % ---------------------------------------------------------------------
 \begin{frame}{Geometría del Plano: Descripción Paramétrica e Implícita}
   \begin{block}{Parametrización Bidimensional vs. Ecuación Normal}
@@ -306,6 +501,8 @@
   \end{block}
 \end{frame}
 
+% ---------------------------------------------------------------------
+% SLIDE 19: TEORÍA Y TIKZ - PLANOS Y FOLIACIONES
 % ---------------------------------------------------------------------
 \begin{frame}{Planos en $\R^3$: Subespacios de Dimensión 2 y Foliaciones}
   \begin{columns}[c]
@@ -349,6 +546,8 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
+% SLIDE 20: DEDUCCIÓN GUIADA - INTERSECCIÓN
+% ---------------------------------------------------------------------
 \begin{frame}{Intersección de Planos y Sistemas de Restricciones}
   \begin{block}{Determinación de la Recta de Intersección}
     \footnotesize
@@ -360,6 +559,8 @@
   \end{block}
 \end{frame}
 
+% ---------------------------------------------------------------------
+% SLIDE 21: TEORÍA Y TIKZ - INTERSECCIÓN Y DISTANCIA
 % ---------------------------------------------------------------------
 \begin{frame}{Geometría de la Intersección y Distancia a un Plano}
   \begin{columns}[c]
@@ -400,11 +601,12 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
+% SLIDE 22: PREGUNTAS DE CIERRE - SÍNTESIS ESTRUCTURAL
+% ---------------------------------------------------------------------
 \begin{frame}{De la Geometría a la Estructura Lineal}
   \vspace{0.2cm}
   \small
-  \begin{enumerate}
-    \itemsep14pt
+  \begin{enumerate}\itemsep14pt
     \item ¿Cómo se relacionan la descripción interna de un plano (generada por 2 vectores independientes) y la descripción externa (restringida por 1 ecuación ortogonal)? ¿Por qué la suma de parámetros libres y restricciones es la dimensión total del espacio ($2 + 1 = 3$)?
     \item ¿Por qué la intersección de dos planos linealmente independientes en $\R^3$ produce necesariamente una recta? ¿Cómo se generaliza este conteo de codimensión en dimensiones superiores?
     \item ¿En qué sentido la familia de planos paralelos $\vec{n}\cdot\vec{r} = c$ mide desplazamientos de manera dual a un vector flecha ordinario?

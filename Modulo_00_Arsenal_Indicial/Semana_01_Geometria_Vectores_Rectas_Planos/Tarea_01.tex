@@ -74,15 +74,24 @@ Considera el plano $\Pi \subset \R^3$ generado paramétricamente desde el punto 
 \end{enumerate}
 \end{infobox}
 
-\begin{infobox}{Problema 4: Demostración de Cauchy-Schwarz y la Identidad de Lagrange en $\R^3$}
-Dados dos vectores cualesquiera $\vec{u} = \langle u_1, u_2, u_3 \rangle$ y $\vec{v} = \langle v_1, v_2, v_3 \rangle$ en $\R^3$:
+\begin{infobox}{Problema 4: La Identidad del Paralelogramo, Polarización y Métricas Anisótropas}
+En clase formalizamos los espacios prehilbertianos $(V, \langle \cdot, \cdot \rangle)$, donde el producto interno define de manera natural la noción métrica de longitud mediante $\|\vec{u}\| = \sqrt{\langle \vec{u}, \vec{u} \rangle}$.
 \begin{enumerate}[label=(\alph*)]
-    \item Usando las interpretaciones geométricas $|\vec{u}\cdot\vec{v}| = \|\vec{u}\|\|\vec{v}\| |\cos\theta|$ y $\|\vec{u}\times\vec{v}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta$, explica por qué la identidad pitagórica $\cos^2\theta + \sin^2\theta = 1$ implica inmediatamente la \textbf{Identidad de Lagrange}:
+    \item \textbf{La Ley del Paralelogramo:} A partir de la bilinealidad y simetría del producto interno, demuestra que para cualesquiera dos vectores $\vec{u}, \vec{v} \in V$ se cumple rigurosamente:
     \[
-        \|\vec{u}\times\vec{v}\|^2 + (\vec{u}\cdot\vec{v})^2 = \|\vec{u}\|^2 \|\vec{v}\|^2,
+        \|\vec{u} + \vec{v}\|^2 + \|\vec{u} - \vec{v}\|^2 = 2\|\vec{u}\|^2 + 2\|\vec{v}\|^2.
     \]
-    y deduce de ella la \textbf{Desigualdad de Cauchy-Schwarz} $|\vec{u}\cdot\vec{v}| \le \|\vec{u}\|\|\vec{v}\|$. ¿Bajo qué condición geométrica entre $\vec{u}$ y $\vec{v}$ se alcanza la igualdad?
-    \item Verifica algebraicamente la identidad para $\vec{u} = \langle 1, 2, -2 \rangle$ y $\vec{v} = \langle 3, 0, 4 \rangle$, y úsala para calcular el área del triángulo cuyos lados son $\vec{u}$ y $\vec{v}$.
+    Explica el significado geométrico de esta identidad en términos de las longitudes de los cuatro lados y las dos diagonales del paralelogramo generado por $\vec{u}$ y $\vec{v}$.
+    \item \textbf{Identidad de Polarización:} Demuestra que es posible recuperar por completo el producto interno $\langle \vec{u}, \vec{v} \rangle$ entre dos vectores utilizando únicamente mediciones de distancias y normas reales:
+    \[
+        \langle \vec{u}, \vec{v} \rangle = \frac{1}{4}\left(\|\vec{u} + \vec{v}\|^2 - \|\vec{u} - \vec{v}\|^2\right).
+    \]
+    ¿Por qué una norma que no satisfaga la ley del paralelogramo (por ejemplo, la norma del taxista $\|\vec{x}\|_1 = |x_1| + |x_2|$) no puede provenir de ningún producto interno?
+    \item \textbf{Métricas Anisótropas en $\R^2$:} Considera el producto interno generalizado definido mediante la matriz métrica $G = \begin{pmatrix} 1 & 0 \\ 0 & 4 \end{pmatrix}$:
+    \[
+        \langle \vec{x}, \vec{y} \rangle_G \equiv \vec{x}^T G \vec{y} = x_1 y_1 + 4 x_2 y_2, \qquad \vec{x}, \vec{y} \in \R^2.
+    \]
+    Verifica que $\langle \cdot, \cdot \rangle_G$ satisface los tres axiomas de producto interno. Escribe la ecuación cartesiana de la «circunferencia unitaria» $\|\vec{x}\|_G = 1$ y explica por qué esta métrica describe un medio físico deformable o anisótropo donde las distancias en el eje vertical $x_2$ se ponderan cuatro veces más que en el eje horizontal $x_1$.
 \end{enumerate}
 \end{infobox}
 

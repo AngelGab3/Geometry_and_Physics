@@ -35,6 +35,26 @@ Si dos observadores eligen orígenes distintos ($P' = P + \vec{c}$), la diferenc
 permanece estrictamente \textbf{invariante}.
 \end{intuitionbox}
 
+\begin{theorembox}{Definición Formal: El Espacio Afín de Weyl}
+Sea $V$ un espacio vectorial real. Un \textbf{espacio afín} asociado a $V$ es un par $(A, V)$ constituido por un conjunto no vacío de puntos $A$ y una operación de traslación $+: A \times V \to A$ que satisface los siguientes tres axiomas:
+\begin{enumerate}
+    \item \textbf{Identidad del neutro:} Para todo punto $P \in A$, \ $P + \vec{0} = P$.
+    \item \textbf{Compatibilidad asociativa:} Para todo punto $P \in A$ y cualesquiera vectores $\vec{u}, \vec{v} \in V$:
+    \[
+    (P + \vec{u}) + \vec{v} = P + (\vec{u} + \vec{v}).
+    \]
+    \item \textbf{Acción libre y transitiva (Vector desplazamiento):} Para cualesquiera dos puntos $P, Q \in A$, existe un \textbf{único} vector en $V$, denotado por $\overrightarrow{PQ} \equiv Q - P$, tal que:
+    \[
+    P + (Q - P) = Q.
+    \]
+\end{enumerate}
+\textbf{Identidad de Chasles:} Como consecuencia directa de estos axiomas, para cualesquiera $P, Q, R \in A$ se verifica:
+\[
+(Q - P) + (R - Q) = R - P \quad \Longleftrightarrow \quad \overrightarrow{PQ} + \overrightarrow{QR} = \overrightarrow{PR}.
+\]
+\textbf{Significado físico:} El espacio geométrico en el que ocurre la mecánica clásica no tiene ningún origen natural o privilegiado: todos los puntos del espacio son equivalentes (homogeneidad espacial). Fijar un origen cartesiano $O$ es un artificio del observador que identifica biunívocamente cada punto $P \in A$ con un vector de posición $\vec{r}_P = P - O \in V$.
+\end{theorembox}
+
 \manualsubsection{Construcción Geométrica de la Suma, Resta y Escalamiento}
 ¿Por qué sumamos vectores componente a componente, $\vec{u} + \vec{v} = \langle u_1+v_1, u_2+v_2, u_3+v_3 \rangle$, y los multiplicamos por escalares reales $c\vec{u} = \langle c u_1, c u_2, c u_3 \rangle$?
 \begin{enumerate}
@@ -237,14 +257,112 @@ Para cualesquiera dos vectores $\vec{u} = \langle u_1, u_2, u_3 \rangle$ y $\vec
 \end{tikzpicture}
 \end{center}
 
-\begin{theorembox}{Definición Formal: Espacio Vectorial con Producto Interno (Euclidiano)}
-En un espacio vectorial real arbitrario $V$, un \textbf{producto interno} (o producto escalar) es una operación $\langle \cdot, \cdot \rangle: V \times V \to \R$ que asigna a cada par de vectores $\vec{u}, \vec{v} \in V$ un número real $\langle \vec{u}, \vec{v} \rangle$ satisfaciendo tres axiomas para todos $\vec{u}, \vec{v}, \vec{w} \in V$ y $a, b \in \R$:
+\manualsubsection{Espacios Prehilbertianos y Métricas Anisótropas}
+
+\begin{theorembox}{Definición Formal: Espacio con Producto Interno (Prehilbertiano)}
+Sea $V$ un espacio vectorial real. Un \textbf{producto interno} (o forma bilineal métrica simétrica definida positiva) es una función $\langle \cdot, \cdot \rangle: V \times V \to \R$ que satisface, para cualesquiera $\vec{u}, \vec{v}, \vec{w} \in V$ y cualquier escalar $c \in \R$:
 \begin{enumerate}
     \item \textbf{Simetría:} $\langle \vec{u}, \vec{v} \rangle = \langle \vec{v}, \vec{u} \rangle$.
-    \item \textbf{Bilinealidad (Linealidad en cada entrada):} $\langle a\vec{u} + b\vec{v}, \vec{w} \rangle = a\langle \vec{u}, \vec{w} \rangle + b\langle \vec{v}, \vec{w} \rangle$.
-    \item \textbf{Positividad definida:} $\langle \vec{u}, \vec{u} \rangle \ge 0$, y $\langle \vec{u}, \vec{u} \rangle = 0 \iff \vec{u} = \vec{0}$.
+    \item \textbf{Bilinealidad:} $\langle c\vec{u} + \vec{w}, \vec{v} \rangle = c\langle \vec{u}, \vec{v} \rangle + \langle \vec{w}, \vec{v} \rangle$.
+    \item \textbf{Positividad definida:} $\langle \vec{u}, \vec{u} \rangle \ge 0$ para todo $\vec{u} \in V$, cumpliéndose $\langle \vec{u}, \vec{u} \rangle = 0 \iff \vec{u} = \vec{0}$.
 \end{enumerate}
-Todo producto interno induce una \textbf{norma (longitud)} $\|\vec{u}\| \equiv \sqrt{\langle \vec{u}, \vec{u} \rangle}$ que cumple la \textbf{Desigualdad de Cauchy-Schwarz} $|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$ y la \textbf{Desigualdad del Triángulo} $\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|$.
+\textbf{Ejemplos fundamentales:}
+\begin{itemize}
+    \item \textbf{El producto punto euclidiano canónico en $\R^n$:}
+    \[
+    \langle \vec{u}, \vec{v} \rangle_{\text{can}} = \vec{u}\cdot\vec{v} = \sum_{i=1}^n u_i v_i.
+    \]
+    Bajo este producto, el espacio es perfectamente isotrópico y el lugar geométrico de los vectores unitarios $\{\vec{x} \in \R^n \mid \|\vec{x}\| = 1\}$ es una esfera perfecta.
+    \item \textbf{Productos métricos ponderados y anisótropos:} Si $G \in M_{n\times n}(\R)$ es una matriz simétrica ($G = G^T$) y estrictamente definida positiva ($\vec{x}^T G \vec{x} > 0$ para todo $\vec{x} \neq \vec{0}$):
+    \[
+    \langle \vec{u}, \vec{v} \rangle_G \equiv \vec{u}^T G \vec{v} = \sum_{i,j=1}^n G_{ij} u_i v_j.
+    \]
+    En un medio elástico o un cristal anisótropo donde las ondas viajan a distintas velocidades según la dirección, la matriz $G$ actúa como una métrica no trivial que deforma las esferas euclidianas en \textbf{elipsoides métricos}.
+\end{itemize}
+\end{theorembox}
+
+\manualsubsection{Espacios Normados, Cauchy-Schwarz y la Desigualdad Triangular}
+
+\begin{infobox}{Definición Formal: Espacio Normado y Ángulo Intrínseco}
+Una \textbf{norma} en un espacio vectorial real $V$ es una aplicación $\|\cdot\|: V \to \R_{\ge 0}$ que asigna a cada vector su longitud geométrica satisfaciendo:
+\begin{enumerate}
+    \item \textbf{No-degeneración:} $\|\vec{u}\| = 0 \iff \vec{u} = \vec{0}$.
+    \item \textbf{Homogeneidad absoluta:} $\|c\vec{u}\| = |c|\|\vec{u}\|$ para todo $c \in \R$ y $\vec{u} \in V$.
+    \item \textbf{Desigualdad triangular:} $\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|$.
+\end{enumerate}
+\textbf{Norma Inducida:} Todo producto interno induce canónicamente una norma euclidiana dada por:
+\[
+\|\vec{u}\| \equiv \sqrt{\langle \vec{u}, \vec{u} \rangle}.
+\]
+A partir de ella se define de forma universal e intrínseca el \textbf{ángulo} $\theta \in [0, \pi]$ entre dos vectores no nulos mediante:
+\[
+\cos\theta \equiv \frac{\langle \vec{u}, \vec{v} \rangle}{\|\vec{u}\|\|\vec{v}\|}.
+\]
+Esta definición tiene sentido geométrico garantizado porque el cociente siempre se encuentra acotado en el intervalo $[-1, 1]$ gracias al siguiente teorema fundamental.
+\end{infobox}
+
+\begin{theorembox}{Teorema Fundamental: La Desigualdad de Cauchy-Schwarz}
+Sea $(V, \langle \cdot, \cdot \rangle)$ un espacio prehilbertiano real con norma inducida $\|\vec{u}\| = \sqrt{\langle \vec{u}, \vec{u} \rangle}$. Para cualesquiera vectores $\vec{u}, \vec{v} \in V$:
+\[
+\boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\| \|\vec{v}\|}
+\]
+La igualdad $|\langle \vec{u}, \vec{v} \rangle| = \|\vec{u}\|\|\vec{v}\|$ se verifica si y solo si $\vec{u}$ y $\vec{v}$ son linealmente dependientes.
+
+\vspace{0.2cm}
+\textbf{Demostración:}
+\begin{enumerate}
+    \item Si $\vec{v} = \vec{0}$, ambos lados de la desigualdad son iguales a cero ($0 \le 0$) y la propiedad es trivial. Supongamos en adelante $\vec{v} \neq \vec{0}$, lo que garantiza $\|\vec{v}\|^2 > 0$.
+    \item Consideremos la combinación lineal $\vec{u} + \lambda\vec{v}$ para un parámetro arbitrario $\lambda \in \R$. Por la positividad definida del producto interno, la norma al cuadrado de este vector es siempre no negativa:
+    \[
+    P(\lambda) \equiv \|\vec{u} + \lambda\vec{v}\|^2 = \langle \vec{u} + \lambda\vec{v},\; \vec{u} + \lambda\vec{v} \rangle \ge 0 \qquad (\forall \lambda \in \R).
+    \]
+    \item Expandiendo por bilinealidad y simetría del producto interno:
+    \[
+    P(\lambda) = \langle \vec{u}, \vec{u} \rangle + 2\lambda\langle \vec{u}, \vec{v} \rangle + \lambda^2 \langle \vec{v}, \vec{v} \rangle = \|\vec{u}\|^2 + 2\lambda\langle \vec{u}, \vec{v} \rangle + \lambda^2 \|\vec{v}\|^2.
+    \]
+    \item La función $P(\lambda) = A\lambda^2 + B\lambda + C$ es un polinomio cuadrático en $\lambda$ con coeficientes reales:
+    \[
+    A = \|\vec{v}\|^2 > 0, \qquad B = 2\langle \vec{u}, \vec{v} \rangle, \qquad C = \|\vec{u}\|^2.
+    \]
+    \item Como la parábola $P(\lambda)$ se abre hacia arriba ($A > 0$) y satisface $P(\lambda) \ge 0$ para todo $\lambda \in \R$, no puede cortar al eje real en dos puntos distintos; posee a lo más una única raíz real. Por lo tanto, su \textbf{discriminante algebraico} $\Delta = B^2 - 4AC$ debe ser menor o igual a cero:
+    \[
+    \Delta = (2\langle \vec{u}, \vec{v} \rangle)^2 - 4\|\vec{v}\|^2 \|\vec{u}\|^2 \le 0.
+    \]
+    \item Desarrollando y dividiendo entre $4$:
+    \[
+    4\langle \vec{u}, \vec{v} \rangle^2 \le 4\|\vec{u}\|^2 \|\vec{v}\|^2 \implies \langle \vec{u}, \vec{v} \rangle^2 \le \|\vec{u}\|^2 \|\vec{v}\|^2.
+    \]
+    Tomando la raíz cuadrada positiva a ambos miembros obtenemos directamente:
+    \[
+    |\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|.
+    \]
+    La igualdad $\Delta = 0$ ocurre si y solo si existe un $\lambda_0$ tal que $\|\vec{u} + \lambda_0\vec{v}\| = 0$, lo que implica $\vec{u} = -\lambda_0\vec{v}$ (dependencia lineal). \hfill $\blacksquare$
+\end{enumerate}
+\end{theorembox}
+
+\begin{theorembox}{Teorema: La Desigualdad Triangular}
+En todo espacio vectorial con producto interno $(V, \langle \cdot, \cdot \rangle)$, la norma inducida satisface la \textbf{desigualdad triangular}:
+\[
+\boxed{\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|}
+\]
+La igualdad se alcanza si y solo si $\vec{u} = c\vec{v}$ con $c \ge 0$ (o $\vec{v} = \vec{0}$).
+
+\vspace{0.2cm}
+\textbf{Demostración:}
+Calculamos el cuadrado de la norma de la suma y expandimos por bilinealidad:
+\[
+\|\vec{u} + \vec{v}\|^2 = \langle \vec{u} + \vec{v},\; \vec{u} + \vec{v} \rangle = \|\vec{u}\|^2 + 2\langle \vec{u}, \vec{v} \rangle + \|\vec{v}\|^2.
+\]
+Puesto que cualquier número real está acotado superiormente por su valor absoluto ($\langle \vec{u}, \vec{v} \rangle \le |\langle \vec{u}, \vec{v} \rangle|$), y aplicando inmediatamente la desigualdad de Cauchy-Schwarz ($|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$):
+\begin{align*}
+\|\vec{u} + \vec{v}\|^2 &\le \|\vec{u}\|^2 + 2|\langle \vec{u}, \vec{v} \rangle| + \|\vec{v}\|^2 \\
+&\le \|\vec{u}\|^2 + 2\|\vec{u}\|\|\vec{v}\| + \|\vec{v}\|^2 \\
+&= (\|\vec{u}\| + \|\vec{v}\|)^2.
+\end{align*}
+Dado que tanto $\|\vec{u} + \vec{v}\|$ como $\|\vec{u}\| + \|\vec{v}\|$ son números reales no negativos, y la función raíz cuadrada $f(x) = \sqrt{x}$ es estrictamente creciente en $[0, \infty)$, extraemos la raíz cuadrada a ambos lados conservando el sentido de la desigualdad:
+\[
+\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|. \qquad \blacksquare
+\]
 \end{theorembox}
 
 % =====================================================================

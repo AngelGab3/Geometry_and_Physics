@@ -68,7 +68,7 @@ Si puedes responder afirmativamente a estas 4 preguntas, estás listo para comen
 
 ```mermaid
 flowchart TD
-    M0["MÓDULO 0: Arsenal de Índices y Tensores Elementales (Sem 1-3)<br><i>Einstein, Levi-Civita ε_ijk, delta δ_ij, Jacobianas y métrica g_ij</i>"]
+    M0["MÓDULO 0: Arsenal de Índices, Rotaciones y Tensores (Sem 1-3)<br><i>Einstein, SO(2)/SO(3), traslaciones vs. rotaciones, Jacobianas y métrica g_ij</i>"]
     M1["MÓDULO 1: La Geometría Visual de las Formas en R^n (Sem 4-6)<br><i>Bachman, Fortney, Needham (láminas, proyecciones y wedge ∧)</i>"]
     M2["MÓDULO 2: El Cálculo Exterior de Cartan y Topología I (Sem 7-9)<br><i>d, nilpotencia d²=0, Nakahara (agujeros y Aharonov-Bohm), O'Neill</i>"]
     M3["MÓDULO 3: Integración, Stokes y Variedades Físicas (Sem 10-12)<br><i>Hodge ⋆, Stokes en celdas (Bachman), cartas locales y fibrado TQ</i>"]
@@ -87,8 +87,8 @@ flowchart TD
 | Módulo | Semana | Tema Central | Pregunta Física Motivadora | Carpeta |
 | :--- | :---: | :--- | :--- | :--- |
 | [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **01** | Notación de Einstein, $\delta_{ij}$ y Levi-Civita $\epsilon_{ijk}$ | ¿Cómo simplificar cálculos de vectores en 3D sin llenar páginas de componentes? | [`Semana_01`](Modulo_00_Arsenal_Indicial/Semana_01_Einstein_Kronecker_LeviCivita) |
-| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **02** | Jacobianas, Regla de la Cadena y Determinantes | ¿Por qué aparece el factor $r$ o $r^2\sin\theta$ al cambiar de coordenadas? | [`Semana_02`](Modulo_00_Arsenal_Indicial/Semana_02_Jacobianas_Determinantes_ReglaCadena) |
-| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **03** | Simetría, Métrica Euclidiana y Diferenciales | ¿Por qué el trabajo $\delta W$ no es diferencial de una función de estado? | [`Semana_03`](Modulo_00_Arsenal_Indicial/Semana_03_Simetria_Metrica_Diferenciales) |
+| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **02** | Rotaciones $SO(2), SO(3)$ y Traslaciones | ¿Por qué $R^TR=I$ y $\det R=1$? ¿En qué difiere un giro de una traslación? | [`Semana_02`](Modulo_00_Arsenal_Indicial/Semana_02_Rotaciones_SO2_SO3_Traslaciones) |
+| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **03** | Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ¿Por qué aparece el factor $r$ o $r^2\sin\theta$ al cambiar de coordenadas? | [`Semana_03`](Modulo_00_Arsenal_Indicial/Semana_03_Jacobianas_Curvilineas_Metrica) |
 | [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **04** | Puntos, Coordenadas y Vectores como Derivaciones | ¿Qué diferencia física hay entre un lugar y una velocidad? | [`Semana_04`](Modulo_01_Geometria_Visual_Rn/Semana_04_Puntos_Coordenadas_Vectores) |
 | [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **05** | Covectores, 1-Formas como Láminas e Isomorfismos | ¿Por qué el trabajo $P\,dV$ no necesita ángulos ni producto punto? | [`Semana_05`](Modulo_01_Geometria_Visual_Rn/Semana_05_Covectores_1Formas_Laminas) |
 | [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **06** | Álgebra Exterior: El Producto Cuña ($\wedge$) | ¿Cómo medimos áreas orientadas sin recurrir a la mano derecha en 3D? | [`Semana_06`](Modulo_01_Geometria_Visual_Rn/Semana_06_Wedge_Areas_Orientadas) |

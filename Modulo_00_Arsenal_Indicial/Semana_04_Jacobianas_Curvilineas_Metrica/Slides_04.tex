@@ -171,7 +171,49 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 7: TEOREMA DE LA ESTRUCTURA DEL TENSOR MÉTRICO
+% SLIDE 7: RESOLUCIÓN Y FACTORES DE LAMÉ EN POLARES
+% ---------------------------------------------------------------------
+\begin{frame}{Estructura Métrica y Factores de Escala en Polares}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep3pt
+        \item \textbf{Ortogonalidad de la Base:}
+        \[
+        \vec{e}_r \cdot \vec{e}_\theta = -r\cos\theta\sin\theta + r\sin\theta\cos\theta = 0.
+        \]
+        La métrica polar es diagonal en todo punto $P(r,\theta)$.
+        \item \textbf{Factores de Lamé y Dimensionalidad:}
+        \begin{align*}
+          h_r &= \sqrt{\cos^2\theta + \sin^2\theta} = 1, \\
+          h_\theta &= \sqrt{r^2\sin^2\theta + r^2\cos^2\theta} = r.
+        \end{align*}
+        $h_r$ es adimensional; $h_\theta$ posee unidades de longitud [m] para convertir un diferencial angular $d\theta$ en desplazamiento métrico físico.
+        \item \textbf{Matriz Métrica y Elemento de Línea:}
+        \[
+        g = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix} \implies \boxed{ds^2 = dr^2 + r^2 d\theta^2}
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        \coordinate (O) at (0,0);
+        \draw[-{Stealth}, color=graymuted] (O) -- (2.6,0) node[right, font=\tiny] {$x$};
+        \draw[-{Stealth}, color=graymuted] (O) -- (0,2.4) node[above, font=\tiny] {$y$};
+        \draw[color=navyaccent!40, line width=1pt] (0,0) -- (2.2, 1.4);
+        \draw[color=orangeacc, line width=1.4pt] (1.7, 1.08) arc (32:55:2.0) node[midway, above right, font=\tiny\bfseries] {$r\,d\theta$};
+        \draw[color=navyaccent, line width=1.4pt] (1.7, 1.08) -- (2.2, 1.4) node[midway, below right, font=\tiny\bfseries] {$dr$};
+        \fill[blackmain] (1.7, 1.08) circle (1.8pt);
+      \end{tikzpicture}
+      \vspace{0.1cm}
+      {\scriptsize Triángulo curvilíneo ortogonal: $ds^2 = (dr)^2 + (r\,d\theta)^2$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 8: TEOREMA DE LA ESTRUCTURA DEL TENSOR MÉTRICO
 % ---------------------------------------------------------------------
 \begin{frame}{Teorema: La Estructura del Tensor Métrico $g_{ab}$}
   \begin{columns}[c]
@@ -205,7 +247,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 8: DEMOSTRACIÓN DE LA IDENTIDAD MÉTRICA g = J^T J
+% SLIDE 9: TRABAJO ACTIVO EN CUADERNO - DEDUCCIÓN DE g = J^T J
+% ---------------------------------------------------------------------
+\begin{frame}{Deducción de la Identidad Matricial $g = J^T J$}
+  \vspace{0.05cm}
+  Considera un cambio de coordenadas general $x^i(u^a)$ con Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$ y vectores tangentes adaptados $\vec{e}_a = J^i{}_a \hat{e}_i$, donde $\{\hat{e}_i\}$ es la base cartesiana ortonormal. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Expansión Indicial del Producto Escalar:} Escribe la definición de la métrica $g_{ab} \equiv \vec{e}_a \cdot \vec{e}_b$ sustituyendo cada vector por su desarrollo en la base cartesiana: $(J^i{}_a \hat{e}_i) \cdot (J^j{}_b \hat{e}_j)$.
+    \item[(b)] \textbf{Contracción con la Delta de Kronecker:} Aplica la propiedad $\hat{e}_i \cdot \hat{e}_j = \delta_{ij}$ demostrada en la Semana 02. ¿Qué índice mudo se contrae y qué expresión indicial resulta para $g_{ab}$?
+    \item[(c)] \textbf{Traducción Matricial:} Expresa $J^i{}_a$ como la transpuesta $(J^T)_{ai}$ y demuestra que la contracción sobre el índice espacial $i$ equivale al producto matricial $(J^T J)_{ab}$.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 10: DEMOSTRACIÓN DE LA IDENTIDAD MÉTRICA g = J^T J
 % ---------------------------------------------------------------------
 \begin{frame}{Demostración de la Identidad Matricial $g = J^T J$}
   \footnotesize
@@ -398,7 +454,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 13: DEMOSTRACIÓN DE LA RELACIÓN VOLUMÉTRICA
+% SLIDE 15: TRABAJO ACTIVO EN CUADERNO - RELACIÓN VOLUMÉTRICA
+% ---------------------------------------------------------------------
+\begin{frame}{Deducción de la Relación Volumétrica $\det(g) = (\det J)^2$}
+  \vspace{0.05cm}
+  El volumen del paralelepípedo infinitesimal generado por desplazamientos tangentes es $dV = |\vec{e}_1 \cdot (\vec{e}_2 \times \vec{e}_3)|\, du^1 du^2 du^3$. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Triple Producto y Determinante de la Jacobiana:} Escribe $\vec{e}_1 \cdot (\vec{e}_2 \times \vec{e}_3)$ en notación de Levi-Civita usando $\vec{e}_a = J^i{}_a \hat{e}_i$. Aplica la fórmula $\epsilon_{ijk} J^i{}_1 J^j{}_2 J^k{}_3 = \det(J)\epsilon_{123}$ para probar que este factor es exactamente $\det(J)$.
+    \item[(b)] \textbf{Determinante de la Matriz Métrica:} A partir de la identidad métrica demostrada $g = J^T J$, aplica la propiedad multiplicativa del determinante $\det(A B) = \det(A)\det(B)$ y la invariancia bajo transposición $\det(J^T) = \det(J)$.
+    \item[(c)] \textbf{Unificación Volumétrica:} Concluye que $\sqrt{\det g} = |\det J|$. Explica físicamente por qué $\sqrt{\det g}$ representa el factor de deformación local del elemento de volumen euclidiano.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 16: DEMOSTRACIÓN DE LA RELACIÓN VOLUMÉTRICA
 % ---------------------------------------------------------------------
 \begin{frame}{Demostración de la Relación Volumétrica $\det(g) = (\det J)^2$}
   \footnotesize
@@ -564,7 +634,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 18: DEMOSTRACIÓN DEL CRITERIO DE INTEGRABILIDAD
+% SLIDE 20: TRABAJO ACTIVO EN CUADERNO - CRITERIO DE SCHWARZ
+% ---------------------------------------------------------------------
+\begin{frame}{Deducción del Criterio de Integrabilidad de Schwarz}
+  \vspace{0.05cm}
+  Considera una forma diferencial $\omega = P(x, y)\,dx + Q(x, y)\,dy$ y supón que es exacta, es decir, existe un potencial escalar suave $f(x, y)$ tal que $\omega = df$. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Identificación de Componentes:} Escribe la diferencial total $df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$ e iguala término a término para expresar $P$ y $Q$ en función de las derivadas parciales de $f$.
+    \item[(b)] \textbf{Cálculo de Derivadas Cruzadas:} Calcula $\frac{\partial P}{\partial y}$ y $\frac{\partial Q}{\partial x}$ en términos de las segundas derivadas parciales de la función potencial $f$.
+    \item[(c)] \textbf{Condición de Compatibilidad de Schwarz:} Aplica la igualdad de derivadas segundas continuas $\frac{\partial^2 f}{\partial y \partial x} = \frac{\partial^2 f}{\partial x \partial y}$. Deduce la condición necesaria $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$ y explica su relación con el rotacional $(\vec{\nabla}\times\vec{F})_z = 0$.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 21: DEMOSTRACIÓN DEL CRITERIO DE INTEGRABILIDAD
 % ---------------------------------------------------------------------
 \begin{frame}{Demostración del Criterio de Integrabilidad de Schwarz}
   \footnotesize
@@ -590,32 +674,30 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 19: TOPOLOGÍA Y EL CAMPO DE VÓRTICE
+% SLIDE 22: TOPOLOGÍA Y EL CAMPO DE VÓRTICE
 % ---------------------------------------------------------------------
 \begin{frame}{Topología del Dominio y el Campo de Vórtice}
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}\itemsep1pt
-        \item \textbf{El Contraejemplo Paradigmático:}
-        Consideremos el campo en $\R^2 \setminus \{(0,0)\}$:
+      \begin{itemize}\itemsep2pt
+        \item \textbf{El Dominio Perforado $U = \R^2 \setminus \{(0,0)\}$:}
+        Consideremos el campo vectorial tangencial y su forma diferencial asociada:
         \[
         \vec{F} = \frac{-y\,\hat{i} + x\,\hat{j}}{x^2 + y^2} \iff \omega = \frac{-y\,dx + x\,dy}{x^2 + y^2}.
         \]
-        \item \textbf{Cálculo de Derivadas Cruzadas:}
-        Se verifica en todo punto regular: $\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 0 \iff \vec{\nabla} \times \vec{F} = \vec{0}$.
-        \item \textbf{Circulación Alrededor del Origen:}
-        Integrando sobre la circunferencia $x = \cos t, y = \sin t$:
+        \item \textbf{Cálculo Local vs. Comportamiento Global:}
+        Localmente en cualquier vecindad que no rodee al origen, $\omega$ aparenta provenir del ángulo polar $\theta = \arctan(y/x)$:
         \[
-        \oint_\mathcal{C} \omega = \int_0^{2\pi} (\sin^2 t + \cos^2 t)\,dt = \boxed{2\pi \neq 0}
+        d\theta = \frac{-(y/x^2)}{1+(y/x)^2}dx + \frac{1/x}{1+(y/x)^2}dy = \omega.
         \]
-        \item \textbf{El Rol de la Topología:}
-        $\omega = d\theta$ localmente, pero el ángulo $\theta$ no es una función global unívoca. El agujero impide que $\omega$ sea exacta globalmente.
+        \item \textbf{La Cuestión Fundamental:}
+        ¿Garantiza la condición local de Schwarz que la circulación sobre cualquier lazo cerrado sea siempre cero?
       \end{itemize}
     \end{column}
     \begin{column}{0.41\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.80]
+      \begin{tikzpicture}[scale=0.82]
         \draw[color=graymuted, -{Stealth}] (-2.0,0) -- (2.0,0) node[right, font=\tiny] {$x$};
         \draw[color=graymuted, -{Stealth}] (0,-2.0) -- (0,2.0) node[above, font=\tiny] {$y$};
         \draw[dashed, color=navyaccent, line width=1.1pt] (0,0) circle (1.2cm);
@@ -628,7 +710,63 @@
         \node[font=\tiny\bfseries, color=blackmain] at (0.35, -0.35) {$(0,0)$};
       \end{tikzpicture}
       \vspace{0.1cm}
-      {\scriptsize Singularidad en el origen: $\oint \omega = 2\pi$ (Efecto Aharonov-Bohm).}
+      {\scriptsize Campo de vórtice con singularidad topológica en el origen.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 23: TRABAJO ACTIVO EN CUADERNO - CIRCULACIÓN DEL VÓRTICE
+% ---------------------------------------------------------------------
+\begin{frame}{Cálculo de la Circulación y Obstrucción Topológica}
+  \vspace{0.05cm}
+  Considera la forma diferencial del vórtice $\omega = \frac{-y\,dx + x\,dy}{x^2+y^2}$ definida sobre $\R^2 \setminus \{(0,0)\}$. Realiza en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Verificación Local de Schwarz:} Calcula a mano $\frac{\partial P}{\partial y}$ para $P = \frac{-y}{x^2+y^2}$ y $\frac{\partial Q}{\partial x}$ para $Q = \frac{x}{x^2+y^2}$ usando la regla del cociente. Comprueba que $\partial_y P = \partial_x Q$ en todo punto regular.
+    \item[(b)] \textbf{Parametrización y Sustitución en un Lazo:} Considera la circunferencia de radio $R$: $x(t) = R\cos t, y(t) = R\sin t$ con $t \in [0, 2\pi]$. Calcula $dx = -R\sin t\,dt$ y $dy = R\cos t\,dt$, sustitúyelos en $\omega$ y simplifica la expresión.
+    \item[(c)] \textbf{Circulación Neta y Obstrucción Global:} Evalúa la integral $\oint_\mathcal{C} \omega = \int_0^{2\pi} dt$. ¿Por qué el resultado no nulo demuestra que no existe ningún potencial continuo global $f$ con $\omega = df$ en todo el dominio perforado?
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 24: RESOLUCIÓN Y SIGNIFICADO TOPOLÓGICO DEL VÓRTICE
+% ---------------------------------------------------------------------
+\begin{frame}{Resolución y Significado Topológico del Vórtice}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep2pt
+        \item \textbf{Cálculo Explícito de Derivadas Cruzadas:}
+        {\scriptsize
+        \begin{align*}
+          \frac{\partial P}{\partial y} &= \frac{-(x^2+y^2) - (-y)(2y)}{(x^2+y^2)^2} = \frac{y^2 - x^2}{(x^2+y^2)^2}, \\
+          \frac{\partial Q}{\partial x} &= \frac{(x^2+y^2) - x(2x)}{(x^2+y^2)^2} = \frac{y^2 - x^2}{(x^2+y^2)^2}.
+        \end{align*}
+        }
+        $\partial_y P = \partial_x Q$ en todo $\R^2\setminus\{(0,0)\}$: el rotacional se anula localmente.
+        \item \textbf{Circulación en la Circunferencia:}
+        \[
+        \omega(t) = \frac{-R\sin t(-R\sin t\,dt) + R\cos t(R\cos t\,dt)}{R^2} = dt.
+        \]
+        \[
+        \oint_\mathcal{C} \omega = \int_0^{2\pi} dt = \boxed{2\pi \neq 0}
+        \]
+        \item \textbf{La Obstrucción Topológica de De Rham:}
+        $\theta$ aumenta en $2\pi$ tras cada vuelta completa. El agujero en el origen impide contraer el lazo a un punto: $H^1_{\text{dR}}(\R^2\setminus\{0\}) \cong \R$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \footnotesize
+      \begin{block}{Implicaciones en Física Moderna}
+        \scriptsize
+        \begin{itemize}\itemsep3pt
+          \item \textbf{Efecto Aharonov--Bohm:}
+          Un electrón siente un potencial vector $\vec{A}$ con campo magnético nulo $\vec{B} = \vec{\nabla}\times\vec{A} = \vec{0}$ fuera del solenoide, adquiriendo una fase cuántica no nula $\oint \vec{A}\cdot d\vec{r} = \Phi_B \neq 0$.
+          \item \textbf{Vórtices en Superfluidos:}
+          La circulación de la velocidad está cuantizada en múltiplos enteros de $h/m$.
+        \end{itemize}
+      \end{block}
     \end{column}
   \end{columns}
 \end{frame}

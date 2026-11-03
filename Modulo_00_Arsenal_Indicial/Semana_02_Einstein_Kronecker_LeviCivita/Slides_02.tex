@@ -386,7 +386,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 15: TEOREMA DEL DOBLE PRODUCTO CRUZ (BAC-CAB)
+% SLIDE 15: TEOREMA DE BAC-CAB
 % ---------------------------------------------------------------------
 \begin{frame}{Teorema: La Identidad del Doble Producto Cruz (BAC--CAB)}
   \begin{block}{Enunciado del Teorema}
@@ -411,40 +411,59 @@
     \begin{column}{0.44\textwidth}
       \footnotesize
       \textbf{Comparación con el Método Tradicional:}\\
-      En el cálculo por componentes cartesianas tuvimos que sumar y restar artificialmente $A_1 B_1 C_1$. En el álgebra indicial, esta cancelación ocurre de forma natural y transparente.
+      En el cálculo cartesiano tradicional se requiere sumar y restar artificialmente $A_1 B_1 C_1$. En el álgebra indicial, la identidad surge limpiamente de la contracción $\epsilon-\delta$.
     \end{column}
   \end{columns}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 16: DEMOSTRACIÓN DEDICADA DE BAC-CAB
+% SLIDE 16: TRABAJO ACTIVO EN CUADERNO - DEDUCCIÓN DE BAC-CAB
 % ---------------------------------------------------------------------
-\begin{frame}{Demostración de la Fórmula BAC--CAB}
-  \footnotesize
-  Escribimos la $i$-ésima componente del doble producto cruz utilizando la expresión indicial del producto cruz:
-  \[
-  [\vec{A} \times (\vec{B} \times \vec{C})]_i = \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k = \epsilon_{ijk} A_j (\epsilon_{kmn} B_m C_n)
-  \]
-  Usando la simetría cíclica del símbolo de Levi-Civita para alinear el índice mudo $k$ en la primera posición ($\epsilon_{ijk} = \epsilon_{kij}$):
-  \[
-  [\vec{A} \times (\vec{B} \times \vec{C})]_i = (\epsilon_{kij}\epsilon_{kmn}) A_j B_m C_n
-  \]
-  Aplicamos la \textbf{Identidad Maestra $\epsilon-\delta$} $(\epsilon_{kij}\epsilon_{kmn} = \delta_{im}\delta_{jn} - \delta_{in}\delta_{jm})$:
-  \[
-  [\vec{A} \times (\vec{B} \times \vec{C})]_i = (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n = \delta_{im}\delta_{jn} A_j B_m C_n - \delta_{in}\delta_{jm} A_j B_m C_n
-  \]
-  Contraemos los índices usando la propiedad filtrante de la delta de Kronecker:
-  \[
-  \delta_{im} B_m = B_i, \quad \delta_{jn} A_j C_n = A_j C_j = \vec{A}\cdot\vec{C}, \qquad \delta_{in} C_n = C_i, \quad \delta_{jm} A_j B_m = A_j B_j = \vec{A}\cdot\vec{B}
-  \]
-  Sustituyendo obtenemos directamente:
-  \[
-  \boxed{[\vec{A} \times (\vec{B} \times \vec{C})]_i = B_i(\vec{A}\cdot\vec{C}) - C_i(\vec{A}\cdot\vec{B})} \qquad \blacksquare
-  \]
+\begin{frame}{Deducción Guiada: La Identidad BAC--CAB}
+  \vspace{0.05cm}
+  Calcula la $i$-ésima componente del vector $\vec{A} \times (\vec{B} \times \vec{C})$ usando álgebra indicial y convenio de suma de Einstein. Realiza en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Expresión en Levi-Civita:} Escribe $[\vec{A} \times (\vec{B} \times \vec{C})]_i = \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k$. Sustituye $(\vec{B}\times\vec{C})_k = \epsilon_{kmn} B_m C_n$.
+    \item[(b)] \textbf{Alineación de Índices:} Usa la simetría cíclica $\epsilon_{ijk} = \epsilon_{kij}$ para colocar el índice mudo $k$ en primer lugar. Aplica la Identidad Maestra $\epsilon_{kij}\epsilon_{kmn} = \delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}$.
+    \item[(c)] \textbf{Filtrado con Deltas:} Desarrolla los dos sumandos y utiliza la propiedad filtrante de la delta de Kronecker ($\delta_{im}B_m = B_i$, $\delta_{jn}A_j C_n = \vec{A}\cdot\vec{C}$, etc.) para reconstruir la fórmula vectorial completa.
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 17: TEOREMA DE CONTRACCIÓN SIMÉTRICO-ANTISIMÉTRICO
+% SLIDE 17: DEMOSTRACIÓN FORMAL DE BAC-CAB
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración Formal: La Identidad BAC--CAB}
+  \footnotesize
+  Escribimos la $i$-ésima componente utilizando la definición indicial del producto cruz:
+  \[
+  [\vec{A} \times (\vec{B} \times \vec{C})]_i = \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k = \epsilon_{ijk} A_j (\epsilon_{kmn} B_m C_n).
+  \]
+  \begin{enumerate}\itemsep3pt
+    \item \textbf{Alineación por Simetría Cíclica ($\epsilon_{ijk} = \epsilon_{kij}$):}
+    \[
+    [\vec{A} \times (\vec{B} \times \vec{C})]_i = (\epsilon_{kij}\epsilon_{kmn}) A_j B_m C_n.
+    \]
+    \item \textbf{Aplicación de la Identidad Maestra $\epsilon-\delta$:}
+    \[
+    [\vec{A} \times (\vec{B} \times \vec{C})]_i = (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n = \delta_{im}\delta_{jn} A_j B_m C_n - \delta_{in}\delta_{jm} A_j B_m C_n.
+    \]
+    \item \textbf{Filtrado de Índices con la Delta de Kronecker:}
+    \[
+    (\delta_{im} B_m)(\delta_{jn} A_j C_n) = B_i (A_j C_j) = B_i (\vec{A}\cdot\vec{C}),
+    \]
+    \[
+    (\delta_{in} C_n)(\delta_{jm} A_j B_m) = C_i (A_j B_j) = C_i (\vec{A}\cdot\vec{B}).
+    \]
+    \item \textbf{Reconstrucción Vectorial:}
+    \[
+    \boxed{[\vec{A} \times (\vec{B} \times \vec{C})]_i = B_i(\vec{A}\cdot\vec{C}) - C_i(\vec{A}\cdot\vec{B})} \implies \vec{A}\times(\vec{B}\times\vec{C}) = \vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B}) \quad \blacksquare
+    \]
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 18: TEOREMA DE CONTRACCIÓN SIMÉTRICO-ANTISIMÉTRICO
 % ---------------------------------------------------------------------
 \begin{frame}{Teorema: Contracción de Objetos Simétricos y Antisimétricos}
   \begin{block}{Enunciado del Teorema}
@@ -465,7 +484,7 @@
         \item Los términos diagonales ($i=j$) se anulan porque $A_{ii} = -A_{ii} \implies A_{ii} = 0$.
         \item Cada par fuera de la diagonal se cancela exactamente:
         \[
-        S_{12}A_{12} + S_{21}A_{21} = S_{12}A_{12} + S_{12}(-A_{12}) = 0
+        S_{12}A_{12} + S_{21}A_{21} = S_{12}A_{12} + S_{12}(-A_{12}) = 0.
         \]
       \end{itemize}
     \end{column}
@@ -478,35 +497,48 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 18: DEMOSTRACIÓN DEDICADA DEL LEMA DE ANULACIÓN
+% SLIDE 19: TRABAJO ACTIVO EN CUADERNO - ANULACIÓN S_ij A_ij
 % ---------------------------------------------------------------------
-\begin{frame}{Demostración del Lema de Anulación $S_{ij}A_{ij} = 0$}
+\begin{frame}{Deducción Guiada: Contracción Simétrico-Antisimétrica}
+  \vspace{0.05cm}
+  Considera la contracción escalar total $K \equiv S_{ij}A_{ij}$, donde $S_{ij} = S_{ji}$ (simetría) y $A_{ij} = -A_{ji}$ (antisimetría). Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Renombre de Índices Mudos:} Dado que tanto $i$ como $j$ son índices mudos sumados en todo su rango $\{1, 2, 3\}$, intercambia sus nombres: $i \to j$ y $j \to i$. Escribe la expresión resultante para $K$.
+    \item[(b)] \textbf{Aplicación de Simetrías:} Aplica la simetría $S_{ji} = S_{ij}$ y la antisimetría $A_{ji} = -A_{ij}$ a los factores del sumando. Extrae el signo negativo global.
+    \item[(c)] \textbf{Resolución para el Escalar $K$:} Compara tu resultado con la definición original de $K$. Demuestra que $K = -K$ y concluye formalmente cuánto vale $K$.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 20: DEMOSTRACIÓN FORMAL DEL LEMA DE ANULACIÓN
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración Formal del Lema de Anulación $S_{ij}A_{ij} = 0$}
   \footnotesize
   Llamemos escalar $K$ a la contracción total:
   \[
-  K \equiv S_{ij} A_{ij}
+  K \equiv S_{ij} A_{ij}.
   \]
-  Dado que tanto $i$ como $j$ son \textbf{índices mudos sumados}, podemos renombrarlos libremente intercambiando las etiquetas $i \leftrightarrow j$:
-  \[
-  K = S_{ji} A_{ji}
-  \]
-  Utilizamos ahora las propiedades de simetría de cada objeto:
-  \begin{itemize}
-    \item Por la simetría de $S$: \ $S_{ji} = S_{ij}$.
-    \item Por la antisimetría de $A$: \ $A_{ji} = -A_{ij}$.
-  \end{itemize}
-  Sustituyendo estas relaciones en la expresión de $K$:
-  \[
-  K = (S_{ij})(-A_{ij}) = -S_{ij} A_{ij} = -K
-  \]
-  Hemos deducido que:
-  \[
-  K = -K \implies 2K = 0 \implies K = 0
-  \]
-  Por lo tanto:
-  \[
-  \boxed{S_{ij} A_{ij} = 0} \qquad \blacksquare
-  \]
+  \begin{enumerate}\itemsep4pt
+    \item \textbf{Libertad de Renombre sobre Índices Mudos:}
+    Dado que tanto $i$ como $j$ son variables mudas de sumatoria, intercambiamos sus etiquetas $i \leftrightarrow j$:
+    \[
+    K = S_{ji} A_{ji}.
+    \]
+    \item \textbf{Sustitución de las Propiedades de Simetría:}
+    \begin{itemize}\itemsep2pt
+      \item Por simetría de $S$: \ $S_{ji} = S_{ij}$.
+      \item Por antisimetría de $A$: \ $A_{ji} = -A_{ij}$.
+    \end{itemize}
+    \[
+    K = (S_{ij})(-A_{ij}) = -S_{ij} A_{ij}.
+    \]
+    \item \textbf{Identificación del Escalar $K$ y Anulación:}
+    Reconociendo que $S_{ij}A_{ij} = K$:
+    \[
+    K = -K \implies 2K = 0 \implies \boxed{K = 0} \implies \boxed{S_{ij} A_{ij} = 0} \qquad \blacksquare
+    \]
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------

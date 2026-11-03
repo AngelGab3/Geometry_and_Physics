@@ -81,17 +81,31 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 4: DEMOSTRACIÓN DEDICADA DE RIGIDEZ E ISOMETRÍA
+% SLIDE 4: TRABAJO ACTIVO EN CUADERNO - RIGIDEZ E ISOMETRÍA
 % ---------------------------------------------------------------------
-\begin{frame}{Demostración: Equivalencia entre Rigidez e Isometría Ortogonal}
+\begin{frame}{Deducción Guiada: Rigidez e Isometría Ortogonal}
+  \vspace{0.05cm}
+  Un cuerpo rígido no puede deformarse: la distancia y el ángulo entre cualquier par de vectores $\vec{u}, \vec{v} \in \R^n$ debe preservarse tras una transformación lineal $\vec{x}' = R\vec{x}$. Exigimos por tanto $\langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle$ para todos $\vec{u}, \vec{v} \in \R^n$. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Definición de Matriz Transpuesta:} Aplica la propiedad $\langle A\vec{x}, \vec{y} \rangle = \langle \vec{x}, A^T\vec{y} \rangle$ para transferir el primer factor $R$ al segundo término en el producto interno $\langle R\vec{u}, R\vec{v} \rangle$.
+    \item[(b)] \textbf{Reagrupamiento Operacional:} Reescribe la igualdad como $\langle \vec{u}, (R^T R)\vec{v} \rangle = \langle \vec{u}, I\vec{v} \rangle$ y réstalas para obtener $\langle \vec{u}, (R^T R - I)\vec{v} \rangle = 0$.
+    \item[(c)] \textbf{No-Degeneración:} Dado que esta anulación se cumple para \textbf{todo} par $\vec{u}, \vec{v} \in \R^n$, concluye formalmente cuál es la matriz requerida y deduce la inversa $R^{-1}$ en términos de $R^T$.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 5: DEMOSTRACIÓN FORMAL DE RIGIDEZ E ISOMETRÍA
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración Formal: Rigidez e Isometría Ortogonal}
   \footnotesize
   \textbf{Teorema:} Un operador lineal $R: \R^n \to \R^n$ preserva el producto interno euclidiano si y sólo si su matriz asociada satisface $R^T R = I$.
+  \vspace{0.15cm}
 
-  \vspace{0.2cm}
-  \textbf{Demostración:}
-  \begin{enumerate}\itemsep5pt
-    \item \textbf{Necesidad ($\implies$):} Supongamos que $\langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle$ para todos los vectores $\vec{u}, \vec{v} \in \R^n$.
-    Por la definición de operador transpuesto en $\R^n$:
+  \begin{enumerate}\itemsep4pt
+    \item \textbf{Necesidad ($\implies$):}
+    Supongamos $\langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle$ para todos $\vec{u}, \vec{v} \in \R^n$.
+    Por la definición de operador transpuesto:
     \[
     \langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, R^T(R\vec{v}) \rangle = \langle \vec{u}, (R^T R)\vec{v} \rangle.
     \]
@@ -103,7 +117,8 @@
     \[
     \|(R^T R - I)\vec{v}\|^2 = 0 \implies (R^T R - I)\vec{v} = \vec{0}, \quad \forall \vec{v} \in \R^n \implies \boxed{R^T R = I}.
     \]
-    \item \textbf{Suficiencia ($\impliedby$):} Si $R^T R = I$, entonces:
+    \item \textbf{Suficiencia ($\impliedby$):}
+    Si $R^T R = I$, entonces:
     \[
     \langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, R^T R \vec{v} \rangle = \langle \vec{u}, I\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle. \qquad \blacksquare
     \]
@@ -362,34 +377,49 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 12: DEMOSTRACIÓN DEDICADA DEL TEOREMA DE EULER
+% SLIDE 12: TRABAJO ACTIVO EN CUADERNO - TEOREMA DE EULER
 % ---------------------------------------------------------------------
-\begin{frame}{Demostración del Teorema de Rotación de Euler}
-  \footnotesize
-  Deseamos demostrar que para cualquier $R \in SO(3)$, el polinomio característico evaluado en $\lambda = 1$ se anula idénticamente, es decir, $\det(R - I) = 0$.
+\begin{frame}{Deducción Guiada: Teorema de Rotación de Euler}
+  \vspace{0.05cm}
+  Para demostrar que toda rotación $R \in SO(3)$ deja al menos un eje invariante ($R\hat{n} = \hat{n}$), debemos probar que $\lambda = 1$ es autovalor de $R$, es decir, que $\det(R - I) = 0$. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Factorización de la Transpuesta:} Recuerda que $R^T R = I$ y $\det(R^T) = +1$. Factoriza $R^T$ dentro del determinante: $\det(R - I) = \det(R^T(R - I))$. Desarrolla el producto matricial interno.
+    \item[(b)] \textbf{Transposición de Determinantes:} Aplica la propiedad $\det(A) = \det(A^T)$ a la matriz $(I - R^T)$. ¿Qué determinante resulta?
+    \item[(c)] \textbf{El Factor Dimensional de Signo:} Extrae un signo negativo $(-1)$ de cada una de las 3 filas de $(I - R) = -(R - I)$. ¿Cuánto vale $(-1)^3$? Iguala el inicio con el final de la cadena de determinantes y concluye $\det(R - I) = 0$.
+  \end{enumerate}
+\end{frame}
 
-  \vspace{0.2cm}
-  \textbf{Paso a paso:}
+% ---------------------------------------------------------------------
+% SLIDE 13: DEMOSTRACIÓN FORMAL DEL TEOREMA DE EULER
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración Formal: Teorema de Rotación de Euler}
+  \footnotesize
+  Deseamos demostrar que para cualquier $R \in SO(3)$, el polinomio característico evaluado en $\lambda = 1$ se anula idénticamente: $\det(R - I) = 0$.
+  \vspace{0.15cm}
+
   \begin{enumerate}\itemsep4pt
-    \item Puesto que $R \in SO(3)$, sabemos que $R^T R = I$ y que $\det(R) = \det(R^T) = +1$.
-    \item Factorizamos la matriz transpuesta dentro del determinante:
+    \item \textbf{Propiedad Ortogonal Directa:}
+    Como $R \in SO(3)$, sabemos que $R^T R = I$ y $\det(R^T) = \det(R) = +1$.
+    \item \textbf{Factorización Matricial:}
     \[
-    \det(R - I) = \det\big(R^T(R - I)\big) = \det(R^T R - R^T) = \det(I - R^T).
+    \det(R - I) = \det(R^T)\det(R - I) = \det\big(R^T(R - I)\big) = \det(R^T R - R^T) = \det(I - R^T).
     \]
-    \item Utilizando la propiedad de transposición de determinantes ($\det(A^T) = \det(A)$):
+    \item \textbf{Invarianza ante Transposición:}
     \[
     \det(I - R^T) = \det\big((I - R^T)^T\big) = \det(I - R).
     \]
-    \item Extraemos un factor escalar $(-1)$ de cada una de las filas de la matriz en dimensión $n = 3$:
+    \item \textbf{Factorización Escalar en Dimensión Impar ($n = 3$):}
     \[
     \det(I - R) = \det\big(-(R - I)\big) = (-1)^3 \det(R - I) = -\det(R - I).
     \]
-    \item Igualando el inicio con el final de la cadena de igualdades:
+    \item \textbf{Conclusión:}
     \[
-    \det(R - I) = -\det(R - I) \implies 2\det(R - I) = 0 \implies \boxed{\det(R - I) = 0}
+    \det(R - I) = -\det(R - I) \implies 2\det(R - I) = 0 \implies \boxed{\det(R - I) = 0} \qquad \blacksquare
     \]
   \end{enumerate}
-  El sistema homogéneo $(R - I)\vec{v} = \vec{0}$ admite soluciones no triviales. Normalizando, existe $\hat{n}$ tal que $R\hat{n} = \hat{n}$. $\blacksquare$
+  \vspace{0.05cm}
+  {\scriptsize El sistema $(R - I)\vec{v} = \vec{0}$ admite soluciones no triviales. Normalizando, existe $\hat{n} \in S^2$ tal que $R\hat{n} = \hat{n}$.}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -407,7 +437,7 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 14: DEDUCCIÓN GEOMÉTRICA DE RODRIGUES
+% SLIDE 14: GEOMETRÍA DEL GIRO ALREDEDOR DE UN EJE ARBITRARIO
 % ---------------------------------------------------------------------
 \begin{frame}{Geometría del Giro Alrededor de un Eje Arbitrario}
   \begin{columns}[c]
@@ -452,7 +482,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 15: DEMOSTRACIÓN DEDICADA DE LA FÓRMULA DE RODRIGUES
+% SLIDE 15: TRABAJO ACTIVO EN CUADERNO - DEDUCCIÓN DE RODRIGUES
+% ---------------------------------------------------------------------
+\begin{frame}{Deducción Vectorial de la Fórmula de Rodrigues}
+  \vspace{0.05cm}
+  Considera un vector arbitrario $\vec{v} \in \R^3$ descompuesto en sus partes longitudinal y transversal respecto a un eje unitario $\hat{n}$: $\vec{v} = \vec{v}_\parallel + \vec{v}_\perp$. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Acción Longitudinal e Invarianza:} Justifica por qué la componente axial no cambia bajo la rotación: $R\vec{v}_\parallel = \vec{v}_\parallel = (\hat{n}\cdot\vec{v})\hat{n}$.
+    \item[(b)] \textbf{Rotación Transversal en el Plano Normal:} En el plano generado por los vectores ortogonales $\{\vec{v}_\perp, \hat{n}\times\vec{v}\}$, escribe la combinación lineal $R\vec{v}_\perp = (\cos\theta)\vec{v}_\perp + (\sin\theta)(\hat{n}\times\vec{v})$.
+    \item[(c)] \textbf{Sustitución y Reducción:} Sustituye $\vec{v}_\perp = \vec{v} - (\hat{n}\cdot\vec{v})\hat{n}$ en la expresión combinada $R\vec{v} = R\vec{v}_\parallel + R\vec{v}_\perp$. Agrupa términos proporcionales a $\vec{v}$, a $(\hat{n}\times\vec{v})$ y a $\hat{n}(\hat{n}\cdot\vec{v})$ para obtener la fórmula de Rodrigues.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 16: DEMOSTRACIÓN DEDICADA DE LA FÓRMULA DE RODRIGUES
 % ---------------------------------------------------------------------
 \begin{frame}{Demostración de la Fórmula Vectorial de Rodrigues}
   \footnotesize
@@ -607,7 +651,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 19: ROTACIONES INFINITESIMALES Y GENERADORES
+% SLIDE 20: TRABAJO ACTIVO EN CUADERNO - GENERADOR INFINITESIMAL
+% ---------------------------------------------------------------------
+\begin{frame}{Deducción Guiada: El Generador Infinitesimal de Rotación}
+  \vspace{0.05cm}
+  Considera una rotación continua en el tiempo $R(t)$ que parte de la identidad $R(0) = I$, con aproximación lineal $R(dt) \approx I + \Omega\, dt$, donde $\Omega = \dot{R}(0)$. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Condición de Rigidez a Primer Orden:} Sustituye $R(dt) \approx I + \Omega\, dt$ en la condición ortogonal $R(dt)^T R(dt) = I$ y desarrolla el producto $(I + \Omega^T dt)(I + \Omega dt)$.
+    \item[(b)] \textbf{Extracción del Coeficiente Diferencial:} Desprecia el término cuadrático $\Omega^T \Omega (dt)^2 \sim \mathcal{O}(dt^2)$. Para que la igualdad se preserve para cualquier $dt$, ¿qué debe cumplir la suma $(\Omega^T + \Omega)$?
+    \item[(c)] \textbf{Antisimetría y Grados de Libertad:} Concluye la propiedad fundamental $\Omega^T = -\Omega$. Cuenta el número de parámetros independientes de una matriz antisimétrica $3 \times 3$ y compáralo con la dimensión de $\R^3$.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 21: ROTACIONES INFINITESIMALES Y GENERADORES
 % ---------------------------------------------------------------------
 \begin{frame}{Rotaciones Infinitesimales y la Aparición de $\Omega$}
   \begin{columns}[c]

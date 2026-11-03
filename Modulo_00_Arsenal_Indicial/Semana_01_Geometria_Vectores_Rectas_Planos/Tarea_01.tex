@@ -1,0 +1,141 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{../../Common/course_notes}
+\usepackage{../../Common/course_macros}
+
+\begin{document}
+\setlength{\abovedisplayskip}{6pt}
+\setlength{\belowdisplayskip}{6pt}
+\setlength{\textfloatsep}{10pt}
+\setlength{\intextsep}{8pt}
+\color{blackmain}
+
+\begin{center}
+{\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
+{\Large\textcolor{orangeacc}{\textbf{Tarea 1: Geometría de Vectores, Proyecciones, Rectas y Planos}}}\\[0.2cm]
+{\large\textcolor{graymuted}{Nivel: Licenciatura en Física e Ingeniería --- Módulo 0: Arsenal Indicial}}\\[0.25cm]
+\end{center}
+
+\vspace{0.2cm}
+
+\noindent\textbf{Instrucciones:} Esta tarea está diseñada para construir la intuición geométrica y física de vectores, proyecciones, rectas y planos en $\R^3$. No te limites a sustituir fórmulas: acompaña tus desarrollos de \textbf{esquemas geométricos claros} y explica el significado físico de cada proyección, vector normal o intersección.
+
+% =============================================================================
+\manualsection{Parte A: Construcción Visual y Geométrica}
+
+\begin{infobox}{Problema 1: Puntos vs. Vectores e Invariancia por Traslación en un Puente}
+Un ingeniero estructural coloca tres sensores en los nodos de una armadura metálica. Medidos desde la caseta de control $O = (0,0,0)$, las posiciones de los nodos son:
+\[
+    A = (2, 1, 3)\,\text{m}, \qquad B = (5, 5, 3)\,\text{m}, \qquad C = (1, 4, 7)\,\text{m}.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Calcula los vectores de las barras $\vec{u} = \overrightarrow{AB} = B - A$ y $\vec{v} = \overrightarrow{AC} = C - A$, así como el vector del tercer lado $\vec{w} = \overrightarrow{BC} = C - B$. Verifica algebraica y geométricamente que $\vec{w} = \vec{v} - \vec{u}$ (ley del triángulo).
+    \item Un segundo ingeniero decide colocar su propio origen de coordenadas en el punto $O' = (10, -4, 2)\,\text{m}$, por lo que las nuevas coordenadas de cada punto son $P' = P - O'$. Calcula las nuevas coordenadas $A', B', C'$ y demuestra que los vectores de desplazamiento $\overrightarrow{A'B'}$ y $\overrightarrow{A'C'}$ permanecen \textbf{exactamente iguales}. ¿Qué sucedería en cambio si intentaras «sumar los puntos» $A + B$ en ambos sistemas?
+    \item Encuentra las coordenadas del centroide (centro de masa geométrico) del triángulo $\triangle ABC$ y demuestra que su posición física en el espacio no depende de dónde se elija el origen $O$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 2: La Sombra de una Fuerza sobre un Riel Inclinado}
+Un bloque de inspección es empujado sobre un riel recto que apunta en la dirección del vector $\vec{v} = (3, 4, 0)$ mediante una fuerza externa $\vec{F} = (10, 5, 6)\,\text{N}$, como se muestra en la figura:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.82]
+    \draw[color=graymuted, line width=2.2pt] (-0.5, 0) -- (6.0, 0);
+    \node[below, color=graymuted, font=\small\bfseries] at (5.0, -0.1) {Riel en dirección $\vec{v}$};
+
+    \coordinate (O) at (0.5, 0);
+    \coordinate (F) at (4.0, 2.4);
+    \coordinate (Fp) at (4.0, 0);
+
+    \draw[color=orangeacc, thick] (3.7, 0) -- (3.7, 0.3) -- (4.0, 0.3);
+
+    \draw[dashed, color=orangeacc, line width=1.2pt] (Fp) -- (F) node[midway, right, font=\small\bfseries] {$\vec{F}_\perp$ (fuerza normal al riel)};
+    \draw[-{Stealth}, line width=2.2pt, color=orangeacc] (O) -- (Fp) node[midway, below=3pt, font=\small\bfseries] {$\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$};
+    \draw[-{Stealth}, line width=1.8pt, color=navyaccent] (O) -- (F) node[midway, above left, font=\small\bfseries] {$\vec{F} = (10,5,6)\,\text{N}$};
+    \fill[blackmain] (O) circle (2.5pt);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Calcula la proyección ortogonal $\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$ que acelera el bloque a lo largo del riel.
+    \item Calcula la componente normal $\vec{F}_\perp = \vec{F} - \vec{F}_\parallel$ que presiona lateralmente el riel (y que la estructura del riel debe soportar para evitar que el bloque se descarrile).
+    \item Verifica explícitamente que $\vec{F}_\parallel \cdot \vec{F}_\perp = 0$ y que $\|\vec{F}\|^2 = \|\vec{F}_\parallel\|^2 + \|\vec{F}_\perp\|^2$ (Teorema de Pitágoras en $\R^3$).
+    \item Si el bloque avanza una distancia de $10\,\text{m}$ a lo largo del riel en el sentido de $\vec{v}$, ¿cuánto trabajo mecánico $W = \vec{F}\cdot\Delta\vec{r}$ realiza la fuerza $\vec{F}$? Demuestra que $\vec{F}_\perp$ no realiza ningún trabajo.
+\end{enumerate}
+\end{infobox}
+
+% =============================================================================
+\manualsection{Parte B: Construcción Algebraica y Dualidad Recta-Plano}
+
+\begin{infobox}{Problema 3: Las Dos Caras del Plano y la Semilla de las 1-Formas}
+Considera el plano $\Pi \subset \R^3$ generado paramétricamente desde el punto $P_0 = (1, -1, 2)$ por los dos vectores directores $\vec{v}_1 = (2, 1, -1)$ y $\vec{v}_2 = (1, 3, 2)$:
+\[
+    \vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2, \qquad (u,v) \in \R^2.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Encuentra los puntos del plano correspondientes a $(u,v) = (1,0)$, $(0,1)$ y $(1,-1)$.
+    \item Construye un vector normal $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe la \textbf{ecuación normal (cartesiana)} del plano en la forma $n_1 x + n_2 y + n_3 z = d$. Verifica que los tres puntos del inciso (a) satisfacen tu ecuación normal.
+    \item \textbf{Visualizando una 1-Forma como Pila de Planos:} Considera ahora la familia de planos paralelos dada por la función lineal $\alpha(x,y,z) = n_1 x + n_2 y + n_3 z = c$ para todo $c \in \Z$. Si una partícula se desplaza desde el origen siguiendo el vector $\vec{w} = (1, 2, -1)$, ¿cuántas láminas enteras $\Delta c = \vec{n}\cdot\vec{w}$ perfora su movimiento? ¿Qué ocurre si el desplazamiento $\vec{w}$ es una combinación lineal $a\vec{v}_1 + b\vec{v}_2$ paralela al plano?
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 4: Demostración Geométrica de la Identidad de Lagrange en $\R^3$}
+Dados dos vectores cualesquiera $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$ en $\R^3$:
+\begin{enumerate}[label=(\alph*)]
+    \item Usando las interpretaciones geométricas $|\vec{u}\cdot\vec{v}| = \|\vec{u}\|\|\vec{v}\| |\cos\theta|$ y $\|\vec{u}\times\vec{v}\| = \|\vec{u}\|\|\vec{v}\|\sin\theta$, explica en un renglón por qué la identidad pitagórica $\cos^2\theta + \sin^2\theta = 1$ implica inmediatamente:
+    \[
+        \|\vec{u}\times\vec{v}\|^2 + (\vec{u}\cdot\vec{v})^2 = \|\vec{u}\|^2 \|\vec{v}\|^2.
+    \]
+    \item Verifica algebraicamente que para $\vec{u} = (1, 2, -2)$ y $\vec{v} = (3, 0, 4)$ se cumple la identidad anterior, y úsala para calcular el área del triángulo cuyos lados son $\vec{u}$ y $\vec{v}$.
+\end{enumerate}
+\end{infobox}
+
+% =============================================================================
+\manualsection{Parte C: Aplicaciones en Física e Ingeniería}
+
+\begin{infobox}{Problema 5: Intersección de un Rayo Láser con un Panel Solar y Reflexión Óptica}
+Un colector solar plano $\Pi$ está descrito por la ecuación $2x - y + 2z = 12$ (con coordenadas en metros). Desde un emisor situado en $E = (1, 3, 8)\,\text{m}$ se dispara un haz láser en la dirección del vector $\vec{d} = (1, -1, -2)$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    \fill[navyaccent!12] (0,0) -- (5.2,0) -- (6.4,1.6) -- (1.2,1.6) -- cycle;
+    \draw[color=navyaccent, line width=1.2pt] (0,0) -- (5.2,0) -- (6.4,1.6) -- (1.2,1.6) -- cycle;
+    \node[color=navyaccent, font=\small\bfseries] at (5.0, 0.35) {Panel Solar $\Pi$};
+
+    \coordinate (I) at (3.2, 0.8);
+    \coordinate (E) at (1.2, 3.2);
+    \coordinate (N) at (3.2, 2.9);
+    \coordinate (R) at (5.2, 3.2);
+
+    \draw[-{Stealth}, dashed, color=blackmain, line width=1.3pt] (I) -- (N) node[above, font=\small\bfseries] {$\vec{n}$};
+    \draw[-{Stealth}, color=orangeacc, line width=1.6pt] (E) -- (I) node[midway, below left, font=\small\bfseries] {Rayo incidente $\vec{d}$};
+    \draw[-{Stealth}, color=navyaccent, line width=1.6pt] (I) -- (R) node[midway, below right, font=\small\bfseries] {Rayo reflejado $\vec{d}_{\text{ref}}$};
+
+    \fill[orangeacc] (E) circle (2.2pt) node[above left, font=\small\bfseries] {$E(1,3,8)$};
+    \fill[blackmain] (I) circle (2.4pt) node[below=2pt, font=\small\bfseries] {$I$ (Impacto)};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Escribe la ecuación paramétrica de la recta $\vec{r}(t) = E + t\vec{d}$ que sigue el haz láser y determina el parámetro $t^*$ y las coordenadas exactas del \textbf{punto de impacto} $I \in \Pi$.
+    \item Calcula la \textbf{distancia mínima perpendicular} $D(E, \Pi)$ desde el emisor $E$ hasta el plano del panel solar, y encuentra las coordenadas del pie de la perpendicular $P_\perp \in \Pi$.
+    \item \textbf{Ley de la Reflexión Vectorial:} Descompón el vector director incidente $\vec{d} = \vec{d}_\parallel + \vec{d}_\perp$ en su parte paralela al panel solar y su parte perpendicular (a lo largo de la normal $\vec{n}$). Sabiendo que al reflejarse en un espejo plano la componente tangencial $\vec{d}_\parallel$ se conserva y la componente normal $\vec{d}_\perp$ invierte su signo ($\vec{d}_{\text{ref}} = \vec{d}_\parallel - \vec{d}_\perp$), deduce la fórmula vectorial de reflexión:
+    \[
+        \vec{d}_{\text{ref}} = \vec{d} - 2\left(\frac{\vec{d}\cdot\vec{n}}{\|\vec{n}\|^2}\right)\vec{n},
+    \]
+    y calcula el vector director $\vec{d}_{\text{ref}}$ del rayo reflejado.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 6: Falla Geológica y Túnel de Intersección de Dos Planos}
+En ingeniería civil y geofísica, dos estratos rocosos planos $\Pi_1$ y $\Pi_2$ se modelan mediante las ecuaciones:
+\[
+    \Pi_1:\; x + 2y - z = 3, \qquad \Pi_2:\; 2x - y + 3z = 1.
+\]
+\begin{enumerate}[label=(\alph*)]
+    \item Identifica los vectores normales $\vec{n}_1$ y $\vec{n}_2$ de cada estrato y calcula el ángulo agudo $\theta$ entre ambos planos.
+    \item Sin resolver el sistema por eliminación tradicional para la dirección, utiliza el producto cruz $\vec{v} = \vec{n}_1 \times \vec{n}_2$ para obtener el vector director de la recta de intersección $\mathcal{L} = \Pi_1 \cap \Pi_2$.
+    \item Encuentra un punto $P_0 \in \mathcal{L}$ (por ejemplo, fijando $z = 0$) y escribe la ecuación paramétrica completa $\vec{r}(t) = \vec{p}_0 + t\vec{v}$ de la línea de falla donde se intersectan ambos estratos.
+\end{enumerate}
+\end{infobox}
+
+\end{document}

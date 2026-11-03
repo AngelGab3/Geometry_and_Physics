@@ -1,63 +1,58 @@
-# MÓDULO 0: El Arsenal de Índices, Rotaciones y Tensores Elementales
-**Duración:** Semanas 1 a 3 (Semanas 01 a 03)  
-**Objetivo Pedagógico:** Empoderar al alumno que solo cursó cálculo tradicional de una y dos variables con las herramientas operacionales de índices, transformaciones de coordenadas y geometría de grupos continuos. Demostrar en 3 líneas identidades vectoriales que antes tomaban páginas enteras, construir el grupo de rotaciones $SO(2)$ y $SO(3)$ a partir de movimientos rígidos y vectores base, distinguir transformaciones afines (traslaciones) de lineales (rotaciones), y tender el puente hacia las variedades y la métrica euclidiana.
+# MÓDULO 0: Geometría Euclidiana, Arsenal de Índices, Rotaciones y Tensores Elementales
+**Duración:** Semanas 1 a 4 (Semanas 01 a 04)  
+**Objetivo Pedagógico:** Nivelar y empoderar a los estudiantes de **Física e Ingeniería** que solo han cursado cálculo tradicional de una y dos variables. Construimos desde la geometría más intuitiva de vectores, proyecciones, rectas y planos en $\mathbb{R}^3$, pasando por el arsenal de índices de Einstein y Levi-Civita, el grupo de rotaciones $SO(2)$ y $SO(3)$ (incluyendo el eje de rotación, rotaciones infinitesimales y diferencias con traslaciones), hasta las matrices Jacobianas y el tensor métrico $g_{ij}$.
 
 ---
 
-## 🔗 Hilo Conductor y Conexión Acumulativa
+## 🔗 Hilo Conductor y Conexión Acumulativa («La Necesidad Crea la Herramienta»)
 
-* **Punto de Partida:** El alumno conoce el producto escalar $\vec{u}\cdot\vec{v}$ y el producto vectorial $\vec{u}\times\vec{v}$ mediante fórmulas de componentes fijas $(x, y, z)$.
+* **Punto de Partida:** El estudiante de física o ingeniería conoce coordenadas cartesianas $(x, y, z)$, el Teorema de Pitágoras y derivadas parciales básicas.
 * **Lo que construimos en este módulo (Paso a Paso):**
-  1. **Semana 01:** La contracción con $\delta_{ij}$ y la antisimetría con $\epsilon_{ijk}$. La identidad $\epsilon-\delta$ como el arma definitiva contra identidades vectoriales kilométricas.
-  2. **Semana 02:** El grupo de rotaciones $SO(2)$ y $SO(3)$. Por qué los movimientos rígidos exigen $R^T R = I$, por qué la continuidad de orientación exige $\det R = +1$, el experimento del libro (no-conmutatividad de rotaciones en 3D), y la diferencia fundamental entre traslaciones (espacio afín de puntos) y rotaciones (espacio vectorial tangente).
-  3. **Semana 03:** Coordenadas curvilíneas (polares, cilíndricas, esféricas), matrices Jacobianas como la aproximación lineal local, la regla de la cadena multivariable compacta y el tensor métrico $g_{ij}$.
-* **Hacia dónde vamos (Conexión con Módulo 1):**
-  * La diferencia entre traslaciones (puntos) y rotaciones (vectores) fundamentará la definición intrínseca de **puntos vs. vectores tangentes como derivaciones** en la Semana 4.
-  * La delta de Kronecker $\delta^i_j$ se convertirá en la contracción dual covector-vector: $dx^i(\partial_j) = \delta^i_j$.
-  * El símbolo antisimétrico $\epsilon_{ijk}$ se transformará en el producto cuña: $(dx \wedge dy)(u, v) = \epsilon_{ij} u^i v^j$.
-  * El tensor métrico $g_{ij}$ construirá los isomorfismos musicales ($\flat$ y $\sharp$) para conectar fuerzas con velocidades.
+  1. **Semana 01 (Geometría de Vectores, Rectas y Planos):** Distinguimos físicamente **puntos** (ubicaciones) de **vectores** (desplazamientos invariantes ante traslaciones). Construimos la suma y resta mediante las dos diagonales del paralelogramo, la recta paramétrica $\vec{r}(t) = \vec{p}_0 + t\vec{v}$, el producto punto desde la Ley de Cosenos como máquina de proyecciones ortogonales, el producto cruz como área orientada, y las **dos caras duales del plano** ($\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$ vs. $\vec{n}\cdot(\vec{r}-\vec{p}_0)=0$), sembrando la semilla visual de las variedades y de las **1-formas como pilas de planos paralelos**.
+  2. **Semana 02 (El Arsenal de Índices y Determinantes):** Ante la explosión algebraica de operar con componentes en 3D, construimos el convenio de Einstein, la delta de Kronecker $\delta_{ij} \equiv \hat{e}_i\cdot\hat{e}_j$, el símbolo de Levi-Civita $\epsilon_{ijk} \equiv \hat{e}_i\cdot(\hat{e}_j\times\hat{e}_k)$ como volumen con signo, la identidad $\epsilon-\delta$ por conteo de casos y el determinante $\epsilon_{ijk}M_{ia}M_{jb}M_{kc} = \det(M)\epsilon_{abc}$ como factor de escala de volumen.
+  3. **Semana 03 (El Grupo de Rotaciones $SO(2), SO(3)$ y Traslaciones):** Construimos las matrices de rotación exigiendo rigidez ($\langle R\vec{u}, R\vec{v}\rangle = \langle \vec{u}, \vec{v}\rangle \implies R^T R = I$) y preservación de orientación frente a espejos ($\det R = +1$). Exploramos la no-conmutatividad en 3D, el Teorema de Euler del eje de rotación ($R\vec{v} = \vec{v}$), las rotaciones infinitesimales $R \approx I + \Omega\,dt$ ($\Omega^T = -\Omega \implies \vec{v} = \vec{\omega}\times\vec{r}$), y la diferencia estructural entre traslaciones afines y rotaciones lineales.
+  4. **Semana 04 (Matrices Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$):** Estudiamos cómo se deforman los vectores y las distancias en coordenadas polares, cilíndricas y esféricas mediante la matriz Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$ y el tensor métrico $g_{ab}$, distinguiendo diferenciales exactos ($df$) de inexactos ($\delta W$).
 
 ---
 
 ## 📚 Desglose de Semanas
 
-### [Semana 01: Notación de Einstein, Delta de Kronecker y Símbolo de Levi-Civita](Semana_01_Einstein_Kronecker_LeviCivita/)
-* **Pregunta física:** ¿Cómo podemos simplificar cálculos de vectores y campos en 3D sin escribir matrices gigantes ni llenar páginas de componentes?
-* **Conceptos clave:** Convenio de suma de Einstein (índices mudos y libres). La delta de Kronecker $\delta_{ij}$ como operador de sustitución/identidad. El símbolo de permutación totalmente antisimétrico de Levi-Civita $\epsilon_{ijk}$ en $\mathbb{R}^3$.
-* **La Identidad Maestra $\epsilon-\delta$:**
-  $$\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$$
-* **Demolición en 3 líneas:** Demostración elegante y rigurosa de la identidad del triple producto vectorial:
-  $$\vec{A} \times (\vec{B} \times \vec{C}) = \vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})$$
-* **Modelo visual:** Permutaciones pares e impares vistas como giros en un círculo cíclico $(1 \to 2 \to 3 \to 1)$.
-* **Física:** Momento angular $\vec{L} = \vec{r}\times\vec{p}$ en componentes $L_i = \epsilon_{ijk} x_j p_k$; fuerza magnética de Lorentz $\vec{F} = q(\vec{v}\times\vec{B})$.
-* **Lectura asignada:** Kay (*Cálculo Tensorial*, Caps. 1 y 2), Arfken (*Mathematical Methods for Physicists*, Cap. 3).
-
----
-
-### [Semana 02: El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones](Semana_02_Rotaciones_SO2_SO3_Traslaciones/)
-* **Pregunta física:** ¿Cómo garantizamos que las leyes de la física no dependan de la orientación de nuestro laboratorio en el espacio? ¿Qué diferencia a un giro de un desplazamiento en línea recta?
+### [Semana 01: Geometría del Espacio Euclidiano: Vectores, Proyecciones, Rectas y Planos](Semana_01_Geometria_Vectores_Rectas_Planos/)
+* **Pregunta física y de ingeniería:** ¿Por qué no podemos «sumar ubicaciones» en un puente, cómo calculamos la fuerza que acelera un vagón sobre un riel sin medir ángulos, y por qué un plano en $\mathbb{R}^3$ puede describirse tanto con $2$ parámetros libres como con $1$ sola ecuación normal?
 * **Construcción Activa del Conocimiento:**
-  1. *El reto del cuerpo rígido:* Invarianza del producto punto $\langle R\vec{u}, R\vec{v}\rangle = \langle \vec{u}, \vec{v}\rangle \implies R^T R = I$. El alumno deduce que $R^{-1} = R^T$ sin memorizarlo.
-  2. *Construcción columna a columna:* Siguiendo el destino de los vectores base $\hat{i}, \hat{j}, \hat{k}$ al girar un ángulo $\theta$. Deducción geométrica de $R(\theta)$ en 2D y de $R_x, R_y, R_z$ en 3D.
-  3. *El experimento del espejo:* $(\det R)^2 = 1 \implies \det R = \pm 1$. Por qué las reflexiones ($\det = -1$) invierten la paridad y por qué una rotación física continua desde $\theta=0$ exige $\det R = +1$.
-  4. *El experimento del libro:* Girar un objeto sobre dos ejes perpendiculares en distinto orden. Descubrimiento físico de la **no-conmutatividad**: $R_x(\pi/2) R_z(\pi/2) \neq R_z(\pi/2) R_x(\pi/2)$.
-  5. *Rotaciones vs. Traslaciones:* Traslaciones $x \mapsto x+a$ (afines, mueven el origen, actúan sobre **puntos**) vs. Rotaciones $x \mapsto Rx$ (lineales, fijan el origen, actúan sobre **vectores**).
-* **Física:** El grupo euclidiano $E(3) = \mathbb{R}^3 \rtimes SO(3)$, transformaciones pasivas vs. activas de sistemas de referencia, y momento de inercia bajo rotaciones.
-* **Lectura asignada:** O'Neill (Cap. 3, Secc. 3.1–3.3), Goldstein (*Classical Mechanics*, Cap. 4), Carter (*Visual Group Theory*).
+  1. *Puntos vs. Vectores:* Invariancia de $\vec{v} = P_1 - P_0$ al mover el origen. Las dos diagonales del paralelogramo ($\vec{u}+\vec{v}$ y $\vec{u}-\vec{v}$).
+  2. *Ecuación Paramétrica de la Recta:* $\vec{r}(t) = \vec{p}_0 + t\vec{v}$ ($1$ grado de libertad) y la velocidad $\dot{\vec{r}} = \vec{v}$ como semilla del vector tangente.
+  3. *Producto Punto y Proyección Ortogonal:* Deducción desde la Ley de Cosenos. Descomposición $\vec{u} = \vec{u}_\parallel + \vec{u}_\perp$ sobre un riel y trabajo mecánico.
+  4. *Producto Cruz y Orientación:* Deducción desde el sistema $\vec{u}\cdot\vec{n}=0, \vec{v}\cdot\vec{n}=0$. Área del paralelogramo y torca $\vec{\tau} = \vec{r}\times\vec{F}$.
+  5. *Dualidad del Plano y Semilla de las 1-Formas:* Visión paramétrica $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$ (semilla de variedades) vs. visión normal $\vec{n}\cdot(\vec{r}-\vec{p}_0)=0$. La familia de planos paralelos $n_1 x + n_2 y + n_3 z = c$ perforados por un vector $\vec{w}$ como **imagen exacta de una 1-forma de Cartan**.
+  6. *Distancia Punto-Plano e Intersección de Planos:* $D(Q,\Pi) = \frac{|\vec{n}\cdot(\vec{q}-\vec{p}_0)|}{\|\vec{n}\|}$ y recta de intersección $\Pi_1 \cap \Pi_2$ con dirección $\vec{v} = \vec{n}_1 \times \vec{n}_2$ (semilla de las 2-formas).
 
 ---
 
-### [Semana 03: Matrices Jacobianas, Coordenadas Curvilíneas y el Tensor Métrico](Semana_03_Jacobianas_Curvilineas_Metrica/)
-* **Pregunta física:** Si rotar ejes rectos preserva la métrica cartesiana $\delta_{ij}$, ¿qué le ocurre a las distancias y a los vectores cuando usamos coordenadas curvas (polares, cilíndricas, esféricas)?
-* **Conceptos clave:** La matriz Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$ como la mejor aproximación lineal local. La regla de la cadena multivariable en índices: $\partial_a f = J^i{}_a \partial_i f$.
-* **El Determinante como Factor de Escala de Volumen:**
-  $$\det(J) = \epsilon_{ijk} J^1{}_i J^2{}_j J^3{}_k$$
-* **El Tensor Métrico General $g_{ij}$:** Cómo se deforma el producto punto al cambiar a coordenadas curvas:
-  $$ds^2 = g_{ab}\, du^a du^b, \qquad g_{ab} = \frac{\partial x^i}{\partial u^a}\frac{\partial x^j}{\partial u^b} \delta_{ij}$$
-  Cálculo explícito para polares ($g_{rr}=1, g_{\theta\theta}=r^2$) y esféricas.
-* **Modelo visual:** La matriz Jacobiana transforma pequeños rectángulos coordenados en paralelogramos curvilíneos locales; la métrica mide la distorsión de longitudes y ángulos en cada punto.
-* **Física:** Gradiente y aceleración en coordenadas cilíndricas y esféricas sin memorizar tablas de fórmulas; conservación del momento angular en coordenadas polares.
-* **Lectura asignada:** Bachman (Cap. 2, Secc. 2.1–2.3; Cap. 4, Secc. 4.6), Kay (Cap. 3), Fortney (Cap. 2).
+### [Semana 02: El Arsenal de Índices: Notación de Einstein, $\delta_{ij}$, Levi-Civita y Determinantes](Semana_02_Einstein_Kronecker_LeviCivita/)
+* **Pregunta física:** ¿Cómo podemos simplificar cálculos de vectores, áreas y volúmenes en 3D sin escribir matrices gigantes ni llenar páginas de componentes?
+* **Construcción Activa del Conocimiento:**
+  1. *Dolor Cartesiano y Proyección sobre la Base:* $\delta_{ij} \equiv \hat{e}_i\cdot\hat{e}_j$ como interruptor selector y convenio de suma de Einstein.
+  2. *Construcción Geométrica de Levi-Civita:* $\epsilon_{ijk} \equiv \hat{e}_i\cdot(\hat{e}_j\times\hat{e}_k)$ como volumen orientado de la base ortonormal.
+  3. *La Identidad Maestra $\epsilon-\delta$:* Deducción constructiva por conteo de casos de $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$ y demolición de $\vec{A}\times(\vec{B}\times\vec{C})$ y identidades de rotacional/divergencia.
+  4. *El Determinante como Volumen Orientado:* Construcción de $\epsilon_{ijk} M_{ia} M_{jb} M_{kc} = \det(M)\epsilon_{abc}$ preparando la condición $\det R = +1$ de la Semana 03.
+
+---
+
+### [Semana 03: El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones](Semana_03_Rotaciones_SO2_SO3_Traslaciones/)
+* **Pregunta física:** ¿Cómo garantizamos que una transformación mueva un cuerpo rígido sin deformarlo ni reflejarlo en un espejo, por qué los giros en 3D no conmutan, y qué es la velocidad angular $\vec{\omega}$?
+* **Construcción Activa del Conocimiento:**
+  1. *Condición de Rigidez:* $\langle R\vec{u}, R\vec{v}\rangle = \langle \vec{u}, \vec{v}\rangle \implies R^T R = I$ ($R^{-1} = R^T$).
+  2. *Construcción Columna a Columna:* Destino de los vectores base $\hat{e}_1, \hat{e}_2, \hat{e}_3$ para obtener $R(\theta)$ en 2D y $R_x, R_y, R_z$ en 3D.
+  3. *Experimento del Espejo y del Libro:* $\det R = +1$ (rotaciones propias vs. reflexiones impropias $\det R = -1$) y no-conmutatividad de $SO(3)$.
+  4. *Eje de Rotación y Rotaciones Infinitesimales:* El eje de giro como vector propio $R\vec{v} = \vec{v}$ (Teorema de Euler) y matrices antisimétricas $\Omega^T = -\Omega$ como generadores de $\vec{v} = \vec{\omega}\times\vec{r}$.
+  5. *Traslaciones vs. Rotaciones:* Transformaciones afines sobre puntos vs. transformaciones lineales sobre vectores.
+
+---
+
+### [Semana 04: Matrices Jacobianas, Coordenadas Curvilíneas y el Tensor Métrico](Semana_04_Jacobianas_Curvilineas_Metrica/)
+* **Pregunta física:** ¿Cómo medimos longitudes, áreas, volúmenes y gradientes cuando la simetría del problema exige coordenadas polares, cilíndricas o esféricas?
+* **Conceptos clave:** Matriz Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$, factor de escala de área y volumen $|\det J|$, tensor métrico $g_{ab} = J^i{}_a J^j{}_b \delta_{ij}$ ($ds^2 = g_{ab}\,du^a du^b$), bases locales adaptadas vs. normalizadas, y diferenciales exactos $df$ vs. inexactos $\delta W$.
 
 ---
 
@@ -65,6 +60,7 @@
 
 | Semana | Tema | Lectura | Slides | Tarea | Estado |
 | :---: | :--- | :---: | :---: | :---: | :---: |
-| **01** | Notación de Einstein, $\delta_{ij}$ y Levi-Civita | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |
-| **02** | Rotaciones $SO(2), SO(3)$ y Traslaciones | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
-| **03** | Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
+| **01** | Geometría de Vectores, Proyecciones, Rectas y Planos | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |
+| **02** | Notación de Einstein, $\delta_{ij}$, Levi-Civita y Determinantes | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | ✅ Lista (`.pdf`) | Completada |
+| **03** | El Grupo de Rotaciones $SO(2), SO(3)$ y Traslaciones | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
+| **04** | Matrices Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |

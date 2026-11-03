@@ -1,51 +1,38 @@
 # Geometría y Física I: Mecánica Clásica y Formas de Cartan
 
-**Nivel:** Licenciatura en Física (Undergraduate)  
+**Nivel:** Licenciatura en Física e Ingeniería (Undergraduate)  
 **Duración:** 1 Semestre (16 Semanas / 16 Unidades de Aprendizaje)  
-**Audiencia:** Estudiantes de física e ingeniería que han cursado el cálculo diferencial e integral tradicional de una y dos variables, y buscan una transición sólida, intuitiva y visual hacia la física teórica y la geometría moderna.  
-**Pedagogía:** Inductiva, visual, física y acumulativa (de las identidades de índices en $\mathbb{R}^3$ y las mallas de Cartan, a las variedades diferenciables y la geometría simpléctica de Arnold, José & Saletan).
+**Audiencia:** Estudiantes de física e ingeniería que han cursado el cálculo diferencial e integral tradicional de una y dos variables, y buscan una transición sólida, intuitiva, constructivista y visual hacia la física teórica, la mecánica analítica y la geometría moderna.  
+**Pedagogía («La Necesidad Crea la Herramienta»):** Constructivista, inductiva, visual y acumulativa. Cada semana parte de un problema físico o de ingeniería concreto donde las herramientas ingenuas entran en crisis, motivando al estudiante a construir por sí mismo la herramienta geométrica (desde vectores, rectas, planos e índices en $\mathbb{R}^3$, hasta las mallas de Cartan, las variedades diferenciables y la geometría simpléctica de Arnold, José & Saletan).
 
 ---
 
 ## 🎯 Prerrequisitos del Curso
 
-Este curso fue diseñado cuidadosamente para **no asumir conocimientos avanzados previos** de cálculo tensorial abstracto, topología general formal ni mecánica analítica lagrangiana/hamiltoniana.
+Este curso fue diseñado cuidadosamente para **no asumir conocimientos avanzados previos** de cálculo vectorial avanzado, álgebra tensorial abstracta, topología general formal ni mecánica analítica lagrangiana/hamiltoniana.
 
 ### Lo que SÍ se requiere (Mínimos necesarios)
 1. **Cálculo Diferencial e Integral en 1 variable:**
    * Derivadas ordinarias, regla de la cadena y linealidad.
    * Teorema Fundamental del Cálculo en $\mathbb{R}$ e integración básica (sustitución y por partes).
-2. **Cálculo Diferencial e Integral en 2 y 3 variables (nivel tradicional):**
+2. **Cálculo Diferencial e Integral en 2 y 3 variables (nivel básico):**
    * Derivadas parciales $\frac{\partial f}{\partial x}$, $\frac{\partial f}{\partial y}$.
    * Teorema de Schwarz de simetría de derivadas cruzadas: $\frac{\partial^2 f}{\partial x \partial y} = \frac{\partial^2 f}{\partial y \partial x}$.
    * Regla de la cadena multivariable elemental: $\frac{d}{dt} f(x(t), y(t)) = \frac{\partial f}{\partial x}\dot{x} + \frac{\partial f}{\partial y}\dot{y}$.
    * Integrales dobles simples en coordenadas cartesianas y cambio elemental a coordenadas polares en $\mathbb{R}^2$.
-3. **Álgebra Lineal Elemental:**
-   * Vectores en $\mathbb{R}^2$ y $\mathbb{R}^3$, producto escalar euclidiano $\vec{u}\cdot\vec{v}$ y producto vectorial $\vec{u}\times\vec{v}$.
-   * Matrices $2\times 2$ y $3\times 3$: multiplicación matricial y cálculo de determinantes (por cofactores o regla de Sarrus).
-   * Noción elemental de independencia lineal y bases canónicas $\{\hat{i}, \hat{j}, \hat{k}\}$.
+3. **Álgebra y Trigonometría Elemental:**
+   * Coordenadas cartesianas en $\mathbb{R}^2$ y $\mathbb{R}^3$, Teorema de Pitágoras y Ley de Cosenos.
+   * Sistemas de ecuaciones lineales de $2\times 2$ y $3\times 3$, y noción básica de matrices.
 4. **Física General Elemental (Mecánica Newtoniana):**
-   * Leyes de Newton ($\vec{F} = m\vec{a}$).
-   * Trabajo mecánico elemental como integral de línea: $W = \int \vec{F}\cdot d\vec{r}$.
-   * Energía cinética $T = \frac{1}{2}mv^2$ y energía potencial $V(\vec{r})$ con $\vec{F} = -\vec{\nabla}V$.
-   * Momento lineal $\vec{p} = m\vec{v}$, momento angular $\vec{L} = \vec{r}\times\vec{p}$ y el oscilador armónico simple en 1D.
+   * Leyes de Newton ($\vec{F} = m\vec{a}$), trabajo mecánico elemental, energía cinética $T = \frac{1}{2}mv^2$ y energía potencial $V(\vec{r})$.
 
 ---
 
-### Lo que NO se requiere (Se construye desde cero)
-* ❌ **NO se requiere Cálculo Vectorial avanzado:** No necesitas memorizar tablas de identidades con gradientes, divergencias, rotacionales ni parametrizaciones engorrosas; todo se reconstruirá y unificará visualmente con las formas de Cartan.
-* ❌ **NO se requiere Álgebra Tensorial previa:** El Módulo 0 enseña desde cero la notación de Einstein, el símbolo de Levi-Civita $\epsilon_{ijk}$, la delta de Kronecker $\delta_{ij}$ y las matrices Jacobianas.
-* ❌ **NO se requiere Topología General abstracta:** Conceptos como conexidad, compacidad, orientabilidad y cohomología de de Rham se introducen de manera intuitiva y *just-in-time* cuando la física lo exige (agujeros de Aharonov-Bohm, celdas en Stokes y toros de Arnold).
-* ❌ **NO se requiere Mecánica Lagrangiana ni Hamiltoniana formal previa:** El formalismo se deriva de forma natural a partir de la geometría del fibrado cotangente $T^*Q$.
-
----
-
-### Test Rápido de Autoevaluación
-Si puedes responder afirmativamente a estas 4 preguntas, estás listo para comenzar:
-1. *¿Sabes calcular $\frac{\partial}{\partial x}\big(x^2 y + \sin(xy)\big)$?*
-2. *¿Sabes calcular el determinante de $\begin{pmatrix} 2 & 1 \\ 3 & 4 \end{pmatrix}$?*
-3. *¿Sabes cómo se calcula el producto cruz $\vec{A} \times \vec{B}$ en $\mathbb{R}^3$?*
-4. *¿Recuerdas la definición de trabajo elemental $dW = \vec{F}\cdot d\vec{r}$ y la conservación de la energía mecánica $E = T + V$?*
+### Lo que NO se requiere (Se construye desde cero en el curso)
+* ❌ **NO se requiere Geometría Analítica Vectorial previa:** La Semana 01 construye desde cero la diferencia entre puntos y vectores, la suma por paralelogramo, el producto punto como proyección de sombras, el producto cruz como área orientada, y la dualidad paramétrica vs. normal de rectas y planos en $\mathbb{R}^3$.
+* ❌ **NO se requiere Álgebra Tensorial ni Grupos de Lie previos:** El Módulo 0 construye paso a paso la notación de Einstein, $\delta_{ij}$, Levi-Civita $\epsilon_{ijk}$, el grupo de rotaciones $SO(2)$ y $SO(3)$ (incluyendo rotaciones infinitesimales y diferencias con las traslaciones), matrices Jacobianas y el tensor métrico $g_{ij}$.
+* ❌ **NO se requiere Topología General abstracta:** Conceptos como conexidad, compacidad, orientabilidad y cohomología de de Rham se introducen de manera visual y *just-in-time* cuando la física lo exige (agujeros de Aharonov-Bohm, celdas en Stokes y toros de Arnold).
+* ❌ **NO se requiere Mecánica Lagrangiana ni Hamiltoniana formal previa:** El formalismo se construye de forma natural a partir de la geometría de los espacios de configuración $Q$, el fibrado tangente $TQ$ y el fibrado cotangente $T^*Q$.
 
 ---
 
@@ -60,7 +47,7 @@ Si puedes responder afirmativamente a estas 4 preguntas, estás listo para comen
 | **Barrett O'Neill** (*Elementos de Geometría Diferencial*) | **El cálculo de Cartan en $\mathbb{R}^3$:** Marcos móviles ortonormales $\{e_i\}$, 1-formas de conexión de Cartan $\omega_{ij}$ y las ecuaciones estructurales aplicadas a la dinámica no inercial. |
 | **Jorge V. José & Eugene J. Saletan** (*Classical Dynamics*) | **La mecánica analítica contemporánea:** El espacio de configuraciones $Q$, velocidades en el fibrado tangente $TQ$, momentos como covectores en $T^*Q$, y transformaciones canónicas como difeomorfismos simplécticos ($\Phi^*\omega = \omega$). |
 | **V.I. Arnold** (*Mathematical Methods of Classical Mechanics*) | **La cumbre geométrica:** El invariante integral de Poincaré-Cartan $\oint (p\,dq - H\,dt)$, las trayectorias como líneas de vórtice de $d\omega_H$, hidrodinámica incompresible del espacio de fases y toros invariantes. |
-| **John Baez & Javier P. Muniain** (*Gauge Fields, Knots and Gravity*) | **El puente al futuro:** Unificación de Maxwell en dos líneas ($dF=0, d{\star}F=J$) y preparación para las Partes 2 y 3 (Teorías de Norma y Fases de Berry). |
+| **John Baez & Javier P. Muniain** (*Gauge Fields, Knots and Gravity*) | **El puente al futuro:** Unificación de Maxwell en dos líneas ($dF=0, d{\star}F=J$) y preparación para Teorías de Norma y Fases de Berry. |
 
 ---
 
@@ -68,11 +55,11 @@ Si puedes responder afirmativamente a estas 4 preguntas, estás listo para comen
 
 ```mermaid
 flowchart TD
-    M0["MÓDULO 0: Arsenal de Índices, Rotaciones y Tensores (Sem 1-3)<br><i>Einstein, SO(2)/SO(3), traslaciones vs. rotaciones, Jacobianas y métrica g_ij</i>"]
-    M1["MÓDULO 1: La Geometría Visual de las Formas en R^n (Sem 4-6)<br><i>Bachman, Fortney, Needham (láminas, proyecciones y wedge ∧)</i>"]
-    M2["MÓDULO 2: El Cálculo Exterior de Cartan y Topología I (Sem 7-9)<br><i>d, nilpotencia d²=0, Nakahara (agujeros y Aharonov-Bohm), O'Neill</i>"]
-    M3["MÓDULO 3: Integración, Stokes y Variedades Físicas (Sem 10-12)<br><i>Hodge ⋆, Stokes en celdas (Bachman), cartas locales y fibrado TQ</i>"]
-    M4["MÓDULO 4: Mecánica Clásica Simpléctica (Sem 13-16)<br><i>Cotangente T*Q, 2-forma ω, Hamilton, Liouville y toros de Arnold</i>"]
+    M0["MÓDULO 0: Geometría Euclidiana, Índices, Rotaciones y Tensores (Sem 01-04)<br><i>Vectores, rectas y planos, Einstein/Levi-Civita, SO(2)/SO(3), traslaciones, Jacobianas y métrica g_ij</i>"]
+    M1["MÓDULO 1: La Geometría Visual de las Formas en R^n (Sem 05-07)<br><i>Bachman, Fortney, Needham (espacio tangente, láminas de 1-formas y producto cuña ∧)</i>"]
+    M2["MÓDULO 2: El Cálculo Exterior de Cartan y Topología I (Sem 08-10)<br><i>Derivada exterior d, nilpotencia d²=0, Nakahara (agujeros y Aharonov-Bohm), O'Neill</i>"]
+    M3["MÓDULO 3: Integración, Stokes y Variedades Físicas (Sem 11-13)<br><i>Hodge ⋆, Stokes en celdas (Bachman), cartas locales y fibrado tangente TQ</i>"]
+    M4["MÓDULO 4: Mecánica Clásica Simpléctica (Sem 14-16)<br><i>Cotangente T*Q, Liouville θ, 2-forma ω, Hamilton, Poisson y toros de Arnold</i>"]
 
     M0 --> M1
     M1 --> M2
@@ -84,40 +71,40 @@ flowchart TD
 
 ## 📅 Tabla de Navegación del Semestre
 
-| Módulo | Semana | Tema Central | Pregunta Física Motivadora | Carpeta |
-| :--- | :---: | :--- | :--- | :--- |
-| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **01** | Notación de Einstein, $\delta_{ij}$ y Levi-Civita $\epsilon_{ijk}$ | ¿Cómo simplificar cálculos de vectores en 3D sin llenar páginas de componentes? | [`Semana_01`](Modulo_00_Arsenal_Indicial/Semana_01_Einstein_Kronecker_LeviCivita) |
-| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **02** | Rotaciones $SO(2), SO(3)$ y Traslaciones | ¿Por qué $R^TR=I$ y $\det R=1$? ¿En qué difiere un giro de una traslación? | [`Semana_02`](Modulo_00_Arsenal_Indicial/Semana_02_Rotaciones_SO2_SO3_Traslaciones) |
-| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **03** | Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ¿Por qué aparece el factor $r$ o $r^2\sin\theta$ al cambiar de coordenadas? | [`Semana_03`](Modulo_00_Arsenal_Indicial/Semana_03_Jacobianas_Curvilineas_Metrica) |
-| [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **04** | Puntos, Coordenadas y Vectores como Derivaciones | ¿Qué diferencia física hay entre un lugar y una velocidad? | [`Semana_04`](Modulo_01_Geometria_Visual_Rn/Semana_04_Puntos_Coordenadas_Vectores) |
-| [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **05** | Covectores, 1-Formas como Láminas e Isomorfismos | ¿Por qué el trabajo $P\,dV$ no necesita ángulos ni producto punto? | [`Semana_05`](Modulo_01_Geometria_Visual_Rn/Semana_05_Covectores_1Formas_Laminas) |
-| [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **06** | Álgebra Exterior: El Producto Cuña ($\wedge$) | ¿Cómo medimos áreas orientadas sin recurrir a la mano derecha en 3D? | [`Semana_06`](Modulo_01_Geometria_Visual_Rn/Semana_06_Wedge_Areas_Orientadas) |
-| [**MÓDULO 2**](Modulo_02_Calculo_Cartan_Topologia_I/README.md) | **07** | Derivada Exterior $d$: Densidad de Circulación | ¿Qué mide una pequeña rueda de paletas en un fluido en 2D? | [`Semana_07`](Modulo_02_Calculo_Cartan_Topologia_I/Semana_07_Derivada_Exterior_Circulacion) |
-| [**MÓDULO 2**](Modulo_02_Calculo_Cartan_Topologia_I/README.md) | **08** | Nilpotencia $d^2=0$, Poincaré y Topología I | Si $\vec{\nabla}\times\vec{F}=0$, ¿por qué a veces no existe potencial global? | [`Semana_08`](Modulo_02_Calculo_Cartan_Topologia_I/Semana_08_Nilpotencia_Poincare_Topologia) |
-| [**MÓDULO 2**](Modulo_02_Calculo_Cartan_Topologia_I/README.md) | **09** | Contracción Interior ($\iota_X$) y Marcos Móviles | ¿Cómo describe la física un piloto en un caza que acelera y gira? | [`Semana_09`](Modulo_02_Calculo_Cartan_Topologia_I/Semana_09_Contraccion_Marcos_Moviles) |
-| [**MÓDULO 3**](Modulo_03_Integracion_Stokes_Variedades/README.md) | **10** | Integración y Estrella de Hodge ($\star$) | ¿Cómo medimos flujos sobre superficies sin usar el vector normal $\hat{n}$? | [`Semana_10`](Modulo_03_Integracion_Stokes_Variedades/Semana_10_Hodge_Integracion_Formas) |
-| [**MÓDULO 3**](Modulo_03_Integracion_Stokes_Variedades/README.md) | **11** | Teorema Generalizado de Stokes y Topología II | ¿Por qué la suma de remolinos internos da la velocidad en el borde? | [`Semana_11`](Modulo_03_Integracion_Stokes_Variedades/Semana_11_Stokes_Celdas_Topologia_II) |
-| [**MÓDULO 3**](Modulo_03_Integracion_Stokes_Variedades/README.md) | **12** | Espacios de Configuración ($Q$) y Fibrado $TQ$ | Si un péndulo doble se mueve, ¿dónde vive su estado físico real? | [`Semana_12`](Modulo_03_Integracion_Stokes_Variedades/Semana_12_Espacios_Configuracion_TQ) |
-| [**MÓDULO 4**](Modulo_04_Mecanica_Simplectica/README.md) | **13** | Fibrado Cotangente $T^*Q$ y Forma de Liouville $\theta$ | ¿Por qué el momento $p$ es físicamente un covector y no un vector? | [`Semana_13`](Modulo_04_Mecanica_Simplectica/Semana_13_Cotangente_TstarQ_Liouville) |
-| [**MÓDULO 4**](Modulo_04_Mecanica_Simplectica/README.md) | **14** | 2-Forma Simpléctica $\omega$ y Teorema de Darboux | ¿Qué estructura geométrica reemplaza a la métrica en el espacio de fases? | [`Semana_14`](Modulo_04_Mecanica_Simplectica/Semana_14_Forma_Simplectica_Darboux) |
-| [**MÓDULO 4**](Modulo_04_Mecanica_Simplectica/README.md) | **15** | Dinámica Hamiltoniana, Poisson y Liouville | ¿Por qué las ecuaciones de Hamilton llevan un signo menos asimétrico? | [`Semana_15`](Modulo_04_Mecanica_Simplectica/Semana_15_Hamilton_Poisson_Liouville) |
-| [**MÓDULO 4**](Modulo_04_Mecanica_Simplectica/README.md) | **16** | Poincaré-Cartan, Topología III y Toros de Arnold | ¿Por qué las trayectorias de sistemas conservativos viven sobre toros? | [`Semana_16`](Modulo_04_Mecanica_Simplectica/Semana_16_PoincareCartan_Toros_Futuro) |
+| Módulo | Semana | Tema Central | Pregunta Física / Geométrica Motivadora | Carpeta | Estado |
+| :--- | :---: | :--- | :--- | :--- | :---: |
+| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **01** | Geometría de Vectores, Proyecciones, Rectas y Planos | ¿Cómo distinguimos puntos de flechas y por qué un plano tiene dos caras duales (paramétrica vs. normal)? | [`Semana_01`](Modulo_00_Arsenal_Indicial/Semana_01_Geometria_Vectores_Rectas_Planos) | ✅ |
+| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **02** | Notación de Einstein, $\delta_{ij}$, Levi-Civita $\epsilon_{ijk}$ y Determinantes | ¿Cómo simplificar identidades vectoriales y volúmenes en 3D sin llenar páginas de componentes? | [`Semana_02`](Modulo_00_Arsenal_Indicial/Semana_02_Einstein_Kronecker_LeviCivita) | ✅ |
+| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **03** | El Grupo de Rotaciones $SO(2), SO(3)$ y Traslaciones | ¿Por qué $R^TR=I$, $\det R=+1$ y los giros 3D no conmutan? ¿En qué difiere rotar de trasladar? | [`Semana_03`](Modulo_00_Arsenal_Indicial/Semana_03_Rotaciones_SO2_SO3_Traslaciones) | ⏳ |
+| [**MÓDULO 0**](Modulo_00_Arsenal_Indicial/README.md) | **04** | Matrices Jacobianas, Coordenadas Curvas y Métrica $g_{ij}$ | ¿Por qué aparecen factores de escala como $r$ o $r^2\sin\theta$ al medir distancias y áreas en coordenadas curvas? | [`Semana_04`](Modulo_00_Arsenal_Indicial/Semana_04_Jacobianas_Curvilineas_Metrica) | ⏳ |
+| [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **05** | Puntos, Coordenadas y Vectores como Derivaciones | ¿Qué diferencia física hay entre una ubicación y una velocidad sobre una superficie curva? | [`Semana_05`](Modulo_01_Geometria_Visual_Rn/Semana_05_Puntos_Coordenadas_Vectores) | ✅ |
+| [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **06** | Covectores, 1-Formas como Láminas e Isomorfismos | ¿Por qué el trabajo $P\,dV$ o $df(\vec{v})$ cuenta láminas perforadas sin usar ángulos? | [`Semana_06`](Modulo_01_Geometria_Visual_Rn/Semana_06_Covectores_1Formas_Laminas) | ⏳ |
+| [**MÓDULO 1**](Modulo_01_Geometria_Visual_Rn/README.md) | **07** | Álgebra Exterior: El Producto Cuña ($\wedge$) | ¿Cómo medimos áreas y volúmenes orientados en cualquier dimensión sin regla de la mano derecha? | [`Semana_07`](Modulo_01_Geometria_Visual_Rn/Semana_07_Wedge_Areas_Orientadas) | ⏳ |
+| [**MÓDULO 2**](Modulo_02_Calculo_Cartan_Topologia_I/README.md) | **08** | Derivada Exterior $d$: Densidad de Circulación | ¿Qué mide un pequeño molinete sumergido en un fluido o campo de fuerzas? | [`Semana_08`](Modulo_02_Calculo_Cartan_Topologia_I/Semana_08_Derivada_Exterior_Circulacion) | ⏳ |
+| [**MÓDULO 2**](Modulo_02_Calculo_Cartan_Topologia_I/README.md) | **09** | Nilpotencia $d^2=0$, Poincaré y Topología I | Si $\vec{\nabla}\times\vec{F}=0$, ¿por qué un agujero en el espacio destruye la existencia del potencial global? | [`Semana_09`](Modulo_02_Calculo_Cartan_Topologia_I/Semana_09_Nilpotencia_Poincare_Topologia) | ⏳ |
+| [**MÓDULO 2**](Modulo_02_Calculo_Cartan_Topologia_I/README.md) | **10** | Contracción Interior ($\iota_X$) y Marcos Móviles | ¿Cómo describe la física un observador en una plataforma o aeronave que acelera y gira? | [`Semana_10`](Modulo_02_Calculo_Cartan_Topologia_I/Semana_10_Contraccion_Marcos_Moviles) | ⏳ |
+| [**MÓDULO 3**](Modulo_03_Integracion_Stokes_Variedades/README.md) | **11** | Integración de Formas y Estrella de Hodge ($\star$) | ¿Cómo integramos flujos sobre superficies sin depender de parametrizaciones ni normales unitarias? | [`Semana_11`](Modulo_03_Integracion_Stokes_Variedades/Semana_11_Hodge_Integracion_Formas) | ⏳ |
+| [**MÓDULO 3**](Modulo_03_Integracion_Stokes_Variedades/README.md) | **12** | Teorema Generalizado de Stokes y Topología II | ¿Por qué la suma de remolinos microscópicos internos equivale exactamente a la circulación en el borde? | [`Semana_12`](Modulo_03_Integracion_Stokes_Variedades/Semana_12_Stokes_Celdas_Topologia_II) | ⏳ |
+| [**MÓDULO 3**](Modulo_03_Integracion_Stokes_Variedades/README.md) | **13** | Espacios de Configuración ($Q$) y Fibrado Tangente $TQ$ | Si un brazo robótico o péndulo doble se mueve, ¿en qué variedad geométrica vive su estado? | [`Semana_13`](Modulo_03_Integracion_Stokes_Variedades/Semana_13_Espacios_Configuracion_TQ) | ⏳ |
+| [**MÓDULO 4**](Modulo_04_Mecanica_Simplectica/README.md) | **14** | Cotangente $T^*Q$, Forma de Liouville $\theta$ y Simpléctica $\omega$ | ¿Por qué el momento canónico $p$ es una 1-forma y qué estructura geométrica gobierna el espacio de fases? | [`Semana_14`](Modulo_04_Mecanica_Simplectica/Semana_14_Cotangente_Liouville_FormaSimplectica) | ⏳ |
+| [**MÓDULO 4**](Modulo_04_Mecanica_Simplectica/README.md) | **15** | Dinámica Hamiltoniana, Corchetes de Poisson y Liouville | ¿Por qué el flujo hamiltoniano es incompresible en el espacio de fases ($\mathcal{L}_{X_H}\omega = 0$)? | [`Semana_15`](Modulo_04_Mecanica_Simplectica/Semana_15_Hamilton_Poisson_Liouville) | ⏳ |
+| [**MÓDULO 4**](Modulo_04_Mecanica_Simplectica/README.md) | **16** | Poincaré-Cartan, Toros Invariantes de Arnold y Futuro | ¿Por qué los sistemas integrables se enrollan en toros $T^n$ y cómo conecta esto con Maxwell y Gauge? | [`Semana_16`](Modulo_04_Mecanica_Simplectica/Semana_16_PoincareCartan_Toros_Futuro) | ⏳ |
 
 ---
 
 ## 🛠️ Estructura del Repositorio y Compilación
 
-Cada carpeta de semana contiene el tríptico estándar:
-* `Lectura_XX.tex`: Notas de estudio con diseño editorial profesional en `tcolorbox`.
-* `Slides_XX.tex`: Diapositivas Beamer 16:9 con paleta visual *Black, Orange & Cream*.
-* `Tarea_XX.tex`: Ejercicios divididos en (A) Visual/Dibujo, (B) Cálculo y (C) Física Aplicada.
+Cada carpeta de semana contiene el tríptico constructivista estándar:
+* `Lectura_XX.tex` y `Lectura_XX.pdf`: Notas de estudio con diseño editorial en `tcolorbox` y abundantes diagramas geométricos en TikZ.
+* `Slides_XX.tex` y `Slides_XX.pdf`: Diapositivas Beamer 16:9 interactivas en modalidad taller (*Actividad $\to$ Discusión*).
+* `Tarea_XX.tex` y `Tarea_XX.pdf`: Problemas constructivistas divididos en (A) Construcción Visual y Geométrica, (B) Construcción Algebraica y (C) Aplicaciones en Física e Ingeniería.
 
 Para compilar cualquier documento:
 ```bash
-cd Modulo_01_Geometria_Visual_Rn/Semana_04_Puntos_Coordenadas_Vectores/
-pdflatex Lectura_04.tex
-pdflatex Slides_04.tex
-pdflatex Tarea_04.tex
+cd Modulo_00_Arsenal_Indicial/Semana_01_Geometria_Vectores_Rectas_Planos/
+pdflatex Lectura_01.tex
+pdflatex Slides_01.tex
+pdflatex Tarea_01.tex
 ```
 Los archivos de configuración compartidos residen en [`Common/`](Common/):
 * `Common/course_notes.sty`: Estilos tipográficos y cajas para notas y tareas.

@@ -1,5 +1,5 @@
 # MÓDULO 3: Integración, Stokes y Variedades Físicas
-**Duración:** Semanas 10 a 12 (Semanas 10 a 12)  
+**Duración:** Semanas 11 a 13 (Semanas 11 a 13)  
 **Objetivo Pedagógico:** Integrar formas sobre variedades sin depender de vectores normales artificiales $\hat{n}$. Demostrar visualmente el Teorema Generalizado de Stokes mediante la cancelación telescópica de celdas internas de Bachman. Comprender por qué la física exige variedades suaves y asimilar el principio fundamental de José & Saletan: las posiciones viven en $Q$, pero las velocidades habitan en el fibrado tangente $TQ$.
 
 ---
@@ -19,17 +19,17 @@
 
 ## 📚 Desglose de Semanas
 
-### [Semana 10: Integración de Formas y el Operador Estrella de Hodge ($\star$)](Semana_10_Hodge_Integracion_Formas/)
+### [Semana 11: Integración de Formas y el Operador Estrella de Hodge ($\star$)](Semana_11_Hodge_Integracion_Formas/)
 * **Pregunta física:** ¿Cómo calculamos el flujo a través de una superficie curva sin recurrir a la elección arbitraria de un vector normal unitario $\hat{n}$?
 * **Conceptos clave:** Integración de $k$-formas sobre subconjuntos parametrizados: $\int_S \omega$. El operador estrella de Hodge $\star: \Omega^k(\mathbb{R}^3) \to \Omega^{3-k}(\mathbb{R}^3)$ inducido por la métrica euclidiana $g_{ij}$ y la orientación $\epsilon_{ijk}$.
-* **Modelo visual (Fortney Secc. 5.6 / Diapositivas 11 y 14):** La estrella de Hodge intercambia visualmente una familia de tubos de flujo (2-forma) con el vector axial que fluye por su interior (1-forma).
+* **Modelo visual (Fortney Secc. 5.6):** La estrella de Hodge intercambia visualmente una familia de tubos de flujo (2-forma) con el vector axial que fluye por su interior (1-forma).
 * **Física:** Reconstrucción geométrica inmediata de los operadores clásicos:
   $$\text{div}\,\vec{F} = \star d \star (F^\flat), \qquad \text{rot}\,\vec{F} = (\star d (F^\flat))^\sharp, \qquad \Delta f = \star d \star df$$
-* **Lectura asignada:** Fortney (Secc. 5.6 y Cap. 7), Bachman (Cap. 4, Secc. 4.1–4.5), Diapositivas 11 y 14.
+* **Lectura asignada:** Fortney (Secc. 5.6 y Cap. 7), Bachman (Cap. 4, Secc. 4.1–4.5).
 
 ---
 
-### [Semana 11: El Teorema Generalizado de Stokes y Topología II (Bachman & Nakahara)](Semana_11_Stokes_Celdas_Topologia_II/)
+### [Semana 12: El Teorema Generalizado de Stokes y Topología II (Bachman & Nakahara)](Semana_12_Stokes_Celdas_Topologia_II/)
 * **Pregunta física:** ¿Por qué la suma de todos los pequeños vórtices microscópicos dentro de un fluido equivale exactamente a la velocidad total del fluido a lo largo del borde que lo contiene?
 * **Conceptos clave:** Cadenas orientadas y el operador frontera $\partial \Omega$. La fórmula maestra de Stokes-Cartan:
   $$\int_{\partial \Omega} \omega = \int_{\Omega} d\omega$$
@@ -42,9 +42,9 @@
 
 ---
 
-### [Semana 12: Espacios de Configuración Físicos ($Q$) y el Fibrado Tangente ($TQ$)](Semana_12_Espacios_Configuracion_TQ/)
-* **Pregunta física:** Si un péndulo doble se mueve en el espacio, ¿dónde vive su estado físico en cada instante? ¿Por qué forzar coordenadas cartesianas $\mathbb{R}^4$ arruina la comprensión del sistema?
-* **Conceptos clave:** Ligaduras holónomas y subvariedades diferenciables. El espacio de configuraciones $Q$ (el círculo $S^1$ para el péndulo simple, el toro $T^2 = S^1 \times S^1$ para el péndulo doble, la esfera $S^2$ para el péndulo esférico, el grupo de Lie $SO(3)$ para el cuerpo rígido). Atlas y cartas locales.
+### [Semana 13: Espacios de Configuración Físicos ($Q$) y el Fibrado Tangente ($TQ$)](Semana_13_Espacios_Configuracion_TQ/)
+* **Pregunta física:** Si un brazo robótico o péndulo doble se mueve en el espacio, ¿dónde vive su estado físico en cada instante? ¿Por qué forzar coordenadas cartesianas $\mathbb{R}^4$ arruina la comprensión del sistema?
+* **Conceptos clave:** Ligaduras holónomas y subvariedades diferenciables (generalizando la visión paramétrica vs. normal de planos de la Semana 01). El espacio de configuraciones $Q$ (el círculo $S^1$ para el péndulo simple, el toro $T^2 = S^1 \times S^1$ para el péndulo doble, la esfera $S^2$ para el péndulo esférico, el grupo de Lie $SO(3)$ para el cuerpo rígido). Atlas y cartas locales.
 * **El Principio de José & Saletan (Cap. 2):** *"Velocities do not lie in $Q$"*. Distinción física entre el espacio de posiciones $Q$ y el **fibrado tangente $TQ$** (espacio de estados de Lagrange con coordenadas locales $(q^i, \dot{q}^i)$).
 * **Física:** El principio de mínima acción de Hamilton $\delta \int L(q, \dot{q})\, dt = 0$ formulado intrínsecamente sobre curvas en $TQ$.
 * **Lectura asignada:** José & Saletan (Cap. 2, Secc. 2.1–2.4), Arnold (Cap. 4, Secc. 17–19), Nakahara (Cap. 5, Secc. 5.1–5.2).
@@ -55,6 +55,6 @@
 
 | Semana | Tema | Lectura | Slides | Tarea | Estado |
 | :---: | :--- | :---: | :---: | :---: | :---: |
-| **10** | Integración y Estrella de Hodge ($\star$) | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
-| **11** | Teorema Generalizado de Stokes y Topología II | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
-| **12** | Espacios de Configuración ($Q$) y Fibrado $TQ$ | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
+| **11** | Integración y Estrella de Hodge ($\star$) | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
+| **12** | Teorema Generalizado de Stokes y Topología II | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |
+| **13** | Espacios de Configuración ($Q$) y Fibrado $TQ$ | ⏳ Pendiente | ⏳ Pendiente | ⏳ Pendiente | En cola |

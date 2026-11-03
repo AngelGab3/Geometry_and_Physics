@@ -11,7 +11,7 @@
 
 \begin{center}
 {\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
-{\Large\textcolor{orangeacc}{\textbf{Semana 1: De la Crisis Cartesiana al Arsenal de Índices}}}\\[0.15cm]
+{\Large\textcolor{orangeacc}{\textbf{Semana 2: De la Crisis Cartesiana al Arsenal de Índices}}}\\[0.15cm]
 {\large\textbf{Construyendo la notación de Einstein, $\delta_{ij}$ y $\epsilon_{ijk}$ desde la geometría}}\\[0.3cm]
 {\large\textcolor{graymuted}{Notas de Clase Constructivistas --- Nivel Licenciatura}}\\[0.2cm]
 \end{center}
@@ -261,7 +261,25 @@ Como $v_i v_j$ es simétrico bajo $i \leftrightarrow j$ y $\epsilon_{ijk}$ es an
 \[
 \mathbf{P = \frac{dE_{\text{cin}}}{dt} = 0}.
 \]
- Un campo magnético estático jamás puede acelerar la rapidez de una partícula ni realizar trabajo mecánico.
+Un campo magnético estático jamás puede acelerar la rapidez de una partícula ni realizar trabajo mecánico.
 \end{examplebox}
+
+\manualsubsection{El Determinante como Volumen Orientado en Índices}
+En la Semana 1 vimos que el triple producto escalar $\vec{u}\cdot(\vec{v}\times\vec{w})$ mide el volumen orientado del paralelepípedo formado por tres vectores. En notación de índices, este volumen es:
+\[
+\text{Vol}(\vec{u}, \vec{v}, \vec{w}) = \vec{u}\cdot(\vec{v}\times\vec{w}) = u_i (\vec{v}\times\vec{w})_i = \mathbf{\epsilon_{ijk} u_i v_j w_k}.
+\]
+Si ahora agrupamos los tres vectores como las tres columnas de una matriz $3 \times 3$, digamos $M_{i1} = u_i$, $M_{j2} = v_j$ y $M_{k3} = w_k$, el determinante de la matriz $M$ es precisamente el volumen orientado de sus columnas:
+\[
+\mathbf{\det(M) = \epsilon_{ijk} M_{i1} M_{j2} M_{k3}}.
+\]
+¿Y qué ocurre si permutamos el orden de las tres columnas tomando índices arbitrarios $(a, b, c)$ en lugar de $(1, 2, 3)$? Intercambiar dos columnas invierte la orientación de la caja y cambia el signo del volumen exactamente igual que $\epsilon_{abc}$. Por lo tanto, descubrimos la identidad fundamental del determinante:
+\begin{theorembox}{Identidad Tensorial del Determinante}
+Para cualquier matriz $M$ de $3 \times 3$:
+\[
+\mathbf{\epsilon_{ijk} M_{ia} M_{jb} M_{kc} = \det(M)\,\epsilon_{abc}}.
+\]
+\end{theorembox}
+*(Guarda esta joya en la memoria: en la Semana 3 nos permitirá demostrar en un solo renglón por qué el producto cruz es invariante bajo rotaciones propias con $\det(R) = +1$, y en la Semana 4 explicará el factor Jacobiano en coordenadas curvilíneas).*
 
 \end{document}

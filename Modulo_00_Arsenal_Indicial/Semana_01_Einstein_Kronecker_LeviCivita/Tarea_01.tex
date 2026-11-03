@@ -11,104 +11,117 @@
 
 \begin{center}
 {\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
-{\Large\textcolor{orangeacc}{\textbf{Tarea 1: Notación de Einstein, Delta de Kronecker y Levi-Civita}}}\\[0.2cm]
+{\Large\textcolor{orangeacc}{\textbf{Tarea 1: Construcción Geométrica del Arsenal de Índices}}}\\[0.2cm]
 {\large\textcolor{graymuted}{Nivel: Licenciatura en Física --- Módulo 0: Arsenal Indicial}}\\[0.25cm]
 \end{center}
 
 \vspace{0.2cm}
 
-\noindent\textbf{Instrucciones:} Resuelve detalladamente los siguientes problemas. Todos los cálculos deben realizarse utilizando el convenio de suma de Einstein, la delta de Kronecker $\delta_{ij}$ y el símbolo de Levi-Civita $\epsilon_{ijk}$. No se permite expandir por componentes cartesianas tradicionales $(x, y, z)$. Justifica cada paso algebraico con sus propiedades geométricas.
+\noindent\textbf{Instrucciones:} Resuelve detalladamente los siguientes problemas. El objetivo de esta tarea no es aplicar fórmulas a ciegas, sino \textbf{construir y deducir} las propiedades algebraicas a partir de la geometría de volúmenes, áreas y simetrías. Utiliza en todo momento el convenio de suma de Einstein.
 
 % =====================================================================
-\manualsection{Parte A: Intuición Visual y Combinatoria de Índices}
+\manualsection{Parte A: Construcción Geométrica en 2D y 3D}
 
-\begin{infobox}{Problema 1: Anatomía del tensor de Levi-Civita}
-El símbolo de Levi-Civita en $\R^3$ posee $3^3 = 27$ componentes en total.
+\begin{infobox}{Problema 1: Construyendo el Símbolo de Levi-Civita en 2D (Áreas Orientadas)}
+En clase construimos $\epsilon_{ijk}$ en $\R^3$ como el volumen orientado de tres vectores base. Ahora construiremos su análogo en el plano $\R^2$, donde los índices solo toman dos valores: $i, j \in \{1, 2\}$.
+
+Definimos $\epsilon_{ij}$ como el \textbf{área con signo} del paralelogramo formado por los vectores base $(\hat{e}_i, \hat{e}_j)$ del plano (positivo si el giro de $\hat{e}_i$ a $\hat{e}_j$ es antihorario, negativo si es horario, y cero si el paralelogramo se aplasta).
 \begin{enumerate}[label=(\alph*)]
-    \item Escribe las tres matrices $3 \times 3$ correspondientes a fijar el primer índice:
+    \item Usando esta definición geométrica, encuentra las $2^2 = 4$ componentes de $\epsilon_{ij}$ y escríbelas como una matriz $2 \times 2$:
     \[
-    M^{(1)}_{jk} \equiv \epsilon_{1jk}, \qquad M^{(2)}_{jk} \equiv \epsilon_{2jk}, \qquad M^{(3)}_{jk} \equiv \epsilon_{3jk}.
+    (\epsilon_{ij}) = \begin{pmatrix} \epsilon_{11} & \epsilon_{12} \\ \epsilon_{21} & \epsilon_{22} \end{pmatrix}.
     \]
-    \item Identifica cuántas componentes son exactamente iguales a cero, cuántas valen $+1$ y cuántas valen $-1$.
-    \item Explica geométricamente por qué cualquier entrada con dos índices repetidos ($\epsilon_{iik}$, etc.) debe anularse si interpretamos a $\epsilon_{ijk}$ como el volumen orientado de los vectores base $(\hat{e}_i, \hat{e}_j, \hat{e}_k)$.
+    \item Dados dos vectores en el plano $\vec{u} = u_i\hat{e}_i$ y $\vec{v} = v_j\hat{e}_j$, expande la suma doble $\text{Área}(\vec{u}, \vec{v}) = \epsilon_{ij} u_i v_j$ y verifica que reproduce el determinante $2 \times 2$ clásico $u_1 v_2 - u_2 v_1$.
+    \item \textbf{Deducción por conteo de casos:} Analiza el producto $\epsilon_{ij}\epsilon_{mn}$ en $\R^2$ (sin índices sumados). Para que este producto no sea cero, tanto $(i,j)$ como $(m,n)$ deben ser permutaciones de $(1,2)$. Siguiendo el mismo razonamiento de casos visto en clase, demuestra que:
+    \[
+    \epsilon_{ij}\epsilon_{mn} = \delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}.
+    \]
+    \item Contrae el primer índice haciendo $m = i$ en la identidad del inciso (c) (recuerda que en $\R^2$ se cumple $\delta_{ii} = \delta_{11} + \delta_{22} = 2$) y demuestra que $\epsilon_{ij}\epsilon_{in} = \delta_{jn}$.
 \end{enumerate}
 \end{infobox}
 
-\begin{infobox}{Problema 2: El reloj de permutaciones y paridad}
-Considera el reloj de permutaciones cíclicas $(1 \to 2 \to 3 \to 1)$.
+\begin{infobox}{Problema 2: Anatomía del Volumen Elemental $\epsilon_{ijk}$ en $\R^3$}
+En $\R^3$, construimos $\epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)$, el cual posee $3^3 = 27$ componentes.
 \begin{enumerate}[label=(\alph*)]
-    \item Determina el valor numérico ($+1$, $-1$ o $0$) de cada una de las siguientes componentes sin calcular determinantes:
+    \item Escribe explícitamente las tres matrices $3 \times 3$ obtenidas al fijar el primer índice en $i = 1, 2, 3$:
     \[
-    \epsilon_{312}, \qquad \epsilon_{213}, \qquad \epsilon_{323}, \qquad \epsilon_{231}, \qquad \epsilon_{132}.
+    M^{(1)}_{jk} = \epsilon_{1jk}, \qquad M^{(2)}_{jk} = \epsilon_{2jk}, \qquad M^{(3)}_{jk} = \epsilon_{3jk}.
     \]
-    \item Demuestra que el símbolo de Levi-Civita es completamente antisimétrico bajo el intercambio de cualquier par de índices adyacentes:
-    \[
-    \epsilon_{ijk} = -\epsilon_{jik} = -\epsilon_{ikj} = -\epsilon_{kji}.
-    \]
-    \item Demuestra que es completamente simétrico bajo permutaciones cíclicas completas:
-    \[
-    \epsilon_{ijk} = \epsilon_{jki} = \epsilon_{kij}.
-    \]
+    \item Observa que las tres matrices son antisimétricas ($M^{(i)}_{jk} = -M^{(i)}_{kj}$). Explica geométricamente por qué la diagonal principal de todas ellas está compuesta exclusivamente por ceros.
 \end{enumerate}
-\end{infobox}
-
-% =====================================================================
-\manualsection{Parte B: Cálculo y Demolición en Índices}
-
-\begin{infobox}{Problema 3: Contracciones completas de $\epsilon$ y $\delta$}
-Utilizando la identidad maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$, calcula el valor escalar numérico de las siguientes expresiones en $\R^3$:
-\begin{enumerate}[label=(\alph*)]
-    \item $\delta_{ii}$ (la traza de la delta).
-    \item $\delta_{ij}\delta_{jk}\delta_{ki}$.
-    \item $\epsilon_{ijk}\epsilon_{ijm}$ (contracción de dos índices compartidos).
-    \item $\epsilon_{ijk}\epsilon_{ijk}$ (contracción total de los tres índices). ¿Qué relación tiene este número con el factorial $3!$?
-\end{enumerate}
-\end{infobox}
-
-\begin{infobox}{Problema 4: La Identidad de Lagrange}
-La identidad de Lagrange relaciona las magnitudes del producto cruz y el producto punto:
-\[
-|\vec{A} \times \vec{B}|^2 = |\vec{A}|^2|\vec{B}|^2 - (\vec{A}\cdot\vec{B})^2.
-\]
-Demuestra esta identidad en **no más de tres líneas** escribiendo el miembro izquierdo como $(\vec{A}\times\vec{B})_i (\vec{A}\times\vec{B})_i$ y aplicando la identidad maestra $\epsilon-\delta$.
-\end{infobox}
-
-\begin{infobox}{Problema 5: Producto escalar de dos productos cruz}
-Demuestra en notación de índices que para cuatro vectores arbitrarios $\vec{A}, \vec{B}, \vec{C}, \vec{D} \in \R^3$:
-\[
-(\vec{A} \times \vec{B}) \cdot (\vec{C} \times \vec{D}) = (\vec{A}\cdot\vec{C})(\vec{B}\cdot\vec{D}) - (\vec{A}\cdot\vec{D})(\vec{B}\cdot\vec{C}).
-\]
-\textit{Pista:} Escribe el producto escalar como $(\vec{A}\times\vec{B})_i (\vec{C}\times\vec{D})_i$ y aplica la contracción $\epsilon_{ijk}\epsilon_{imn}$.
 \end{infobox}
 
 % =====================================================================
-\manualsection{Parte C: Problemas Físicos Aplicados}
+\manualsection{Parte B: Escalera de Contracciones y Demolición de Identidades}
 
-\begin{infobox}{Problema 6: Trabajo magnético y contracción simétrico-antisimétrico}
-Una partícula de masa $m$ y carga eléctrica $q$ se mueve en el espacio bajo la acción de un campo magnético estático $\vec{B}(\vec{r})$. La ecuación de movimiento de Newton-Lorentz es:
+\begin{infobox}{Problema 3: La Escalera de Contracciones de Levi-Civita}
+Partiendo de la identidad maestra que construimos en clase para un índice contraído en $\R^3$:
 \[
-m \frac{d\vec{v}}{dt} = q(\vec{v} \times \vec{B}).
+\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km},
 \]
+deduce qué ocurre cuando contraemos más índices:
 \begin{enumerate}[label=(\alph*)]
-    \item Escribe esta ecuación diferencial vectorial en componentes de índices $i \in \{1, 2, 3\}$.
-    \item Multiplica escalarmente por la velocidad $v_i$ para calcular la tasa de cambio de la energía cinética:
+    \item \textbf{Dos índices contraídos:} Haz $m = j$ (es decir, calcula $\epsilon_{ijk}\epsilon_{ijn}$). Usa el hecho de que en $\R^3$ la traza es $\delta_{jj} = 3$ y que $\delta_{jn}\delta_{kj} = \delta_{kn}$ para demostrar que:
     \[
-    \frac{d}{dt}\left(\frac{1}{2}m v_i v_i\right).
+    \mathbf{\epsilon_{ijk}\epsilon_{ijn} = 2\delta_{kn}}.
     \]
-    \item Demuestra rigurosamente, utilizando el argumento de contracción de un tensor simétrico ($v_i v_j$) con uno antisimétrico ($\epsilon_{ijk}$), que la energía cinética de la partícula es estrictamente constante en el tiempo.
+    Explica combinatoriamente de dónde sale ese factor $2$: si fijas el último índice $k=n$ (por ejemplo $k=n=3$), ¿cuántas parejas $(i,j)$ no nulas existen?
+    \item \textbf{Tres índices contraídos:} Ahora haz $n = k$ en el resultado anterior para calcular la suma total $\epsilon_{ijk}\epsilon_{ijk}$. ¿Por qué el resultado coincide con el factorial $3! = 6$?
 \end{enumerate}
 \end{infobox}
 
-\begin{infobox}{Problema 7: Conservación del momento angular en campos centrales}
-El momento angular de una partícula respecto al origen es $\vec{L} = \vec{r} \times \vec{p}$.
+\begin{infobox}{Problema 4: Producto Escalar de dos Productos Cruz e Identidad de Lagrange}
 \begin{enumerate}[label=(\alph*)]
-    \item Escribe la componente $L_i$ en notación de índices.
-    \item Calcula la derivada temporal $\frac{dL_i}{dt}$ usando la regla del producto:
+    \item Dados cuatro vectores $\vec{A}, \vec{B}, \vec{C}, \vec{D} \in \R^3$, escribe el producto escalar $(\vec{A}\times\vec{B})\cdot(\vec{C}\times\vec{D})$ como $(\vec{A}\times\vec{B})_i (\vec{C}\times\vec{D})_i$ y demuestra en dos renglones que:
     \[
-    \frac{d L_i}{dt} = \epsilon_{ijk} \dot{x}_j p_k + \epsilon_{ijk} x_j \dot{p}_k.
+    (\vec{A} \times \vec{B}) \cdot (\vec{C} \times \vec{D}) = (\vec{A}\cdot\vec{C})(\vec{B}\cdot\vec{D}) - (\vec{A}\cdot\vec{D})(\vec{B}\cdot\vec{C}).
     \]
-    \item Demuestra que el primer término $\epsilon_{ijk} \dot{x}_j p_k$ se anula idénticamente porque $\vec{p} = m\vec{v} = m\dot{\vec{r}}$.
-    \item Si la fuerza es central, $\vec{F} = \dot{\vec{p}} = f(r)\frac{\vec{r}}{r}$, demuestra que el torque $\tau_i = \epsilon_{ijk} x_j F_k$ se anula idénticamente. Concluye la conservación de $\vec{L}$.
+    \item Evalúa el caso particular $\vec{C} = \vec{A}$ y $\vec{D} = \vec{B}$ para obtener la \textbf{Identidad de Lagrange}:
+    \[
+    |\vec{A} \times \vec{B}|^2 = |\vec{A}|^2|\vec{B}|^2 - (\vec{A}\cdot\vec{B})^2.
+    \]
+    Sustituye $\vec{A}\cdot\vec{B} = |\vec{A}||\vec{B}|\cos\theta$ y deduce geométricamente la fórmula $|\vec{A}\times\vec{B}| = |\vec{A}||\vec{B}||\sin\theta|$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 5: ¿Es asociativo el Producto Cruz? La Identidad de Jacobi}
+A diferencia de la multiplicación de números reales, el producto cruz \textbf{no es asociativo}: en general $\vec{A}\times(\vec{B}\times\vec{C}) \neq (\vec{A}\times\vec{B})\times\vec{C}$. En su lugar, satisface una ley cíclica fundamental llamada \textbf{Identidad de Jacobi}.
+
+Usando la fórmula BAC--CAB que demolimos en clase, expande cada uno de los tres términos siguientes y demuestra en tres renglones que su suma se anula idénticamente:
+\[
+\vec{A}\times(\vec{B}\times\vec{C}) + \vec{B}\times(\vec{C}\times\vec{A}) + \vec{C}\times(\vec{A}\times\vec{B}) = \vec{0}.
+\]
+*(Nota: Esta identidad será la piedra angular de las Álgebras de Lie de rotaciones en la Semana 02 y de los Corchetes de Poisson en el Módulo 4).*
+\end{infobox}
+
+% =====================================================================
+\manualsection{Parte C: Física y Cálculo Diferencial con Índices}
+
+\begin{infobox}{Problema 6: Campos Centrales y Conservación del Momento Angular}
+El momento angular de una partícula es $\vec{L} = \vec{r} \times \vec{p}$, cuya componente $i$-ésima es $L_i = \epsilon_{ijk} x_j p_k$.
+\begin{enumerate}[label=(\alph*)]
+    \item Deriva respecto al tiempo usando la regla de Leibniz: $\dot{L}_i = \epsilon_{ijk} \dot{x}_j p_k + \epsilon_{ijk} x_j \dot{p}_k$.
+    \item Como $\vec{p} = m\dot{\vec{r}}$, el primer término es $m\,\epsilon_{ijk} \dot{x}_j \dot{x}_k$. Demuestra mediante el principio de contracción simétrico-antisimétrico que este término es idénticamente cero.
+    \item Por la segunda ley de Newton, $\dot{p}_k = F_k$. Si la partícula se mueve bajo una fuerza gravitatoria o electrostática central $\vec{F} = f(r)\vec{r}$ (donde $F_k = f(r)x_k$), demuestra en un renglón que $\dot{L}_i = 0$.
+\end{enumerate}
+\end{infobox}
+
+\begin{infobox}{Problema 7: El Operador Derivada $\partial_i$ y el Precursor de $d^2 = 0$}
+Denotemos la derivada parcial respecto a la coordenada $x_i$ como $\partial_i \equiv \frac{\partial}{\partial x_i}$. En cálculo de varias variables, el \textbf{Teorema de Schwarz} asegura que las derivadas cruzadas de una función suave conmutan:
+\[
+\partial_i \partial_j f = \partial_j \partial_i f \quad (\text{el operador } \partial_i \partial_j \text{ es \textbf{simétrico} en } i, j).
+\]
+En notación de índices, el gradiente es $(\vec{\nabla}f)_i = \partial_i f$, la divergencia es $\vec{\nabla}\cdot\vec{V} = \partial_i V_i$ y el rotacional es $(\vec{\nabla}\times\vec{V})_i = \epsilon_{ijk} \partial_j V_k$.
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{El rotacional de un gradiente:} Escribe la componente $i$-ésima de $\vec{\nabla} \times (\vec{\nabla}f)$ en índices y demuestra en un solo renglón, usando la simetría de Schwarz frente a la antisimetría de $\epsilon_{ijk}$, que:
+    \[
+    [\vec{\nabla} \times (\vec{\nabla}f)]_i = \epsilon_{ijk} \partial_j \partial_k f = 0.
+    \]
+    \item \textbf{La divergencia de un rotacional:} Escribe $\vec{\nabla} \cdot (\vec{\nabla} \times \vec{V})$ en índices y demuestra por el mismo argumento que:
+    \[
+    \vec{\nabla} \cdot (\vec{\nabla} \times \vec{V}) = \epsilon_{ijk} \partial_i \partial_j V_k = 0.
+    \]
+    *(Nota hacia el futuro: En el Módulo 2 veremos que estas dos identidades son la misma ley geométrica disfrazada: la nilpotencia de la derivada exterior de Cartan $\extd^2 = 0$).*
 \end{enumerate}
 \end{infobox}
 

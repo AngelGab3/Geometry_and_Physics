@@ -327,36 +327,48 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 11: DEMOSTRACIÓN DE CAUCHY-SCHWARZ (SLIDE DEDICADA)
+% SLIDE 11: TRABAJO ACTIVO EN CUADERNO - DEDUCCIÓN DE CAUCHY-SCHWARZ
 % ---------------------------------------------------------------------
-\begin{frame}{Demostración de la Desigualdad de Cauchy-Schwarz}
-  \footnotesize
-  Sea $\vec{v} \neq \vec{0}$ (si $\vec{v} = \vec{0}$, la desigualdad $0 \le 0$ es trivial). Consideremos la combinación $\vec{u} + \lambda\vec{v}$ para cualquier escalar $\lambda \in \R$.
-  \vspace{0.15cm}
-
-  Por la propiedad de positividad definida del producto interno, la longitud al cuadrado nunca es negativa:
-  \[
-  P(\lambda) \equiv \|\vec{u} + \lambda \vec{v}\|^2 = \langle \vec{u} + \lambda \vec{v},\; \vec{u} + \lambda \vec{v} \rangle \ge 0 \qquad (\forall \lambda \in \R)
-  \]
-  Expandiendo por bilinealidad y simetría obtenemos un polinomio cuadrático en $\lambda$:
-  \[
-  P(\lambda) = \|\vec{u}\|^2 + 2\lambda\langle \vec{u}, \vec{v} \rangle + \lambda^2 \|\vec{v}\|^2 \ge 0
-  \]
-  Como el coeficiente principal es $A = \|\vec{v}\|^2 > 0$ y la parábola $P(\lambda)$ nunca cruza por debajo del eje horizontal ($P(\lambda) \ge 0$), la ecuación $P(\lambda) = 0$ tiene a lo más una raíz real.
-  \vspace{0.15cm}
-
-  Por tanto, su discriminante $\Delta = B^2 - 4AC$ no puede ser estrictamente positivo:
-  \[
-  \Delta = (2\langle \vec{u}, \vec{v} \rangle)^2 - 4\|\vec{v}\|^2 \|\vec{u}\|^2 \le 0 \implies 4\langle \vec{u}, \vec{v} \rangle^2 \le 4\|\vec{u}\|^2 \|\vec{v}\|^2
-  \]
-  Dividiendo entre $4$ y extrayendo la raíz cuadrada positiva a ambos miembros:
-  \[
-  \boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|} \qquad \blacksquare
-  \]
+\begin{frame}{Deducción Guiada: Desigualdad de Cauchy-Schwarz}
+  \vspace{0.05cm}
+  Sea $\vec{v} \neq \vec{0}$. Para cualquier escalar $\lambda \in \R$, considera la combinación $\vec{u} + \lambda\vec{v}$. Por la positividad definida de la métrica, la norma al cuadrado nunca es negativa: $P(\lambda) \equiv \|\vec{u} + \lambda\vec{v}\|^2 \ge 0$. Desarrolla en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Expansión Cuadrática:} Desarrolla $P(\lambda) = \langle \vec{u} + \lambda\vec{v}, \vec{u} + \lambda\vec{v}\rangle$ usando la bilinealidad y simetría. Escribe el resultado en la forma canónica polinomial $A\lambda^2 + B\lambda + C \ge 0$. ¿Quiénes son $A, B$ y $C$?
+    \item[(b)] \textbf{El Criterio del Discriminante:} La parábola $P(\lambda)$ abre hacia arriba ($A = \|\vec{v}\|^2 > 0$) y satisface $P(\lambda) \ge 0$ para todo $\lambda \in \R$. ¿Cuántas raíces reales distintas puede tener? ¿Qué signo debe tener su discriminante $\Delta = B^2 - 4AC$?
+    \item[(c)] \textbf{Deducción de la Cota:} Sustituye $A, B, C$ en la condición $\Delta \le 0$, despeja el término $\langle \vec{u}, \vec{v}\rangle^2$ y extrae la raíz cuadrada para obtener la desigualdad final.
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 12: TEOREMA DE LA DESIGUALDAD TRIANGULAR CON TIKZ
+% SLIDE 12: DEMOSTRACIÓN FORMAL Y DISCUSIÓN DE CAUCHY-SCHWARZ
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración Formal: Desigualdad de Cauchy-Schwarz}
+  \footnotesize
+  Sea $\vec{v} \neq \vec{0}$ (si $\vec{v} = \vec{0}$, la desigualdad $0 \le 0$ es trivial). Consideremos $P(\lambda) \equiv \|\vec{u} + \lambda \vec{v}\|^2 \ge 0$ para todo $\lambda \in \R$.
+  \vspace{0.12cm}
+
+  \begin{enumerate}\itemsep4pt
+    \item \textbf{Expansión Bilineal del Polinomio Cuadrático:}
+    \[
+    P(\lambda) = \langle \vec{u} + \lambda \vec{v},\; \vec{u} + \lambda \vec{v} \rangle = \underbrace{\|\vec{v}\|^2}_{A}\,\lambda^2 + \underbrace{2\langle \vec{u}, \vec{v} \rangle}_{B}\,\lambda + \underbrace{\|\vec{u}\|^2}_{C} \ge 0.
+    \]
+    \item \textbf{Condición de Positividad y Discriminante No Positivo:}
+    Como $A = \|\vec{v}\|^2 > 0$ y $P(\lambda)$ nunca cruza por debajo del eje horizontal ($P(\lambda) \ge 0$), la parábola tiene a lo más una raíz real. Por tanto, su discriminante no puede ser positivo:
+    \[
+    \Delta = B^2 - 4AC = (2\langle \vec{u}, \vec{v} \rangle)^2 - 4\|\vec{v}\|^2 \|\vec{u}\|^2 \le 0.
+    \]
+    \item \textbf{Conclusión y Cota Superior:}
+    \[
+    4\langle \vec{u}, \vec{v} \rangle^2 \le 4\|\vec{u}\|^2 \|\vec{v}\|^2 \implies \boxed{|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|} \qquad \blacksquare
+    \]
+  \end{enumerate}
+  \vspace{0.05cm}
+  {\scriptsize \textbf{Condición de Igualdad:} $\Delta = 0 \iff$ existe $\lambda_0$ tal que $\|\vec{u} + \lambda_0\vec{v}\| = 0 \iff \vec{u} = -\lambda_0\vec{v}$ (vectores colineales).}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 13: TEOREMA DE LA DESIGUALDAD TRIANGULAR CON TIKZ
 % ---------------------------------------------------------------------
 \begin{frame}{Teorema Fundamental: La Desigualdad Triangular}
   \begin{columns}[c]
@@ -397,30 +409,48 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 13: DEMOSTRACIÓN DE LA DESIGUALDAD TRIANGULAR (SLIDE DEDICADA)
+% SLIDE 14: TRABAJO ACTIVO EN CUADERNO - DEDUCCIÓN DE DESIGUALDAD TRIANGULAR
 % ---------------------------------------------------------------------
-\begin{frame}{Demostración de la Desigualdad Triangular}
+\begin{frame}{Deducción Guiada: Desigualdad Triangular}
+  \vspace{0.05cm}
+  Considera la norma al cuadrado del vector suma $\|\vec{u} + \vec{v}\|^2$ en un espacio con producto interno. Realiza en tu cuaderno:
+  \vspace{0.22cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Expansión Bilineal:} Desarrolla $\|\vec{u}+\vec{v}\|^2 = \langle \vec{u}+\vec{v}, \vec{u}+\vec{v}\rangle$ aplicando las propiedades de bilinealidad y simetría. Expresa el resultado en términos de $\|\vec{u}\|^2$, $\|\vec{v}\|^2$ y el producto interno cruzado $\langle \vec{u}, \vec{v}\rangle$.
+    \item[(b)] \textbf{Acotación con Cauchy-Schwarz:} Dado que para todo número real $x \le |x|$, acota $\langle \vec{u}, \vec{v}\rangle \le |\langle \vec{u}, \vec{v}\rangle|$. Aplica a continuación la desigualdad de Cauchy-Schwarz sobre este término.
+    \item[(c)] \textbf{Completación del Trinomio:} Demuestra que el lado derecho resultante es idéntico a $(\|\vec{u}\| + \|\vec{v}\|)^2$. Justifica por qué se puede extraer la raíz cuadrada a ambos lados conservando el sentido de la desigualdad.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 15: DEMOSTRACIÓN FORMAL Y DISCUSIÓN DE DESIGUALDAD TRIANGULAR
+% ---------------------------------------------------------------------
+\begin{frame}{Demostración Formal: Desigualdad Triangular}
   \footnotesize
   Calculamos el cuadrado de la norma del vector suma $\vec{u}+\vec{v}$ expandiendo por bilinealidad y simetría:
   \[
-  \|\vec{u} + \vec{v}\|^2 = \langle \vec{u} + \vec{v},\; \vec{u} + \vec{v} \rangle = \|\vec{u}\|^2 + 2\langle \vec{u}, \vec{v} \rangle + \|\vec{v}\|^2
+  \|\vec{u} + \vec{v}\|^2 = \langle \vec{u} + \vec{v},\; \vec{u} + \vec{v} \rangle = \|\vec{u}\|^2 + 2\langle \vec{u}, \vec{v} \rangle + \|\vec{v}\|^2.
   \]
-  Dado que para cualquier número real $x \le |x|$, acotamos el término cruzado por su valor absoluto:
-  \[
-  \|\vec{u} + \vec{v}\|^2 \le \|\vec{u}\|^2 + 2|\langle \vec{u}, \vec{v} \rangle| + \|\vec{v}\|^2
-  \]
-  Aplicando directamente el \textbf{Teorema de Cauchy-Schwarz} ($|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$):
-  \[
-  \|\vec{u} + \vec{v}\|^2 \le \|\vec{u}\|^2 + 2\|\vec{u}\|\|\vec{v}\| + \|\vec{v}\|^2
-  \]
-  El miembro derecho es exactamente el desarrollo del trinomio cuadrado perfecto:
-  \[
-  \|\vec{u} + \vec{v}\|^2 \le (\|\vec{u}\| + \|\vec{v}\|)^2
-  \]
-  Puesto que tanto $\|\vec{u}+\vec{v}\|$ como $\|\vec{u}\|+\|\vec{v}\|$ son cantidades no negativas, extraemos la raíz cuadrada a ambos lados conservando el orden:
-  \[
-  \boxed{\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|} \qquad \blacksquare
-  \]
+  \begin{enumerate}\itemsep4pt
+    \item \textbf{Acotación del Término Cruzado:}
+    Puesto que $x \le |x|$ para todo $x \in \R$:
+    \[
+    \|\vec{u} + \vec{v}\|^2 \le \|\vec{u}\|^2 + 2|\langle \vec{u}, \vec{v} \rangle| + \|\vec{v}\|^2.
+    \]
+    \item \textbf{Aplicación de la Cota de Cauchy-Schwarz ($|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$):}
+    \[
+    \|\vec{u} + \vec{v}\|^2 \le \|\vec{u}\|^2 + 2\|\vec{u}\|\|\vec{v}\| + \|\vec{v}\|^2.
+    \]
+    \item \textbf{Identificación del Trinomio Cuadrado Perfecto:}
+    \[
+    \|\vec{u} + \vec{v}\|^2 \le (\|\vec{u}\| + \|\vec{v}\|)^2.
+    \]
+    \item \textbf{Extracción de la Raíz Cuadrada:}
+    Como ambas cantidades son no negativas, la función raíz cuadrada es monótona creciente:
+    \[
+    \boxed{\|\vec{u} + \vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|} \qquad \blacksquare
+    \]
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------

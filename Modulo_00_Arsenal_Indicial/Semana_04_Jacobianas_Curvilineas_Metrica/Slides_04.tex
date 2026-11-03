@@ -21,16 +21,16 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 2: PREGUNTAS DE ACTIVACIÓN (DESDE SEMANA 03) - LIENZO LIMPIO
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN Y RECUPERACIÓN PREVIA (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{De las Transformaciones Globales a los Sistemas Locales}
+\begin{frame}{Recuperación de Fundamentos: De la Rigidez a las Coordenadas Curvilíneas}
   \vspace{0.1cm}
-  Considerando las rotaciones ortogonales rígidas $R \in SO(3)$ estudiadas en la Semana 03:
+  Recuperación activa de conceptos e identidades demostradas en la Semana 03:
   \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item En una rotación ortogonal $R \in SO(3)$, la base es ortonormal e idéntica en todos los puntos del espacio. ¿Qué ocurre con la dirección y la longitud de los vectores directores cuando describimos el movimiento de una partícula en coordenadas polares, cilíndricas o esféricas?
-    \item Si la relación entre las nuevas coordenadas $u^a$ y las cartesianas $x^i$ es no lineal, ¿cómo se relaciona el desplazamiento infinitesimal $d\vec{r}$ con las diferenciales $du^a$?
-    \item ¿Cómo asegura la geometría que la distancia física infinitesimal $ds$ entre dos puntos vecinos sea un invariante real, con total independencia del sistema de coordenadas elegido para calcularla?
+    \item En la Semana 03 demostramos que la rigidez exige $R^T R = I$. ¿Cuál fue el argumento que probó que $\det(R) = \pm 1$ y por qué solo $\det(R) = +1$ preserva la orientación física del espacio?
+    \item Al deducir la fórmula de rotación infinitesimal $R \approx I + \Omega\,dt$, ¿cómo demostramos que la matriz generadora $\Omega = \dot{R}R^T$ es estrictamente antisimétrica ($\Omega^T = -\Omega$)?
+    \item En el Teorema de Euler, ¿por qué la existencia del vector propio $\vec{\omega}$ con valor propio $\lambda = +1$ garantizó que todo movimiento rígido con un punto fijo es una rotación pura alrededor de un eje?
   \end{enumerate}
 \end{frame}
 
@@ -157,16 +157,16 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 6: PREGUNTAS INTERMEDIAS DE ANÁLISIS (CANVAS LIMPIO)
+% SLIDE 6: TRABAJO ACTIVO EN CUADERNO - MÉTRICA EN POLARES
 % ---------------------------------------------------------------------
-\begin{frame}{Naturaleza y Geometría de las Bases Locales}
-  \vspace{0.2cm}
-  Analizando las propiedades físicas y geométricas de la base adaptada $\{\vec{e}_a\}$:
-  \vspace{0.3cm}
-  \begin{enumerate}\itemsep14pt
-    \item En coordenadas polares, ¿por qué el vector tangente coordenado $\vec{e}_\theta = \frac{\partial\vec{r}}{\partial\theta}$ tiene unidades de longitud ($[\text{m}]$) y su módulo crece proporcionalmente al radio $r$, a pesar de que el ángulo $\theta$ es adimensional?
-    \item ¿Qué le ocurre a la base local $\{\vec{e}_r, \vec{e}_\theta\}$ exactamente en el origen $r = 0$? ¿Cuál es el significado geométrico de que el determinante jacobiano se anule en dicho punto?
-    \item Si un sistema curvilíneo no es ortogonal ($\vec{e}_a \cdot \vec{e}_b \neq 0$), ¿cómo afecta la presencia de términos cruzados en la matriz métrica $g_{ab}$ al cálculo de longitudes y áreas?
+\begin{frame}{Cálculo de la Métrica en Coordenadas Polares}
+  \vspace{0.05cm}
+  Considera la parametrización polar $x = r\cos\theta$, $y = r\sin\theta$ con base tangente $\vec{e}_r = \cos\theta\,\hat{i} + \sin\theta\,\hat{j}$ y $\vec{e}_\theta = -r\sin\theta\,\hat{i} + r\cos\theta\,\hat{j}$. Realiza en tu cuaderno:
+  \vspace{0.25cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Verificación de Ortogonalidad:} Calcula el producto escalar $\vec{e}_r \cdot \vec{e}_\theta$ mediante sus componentes cartesianas y demuestra que la base es estrictamente ortogonal para todo $(r, \theta)$.
+    \item[(b)] \textbf{Factores de Escala de Lamé:} Calcula las normas $h_r \equiv \|\vec{e}_r\|$ y $h_\theta \equiv \|\vec{e}_\theta\|$. ¿Qué unidades físicas adquiere $h_\theta$ si $r$ se mide en metros y $\theta$ es adimensional?
+    \item[(c)] \textbf{Construcción del Elemento de Línea:} Escribe la matriz métrica $2\times 2$ dada por $g_{ab} = \vec{e}_a \cdot \vec{e}_b$ y formula el elemento de longitud euclidiano $ds^2 = g_{ab}du^a du^b$.
   \end{enumerate}
 \end{frame}
 
@@ -672,16 +672,16 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 21: CONSOLIDACIÓN ESTRUCTURAL DEL MÓDULO 00 (CANVAS LIMPIO)
+% SLIDE 21: PREGUNTAS DE CIERRE - AUDITORÍA Y RECONSTRUCCIÓN (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{Consolidación Estructural del Módulo 00}
-  \vspace{0.2cm}
-  Consolidación de las bases matemáticas construidas a lo largo del módulo:
+\begin{frame}{Reconstrucción Estructural de la Geometría Curvilínea y Métrica}
+  \vspace{0.15cm}
+  Auditoría y consolidación de las demostraciones clave construidas en la sesión:
   \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item ¿Cómo unifica la condición de integrabilidad $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$ la conmutación de derivadas de Schwarz, la independencia de trayectoria del trabajo y la ausencia de vórtices en un campo conservativo?
-    \item ¿De qué manera la contracción métrica $g_{ab} du^a du^b$ absorbe las distorsiones de escala causadas por un sistema de coordenadas no cartesiano, preservando la distancia física real?
-    \item Habiendo construido vectores, el convenio de Einstein, la delta de Kronecker, el símbolo de Levi-Civita, rotaciones rígidas y matrices métricas, ¿cuál es la ventaja conceptual de expresar las leyes físicas mediante relaciones indiciales independientes del observador?
+    \item En la demostración de la identidad $g = J^T J$, ¿cuál fue el paso con la regla de la cadena $dx^i = J^i{}_a du^a$ que transformó el elemento euclidiano $\delta_{ij}dx^i dx^j$ en la forma cuadrática $g_{ab}du^a du^b$?
+    \item Al demostrar el criterio de Schwarz para una forma exacta $\omega = P\,dx + Q\,dy = df$, ¿cómo intervino la conmutación de derivadas cruzadas $\frac{\partial^2 f}{\partial y \partial x} = \frac{\partial^2 f}{\partial x \partial y}$ para concluir que $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$?
+    \item En el campo de vórtice $\omega = \frac{-y\,dx + x\,dy}{x^2+y^2}$, ¿por qué se verifica la condición de Schwarz localmente en todo punto de $\R^2\setminus\{(0,0)\}$ pero la circulación en un lazo cerrado alrededor del origen es $\oint \omega = 2\pi \neq 0$?
   \end{enumerate}
 \end{frame}
 

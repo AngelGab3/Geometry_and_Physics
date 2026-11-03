@@ -17,13 +17,15 @@ Este documento condensa los principios pedagógicos, conceptuales, técnicos y e
    - **Títulos 100% Disciplinares:**
      - Todos los títulos de diapositivas y secciones deben ser puramente matemáticos, geométricos o físicos (e.g., *La Geometría de la Rigidez y la Condición $R^T R = I$*, *Invarianza Geométrica bajo Transformaciones Lineales*, *Axiomas de Grupo y el Grupo Ortogonal $O(n)$*).
 
-2. **Diseño de Diapositivas de Preguntas (Canvas Limpio):**
+2. **Diseño de Diapositivas de Preguntas y Recuperación Activa (Canvas Limpio):**
    - Las preguntas para el estudiante se presentan en **diapositivas dedicadas exclusivas**, directamente sobre el lienzo de la diapositiva con `\begin{enumerate}\itemsep14pt ... \end{enumerate}`.
    - **Sin cajas artificiales:** No encapsular las preguntas dentro de `alertblock`, `exampleblock` o `block` con títulos pedagógicos.
    - **Estructura fija en cada clase (Slides):**
-     - **Slide 2:** Preguntas de activación geométrica que conectan directamente con las conclusiones de la sesión anterior.
-     - **Slides intermedias:** Deducciones guiadas paso a paso y preguntas de análisis estructural en diapositivas dedicadas.
-     - **Última Slide:** Preguntas de consolidación y cierre que sintetizan el significado físico y matemático de las herramientas construidas.
+     - **Slide 2 (Preguntas de Apertura / Retrieval Practice):** Preguntas dirigidas a recordar activamente definiciones formales de clases anteriores y pasos o trucos algebraicos cruciales empleados en demostraciones previas (e.g. propiedades del producto interno, anulación de índices, condiciones de ortogonalidad).
+     - **Slides intermedias (Pares de Trabajo Activo y Deducción Guiada):**
+       - **Slide A (Instrucciones de Trabajo Activo / Experimento en Cuaderno):** Título 100% disciplinar. Plantea un cálculo concreto, verificación analítica o manipulación indicial con instrucciones explícitas para que el estudiante tome lápiz y papel y experimente antes de recibir el resultado formal.
+       - **Slide B (Resolución y Discusión Estructural):** Presenta el desarrollo riguroso, señala errores comunes de cálculo y discute el significado geométrico y físico del resultado obtenido.
+     - **Última Slide (Preguntas de Cierre / Auditoría Mental):** Invita al alumno a recordar y reconstruir lo realizado durante esa misma sesión: pasos críticos de las demostraciones, trucos algebraicos desbloqueantes y síntesis conceptual.
 
 3. **Cero Referencias hacia el Futuro (No Spoilers):**
    - Cada semana es conceptualmente autosuficiente y se apoya exclusivamente en lo construido hasta ese momento o en la intuición geométrica previa.

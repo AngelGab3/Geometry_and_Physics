@@ -21,38 +21,35 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 2: PREGUNTAS DE ACTIVACIÓN GEOMÉTRICA (CANVAS LIMPIO)
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN Y RECUPERACIÓN PREVIA (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{Geometría Vectorial y Proliferación de Términos}
+\begin{frame}{Recuperación de Fundamentos: De la Semana 01 al Álgebra Indicial}
   \vspace{0.1cm}
-  En la sesión anterior formalizamos las operaciones vectoriales con la base canónica $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$:
+  Recuperación activa de conceptos y técnicas demostrativas de la sesión anterior:
   \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item Al calcular productos anidados como $\vec{A}\times(\vec{B}\times\vec{C})$ o $(\vec{A}\times\vec{B})\cdot(\vec{C}\times\vec{D})$, ¿cuántos términos individuales debemos multiplicar y sumar si usamos las expresiones cartesianas tradicionales?
-    \item ¿Cómo podemos expresar la ortonormalidad de la base $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$ en una sola línea algebraica universal sin escribir matrices explícitas?
-    \item ¿Es posible deducir identidades vectoriales complejas recurriendo únicamente a propiedades de simetría y permutaciones de índices?
+    \item En la Semana 01 demostramos la desigualdad de Cauchy-Schwarz analizando la norma al cuadrado $p(t) = \|\vec{u} - t\vec{v}\|^2 \ge 0$. ¿Cuál fue la condición sobre su discriminante cuadrático $\Delta = b^2 - 4ac$ que garantizó la cota?
+    \item Al calcular la proyección ortogonal $\vec{F}_\parallel = c\vec{v}$, ¿cómo dedujimos el escalar $c = \frac{\langle\vec{F},\vec{v}\rangle}{\|\vec{v}\|^2}$ a partir del requisito de ortogonalidad del residuo $\vec{F}_\perp \cdot \vec{v} = 0$?
+    \item En el triple producto escalar $\vec{u} \cdot (\vec{v} \times \vec{w})$, ¿cuál es su interpretación geométrica como volumen orientado y qué cambio de signo experimenta al permutar dos vectores contiguos?
   \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 3: DEDUCCIÓN GUIADA - LA CRISIS CARTESIANA
+% SLIDE 3: TRABAJO ACTIVO EN CUADERNO - CRISIS CARTESIANA
 % ---------------------------------------------------------------------
 \begin{frame}{El Doble Producto Cruz y la Extracción de Componentes}
-  \begin{block}{Cálculo de Componentes y Ortogonalidad}
-    \footnotesize
-    Representemos todo vector respecto a la base canónica como $\vec{A} = \sum_{j=1}^3 A_j\hat{e}_j$.
-    \begin{enumerate}
-      \itemsep2pt
-      \item[(a)] Si calculas la primera componente de $\vec{A} \times (\vec{B} \times \vec{C})$ a mano:
-      \[
-      [\vec{A} \times (\vec{B} \times \vec{C})]_1 = B_1(A_2 C_2 + A_3 C_3) - C_1(A_2 B_2 + A_3 B_3).
-      \]
-      ¿Qué término debes sumar y restar artificialmente para completar los productos escalares $\vec{A}\cdot\vec{C}$ y $\vec{A}\cdot\vec{B}$?
-      \item[(b)] Para extraer la componente $A_i$ de $\vec{A}$ proyectando con $\hat{e}_i$: $\hat{e}_i \cdot \vec{A} = \sum_{j=1}^3 A_j (\hat{e}_i \cdot \hat{e}_j)$.
-      ¿Cuánto vale el producto $\hat{e}_i \cdot \hat{e}_j$ cuando $i = j$ y cuando $i \neq j$?
-      \item[(c)] Usa tu respuesta de (b) para simplificar el producto escalar $\vec{A}\cdot\vec{B} = \left(\sum_i A_i\hat{e}_i\right)\cdot\left(\sum_j B_j\hat{e}_j\right)$.
-    \end{enumerate}
-  \end{block}
+  \vspace{0.05cm}
+  Representemos todo vector en la base canónica como $\vec{A} = \sum_{j=1}^3 A_j\hat{e}_j$. Realiza en tu cuaderno:
+  \vspace{0.25cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{La Primera Componente del Doble Producto:} Desarrolla a mano la primera componente de $\vec{A} \times (\vec{B} \times \vec{C})$:
+    \[
+    [\vec{A} \times (\vec{B} \times \vec{C})]_1 = B_1(A_2 C_2 + A_3 C_3) - C_1(A_2 B_2 + A_3 B_3).
+    \]
+    ¿Qué término debes sumar y restar simultáneamente para completar los productos escalares $\vec{A}\cdot\vec{C}$ y $\vec{A}\cdot\vec{B}$?
+    \item[(b)] \textbf{Filtrado por Ortogonalidad:} Proyecta $\vec{A}$ con el vector canónico $\hat{e}_i$: $\hat{e}_i \cdot \vec{A} = \sum_{j=1}^3 A_j (\hat{e}_i \cdot \hat{e}_j)$. ¿Cuánto vale el producto $\hat{e}_i \cdot \hat{e}_j$ cuando $i = j$ y cuando $i \neq j$?
+    \item[(c)] \textbf{Colapso de Sumatorias:} Usa el resultado de (b) para simplificar la suma doble del producto escalar $\vec{A}\cdot\vec{B} = \sum_{i=1}^3 \sum_{j=1}^3 A_i B_j (\hat{e}_i \cdot \hat{e}_j)$ a una sola sumatoria.
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -268,25 +265,21 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 11: DEDUCCIÓN GUIADA - CONTRACCIÓN EPSILON-DELTA
+% SLIDE 11: TRABAJO ACTIVO EN CUADERNO - CONTRACCIÓN EPSILON-DELTA
 % ---------------------------------------------------------------------
 \begin{frame}{Emparejamiento de Índices en la Contracción $\epsilon_{ijk}\epsilon_{imn}$}
-  \begin{block}{Análisis por Conteo de Casos}
-    \footnotesize
-    Al calcular un producto cruz doble surge la contracción $\epsilon_{ijk}\epsilon_{imn}$ sobre el índice común $i$.
-    Fijemos $\mathbf{i = 1}$ y analicemos el término $\epsilon_{1jk}\epsilon_{1mn}$:
-    \begin{enumerate}
-      \itemsep2pt
-      \item[(a)] Para que $\epsilon_{1jk} \neq 0$, los índices $(j, k)$ deben ser distintos de $1$ y no repetirse. ¿Cuáles son las dos únicas opciones ordenadas posibles para $(j, k)$?
-      \item[(b)] Compara la pareja $(j, k)$ con $(m, n)$:
-      \begin{itemize}
-        \itemsep1pt
-        \item Si coinciden en el mismo orden ($j = m$ y $k = n$), ¿cuánto vale el producto $\epsilon_{1jk}\epsilon_{1mn}$?
-        \item Si están en orden invertido ($j = n$ y $k = m$), ¿cuánto vale el producto $\epsilon_{1jk}\epsilon_{1mn}$?
-      \end{itemize}
-      \item[(c)] Escribe una combinación de deltas de Kronecker que reproduzca exactamente $+1$ en el primer caso y $-1$ en el segundo.
-    \end{enumerate}
-  \end{block}
+  \vspace{0.05cm}
+  Al operar con productos vectoriales dobles surge la contracción $\epsilon_{ijk}\epsilon_{imn}$ sobre el índice mudo $i$. Fija el valor $\mathbf{i = 1}$ y analiza en tu cuaderno el sumando $\epsilon_{1jk}\epsilon_{1mn}$:
+  \vspace{0.25cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Restricción de No Anulación:} Para que $\epsilon_{1jk} \neq 0$, los índices $(j, k)$ deben pertenecer a $\{2, 3\}$ y ser distintos ($j \neq k$). ¿Cuáles son las dos únicas parejas ordenadas posibles para $(j, k)$?
+    \item[(b)] \textbf{Comparación con $(m, n)$:}
+    \begin{itemize}\itemsep2pt
+      \item Si $(m, n)$ coincide en el mismo orden que $(j, k)$ ($j = m$ y $k = n$), ¿cuánto vale el producto $\epsilon_{1jk}\epsilon_{1mn}$?
+      \item Si $(m, n)$ tiene el orden invertido respecto a $(j, k)$ ($j = n$ y $k = m$), ¿cuánto vale el producto $\epsilon_{1jk}\epsilon_{1mn}$?
+    \end{itemize}
+    \item[(c)] \textbf{Combinación de Deltas:} Escribe una combinación de deltas de Kronecker en términos de $j, k, m, n$ que valga $+1$ cuando coinciden en orden y $-1$ cuando se invierten.
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -603,15 +596,16 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 21: PREGUNTAS DE CIERRE - SÍNTESIS ESTRUCTURAL (CANVAS LIMPIO)
+% SLIDE 21: PREGUNTAS DE CIERRE - AUDITORÍA Y RECONSTRUCCIÓN (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{De los Índices a la Geometría Global}
-  \vspace{0.2cm}
-  \small
+\begin{frame}{Reconstrucción Estructural del Arsenal Indicial}
+  \vspace{0.15cm}
+  Auditoría y consolidación de los pasos clave construidos en la sesión:
+  \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item ¿Por qué la contracción de un objeto o matriz simétrica ($S_{ij} = S_{ji}$) con uno antisimétrico ($A_{ij} = -A_{ji}$) es idénticamente cero ($S_{ij}A_{ij} = 0$), con total independencia del sistema de coordenadas elegido?
-    \item ¿Cómo asegura el convenio de índices de Einstein que todas las identidades deducidas sean invariantes ante rotaciones y elecciones arbitrarias de los ejes?
-    \item ¿De qué manera la Identidad Maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$ unifica el álgebra del doble producto cruz con la conservación de la energía cinética en presencia de campos magnéticos?
+    \item Al deducir la Identidad Maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$, ¿cuál fue el argumento combinatorio que descartó la existencia de más de un sumando no nulo para cada valor fijo de $i$?
+    \item En la demostración de la anulación $S_{ij}A_{ij} = 0$, ¿qué regla de libertad sobre índices mudos ($i \leftrightarrow j$) nos permitió concluir que el escalar $K = S_{ij}A_{ij}$ satisface la ecuación $K = -K$?
+    \item ¿Cómo demostramos que la contracción del determinante $\det(M) = \epsilon_{ijk} M_{1i} M_{2j} M_{3k}$ garantiza automáticamente que intercambiar dos columnas cambie el signo y que dos columnas idénticas anulen el determinante?
   \end{enumerate}
 \end{frame}
 

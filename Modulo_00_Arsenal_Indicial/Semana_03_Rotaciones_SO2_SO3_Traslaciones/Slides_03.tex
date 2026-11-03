@@ -21,16 +21,16 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 2: PREGUNTAS DE ACTIVACIÓN (DESDE SEMANA 02) - LIENZO LIMPIO
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN Y RECUPERACIÓN PREVIA (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{Invarianza Geométrica bajo Transformaciones Lineales}
+\begin{frame}{Recuperación de Fundamentos: Del Arsenal Indicial a las Rotaciones}
   \vspace{0.1cm}
-  Considerando que la métrica euclidiana y el volumen orientado se definieron en la base canónica mediante $\delta_{ij} \equiv \hat{e}_i \cdot \hat{e}_j$ y $\epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)$:
+  Recuperación activa de identidades y propiedades algebraicas de la Semana 02:
   \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item Si sometemos el espacio a una transformación lineal $\vec{x}' = R\vec{x}$, ¿qué restricción algebraica debe satisfacer la matriz $R$ para preservar distancias y ángulos entre cualquier par de vectores?
-    \item Al transformar la tríada canónica $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$, ¿qué papel juega el determinante $\det(R)$ en la conservación del valor del símbolo de orientación $\epsilon_{123} = +1$?
-    \item ¿Cómo se distingue geométricamente un giro continuo en el espacio de una operación discontinua que involucre una reflexión especular?
+    \item En la Semana 02 demostramos la Identidad Maestra $\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}$. ¿Cuál fue el conteo de permutaciones que demostró que solo dos canales (directo y cruzado) sobreviven?
+    \item Al contraer un objeto simétrico con uno antisimétrico ($S_{ij}A_{ij}$), ¿qué propiedad de renombre de índices mudos ($i \leftrightarrow j$) garantizó que la suma completa se anula idénticamente?
+    \item En la definición indicial del determinante $\det(M) = \epsilon_{ijk} M_{1i} M_{2j} M_{3k}$, ¿por qué el símbolo de Levi-Civita asegura automáticamente que intercambiar dos columnas invierte el signo de la magnitud de volumen?
   \end{enumerate}
 \end{frame}
 
@@ -254,16 +254,23 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 9: PREGUNTAS SOBRE SO(2) Y REFLEXIONES - LIENZO LIMPIO
+% SLIDE 9: TRABAJO ACTIVO EN CUADERNO - NO-CONMUTATIVIDAD EN SO(3)
 % ---------------------------------------------------------------------
-\begin{frame}{Simetrías Planas y Naturaleza de las Reflexiones}
+\begin{frame}{Composición de Rotaciones Espaciales}
+  \vspace{0.05cm}
+  Considera las matrices de rotación de $90^\circ$ ($\pi/2$) en torno a los ejes $x$ y $z$ en $\R^3$:
+  {\scriptsize
+  \[
+  R_x\left(\frac{\pi}{2}\right) = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & -1 \\ 0 & 1 & 0 \end{pmatrix}, \qquad
+  R_z\left(\frac{\pi}{2}\right) = \begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}.
+  \]
+  }
+  Desarrolla en tu cuaderno:
   \vspace{0.2cm}
-  Analizando las transformaciones ortogonales en el plano $\R^2$:
-  \vspace{0.3cm}
-  \begin{enumerate}\itemsep14pt
-    \item La matriz de reflexión horizontal $S = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ cumple $S^T S = I$ y $\det(S) = -1$. Demuestra por qué el subconjunto de matrices ortogonales con determinante $-1$ no puede formar un subgrupo de $O(2)$.
-    \item Si se componen sucesivamente dos reflexiones en el plano respecto a dos rectas que se cortan con un ángulo $\phi$, demuestra algebraicamente que la transformación resultante es una rotación pura de ángulo $2\phi$.
-    \item ¿Cómo se relaciona la acción matricial de $R(\theta) \in SO(2)$ sobre vectores $\begin{pmatrix} x \\ y \end{pmatrix}$ con el producto de números complejos $z' = e^{i\theta} z$ donde $z = x + iy$?
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Multiplicación Secuencial:} Calcula a mano el producto matricial $R_1 = R_x(\pi/2) R_z(\pi/2)$ y el producto con el orden inverso $R_2 = R_z(\pi/2) R_x(\pi/2)$.
+    \item[(b)] \textbf{Transformación de la Base Canónica:} Evalúa la acción de ambas transformaciones sobre el vector unitario $\hat{e}_1 = (1, 0, 0)^T$. ¿Hacia qué direcciones distintas es enviado en cada caso?
+    \item[(c)] \textbf{Estructura No Abeliana:} Comprueba que $R_1 - R_2 \neq 0$ y explica por qué en $\R^3$ la secuencia temporal de dos giros ortogonales altera el estado cinemático final.
   \end{enumerate}
 \end{frame}
 
@@ -723,16 +730,16 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 22: PREGUNTAS DE CONSOLIDACIÓN FINAL - LIENZO LIMPIO
+% SLIDE 22: PREGUNTAS DE CIERRE - AUDITORÍA Y RECONSTRUCCIÓN (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{Estructura Geométrica de las Rotaciones y Cinemática}
-  \vspace{0.2cm}
-  Integración de la estructura algebraica y el comportamiento cinemático:
+\begin{frame}{Reconstrucción Estructural de las Rotaciones y Cinemática}
+  \vspace{0.15cm}
+  Auditoría y consolidación de los pasos clave construidos en la sesión:
   \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item Demuestra que si $\Omega$ es una matriz antisimétrica, entonces para cualquier vector $\vec{x}$ se verifica idénticamente $\vec{x} \cdot (\Omega\vec{x}) = 0$. ¿Cuál es la interpretación física directa en términos de la potencia mecánica y la conservación de la distancia al origen?
-    \item Usando la fórmula matricial de Rodrigues $R(\hat{n}, \theta) = I + (\sin\theta)K + (1 - \cos\theta)K^2$, demuestra formalmente que $\mathrm{tr}(R) = 1 + 2\cos\theta$. ¿Por qué la traza no depende de la orientación espacial de $\hat{n}$?
-    \item En una rotación pasiva de los ejes coordenados, ¿por qué los vectores de la base y las componentes de un vector físico invariante transforman mediante matrices transpuestas (inversas) entre sí?
+    \item En la demostración del Teorema de Euler, ¿cuál fue el argumento algebraico con determinantes $\det(R - I) = \det(R^T - I) = \det(I - R)$ que demostró la existencia obligatoria de un eje invariante con $\lambda = +1$?
+    \item Al deducir la fórmula de Rodrigues, ¿cómo descompusimos un vector $\vec{v} = \vec{v}_\parallel + \vec{v}_\perp$ respecto al eje $\hat{n}$ y qué papel jugó el operador antisimétrico $K\vec{v} = \hat{n}\times\vec{v}$ al proyectar el giro en el subespacio ortogonal?
+    \item En la cinemática del cuerpo rígido, ¿cómo dedujimos la antisimetría del generador angular $\Omega = \dot{R}R^T$ derivando directamente la condición de ortogonalidad $R R^T = I$?
   \end{enumerate}
 \end{frame}
 

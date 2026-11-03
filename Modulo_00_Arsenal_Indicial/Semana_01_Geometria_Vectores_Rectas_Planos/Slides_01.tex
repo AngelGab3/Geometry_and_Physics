@@ -21,33 +21,31 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 2: PREGUNTAS DE ACTIVACIÓN GEOMÉTRICA
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN Y RECUPERACIÓN PREVIA (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{La Naturaleza Geométrica del Espacio Físico}
+\begin{frame}{Recuperación de Fundamentos y Estructura Espacial}
   \vspace{0.1cm}
-  Al describir el movimiento, el equilibrio o las interacciones en el mundo físico:
+  Activación de conceptos fundamentales de geometría analítica y física elemental:
   \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item Si las coordenadas $(x, y, z)$ de un objeto dependen de dónde elija el observador colocar su origen, ¿por qué magnitudes como la velocidad, la aceleración y las fuerzas no cambian al trasladar el sistema de referencia?
-    \item ¿Qué diferencia estructural existe entre una simple colección o lista de números y un objeto geométrico dotado de magnitud, dirección y reglas propias de transformación?
-    \item ¿Por qué la suma de dos posiciones en el espacio carece de significado geométrico, mientras que la resta de dos posiciones define un vector de desplazamiento genuino?
+    \item A partir de la ley de cosenos en un triángulo con lados $\vec{u}$, $\vec{v}$ y $\vec{u}-\vec{v}$, ¿cómo se relaciona algebraicamente el producto escalar $\vec{u}\cdot\vec{v}$ con la diferencia de normas $\|\vec{u}-\vec{v}\|^2 - \|\vec{u}\|^2 - \|\vec{v}\|^2$?
+    \item Si trasladamos el sistema de coordenadas sumando un vector constante $\vec{d}$ a todas las posiciones ($P' = P + \vec{d}$), demuestra por qué el vector de velocidad $\vec{v} = \lim_{\Delta t \to 0} \frac{P(t+\Delta t) - P(t)}{\Delta t}$ permanece exactamente invariable.
+    \item Al aplicar la regla de la mano derecha en el producto vectorial $\vec{\tau} = \vec{r}\times\vec{F}$, ¿qué cambio algebraico describe físicamente la inversión de la orientación del eje de giro si permutamos los factores a $\vec{F}\times\vec{r}$?
   \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 3: DEDUCCIÓN GUIADA - DESPLAZAMIENTO
+% SLIDE 3: TRABAJO ACTIVO EN CUADERNO - DESPLAZAMIENTO
 % ---------------------------------------------------------------------
 \begin{frame}{Invarianza del Desplazamiento y Acción de Vectores}
-  \begin{block}{Desplazamiento Relativo entre Puntos}
-    \footnotesize
-    Una partícula parte de la posición $P_0 = (1, 2, 1)\,\text{m}$ y después de $1\,\text{s}$ pasa por $P_1 = (3, 5, 3)\,\text{m}$ moviéndose en línea recta a velocidad constante.
-    \begin{enumerate}
-      \itemsep2pt
-      \item[(a)] \textbf{La suma de posiciones:} ¿Tiene sentido físico o geométrico «sumar el lugar $P_0$ con el lugar $P_1$»? ¿Qué le pasa a $P_0 + P_1$ si un segundo observador mueve el origen a $(10, 0, 0)$?
-      \item[(b)] \textbf{El vector desplazamiento:} Calcula $\vec{v} = P_1 - P_0$. Demuestra que si trasladamos el origen sumando una constante $\vec{c} \in \R^3$ a todos los puntos ($P' = P + \vec{c}$), el vector $\vec{v}$ \textbf{no cambia}.
-      \item[(c)] \textbf{Construcción de la recta:} Si la partícula mantiene su dirección $\vec{v}$ en todo instante $t \in \R$, escribe una fórmula para su posición $\vec{r}(t)$ y determina en qué instante $t$ alcanza la altura $z = 9\,\text{m}$.
-    \end{enumerate}
-  \end{block}
+  \vspace{0.05cm}
+  Una partícula parte de la posición $P_0 = (1, 2, 1)\,\text{m}$ y en $t = 1\,\text{s}$ alcanza $P_1 = (3, 5, 3)\,\text{m}$ con velocidad constante en línea recta. Realiza en tu cuaderno:
+  \vspace{0.25cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Suma de Posiciones frente a Desplazamiento:} Calcula $P_0 + P_1$ y el vector $\vec{v} = P_1 - P_0$. Si un segundo observador traslada su origen a $O' = (10, 0, 0)\,\text{m}$, ¿qué le ocurre al valor de $P_0 + P_1$ y qué le ocurre al vector $\vec{v}$?
+    \item[(b)] \textbf{Prueba de Invarianza:} Demuestra algebraicamente que ante cualquier traslación del origen $P' = P + \vec{c}$ con $\vec{c} \in \R^3$ constante, el vector desplazamiento $\vec{v}' = P'_1 - P'_0$ es estrictamente idéntico a $\vec{v}$.
+    \item[(c)] \textbf{Ecuación de la Trayectoria:} Escribe la posición de la partícula $\vec{r}(t)$ para todo $t \ge 0$ y calcula el instante exacto en el que cruza la cota $z = 9\,\text{m}$.
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -426,22 +424,17 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 14: DEDUCCIÓN GUIADA - PROYECCIÓN ORTOGONAL
+% SLIDE 14: TRABAJO ACTIVO EN CUADERNO - PROYECCIÓN ORTOGONAL
 % ---------------------------------------------------------------------
 \begin{frame}{Descomposición de Fuerzas y Proyección Ortogonal}
-  \begin{block}{Descomposición Ortogonal sobre una Dirección Fija}
-    \footnotesize
-    Considera una fuerza $\vec{F}$ que empuja un objeto guiado por un riel recto con vector director $\vec{v} \neq \vec{0}$. Queremos descomponer $\vec{F}$ en dos partes mutuamente perpendiculares:
-    \[
-    \vec{F} = \vec{F}_\parallel + \vec{F}_\perp, \qquad \vec{F}_\parallel = c\vec{v}, \quad \vec{F}_\perp \cdot \vec{v} = 0.
-    \]
-    \begin{enumerate}
-      \itemsep2pt
-      \item[(a)] Toma el producto escalar de la ecuación con $\vec{v}$: $\vec{F}\cdot\vec{v} = c(\vec{v}\cdot\vec{v}) + \vec{F}_\perp\cdot\vec{v}$. Usando la ortogonalidad de $\vec{F}_\perp$, despeja el escalar $c$.
-      \item[(b)] Escribe la fórmula vectorial explícita de $\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$ y de la fuerza normal al riel $\vec{F}_\perp$.
-      \item[(c)] Verifica que $\|\vec{F}\|^2 = \|\vec{F}_\parallel\|^2 + \|\vec{F}_\perp\|^2$ calculando directamente $\langle \vec{F}_\parallel + \vec{F}_\perp, \vec{F}_\parallel + \vec{F}_\perp \rangle$.
-    \end{enumerate}
-  \end{block}
+  \vspace{0.05cm}
+  Considera una fuerza $\vec{F}$ aplicada sobre una partícula obligada a moverse a lo largo de un riel con dirección $\vec{v} \neq \vec{0}$. Buscamos descomponer $\vec{F} = \vec{F}_\parallel + \vec{F}_\perp$, donde $\vec{F}_\parallel = c\vec{v}$ y $\vec{F}_\perp \cdot \vec{v} = 0$:
+  \vspace{0.25cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Aislamiento del Coeficiente Escalar:} Multiplica escalarmente la igualdad $\vec{F} = c\vec{v} + \vec{F}_\perp$ por el vector $\vec{v}$. Utilizando la ortogonalidad $\vec{F}_\perp \cdot \vec{v} = 0$, despeja el escalar $c$ en función de $\vec{F}\cdot\vec{v}$ y $\|\vec{v}\|^2$.
+    \item[(b)] \textbf{Fórmula Vectorial Canónica:} Escribe la expresión vectorial de la proyección $\vec{F}_\parallel = \text{proy}_{\vec{v}}(\vec{F})$ y deduce la componente normal residual $\vec{F}_\perp = \vec{F} - \vec{F}_\parallel$.
+    \item[(c)] \textbf{Teorema de Pitágoras:} Demuestra formalmente que $\|\vec{F}\|^2 = \|\vec{F}_\parallel\|^2 + \|\vec{F}_\perp\|^2$ desarrollando el producto interno $\langle \vec{F}_\parallel + \vec{F}_\perp, \vec{F}_\parallel + \vec{F}_\perp \rangle$.
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -558,22 +551,17 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 18: DEDUCCIÓN GUIADA - PRODUCTO CRUZ
+% SLIDE 18: TRABAJO ACTIVO EN CUADERNO - PRODUCTO CRUZ
 % ---------------------------------------------------------------------
 \begin{frame}{Ortogonalidad Simultánea y Producto Vectorial}
-  \begin{block}{Construcción de una Dirección Perpendicular Conjunta}
-    \footnotesize
-    Dos bordes coplanares de una placa triangular están dados por los vectores $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$. Buscamos un vector no nulo $\vec{n} = (n_1, n_2, n_3)$ que sea simultáneamente ortogonal a ambos bordes:
-    \[
-    \vec{u}\cdot\vec{n} = u_1 n_1 + u_2 n_2 + u_3 n_3 = 0, \qquad \vec{v}\cdot\vec{n} = v_1 n_1 + v_2 n_2 + v_3 n_3 = 0.
-    \]
-    \begin{enumerate}
-      \itemsep2pt
-      \item[(a)] Multiplica la primera ecuación por $v_3$ y la segunda por $u_3$, y réstalas para eliminar $n_3$. Obtén la relación entre $n_1$ y $n_2$: $(u_1 v_3 - u_3 v_1)n_1 + (u_2 v_3 - u_3 v_2)n_2 = 0$.
-      \item[(b)] Repite para las otras parejas y deduce la solución canónica $\vec{n} = (u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1)$.
-      \item[(c)] ¿Qué sucede si intercambias el orden de los vectores ($\vec{v}$ por $\vec{u}$)? ¿Por qué la orientación de la normal con signo es indispensable al calcular el flujo a través de una superficie?
-    \end{enumerate}
-  \end{block}
+  \vspace{0.05cm}
+  Dos bordes coplanares de una placa triangular están definidos por $\vec{u} = (u_1, u_2, u_3)$ y $\vec{v} = (v_1, v_2, v_3)$. Buscamos un vector normal $\vec{n} = (n_1, n_2, n_3) \neq \vec{0}$ ortogonal a ambos bordes ($\vec{u}\cdot\vec{n} = 0$ y $\vec{v}\cdot\vec{n} = 0$). Realiza en tu cuaderno:
+  \vspace{0.25cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Eliminación de la Tercera Componente:} Escribe el sistema $u_1 n_1 + u_2 n_2 + u_3 n_3 = 0$ y $v_1 n_1 + v_2 n_2 + v_3 n_3 = 0$. Multiplica la primera por $v_3$, la segunda por $u_3$ y réstalas para obtener una ecuación en términos de $n_1$ y $n_2$.
+    \item[(b)] \textbf{Solución Canónica Antisimétrica:} Deduce las relaciones entre componentes y comprueba que $\vec{n} = (u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1)$ satisface simultáneamente $\vec{u}\cdot\vec{n} = 0$ y $\vec{v}\cdot\vec{n} = 0$.
+    \item[(c)] \textbf{Efecto de la Permutación:} Intercambia $\vec{u} \leftrightarrow \vec{v}$ en tu solución. ¿Qué cambio de signo experimenta $\vec{n}$ y cuál es su sentido geométrico al orientar superficies?
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -699,17 +687,17 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 23: DEDUCCIÓN GUIADA - INTERSECCIÓN
+% SLIDE 23: TRABAJO ACTIVO EN CUADERNO - INTERSECCIÓN DE PLANOS
 % ---------------------------------------------------------------------
 \begin{frame}{Intersección de Planos y Sistemas de Restricciones}
-  \begin{block}{Determinación de la Recta de Intersección}
-    \footnotesize
-    Dos planos $\Pi_1$ y $\Pi_2$ tienen vectores normales $\vec{n}_1 = (1, 0, -1)$ y $\vec{n}_2 = (0, 1, 1)$, con ecuaciones $x - z = 1$ y $y + z = 2$.
-    \begin{enumerate}
-      \item[(a)] \textbf{Conteo de Dimensión:} Cada plano impone $1$ restricción lineal independiente en $\R^3$. ¿Qué dimensión tiene la intersección $\Pi_1 \cap \Pi_2$?
-      \item[(b)] \textbf{Dirección de la Recta:} Si el vector director $\vec{v}$ de la recta $\mathcal{L} = \Pi_1 \cap \Pi_2$ vive dentro de $\Pi_1$ y dentro de $\Pi_2$, ¿cómo es $\vec{v}$ respecto a $\vec{n}_1$ y $\vec{n}_2$? Usa el producto cruz para encontrar $\vec{v}$ de inmediato.
-    \end{enumerate}
-  \end{block}
+  \vspace{0.05cm}
+  Dos planos $\Pi_1$ y $\Pi_2$ en $\R^3$ poseen vectores normales $\vec{n}_1 = (1, 0, -1)$ y $\vec{n}_2 = (0, 1, 1)$, con ecuaciones cartesianas $x - z = 1$ y $y + z = 2$. Desarrolla en tu cuaderno:
+  \vspace{0.25cm}
+  \begin{enumerate}\itemsep10pt
+    \item[(a)] \textbf{Restricciones Lineales y Dimensión:} Cada plano impone una ecuación escalar independiente en $\R^3$. ¿Cuántos grados de libertad restan y cuál es la dimensión del conjunto intersección $\Pi_1 \cap \Pi_2$?
+    \item[(b)] \textbf{Determinación del Vector Director:} El vector director $\vec{v}$ de la recta de intersección $\mathcal{L} = \Pi_1 \cap \Pi_2$ debe ser paralelo a ambos planos y por tanto ortogonal a ambas normales ($\vec{v} \cdot \vec{n}_1 = 0$ y $\vec{v} \cdot \vec{n}_2 = 0$). Calcula $\vec{v} = \vec{n}_1 \times \vec{n}_2$ mediante producto cruz.
+    \item[(c)] \textbf{Punto Base de la Recta:} Encuentra un punto particular $P_0 \in \Pi_1 \cap \Pi_2$ fijando $z = 0$, y escribe la ecuación vectorial completa de la recta $\vec{r}(t) = P_0 + t\vec{v}$.
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -754,15 +742,16 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-% SLIDE 25: PREGUNTAS DE CIERRE - SÍNTESIS ESTRUCTURAL
+% SLIDE 25: PREGUNTAS DE CIERRE - AUDITORÍA Y RECONSTRUCCIÓN (CANVAS LIMPIO)
 % ---------------------------------------------------------------------
-\begin{frame}{De la Geometría a la Estructura Lineal}
-  \vspace{0.2cm}
-  \small
+\begin{frame}{Reconstrucción Estructural de la Geometría Euclidiana}
+  \vspace{0.15cm}
+  Auditoría y consolidación de los pasos clave construidos en la sesión:
+  \vspace{0.3cm}
   \begin{enumerate}\itemsep14pt
-    \item ¿Cómo se relacionan la descripción interna de un plano (generada por 2 vectores independientes) y la descripción externa (restringida por 1 ecuación ortogonal)? ¿Por qué la suma de parámetros libres y restricciones es la dimensión total del espacio ($2 + 1 = 3$)?
-    \item ¿Por qué la intersección de dos planos linealmente independientes en $\R^3$ produce necesariamente una recta? ¿Cómo se generaliza este conteo de codimensión en dimensiones superiores?
-    \item ¿En qué sentido la familia de planos paralelos $\vec{n}\cdot\vec{r} = c$ mide desplazamientos de manera dual a un vector flecha ordinario?
+    \item Al demostrar la desigualdad de Cauchy-Schwarz $|\langle \vec{u}, \vec{v} \rangle| \le \|\vec{u}\|\|\vec{v}\|$, ¿cuál fue el truco de considerar el polinomio cuadrático $p(t) = \|\vec{u} - t\vec{v}\|^2 \ge 0$ y por qué su discriminante no positivo ($\Delta \le 0$) produjo de inmediato la cota?
+    \item En la demostración de la desigualdad triangular $\|\vec{u}+\vec{v}\| \le \|\vec{u}\| + \|\vec{v}\|$, ¿en qué punto exacto de la expansión de $\langle \vec{u}+\vec{v}, \vec{u}+\vec{v} \rangle$ intervino la desigualdad de Cauchy-Schwarz?
+    \item ¿Cómo nos permitió la condición de ortogonalidad $\vec{F}_\perp \cdot \vec{v} = 0$ desacoplar el escalar $c$ y deducir la fórmula de proyección $\text{proy}_{\vec{v}}(\vec{u}) = \frac{\langle \vec{u},\vec{v}\rangle}{\|\vec{v}\|^2}\vec{v}$?
   \end{enumerate}
 \end{frame}
 

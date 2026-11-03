@@ -19,57 +19,90 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 1: La Regla de la Cadena y la Base Local}
-  \begin{block}{Reto en clase (8 minutos)}
+\begin{frame}{Activación: Conexión con la Semana 03}
+  \begin{block}{Recordando Rotaciones Rígidas y Sistemas Globales}
     \footnotesize
-    Consideremos la transformación de coordenadas polares en el plano: $x = r\cos\theta$, $y = r\sin\theta$.
-    \begin{enumerate}
-      \item[(a)] \textbf{Diferenciales:} Calcula las derivadas parciales y escribe $dx$ y $dy$ en términos de $dr$ y $d\theta$:
-      \[
-      \begin{pmatrix} dx \\ dy \end{pmatrix} = \begin{pmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix} \equiv J \begin{pmatrix} dr \\ d\theta \end{pmatrix}.
-      \]
-      \item[(b)] \textbf{Vectores Tangentes Coordenados:} A partir del vector de posición $\vec{r} = x\hat{e}_1 + y\hat{e}_2$, calcula $\vec{e}_r = \frac{\partial\vec{r}}{\partial r}$ y $\vec{e}_\theta = \frac{\partial\vec{r}}{\partial\theta}$.
-      \item[(c)] \textbf{Longitudes y Perpendicularidad:} Calcula las normas $\|\vec{e}_r\|$, $\|\vec{e}_\theta\|$ y el producto punto $\vec{e}_r \cdot \vec{e}_\theta$. ¿Por qué $\vec{e}_\theta$ no es unitario?
-    \end{enumerate}
+    En la semana previa estudiamos las transformaciones rígidas del espacio:
+    \begin{itemize}
+      \itemsep1pt
+      \item Las rotaciones $R \in SO(3)$ preservan longitudes y ángulos globales: $\langle R\vec{u}, R\vec{v}\rangle = \langle\vec{u},\vec{v}\rangle \iff R^T R = I$.
+      \item En coordenadas cartesianas, la base canónica $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$ es la misma en todo punto: $\hat{e}_i\cdot\hat{e}_j = \delta_{ij}$.
+      \item El elemento de longitud euclidiano cartesiano es homogéneo: $ds^2 = dx^2 + dy^2 + dz^2 = \delta_{ij}dx^i dx^j$.
+    \end{itemize}
   \end{block}
+  \begin{alertblock}{Preguntas de Arranque para la Clase}
+    \scriptsize
+    \begin{enumerate}
+      \itemsep1pt
+      \item ¿Qué sucede con las direcciones de los vectores directores cuando nos movemos sobre un círculo o una esfera? ¿Siguen siendo constantes?
+      \item Si la relación entre las nuevas coordenadas y las cartesianas es no-lineal, ¿cómo medimos distancias infinitesimales $ds^2$?
+      \item ¿Cómo conecta la regla de la cadena multivariable con la deformación local de volúmenes e integrales?
+    \end{enumerate}
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusion 1: La Matriz Jacobiana y la Base Local}
+\begin{frame}{Actividad 1: La Regla de la Cadena y la Base Local}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    Consideremos la transformación a coordenadas polares en el plano: $x = r\cos\theta$, $y = r\sin\theta$.
+    \begin{enumerate}
+      \itemsep1pt
+      \item[(a)] \textbf{Diferenciales:} Escribe $dx$ y $dy$ en términos de $dr$ y $d\theta$:
+      $
+      \begin{pmatrix} dx \\ dy \end{pmatrix} = \begin{pmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix} \equiv J \begin{pmatrix} dr \\ d\theta \end{pmatrix}.
+      $
+      \item[(b)] \textbf{Vectores Tangentes Coordenados:} Con $\vec{r} = x\hat{e}_1 + y\hat{e}_2$, calcula $\vec{e}_r = \frac{\partial\vec{r}}{\partial r}$ y $\vec{e}_\theta = \frac{\partial\vec{r}}{\partial\theta}$.
+      \item[(c)] \textbf{Longitudes y Perpendicularidad:} Calcula $\|\vec{e}_r\|$, $\|\vec{e}_\theta\|$ y el producto punto $\vec{e}_r \cdot \vec{e}_\theta$. ¿Por qué $\vec{e}_\theta$ no es unitario?
+    \end{enumerate}
+  \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué el vector tangente $\vec{e}_\theta$ tiene norma $r$ a pesar de que $\theta$ mide un ángulo adimensional?
+  \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusión 1: La Matriz Jacobiana y la Base Local}
   \begin{columns}[c]
-    \begin{column}{0.54\textwidth}
+    \begin{column}{0.55\textwidth}
       \footnotesize
       \begin{itemize}
+        \itemsep1pt
         \item \textbf{Matriz Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$:}
         Conecta desplazamientos infinitesimales:
         \[
         dx^i = J^i{}_a\,du^a.
         \]
-        \item \textbf{Base Local Tangente:}
+        \item \textbf{Base Local Tangente Adaptada:}
         \[
-        \vec{e}_a = \frac{\partial\vec{r}}{\partial u^a} = J^i{}_a \hat{e}_i.
+        \vec{e}_a = \frac{\partial\vec{r}}{\partial u^a} = \frac{\partial x^i}{\partial u^a}\hat{e}_i = J^i{}_a \hat{e}_i.
         \]
         \item \textbf{En Coordenadas Polares:}
         \[
         \vec{e}_r = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \qquad \vec{e}_\theta = \begin{pmatrix} -r\sin\theta \\ r\cos\theta \end{pmatrix}.
         \]
-        $\|\vec{e}_r\| = 1$, pero $\|\vec{e}_\theta\| = r$ (crece con la distancia al origen).
+        $\|\vec{e}_r\| = 1$, pero $\|\vec{e}_\theta\| = r$ (crece linealmente con el radio).
       \end{itemize}
     \end{column}
-    \begin{column}{0.43\textwidth}
+    \begin{column}{0.42\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.9]
-        \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (3.5,0) node[right, font=\tiny] {$x$};
-        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,3.2) node[above, font=\tiny] {$y$};
-        \coordinate (P) at (2.0, 1.5);
-        \draw[color=orangeacc!60] (0.4, 0.3) -- (3.0, 2.25);
-        \draw[color=navyaccent!60] (2.41, 0.65) arc (15:65:2.5);
-        \draw[-{Stealth}, line width=1.6pt, color=orangeacc] (P) -- ($(P)+(1.0, 0.75)$) node[above right=1pt, font=\scriptsize\bfseries] {$\vec{e}_r$};
-        \draw[-{Stealth}, line width=1.6pt, color=navyaccent] (P) -- ($(P)+(-0.75, 1.0)$) node[above left=1pt, font=\scriptsize\bfseries] {$\vec{e}_\theta$};
+      \begin{tikzpicture}[scale=0.82]
+        \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (3.3,0) node[right, font=\tiny] {$x$};
+        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,3.0) node[above, font=\tiny] {$y$};
+        \coordinate (P) at (1.9, 1.4);
+        \draw[color=orangeacc!60] (0.4, 0.3) -- (2.8, 2.1);
+        \draw[color=navyaccent!60] (2.3, 0.6) arc (15:65:2.4);
+        \draw[-{Stealth}, line width=1.5pt, color=orangeacc] (P) -- ($(P)+(0.9, 0.65)$) node[above right=1pt, font=\scriptsize\bfseries] {$\vec{e}_r$};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (P) -- ($(P)+(-0.65, 0.9)$) node[above left=1pt, font=\scriptsize\bfseries] {$\vec{e}_\theta$};
         \fill[blackmain] (P) circle (2pt) node[below right=1pt, font=\tiny\bfseries] {$P(r,\theta)$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué las columnas de la matriz Jacobiana $J$ representan exactamente las componentes cartesianas de los vectores de la base local?
+  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -78,14 +111,19 @@
     \footnotesize
     En coordenadas cartesianas el cuadrado de la distancia infinitesimal es $ds^2 = dx^2 + dy^2$.
     \begin{enumerate}
+      \itemsep1pt
       \item[(a)] Sustituye $dx = \cos\theta\,dr - r\sin\theta\,d\theta$ e $dy = \sin\theta\,dr + r\cos\theta\,d\theta$ en $ds^2$.
-      \item[(b)] Desarrolla los binomios y agrupa los términos proporcionales a $dr^2$, $dr\,d\theta$ y $d\theta^2$. Verifica que:
+      \item[(b)] Desarrolla los binomios y agrupa los términos proporcionales a $dr^2$, $dr\,d\theta$ y $d\theta^2$. Verifica:
       \[
       ds^2 = dr^2 + r^2 d\theta^2.
       \]
-      \item[(c)] Escribe la forma cuadrática como $ds^2 = \begin{pmatrix} dr & d\theta \end{pmatrix} \begin{pmatrix} g_{rr} & g_{r\theta} \\ g_{\theta r} & g_{\theta\theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix}$ e identifica los elementos de la matriz $g$.
+      \item[(c)] Expresa la forma cuadrática matricialmente como $ds^2 = \begin{pmatrix} dr & d\theta \end{pmatrix} \begin{pmatrix} g_{rr} & g_{r\theta} \\ g_{\theta r} & g_{\theta\theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix}$ e identifica $g_{ab}$.
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Cómo se refleja algebraicamente en la matriz $g_{ab}$ el hecho de que las curvas $r = \text{cte}$ y $\theta = \text{cte}$ se intersecten en ángulo recto?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -94,18 +132,19 @@
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
+        \itemsep1pt
         \item \textbf{Tensor Métrico Riemanniano $g_{ab}$:}
         \[
-        \boxed{g_{ab} \equiv \vec{e}_a \cdot \vec{e}_b = (J^T J)_{ab}}
+        \mathbf{g_{ab} \equiv \vec{e}_a \cdot \vec{e}_b = (J^T J)_{ab}}
         \]
-        \item \textbf{Elemento de Línea (Teorema de Pitágoras Curvilíneo):}
+        \item \textbf{Elemento de Línea (Pitágoras Curvilíneo):}
         \[
-        \boxed{ds^2 = g_{ab}\,du^a du^b}
+        \mathbf{ds^2 = g_{ab}\,du^a du^b}
         \]
         \item \textbf{Ortogonalidad:}
-        Si $g_{ab} = 0$ para $a \neq b$, las líneas de coordenadas se cruzan en ángulos de $90^\circ$ en todo punto.
+        Si $g_{ab} = 0$ para $a \neq b$, las líneas de coordenadas son perpendiculares en todo punto.
         \item \textbf{Factores de Escala de Lamé:}
-        $h_a = \sqrt{g_{aa}} = \|\vec{e}_a\|$.
+        $h_a \equiv \sqrt{g_{aa}} = \|\vec{e}_a\|$.
       \end{itemize}
     \end{column}
     \begin{column}{0.43\textwidth}
@@ -117,10 +156,14 @@
         \[
         (g_{ab})_{\text{pol}} = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix}
         \]
-        ¡La métrica codifica la geometría de las coordenadas!
+        ¡La métrica codifica la geometría de la red de coordenadas!
       \end{block}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué la relación $g = J^T J$ generaliza la condición de ortogonalidad $R^T R = I$ vista en transformaciones rígidas?
+  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -132,11 +175,16 @@
     x = r\sin\theta\cos\phi, \qquad y = r\sin\theta\sin\phi, \qquad z = r\cos\theta.
     \]
     \begin{enumerate}
-      \item[(a)] Los vectores tangentes coordenados son ortogonales entre sí y tienen longitudes $h_r = 1$, $h_\theta = r$, $h_\phi = r\sin\theta$. Escribe la matriz diagonal del tensor métrico $g_{ab}$.
-      \item[(b)] Calcula el determinante del tensor métrico $\det(g)$ y deduce su raíz cuadrada $\sqrt{\det(g)}$.
-      \item[(c)] Explica geométricamente por qué el elemento de volumen físico es $dV = r^2\sin\theta\,dr\,d\theta\,d\phi$.
+      \itemsep1pt
+      \item[(a)] Los vectores de la base son mutuamente ortogonales y tienen longitudes $h_r = 1$, $h_\theta = r$, $h_\phi = r\sin\theta$. Escribe la matriz diagonal del tensor métrico $g_{ab}$.
+      \item[(b)] Calcula el determinante $\det(g)$ y deduce su raíz cuadrada $\sqrt{\det(g)}$.
+      \item[(c)] Deduce geométricamente por qué el elemento de volumen físico es $dV = r^2\sin\theta\,dr\,d\theta\,d\phi$.
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué el factor de escala $h_\phi$ depende tanto de $r$ como de $\theta$ ($h_\phi = r\sin\theta$)?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -145,9 +193,10 @@
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
+        \itemsep1pt
         \item \textbf{Volumen y Métrica:}
         \[
-        \boxed{dV = \sqrt{\det(g)}\,du^1 du^2 du^3 = |\det J|\,du^1 du^2 du^3}
+        \mathbf{dV = \sqrt{\det(g)}\,du^1 du^2 du^3 = |\det J|\,du^1 du^2 du^3}
         \]
         \item \textbf{Métrica Esférica:}
         \[
@@ -161,16 +210,20 @@
     \end{column}
     \begin{column}{0.43\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.85]
-        \draw[fill=orangeacc!15, draw=orangeacc, thick] (0,0) -- (1.6, 0.4) arc (15:55:1.6) -- cycle;
-        \draw[color=navyaccent, dashed] (0,0) -- (2.3, 0.6) arc (15:55:2.3) -- cycle;
-        \node[font=\tiny\bfseries, color=blackmain] at (1.2, 0.9) {$r\,d\theta$};
-        \node[font=\tiny\bfseries, color=orangeacc] at (1.9, 0.4) {$dr$};
+      \begin{tikzpicture}[scale=0.8]
+        \draw[fill=orangeacc!15, draw=orangeacc, thick] (0,0) -- (1.5, 0.38) arc (15:55:1.5) -- cycle;
+        \draw[color=navyaccent, dashed] (0,0) -- (2.2, 0.56) arc (15:55:2.2) -- cycle;
+        \node[font=\tiny\bfseries, color=blackmain] at (1.1, 0.85) {$r\,d\theta$};
+        \node[font=\tiny\bfseries, color=orangeacc] at (1.8, 0.38) {$dr$};
       \end{tikzpicture}
-      \vspace{0.1cm}
+      \vskip2pt
       {\scriptsize Elemento de área en polares: $dA = r\,dr\,d\theta$.}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué la raíz cuadrada del determinante del tensor métrico coincide exactamente con el valor absoluto del determinante jacobiano, $\sqrt{\det(g)} = |\det J|$?
+  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -178,17 +231,23 @@
   \begin{block}{Reto en clase (8 minutos)}
     \footnotesize
     \begin{enumerate}
-      \item[(a)] \textbf{Diferencial Exacto ($df$):} Dada la función potencial $f(x, y) = x^2 y$, calcula $df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$. Evalúa $\int_{(0,0)}^{(1,2)} df$ a lo largo de cualquier camino. ¿Depende del camino elegido?
-      \item[(b)] \textbf{Diferencial Inexacto ($\delta W$):} Considera la forma diferencial $\delta W = -y\,dx + x\,dy$.
+      \itemsep1pt
+      \item[(a)] \textbf{Diferencial Exacto ($df$):} Para el potencial $f(x, y) = x^2 y$, calcula $df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$. Evalúa $\int_{(0,0)}^{(1,2)} df$ a lo largo de cualquier curva. ¿Depende del camino elegido?
+      \item[(b)] \textbf{Diferencial Inexacto ($\delta W$):} Considera la forma $\delta W = -y\,dx + x\,dy$.
       Calcula $\int \delta W$ sobre dos caminos distintos que unen $(0,0)$ con $(1,1)$:
       \begin{itemize}
         \scriptsize
-        \item Camino 1: Recta recta $y = x$.
+        \itemsep0pt
+        \item Camino 1: Recta $y = x$.
         \item Camino 2: Parábola $y = x^2$.
       \end{itemize}
       ¿Dan el mismo resultado? ¿Existe una función $U(x,y)$ tal que $\delta W = dU$?
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Qué propiedad de las funciones de estado en física garantiza que el cambio total entre dos puntos sea independiente de la trayectoria seguida?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -197,17 +256,18 @@
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
+        \itemsep1pt
         \item \textbf{Diferencial Exacto $df$:}
         Proviene de una función escalar $f$. Cumple la condición de integrabilidad $\partial_x F_y = \partial_y F_x$.
         \[
         \int_A^B df = f(B) - f(A), \qquad \oint df = 0.
         \]
         \item \textbf{Diferencial Inexacto $\delta W$:}
-        Depende del camino recorrido. En el reto:
+        Depende de la trayectoria recorrida:
         \[
         \int_{\text{recta}} \delta W = 0 \neq \int_{\text{parábola}} \delta W = \frac{1}{3}.
         \]
-        \item \textbf{Síntesis:} $J^i{}_a$ transforma variables, $g_{ab}$ mide distancias y volúmenes, y la integrabilidad distingue estados de trayectorias.
+        \item \textbf{Síntesis:} $J^i{}_a$ transforma variables, $g_{ab}$ mide distancias y volúmenes, y la integrabilidad distingue funciones de estado de transferencias.
       \end{itemize}
     \end{column}
     \begin{column}{0.43\textwidth}
@@ -217,10 +277,14 @@
         \[
         \omega \text{ es exacto} \iff \frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}.
         \]
-        Representa la simetría de derivadas cruzadas de Schwarz.
+        Representa la simetría de derivadas cruzadas de Schwarz: $\partial_x\partial_y f = \partial_y\partial_x f$.
       \end{block}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta Final de Cierre}
+    \scriptsize
+    ¿Cómo se relacionan la simetría de derivadas cruzadas de Schwarz y la exactitud de un diferencial con el concepto de fuerza conservativa?
+  \end{exampleblock}
 \end{frame}
 
 \end{document}

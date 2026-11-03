@@ -4,9 +4,9 @@
 \usepackage[spanish,provide=*]{babel}
 
 \title[Semana 2: Construcción del Arsenal Indicial]{De la Crisis Cartesiana al Arsenal de Índices}
-\subtitle{Construyendo la notación de Einstein, $\delta_{ij}$ y $\epsilon_{ijk}$ desde la geometría}
-\author{Geometría y Física I}
-\institute{Licenciatura en Física}
+\subtitle{Construyendo la notación de Einstein, $\delta_{ij}$, $\epsilon_{ijk}$ y Determinantes desde la Geometría}
+\author{Geometría y Física I: Mecánica Clásica y Formas de Cartan}
+\institute{}
 \date{}
 
 \begin{document}
@@ -19,63 +19,97 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 1: El Dolor Cartesiano y cómo Extraer Componentes}
-  \begin{block}{Reto en clase (5 minutos)}
-    \small
-    Denotemos los vectores unitarios como $\hat{e}_1 = \hat{i}$, $\hat{e}_2 = \hat{j}$, $\hat{e}_3 = \hat{k}$. Todo vector se expande como $\vec{A} = \sum_{j=1}^3 A_j\hat{e}_j$.
+\begin{frame}{Activación: Conexión con la Semana 01}
+  \begin{block}{Recordando la Geometría de Vectores y Proyecciones}
+    \footnotesize
+    En la primera semana construimos las operaciones fundamentales en $\R^3$:
+    \begin{itemize}
+      \itemsep1pt
+      \item Producto punto: $\vec{u}\cdot\vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 = \|\vec{u}\|\|\vec{v}\|\cos\theta$.
+      \item Descomposición ortogonal: $\vec{u}_\parallel = \left(\frac{\vec{u}\cdot\vec{v}}{\|\vec{v}\|^2}\right)\vec{v}$, \quad $\vec{u}_\perp = \vec{u} - \vec{u}_\parallel$.
+      \item Producto cruz: $\vec{u}\times\vec{v} = (u_2 v_3 - u_3 v_2)\hat{e}_1 + (u_3 v_1 - u_1 v_3)\hat{e}_2 + (u_1 v_2 - u_2 v_1)\hat{e}_3$.
+    \end{itemize}
+  \end{block}
+  \begin{alertblock}{Preguntas de Arranque para la Clase}
+    \scriptsize
     \begin{enumerate}
-      \item[(a)] Si calculas a mano la primera componente de $\vec{A} \times (\vec{B} \times \vec{C})$, obtienes:
-      \[
+      \itemsep1pt
+      \item Al calcular productos triples como $\vec{A}\times(\vec{B}\times\vec{C})$, ¿cuántas multiplicaciones de componentes tenemos que escribir si usamos las fórmulas tradicionales?
+      \item ¿Cómo podemos expresar la ortonormalidad de la base $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$ de forma compacta y universal sin escribir matrices gigantes?
+      \item ¿Es posible calcular identidades vectoriales complejas usando únicamente álgebra de índices y simetría?
+    \end{enumerate}
+  \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Actividad 1: El Dolor Cartesiano y cómo Extraer Componentes}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    Denotemos la base canónica como $\hat{e}_1, \hat{e}_2, \hat{e}_3$. Todo vector se expande como $\vec{A} = \sum_{j=1}^3 A_j\hat{e}_j$.
+    \begin{enumerate}
+      \itemsep1pt
+      \item[(a)] Si calculas la 1\textsuperscript{a} componente de $\vec{A} \times (\vec{B} \times \vec{C})$ a mano:
+      $
       [\vec{A} \times (\vec{B} \times \vec{C})]_1 = B_1(A_2 C_2 + A_3 C_3) - C_1(A_2 B_2 + A_3 B_3).
-      \]
-      ¿Qué término debes sumar y restar artificialmente para completar los productos punto $\vec{A}\cdot\vec{C}$ y $\vec{A}\cdot\vec{B}$?
-      \item[(b)] Queremos extraer la componente $A_i$ de $\vec{A}$ proyectando con $\hat{e}_i$: $\hat{e}_i \cdot \vec{A} = \sum_{j=1}^3 A_j (\hat{e}_i \cdot \hat{e}_j)$.
-      ¿Cuánto vale el producto $\hat{e}_i \cdot \hat{e}_j$ cuando $i = j$ y cuando $i \neq j$?
+      $
+      ¿Qué término debes sumar y restar artificialmente para completar $\vec{A}\cdot\vec{C}$ y $\vec{A}\cdot\vec{B}$?
+      \item[(b)] Para extraer $A_i$ de $\vec{A}$ proyectando con $\hat{e}_i$: $\hat{e}_i \cdot \vec{A} = \sum_{j=1}^3 A_j (\hat{e}_i \cdot \hat{e}_j)$.
+      ¿Cuánto vale $\hat{e}_i \cdot \hat{e}_j$ cuando $i = j$ y cuando $i \neq j$?
       \item[(c)] Usa tu respuesta de (b) para simplificar $\vec{A}\cdot\vec{B} = \left(\sum_i A_i\hat{e}_i\right)\cdot\left(\sum_j B_j\hat{e}_j\right)$.
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué el producto escalar $\hat{e}_i \cdot \hat{e}_j$ actúa como un filtro que selecciona una única componente?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
 \begin{frame}{Discusión 1: Nacimiento de Einstein y de la Delta $\delta_{ij}$}
   \begin{columns}[c]
-    \begin{column}{0.52\textwidth}
+    \begin{column}{0.54\textwidth}
       \begin{block}{Construcción Geométrica de $\delta_{ij}$}
+        \footnotesize
         No es una matriz arbitraria; es la \textbf{tabla de multiplicar de la base ortonormal}:
         \[
         \mathbf{\delta_{ij} \equiv \hat{e}_i \cdot \hat{e}_j} = \begin{cases} 1 & \text{si } i = j \\ 0 & \text{si } i \neq j \end{cases}
         \]
       \end{block}
-      \small
-      \textbf{Convenio de Einstein:} Todo índice repetido dos veces en un término se suma automáticamente de $1$ a $3$:
+      \footnotesize
+      \textbf{Convenio de Suma de Einstein:} Todo índice repetido en un monomio se suma automáticamente de $1$ a $3$:
       \[
       A_i = \hat{e}_i \cdot (A_j\hat{e}_j) = A_j(\hat{e}_i\cdot\hat{e}_j) \implies \mathbf{\delta_{ij} A_j = A_i}
       \]
     \end{column}
-    \begin{column}{0.45\textwidth}
-      \begin{exampleblock}{El Interruptor Selector}
-        \small
+    \begin{column}{0.43\textwidth}
+      \begin{exampleblock}{Propiedades Fundamentales}
+        \footnotesize
         \begin{itemize}
-          \item Contraer con $\delta_{ij}$ apaga los términos con $j \neq i$ y sustituye $j \to i$.
-          \item \textbf{Producto punto deducido en (c):}
+          \item \textbf{Producto punto:}
           \[
           \vec{A}\cdot\vec{B} = A_i B_j (\hat{e}_i\cdot\hat{e}_j) = \delta_{ij} A_i B_j = \mathbf{A_i B_i}
           \]
-          \item \textbf{Traza (dimensión de $\R^3$):}
+          \item \textbf{Traza (Dimensión del espacio $\R^3$):}
           \[
-          \delta_{ii} = \delta_{11} + \delta_{22} + \delta_{33} = \mathbf{3}
+          \delta_{ii} = \delta_{11} + \delta_{22} + \delta_{33} = 1 + 1 + 1 = \mathbf{3}
           \]
+          \item \textbf{Contracción de Deltas:}
+          $\delta_{ik}\delta_{kj} = \delta_{ij}$.
         \end{itemize}
       \end{exampleblock}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Qué regla geométrica nos asegura que podemos renombrar cualquier índice mudo sin alterar la expresión física?
+  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 2: El Producto Cruz sin Determinantes}
-  \begin{block}{Reto en clase: ¿De dónde sale el símbolo de Levi-Civita?}
-    \small
-    Olvida la regla del determinante $3 \times 3$. Multipliquemos $\vec{A} = A_j\hat{e}_j$ y $\vec{B} = B_k\hat{e}_k$ usando solo la propiedad distributiva:
+\begin{frame}{Actividad 2: El Producto Cruz y el Símbolo de Levi-Civita}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    Multipliquemos $\vec{A} = A_j\hat{e}_j$ y $\vec{B} = B_k\hat{e}_k$ usando únicamente la propiedad distributiva:
     \[
     \vec{A} \times \vec{B} = (A_j\hat{e}_j) \times (B_k\hat{e}_k) = A_j B_k (\hat{e}_j \times \hat{e}_k).
     \]
@@ -84,10 +118,14 @@
       \[
       (\vec{A}\times\vec{B})_i = \hat{e}_i \cdot (\vec{A}\times\vec{B}) = A_j B_k \big[\hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)\big].
       \]
-      \item[(b)] Llamemos $\mathbf{\epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)}$. Geométricamente, ¿qué mide el triple producto escalar de tres vectores?
-      \item[(c)] Usando la interpretación de volumen de (b), responde sin hacer cuentas: ¿Por qué $\epsilon_{112} = 0$? ¿Cuánto valen $\epsilon_{123}$ y $\epsilon_{132}$?
+      \item[(b)] Definimos $\mathbf{\epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)}$. Geométricamente, ¿qué representa el triple producto escalar de tres vectores?
+      \item[(c)] Usando la interpretación de volumen, responde sin calcular: ¿Por qué $\epsilon_{112} = 0$? ¿Cuánto valen $\epsilon_{123}$ y $\epsilon_{132}$?
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué cualquier intercambio de dos índices en $\epsilon_{ijk}$ invierte su signo algebraico?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -95,14 +133,15 @@
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \begin{block}{Construcción Geométrica de $\epsilon_{ijk}$}
-        \small
+        \footnotesize
         $\mathbf{\epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k)} = \text{Vol}(\hat{e}_i, \hat{e}_j, \hat{e}_k)$
       \end{block}
-      \small
+      \footnotesize
       \begin{itemize}
-        \item \textbf{Si dos índices se repiten} ($\epsilon_{112}$): dos aristas paralelas $\implies$ caja aplastada de \textbf{volumen $0$} (21 casos).
-        \item \textbf{Orden cíclico horario} $(1,2,3), (2,3,1), (3,1,2)$: cubo de mano derecha $\implies \mathbf{+1}$.
-        \item \textbf{Orden antihorario} $(1,3,2), (2,1,3), (3,2,1)$: cubo de mano izquierda $\implies \mathbf{-1}$.
+        \itemsep0pt
+        \item \textbf{Índices repetidos ($\epsilon_{112} = 0$):} Aristas paralelas $\implies$ \textbf{volumen nulo} ($21$ casos).
+        \item \textbf{Permutación par ($(1,2,3), (2,3,1), (3,1,2)$):} Mano derecha $\implies \mathbf{+1}$ ($3$ casos).
+        \item \textbf{Permutación impar ($(1,3,2), (2,1,3), (3,2,1)$):} Mano izquierda $\implies \mathbf{-1}$ ($3$ casos).
       \end{itemize}
       \begin{alertblock}{Producto Cruz Universal}
         \centering $\mathbf{(\vec{A} \times \vec{B})_i = \epsilon_{ijk} A_j B_k}$
@@ -110,100 +149,132 @@
     \end{column}
     \begin{column}{0.41\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.82]
-        \draw[line width=1.5pt, color=orangeacc] (0,0) circle (1.35cm);
-        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=3pt] at (90:1.35cm) {1};
-        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=3pt] at (330:1.35cm) {2};
-        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=3pt] at (210:1.35cm) {3};
-        \draw[-{Stealth[length=2.5mm]}, line width=1.5pt, color=orangeacc] (68:1.65cm) arc (68:12:1.65cm) node[midway, right=1pt, font=\scriptsize\bfseries, color=orangeacc] {$+1$};
-        \draw[-{Stealth[length=2.5mm]}, line width=1.5pt, color=orangeacc] (308:1.65cm) arc (308:252:1.65cm);
-        \draw[-{Stealth[length=2.5mm]}, line width=1.5pt, color=orangeacc] (188:1.65cm) arc (188:132:1.65cm);
+      \begin{tikzpicture}[scale=0.72]
+        \draw[line width=1.4pt, color=orangeacc] (0,0) circle (1.15cm);
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (90:1.15cm) {1};
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (330:1.15cm) {2};
+        \node[circle, fill=blackmain, text=white, font=\bfseries, inner sep=2.5pt] at (210:1.15cm) {3};
+        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (68:1.45cm) arc (68:12:1.45cm) node[midway, right=1pt, font=\scriptsize\bfseries, color=orangeacc] {$+1$};
+        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (308:1.45cm) arc (308:252:1.45cm);
+        \draw[-{Stealth[length=2.2mm]}, line width=1.4pt, color=orangeacc] (188:1.45cm) arc (188:132:1.45cm);
         \node[font=\scriptsize\bfseries, align=center] at (0,0) {Volumen\\Orientado};
       \end{tikzpicture}
     \end{column}
   \end{columns}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Actividad 3: Construyendo la Identidad $\epsilon-\delta$ por Casos}
-  \begin{block}{Reto en clase: ¿Cuándo no es cero el producto $\epsilon_{ijk}\epsilon_{imn}$?}
-    \small
-    Al encadenar dos productos cruz aparece $\epsilon_{ijk}\epsilon_{imn}$. Fijemos $\mathbf{i = 1}$ y analicemos $\epsilon_{1jk}\epsilon_{1mn}$:
-    \begin{enumerate}
-      \item[(a)] Para que $\epsilon_{1jk} \neq 0$, los índices $(j, k)$ no pueden ser $1$ ni repetirse. ¿Cuáles son las \textbf{dos únicas parejas} posibles para $(j, k)$? ¿Y para $(m, n)$?
-      \item[(b)] Compara la pareja $(j, k)$ con la pareja $(m, n)$:
-      \begin{itemize}
-        \item \textbf{Caso 1 (Mismo orden):} Si $j = m$ y $k = n$, ¿cuánto vale el producto $\epsilon_{1jk}\epsilon_{1mn}$?
-        \item \textbf{Caso 2 (Orden invertido):} Si $j = n$ y $k = m$ (con $j \neq k$), ¿cuánto vale $\epsilon_{1jk}\epsilon_{1mn}$?
-      \end{itemize}
-      \item[(c)] Escribe una combinación de productos de deltas de Kronecker que valga $+1$ en el Caso 1, $-1$ en el Caso 2, y $0$ en cualquier otro caso.
-    \end{enumerate}
-  \end{block}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Discusión 3: La Identidad Maestra $\epsilon-\delta$ Desmitificada}
-  \small
-  \textbf{Resultados de la Actividad 3:}
-  \begin{itemize}
-    \item Para un $i$ dado, $(j,k)$ y $(m,n)$ deben elegir los dos números restantes de $\{1, 2, 3\} \setminus \{i\}$.
-    \item Si coinciden en el mismo orden ($j=m, k=n$), ambos $\epsilon$ tienen igual signo $\implies (+1)(+1) = (-1)(-1) = \mathbf{+1}$.
-    \item Si están cruzados ($j=n, k=m$), tienen signos opuestos $\implies (+1)(-1) = \mathbf{-1}$.
-  \end{itemize}
-  \begin{block}{Identidad Maestra Universal $\epsilon-\delta$}
-    \centering $\mathbf{\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}}$
-  \end{block}
-  \begin{exampleblock}{Lectura Geométrica}
-    \begin{itemize}
-      \item Primer término ($\delta_{jm}\delta_{kn}$): emparejamiento directo (primero con primero, segundo con segundo).
-      \item Segundo término ($-\delta_{jn}\delta_{km}$): emparejamiento invertido (un intercambio de orientación $\implies$ signo menos).
-    \end{itemize}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Cómo se traduce la no-conmutatividad del producto cruz ($\vec{A}\times\vec{B} = -\vec{B}\times\vec{A}$) en la antisimetría $\epsilon_{ijk} = -\epsilon_{ikj}$?
   \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 4: La Gran Demolición en 3 Renglones}
-  \begin{block}{Reto final: Aplica tus herramientas}
-    \small
+\begin{frame}{Actividad 3: La Identidad Maestra $\epsilon-\delta$}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    Al calcular un doble producto cruz aparece la contracción $\epsilon_{ijk}\epsilon_{imn}$ sobre el índice común $i$.
+    Fijemos $\mathbf{i = 1}$ y analicemos el término $\epsilon_{1jk}\epsilon_{1mn}$:
     \begin{enumerate}
-      \item[(a)] \textbf{Demuele la identidad BAC--CAB:}
-      Completa los tres pasos para calcular la componente $i$ de $\vec{A} \times (\vec{B} \times \vec{C})$:
+      \item[(a)] Para que $\epsilon_{1jk} \neq 0$, los índices $(j, k)$ deben ser distintos de $1$ y no repetirse. ¿Cuáles son las dos únicas opciones ordenadas posibles para $(j, k)$?
+      \item[(b)] Compara la pareja $(j, k)$ con $(m, n)$:
+      \begin{itemize}
+        \item Si coinciden en el mismo orden ($j = m$ y $k = n$), ¿cuánto vale el producto $\epsilon_{1jk}\epsilon_{1mn}$?
+        \item Si están en orden invertido ($j = n$ y $k = m$), ¿cuánto vale el producto $\epsilon_{1jk}\epsilon_{1mn}$?
+      \end{itemize}
+      \item[(c)] Escribe una combinación de deltas de Kronecker que reproduzca exactamente $+1$ en el primer caso y $-1$ en el segundo.
+    \end{enumerate}
+  \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué la contracción de dos símbolos antisimétricos da como resultado una diferencia de productos de deltas simétricas?
+  \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusión 3: Deducción y Estructura de $\epsilon_{ijk}\epsilon_{imn}$}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \begin{block}{Identidad Maestra Universal $\epsilon-\delta$}
+        \footnotesize
+        \[
+        \mathbf{\epsilon_{ijk}\epsilon_{imn} = \delta_{jm}\delta_{kn} - \delta_{jn}\delta_{km}}
+        \]
+      \end{block}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Término Positivo ($\delta_{jm}\delta_{kn}$):} Emparejamiento directo (primer índice libre con primero, segundo con segundo).
+        \item \textbf{Término Negativo ($-\delta_{jn}\delta_{km}$):} Emparejamiento cruzado (invierte la orientación relativa).
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \begin{exampleblock}{Contracciones Adicionales}
+        \footnotesize
+        Haciendo $m = j$ en la Identidad Maestra:
+        \[
+        \epsilon_{ijk}\epsilon_{ijn} = \delta_{jj}\delta_{kn} - \delta_{jn}\delta_{kj} = 3\delta_{kn} - \delta_{kn} = \mathbf{2\delta_{kn}}
+        \]
+        Haciendo además $n = k$:
+        \[
+        \epsilon_{ijk}\epsilon_{ijk} = 2\delta_{kk} = 2(3) = \mathbf{6}
+        \]
+        (El número de permutaciones no nulas).
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué $\epsilon_{ijk}\epsilon_{ijk} = 6$ coincide exactamente con el factorial $3!$?
+  \end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Actividad 4: La Gran Demolición de BAC--CAB y Potencia Magnética}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    \begin{enumerate}
+      \item[(a)] \textbf{Fórmula BAC--CAB:} Completa la deducción de la componente $i$ de $\vec{A} \times (\vec{B} \times \vec{C})$ usando la identidad maestra:
       \begin{align*}
         [\vec{A} \times (\vec{B} \times \vec{C})]_i &= \epsilon_{ijk} A_j (\vec{B}\times\vec{C})_k = \epsilon_{kij}\epsilon_{kmn} A_j B_m C_n \\
         &= (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n = \dots
       \end{align*}
-      \item[(b)] \textbf{Física (Fuerza Magnética de Lorentz):}
-      La fuerza magnética es $F_i = q\,\epsilon_{ijk} v_j B_k$. La potencia mecánica entregada a la partícula es $P = \vec{F}\cdot\vec{v} = F_i v_i = q\,\epsilon_{ijk} v_i v_j B_k$.
-      ¿Qué ocurre con la expresión $\epsilon_{ijk} v_i v_j$ si intercambias el nombre de los índices mudos $i \leftrightarrow j$?
+      \item[(b)] \textbf{Física de Lorentz:} La fuerza magnética sobre una carga es $F_i = q\,\epsilon_{ijk} v_j B_k$. La potencia instantánea es $P = \vec{F}\cdot\vec{v} = q\,\epsilon_{ijk} v_i v_j B_k$.
+      ¿Qué ocurre con la contracción $\epsilon_{ijk} v_i v_j$ al contraer un tensor antisimétrico con uno simétrico?
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Cómo demostramos que una partícula cargada no cambia su energía cinética en presencia de un campo magnético estático sin resolver ecuaciones diferenciales?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 4: Solución y Síntesis}
+\begin{frame}{Discusión 4: Solución, Simetría vs. Antisimetría y Síntesis}
   \begin{columns}[c]
     \begin{column}{0.52\textwidth}
-      \begin{exampleblock}{(a) BAC--CAB en 3 líneas}
-        \small
+      \begin{exampleblock}{(a) BAC--CAB Demostrada}
+        \footnotesize
         \begin{align*}
           [\vec{A}\times(\vec{B}\times\vec{C})]_i &= (\delta_{im}\delta_{jn} - \delta_{in}\delta_{jm}) A_j B_m C_n \\
           &= B_i(A_j C_j) - C_i(A_j B_j) \\
           &= [\vec{B}(\vec{A}\cdot\vec{C}) - \vec{C}(\vec{A}\cdot\vec{B})]_i \quad \blacksquare
         \end{align*}
-        ¡El término $i=j$ que antes sumábamos y restábamos a mano se cancela solo!
+        ¡Obtenido directamente sin sumar ni restar términos arbitrarios a mano!
       \end{exampleblock}
     \end{column}
     \begin{column}{0.45\textwidth}
-      \begin{block}{(b) Simetría vs. Antisimetría}
-        \small
+      \begin{block}{(b) Contracción Simétrica-Antisimétrica}
+        \footnotesize
         Como $v_i v_j = v_j v_i$ (simétrico) y $\epsilon_{jik} = -\epsilon_{ijk}$ (antisimétrico):
         \[
-        \epsilon_{ijk} v_i v_j = 0 \implies \mathbf{P = 0}
+        \mathbf{\epsilon_{ijk} v_i v_j = 0} \implies P = \vec{F}\cdot\vec{v} = 0.
         \]
-        ¡El campo magnético nunca realiza trabajo!
+        El campo magnético realiza trabajo nulo en todo instante.
       \end{block}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta Final de Cierre}
+    \scriptsize
+    ¿Cuál es la ventaja fundamental de calcular con índices frente al álgebra vectorial tradicional de bachillerato?
+  \end{exampleblock}
 \end{frame}
 
 \end{document}

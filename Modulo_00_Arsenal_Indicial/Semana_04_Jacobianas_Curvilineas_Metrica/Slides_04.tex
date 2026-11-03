@@ -14,277 +14,428 @@
 \setlength{\belowdisplayskip}{3pt}
 
 % ---------------------------------------------------------------------
+% SLIDE 1: PORTADA
+% ---------------------------------------------------------------------
 \begin{frame}
   \titlepage
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Activación: Conexión con la Semana 03}
-  \begin{block}{Recordando Rotaciones Rígidas y Sistemas Globales}
-    \footnotesize
-    En la semana previa estudiamos las transformaciones rígidas del espacio:
-    \begin{itemize}
-      \itemsep1pt
-      \item Las rotaciones $R \in SO(3)$ preservan longitudes y ángulos globales: $\langle R\vec{u}, R\vec{v}\rangle = \langle\vec{u},\vec{v}\rangle \iff R^T R = I$.
-      \item En coordenadas cartesianas, la base canónica $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$ es la misma en todo punto: $\hat{e}_i\cdot\hat{e}_j = \delta_{ij}$.
-      \item El elemento de longitud euclidiano cartesiano es homogéneo: $ds^2 = dx^2 + dy^2 + dz^2 = \delta_{ij}dx^i dx^j$.
-    \end{itemize}
-  \end{block}
-  \begin{alertblock}{Preguntas de Arranque para la Clase}
-    \scriptsize
-    \begin{enumerate}
-      \itemsep1pt
-      \item ¿Qué sucede con las direcciones de los vectores directores cuando nos movemos sobre un círculo o una esfera? ¿Siguen siendo constantes?
-      \item Si la relación entre las nuevas coordenadas y las cartesianas es no-lineal, ¿cómo medimos distancias infinitesimales $ds^2$?
-      \item ¿Cómo conecta la regla de la cadena multivariable con la deformación local de volúmenes e integrales?
-    \end{enumerate}
-  \end{alertblock}
+% SLIDE 2: PREGUNTAS DE ACTIVACIÓN (DESDE SEMANA 03)
+% ---------------------------------------------------------------------
+\begin{frame}{De las Transformaciones Globales a los Sistemas Locales}
+  \vspace{0.1cm}
+  Considerando las transformaciones rígidas ortogonales $R^T R = I$ y la métrica euclidiana cartesiana $ds^2 = \delta_{ij} dx^i dx^j$:
+  \vspace{0.3cm}
+  \begin{enumerate}\itemsep14pt
+    \item En las rotaciones rígidas $R \in SO(3)$, la base es ortonormal e idéntica en todo punto del espacio. ¿Qué ocurre con la orientación y longitud de los vectores directores cuando describimos el movimiento sobre una trayectoria circular o esférica?
+    \item Si el cambio de variables entre las nuevas coordenadas y las cartesianas es no lineal, ¿cómo se relaciona el desplazamiento infinitesimal $d\vec{r}$ con las diferenciales de las nuevas coordenadas?
+    \item ¿Cómo garantiza el cálculo multivariable que la distancia física infinitesimal $ds$ no dependa del sistema de coordenadas elegido para medirla?
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 1: La Regla de la Cadena y la Base Local}
-  \begin{block}{Reto en clase (8 minutos)}
-    \footnotesize
-    Consideremos la transformación a coordenadas polares en el plano: $x = r\cos\theta$, $y = r\sin\theta$.
-    \begin{enumerate}
-      \itemsep1pt
-      \item[(a)] \textbf{Diferenciales:} Escribe $dx$ y $dy$ en términos de $dr$ y $d\theta$:
-      $
-      \begin{pmatrix} dx \\ dy \end{pmatrix} = \begin{pmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix} \equiv J \begin{pmatrix} dr \\ d\theta \end{pmatrix}.
-      $
-      \item[(b)] \textbf{Vectores Tangentes Coordenados:} Con $\vec{r} = x\hat{e}_1 + y\hat{e}_2$, calcula $\vec{e}_r = \frac{\partial\vec{r}}{\partial r}$ y $\vec{e}_\theta = \frac{\partial\vec{r}}{\partial\theta}$.
-      \item[(c)] \textbf{Longitudes y Perpendicularidad:} Calcula $\|\vec{e}_r\|$, $\|\vec{e}_\theta\|$ y el producto punto $\vec{e}_r \cdot \vec{e}_\theta$. ¿Por qué $\vec{e}_\theta$ no es unitario?
-    \end{enumerate}
-  \end{block}
-  \begin{alertblock}{Pregunta de Consolidación}
-    \scriptsize
-    ¿Por qué el vector tangente $\vec{e}_\theta$ tiene norma $r$ a pesar de que $\theta$ mide un ángulo adimensional?
-  \end{alertblock}
-\end{frame}
-
+% SLIDE 3: TRANSFORMACIÓN DE COORDENADAS Y MATRIZ JACOBIANA
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 1: La Matriz Jacobiana y la Base Local}
+\begin{frame}{Transformaciones Coordenadas y la Matriz Jacobiana}
   \begin{columns}[c]
-    \begin{column}{0.55\textwidth}
+    \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}
-        \itemsep1pt
-        \item \textbf{Matriz Jacobiana $J^i{}_a = \frac{\partial x^i}{\partial u^a}$:}
-        Conecta desplazamientos infinitesimales:
+      \begin{itemize}\itemsep1pt
+        \item \textbf{Cambio General de Coordenadas:}
+        Un punto se describe por coordenadas cartesianas $x^i$ o coordenadas curvilíneas generales $u^a$:
         \[
-        dx^i = J^i{}_a\,du^a.
+        x^i = x^i(u^1, u^2, \dots, u^n), \quad i, a \in \{1, \dots, n\}.
         \]
-        \item \textbf{Base Local Tangente Adaptada:}
+        \item \textbf{Diferenciales y Regla de la Cadena:}
         \[
-        \vec{e}_a = \frac{\partial\vec{r}}{\partial u^a} = \frac{\partial x^i}{\partial u^a}\hat{e}_i = J^i{}_a \hat{e}_i.
+        dx^i = \frac{\partial x^i}{\partial u^a}\, du^a \equiv J^i{}_a\, du^a.
         \]
-        \item \textbf{En Coordenadas Polares:}
+        \item \textbf{La Matriz Jacobiana $J$:}
         \[
-        \vec{e}_r = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \qquad \vec{e}_\theta = \begin{pmatrix} -r\sin\theta \\ r\cos\theta \end{pmatrix}.
+        \boxed{J^i{}_a \equiv \frac{\partial x^i}{\partial u^a}} \iff J = \begin{pmatrix} \partial x^1/\partial u^1 & \cdots & \partial x^1/\partial u^n \\ \vdots & \ddots & \vdots \\ \partial x^n/\partial u^1 & \cdots & \partial x^n/\partial u^n \end{pmatrix}.
         \]
-        $\|\vec{e}_r\| = 1$, pero $\|\vec{e}_\theta\| = r$ (crece linealmente con el radio).
+        \item \textbf{Invertibilidad Local:}
+        Si $\det(J) \neq 0$, localmente $du^a = (J^{-1})^a{}_i dx^i$.
       \end{itemize}
     \end{column}
-    \begin{column}{0.42\textwidth}
+    \begin{column}{0.41\textwidth}
+      \footnotesize
+      \begin{block}{Linealización Tangente}
+        \scriptsize
+        Aunque la transformación global $x^i(u^a)$ sea fuertemente no lineal (trigonométrica, radial, etc.), la matriz Jacobiana $J$ actúa como una transformación estrictamente lineal entre los espacios de desplazamientos diferenciales tangentes en cada punto:
+        \[
+        d\vec{x} = J(u)\, d\vec{u}.
+        \]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 4: LA BASE TANGENTE ADAPTADA
+% ---------------------------------------------------------------------
+\begin{frame}{La Base Tangente Adaptada a Coordenadas Curvilíneas}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep5pt
+        \item \textbf{Vectores Tangentes a las Líneas Coordenadas:}
+        Siendo $\vec{r}(u^1, \dots, u^n) = x^i(u)\hat{e}_i$ el vector de posición respecto al origen:
+        \[
+        \vec{e}_a \equiv \frac{\partial\vec{r}}{\partial u^a} = \frac{\partial x^i}{\partial u^a}\hat{e}_i = J^i{}_a \hat{e}_i.
+        \]
+        \item \textbf{Significado Geométrica de las Columnas de $J$:}
+        La columna $a$-ésima de la matriz Jacobiana $J$ está formada exactamente por las componentes cartesianas del vector de base local $\vec{e}_a$.
+        \item \textbf{Desplazamiento Infinitesimal Vectorial:}
+        \[
+        \boxed{d\vec{r} = \frac{\partial\vec{r}}{\partial u^a} du^a = \vec{e}_a\, du^a}
+        \]
+        \item \textbf{Dependencia Espacial:}
+        A diferencia de los vectores cartesianos constantes $\hat{e}_i$, la base $\{\vec{e}_a(u)\}$ varía en magnitud y orientación punto a punto.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.82]
-        \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (3.3,0) node[right, font=\tiny] {$x$};
-        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,3.0) node[above, font=\tiny] {$y$};
-        \coordinate (P) at (1.9, 1.4);
-        \draw[color=orangeacc!60] (0.4, 0.3) -- (2.8, 2.1);
-        \draw[color=navyaccent!60] (2.3, 0.6) arc (15:65:2.4);
-        \draw[-{Stealth}, line width=1.5pt, color=orangeacc] (P) -- ($(P)+(0.9, 0.65)$) node[above right=1pt, font=\scriptsize\bfseries] {$\vec{e}_r$};
-        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (P) -- ($(P)+(-0.65, 0.9)$) node[above left=1pt, font=\scriptsize\bfseries] {$\vec{e}_\theta$};
+      \begin{tikzpicture}[scale=0.9]
+        \draw[-{Stealth}, color=graymuted, line width=0.8pt] (-0.2,0) -- (2.6,0) node[right, font=\tiny] {$x$};
+        \draw[-{Stealth}, color=graymuted, line width=0.8pt] (0,-0.2) -- (0,2.5) node[above, font=\tiny] {$y$};
+        \coordinate (P) at (1.5, 1.2);
+        \draw[color=orangeacc!50, line width=1pt] (0.5, 0.4) to[out=30, in=200] (P) to[out=20, in=190] (2.5, 1.6);
+        \draw[color=navyaccent!50, line width=1pt] (1.0, 0.3) to[out=70, in=240] (P) to[out=60, in=250] (1.8, 2.3);
+        \draw[-{Stealth}, line width=1.5pt, color=orangeacc] (P) -- ($(P)+(1.0, 0.35)$) node[right, font=\scriptsize\bfseries] {$\vec{e}_1$};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (P) -- ($(P)+(0.25, 0.95)$) node[above, font=\scriptsize\bfseries] {$\vec{e}_2$};
+        \fill[blackmain] (P) circle (2pt) node[below left=1pt, font=\tiny\bfseries] {$P(u^1, u^2)$};
+      \end{tikzpicture}
+      \vspace{0.1cm}
+      {\scriptsize Base local tangente adaptada: $\vec{e}_a = \partial\vec{r}/\partial u^a$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 5: GEOMETRÍA EN COORDENADAS POLARES
+% ---------------------------------------------------------------------
+\begin{frame}{Geometría de la Base Local en Coordenadas Polares}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep4pt
+        \item \textbf{Parametrización en el Plano:}
+        $x = r\cos\theta, \quad y = r\sin\theta$.
+        \item \textbf{Matriz Jacobiana:}
+        \[
+        J = \begin{pmatrix} \frac{\partial x}{\partial r} & \frac{\partial x}{\partial\theta} \\ \frac{\partial y}{\partial r} & \frac{\partial y}{\partial\theta} \end{pmatrix} = \begin{pmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{pmatrix}.
+        \]
+        \item \textbf{Vectores de la Base Adaptada:}
+        \[
+        \vec{e}_r = \begin{pmatrix} \cos\theta \\ \sin\theta \end{pmatrix}, \qquad
+        \vec{e}_\theta = \begin{pmatrix} -r\sin\theta \\ r\cos\theta \end{pmatrix}.
+        \]
+        \item \textbf{Ortogonalidad y Módulos:}
+        $\vec{e}_r \cdot \vec{e}_\theta = 0$, con $\|\vec{e}_r\| = 1$ y $\|\vec{e}_\theta\| = r$.
+        \item \textbf{Base Física Ortonormalizada:}
+        $\hat{e}_r = \vec{e}_r, \quad \hat{e}_\theta = \frac{1}{r}\vec{e}_\theta$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.88]
+        \draw[-{Stealth}, color=graymuted] (-0.3,0) -- (3.0,0) node[right, font=\tiny] {$x$};
+        \draw[-{Stealth}, color=graymuted] (0,-0.3) -- (0,2.6) node[above, font=\tiny] {$y$};
+        \coordinate (P) at (1.8, 1.3);
+        \draw[color=orangeacc!60] (0, 0) -- (2.6, 1.88);
+        \draw[color=navyaccent!60] (2.2, 0.4) arc (10:70:2.2);
+        \draw[-{Stealth}, line width=1.5pt, color=orangeacc] (P) -- ($(P)+(0.8, 0.58)$) node[above right=1pt, font=\scriptsize\bfseries] {$\vec{e}_r$};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (P) -- ($(P)+(-0.58, 0.8)$) node[above left=1pt, font=\scriptsize\bfseries] {$\vec{e}_\theta$};
         \fill[blackmain] (P) circle (2pt) node[below right=1pt, font=\tiny\bfseries] {$P(r,\theta)$};
       \end{tikzpicture}
+      \vspace{0.1cm}
+      {\scriptsize Base polar: $\vec{e}_\theta$ rota con $\theta$ y su norma escala con $r$.}
     \end{column}
   \end{columns}
-  \begin{exampleblock}{Pregunta de Consolidación}
-    \scriptsize
-    ¿Por qué las columnas de la matriz Jacobiana $J$ representan exactamente las componentes cartesianas de los vectores de la base local?
-  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 2: El Elemento de Línea y el Tensor Métrico $g_{ab}$}
-  \begin{block}{Reto en clase (8 minutos)}
-    \footnotesize
-    En coordenadas cartesianas el cuadrado de la distancia infinitesimal es $ds^2 = dx^2 + dy^2$.
-    \begin{enumerate}
-      \itemsep1pt
-      \item[(a)] Sustituye $dx = \cos\theta\,dr - r\sin\theta\,d\theta$ e $dy = \sin\theta\,dr + r\cos\theta\,d\theta$ en $ds^2$.
-      \item[(b)] Desarrolla los binomios y agrupa los términos proporcionales a $dr^2$, $dr\,d\theta$ y $d\theta^2$. Verifica:
-      \[
-      ds^2 = dr^2 + r^2 d\theta^2.
-      \]
-      \item[(c)] Expresa la forma cuadrática matricialmente como $ds^2 = \begin{pmatrix} dr & d\theta \end{pmatrix} \begin{pmatrix} g_{rr} & g_{r\theta} \\ g_{\theta r} & g_{\theta\theta} \end{pmatrix} \begin{pmatrix} dr \\ d\theta \end{pmatrix}$ e identifica $g_{ab}$.
-    \end{enumerate}
-  \end{block}
-  \begin{alertblock}{Pregunta de Consolidación}
-    \scriptsize
-    ¿Cómo se refleja algebraicamente en la matriz $g_{ab}$ el hecho de que las curvas $r = \text{cte}$ y $\theta = \text{cte}$ se intersecten en ángulo recto?
-  \end{alertblock}
+% SLIDE 6: PREGUNTAS SOBRE BASES LOCALES
+% ---------------------------------------------------------------------
+\begin{frame}{Naturaleza y Comportamiento de las Bases Locales}
+  \vspace{0.2cm}
+  Analizando las propiedades cinemáticas y geométricas de $\{\vec{e}_a\}$:
+  \vspace{0.3cm}
+  \begin{enumerate}\itemsep14pt
+    \item ¿Por qué el vector tangente coordenado $\vec{e}_\theta$ posee dimensiones físicas de longitud ($[\mathrm{L}]$) y su módulo crece proporcionalmente al radio $r$, aun cuando la coordenada angular $\theta$ es adimensional?
+    \item ¿Qué sucede con los vectores de la base local $\{\vec{e}_r, \vec{e}_\theta\}$ exactamente en el origen de coordenadas $r = 0$? ¿Por qué el determinante jacobiano se anula en dicho punto singular?
+    \item Si se emplease un sistema curvilíneo no ortogonal, ¿cómo afectaría la presencia de un producto interno no nulo $\vec{e}_a \cdot \vec{e}_b \neq 0$ a la descomposición de vectores y al cálculo de longitudes?
+  \end{enumerate}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 2: Definición y Propiedades del Tensor Métrico}
+% SLIDE 7: EL TENSOR MÉTRICO RIEMANNIANO
+% ---------------------------------------------------------------------
+\begin{frame}{El Tensor Métrico Riemanniano y la Identidad $g = J^T J$}
   \begin{columns}[c]
-    \begin{column}{0.54\textwidth}
+    \begin{column}{0.56\textwidth}
       \footnotesize
-      \begin{itemize}
-        \itemsep1pt
-        \item \textbf{Tensor Métrico Riemanniano $g_{ab}$:}
+      \begin{itemize}\itemsep5pt
+        \item \textbf{Definición del Tensor Métrico:}
+        El producto escalar entre los vectores de la base local adaptada define los coeficientes métricos:
         \[
-        \mathbf{g_{ab} \equiv \vec{e}_a \cdot \vec{e}_b = (J^T J)_{ab}}
+        \boxed{g_{ab} \equiv \vec{e}_a \cdot \vec{e}_b}
         \]
-        \item \textbf{Elemento de Línea (Pitágoras Curvilíneo):}
+        \item \textbf{Identidad Matricial Fundamental:}
+        Dado que $\vec{e}_a = J^i{}_a \hat{e}_i$ y $\hat{e}_i \cdot \hat{e}_j = \delta_{ij}$:
         \[
-        \mathbf{ds^2 = g_{ab}\,du^a du^b}
+        g_{ab} = (J^i{}_a \hat{e}_i) \cdot (J^j{}_b \hat{e}_j) = J^i{}_a \delta_{ij} J^j{}_b = (J^T J)_{ab}.
         \]
-        \item \textbf{Ortogonalidad:}
-        Si $g_{ab} = 0$ para $a \neq b$, las líneas de coordenadas son perpendiculares en todo punto.
-        \item \textbf{Factores de Escala de Lamé:}
-        $h_a \equiv \sqrt{g_{aa}} = \|\vec{e}_a\|$.
+        En notación matricial compacta:
+        \[
+        \boxed{g = J^T J}
+        \]
+        \item \textbf{Propiedades Fundamentales:}
+        \begin{enumerate}\scriptsize
+          \item \textbf{Simetría:} $g_{ab} = g_{ba}$ por simetría del producto interno.
+          \item \textbf{Positividad:} $\det(g) = (\det J)^2 > 0$ en todo punto regular.
+        \end{enumerate}
       \end{itemize}
     \end{column}
-    \begin{column}{0.43\textwidth}
-      \begin{block}{Polares vs. Cartesianas}
-        \footnotesize
-        \[
-        (g_{ij})_{\text{cart}} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
-        \]
-        \[
-        (g_{ab})_{\text{pol}} = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix}
-        \]
-        ¡La métrica codifica la geometría de la red de coordenadas!
-      \end{block}
-    \end{column}
-  \end{columns}
-  \begin{exampleblock}{Pregunta de Consolidación}
-    \scriptsize
-    ¿Por qué la relación $g = J^T J$ generaliza la condición de ortogonalidad $R^T R = I$ vista en transformaciones rígidas?
-  \end{exampleblock}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Actividad 3: Factor de Escala de Volumen y $|\det J|$}
-  \begin{block}{Reto en clase (8 minutos)}
-    \footnotesize
-    Consideremos la transformación a coordenadas esféricas en $\R^3$:
-    \[
-    x = r\sin\theta\cos\phi, \qquad y = r\sin\theta\sin\phi, \qquad z = r\cos\theta.
-    \]
-    \begin{enumerate}
-      \itemsep1pt
-      \item[(a)] Los vectores de la base son mutuamente ortogonales y tienen longitudes $h_r = 1$, $h_\theta = r$, $h_\phi = r\sin\theta$. Escribe la matriz diagonal del tensor métrico $g_{ab}$.
-      \item[(b)] Calcula el determinante $\det(g)$ y deduce su raíz cuadrada $\sqrt{\det(g)}$.
-      \item[(c)] Deduce geométricamente por qué el elemento de volumen físico es $dV = r^2\sin\theta\,dr\,d\theta\,d\phi$.
-    \end{enumerate}
-  \end{block}
-  \begin{alertblock}{Pregunta de Consolidación}
-    \scriptsize
-    ¿Por qué el factor de escala $h_\phi$ depende tanto de $r$ como de $\theta$ ($h_\phi = r\sin\theta$)?
-  \end{alertblock}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Discusión 3: Deformación del Volumen y Coordenadas Esféricas}
-  \begin{columns}[c]
-    \begin{column}{0.54\textwidth}
+    \begin{column}{0.41\textwidth}
       \footnotesize
-      \begin{itemize}
-        \itemsep1pt
-        \item \textbf{Volumen y Métrica:}
-        \[
-        \mathbf{dV = \sqrt{\det(g)}\,du^1 du^2 du^3 = |\det J|\,du^1 du^2 du^3}
-        \]
-        \item \textbf{Métrica Esférica:}
-        \[
-        ds^2 = dr^2 + r^2 d\theta^2 + r^2\sin^2\theta\,d\phi^2
-        \]
-        \item \textbf{Métrica Cilíndrica:}
-        \[
-        ds^2 = d\rho^2 + \rho^2 d\phi^2 + dz^2, \quad dV = \rho\,d\rho\,d\phi\,dz.
-        \]
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.43\textwidth}
-      \centering
-      \begin{tikzpicture}[scale=0.8]
-        \draw[fill=orangeacc!15, draw=orangeacc, thick] (0,0) -- (1.5, 0.38) arc (15:55:1.5) -- cycle;
-        \draw[color=navyaccent, dashed] (0,0) -- (2.2, 0.56) arc (15:55:2.2) -- cycle;
-        \node[font=\tiny\bfseries, color=blackmain] at (1.1, 0.85) {$r\,d\theta$};
-        \node[font=\tiny\bfseries, color=orangeacc] at (1.8, 0.38) {$dr$};
-      \end{tikzpicture}
-      \vskip2pt
-      {\scriptsize Elemento de área en polares: $dA = r\,dr\,d\theta$.}
-    \end{column}
-  \end{columns}
-  \begin{exampleblock}{Pregunta de Consolidación}
-    \scriptsize
-    ¿Por qué la raíz cuadrada del determinante del tensor métrico coincide exactamente con el valor absoluto del determinante jacobiano, $\sqrt{\det(g)} = |\det J|$?
-  \end{exampleblock}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Actividad 4: Diferenciales Exactos frente a Inexactos}
-  \begin{block}{Reto en clase (8 minutos)}
-    \footnotesize
-    \begin{enumerate}
-      \itemsep1pt
-      \item[(a)] \textbf{Diferencial Exacto ($df$):} Para el potencial $f(x, y) = x^2 y$, calcula $df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy$. Evalúa $\int_{(0,0)}^{(1,2)} df$ a lo largo de cualquier curva. ¿Depende del camino elegido?
-      \item[(b)] \textbf{Diferencial Inexacto ($\delta W$):} Considera la forma $\delta W = -y\,dx + x\,dy$.
-      Calcula $\int \delta W$ sobre dos caminos distintos que unen $(0,0)$ con $(1,1)$:
-      \begin{itemize}
+      \begin{block}{Generalización de la Rigidez}
         \scriptsize
-        \itemsep0pt
-        \item Camino 1: Recta $y = x$.
-        \item Camino 2: Parábola $y = x^2$.
-      \end{itemize}
-      ¿Dan el mismo resultado? ¿Existe una función $U(x,y)$ tal que $\delta W = dU$?
-    \end{enumerate}
-  \end{block}
-  \begin{alertblock}{Pregunta de Consolidación}
-    \scriptsize
-    ¿Qué propiedad de las funciones de estado en física garantiza que el cambio total entre dos puntos sea independiente de la trayectoria seguida?
-  \end{alertblock}
-\end{frame}
-
-% ---------------------------------------------------------------------
-\begin{frame}{Discusión 4: Exactitud, Independencia de Camino y Síntesis}
-  \begin{columns}[c]
-    \begin{column}{0.54\textwidth}
-      \footnotesize
-      \begin{itemize}
-        \itemsep1pt
-        \item \textbf{Diferencial Exacto $df$:}
-        Proviene de una función escalar $f$. Cumple la condición de integrabilidad $\partial_x F_y = \partial_y F_x$.
-        \[
-        \int_A^B df = f(B) - f(A), \qquad \oint df = 0.
-        \]
-        \item \textbf{Diferencial Inexacto $\delta W$:}
-        Depende de la trayectoria recorrida:
-        \[
-        \int_{\text{recta}} \delta W = 0 \neq \int_{\text{parábola}} \delta W = \frac{1}{3}.
-        \]
-        \item \textbf{Síntesis:} $J^i{}_a$ transforma variables, $g_{ab}$ mide distancias y volúmenes, y la integrabilidad distingue funciones de estado de transferencias.
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.43\textwidth}
-      \begin{block}{Condición de Integrabilidad}
-        \footnotesize
-        Para $\omega = P\,dx + Q\,dy$:
-        \[
-        \omega \text{ es exacto} \iff \frac{\partial Q}{\partial x} = \frac{\partial P}{\partial y}.
-        \]
-        Representa la simetría de derivadas cruzadas de Schwarz: $\partial_x\partial_y f = \partial_y\partial_x f$.
+        En una transformación ortogonal rígida global $R$, vimos que $R^T R = I$ (la métrica permanecía inalterada).
+        \vskip4pt
+        Para coordenadas curvilíneas no homogéneas, la matriz $J$ varía en cada punto y la matriz métrica $g = J^T J$ ya no es la identidad, sino una función dependiente de la posición que codifica la distorsión del reticulado.
       \end{block}
     \end{column}
   \end{columns}
-  \begin{exampleblock}{Pregunta Final de Cierre}
-    \scriptsize
-    ¿Cómo se relacionan la simetría de derivadas cruzadas de Schwarz y la exactitud de un diferencial con el concepto de fuerza conservativa?
-  \end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 8: ELEMENTO DE LÍNEA Y FACTORES DE LAMÉ
+% ---------------------------------------------------------------------
+\begin{frame}{El Elemento de Línea y los Factores de Escala de Lamé}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep5pt
+        \item \textbf{El Cuadrado de la Distancia Infinitesimal:}
+        El desplazamiento vectorial es $d\vec{r} = \vec{e}_a du^a$. Su norma al cuadrado define el elemento de línea euclidiano:
+        \[
+        ds^2 = \|d\vec{r}\|^2 = d\vec{r} \cdot d\vec{r} = (\vec{e}_a du^a) \cdot (\vec{e}_b du^b).
+        \]
+        \[
+        \boxed{ds^2 = g_{ab}\, du^a du^b}
+        \]
+        \item \textbf{Coordenadas Ortogonales:}
+        Si $\vec{e}_a \cdot \vec{e}_b = 0$ para todo $a \neq b$, la matriz métrica es estrictamente diagonal: $g_{ab} = 0$ ($a \neq b$).
+        \item \textbf{Factores de Escala de Lamé $h_a$:}
+        Definidos como las longitudes de los vectores de la base:
+        \[
+        \boxed{h_a \equiv \sqrt{g_{aa}} = \|\vec{e}_a\|} \implies ds^2 = \sum_{a=1}^n (h_a\, du^a)^2
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \footnotesize
+      \begin{block}{Elemento de Línea Polar}
+        \scriptsize
+        En coordenadas polares:
+        \[
+        g = \begin{pmatrix} 1 & 0 \\ 0 & r^2 \end{pmatrix} \implies h_r = 1, \; h_\theta = r.
+        \]
+        El elemento de longitud adopta la forma de Pitágoras curvilíneo:
+        \[
+        ds^2 = dr^2 + r^2 d\theta^2.
+        \]
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 9: CILÍNDRICAS Y ESFÉRICAS
+% ---------------------------------------------------------------------
+\begin{frame}{Métricas en Coordenadas Cilíndricas y Esféricas}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \footnotesize
+      \textbf{Coordenadas Cilíndricas $(\rho, \phi, z)$:}
+      \begin{itemize}\scriptsize\itemsep2pt
+        \item Relación: $x = \rho\cos\phi, \; y = \rho\sin\phi, \; z = z$.
+        \item Factores de Lamé: $h_\rho = 1, \; h_\phi = \rho, \; h_z = 1$.
+        \item Matriz Métrica:
+        \[
+        g = \begin{pmatrix} 1 & 0 & 0 \\ 0 & \rho^2 & 0 \\ 0 & 0 & 1 \end{pmatrix}.
+        \]
+        \item Elemento de línea:
+        \[
+        \boxed{ds^2 = d\rho^2 + \rho^2 d\phi^2 + dz^2}
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.50\textwidth}
+      \footnotesize
+      \textbf{Coordenadas Esféricas $(r, \theta, \phi)$:}
+      \begin{itemize}\scriptsize\itemsep2pt
+        \item Relación:
+        $x = r\sin\theta\cos\phi, \; y = r\sin\theta\sin\phi, \; z = r\cos\theta$.
+        \item Factores de Lamé:
+        $h_r = 1, \; h_\theta = r, \; h_\phi = r\sin\theta$.
+        \item Matriz Métrica:
+        \[
+        g = \begin{pmatrix} 1 & 0 & 0 \\ 0 & r^2 & 0 \\ 0 & 0 & r^2\sin^2\theta \end{pmatrix}.
+        \]
+        \item Elemento de línea:
+        \[
+        \boxed{ds^2 = dr^2 + r^2 d\theta^2 + r^2\sin^2\theta\, d\phi^2}
+        \]
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 10: DEFORMACIÓN DE VOLÚMENES Y DET J
+% ---------------------------------------------------------------------
+\begin{frame}{Deformación de Volúmenes y la Relación $\sqrt{\det g} = |\det J|$}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep5pt
+        \item \textbf{Elemento de Volumen Diferencial:}
+        El paralelepípedo infinitesimal generado por desplazamientos coordenados tiene volumen físico orientado:
+        \[
+        dV = |d\vec{r}_1 \cdot (d\vec{r}_2 \times d\vec{r}_3)| = |\vec{e}_1 \cdot (\vec{e}_2 \times \vec{e}_3)|\, du^1 du^2 du^3.
+        \]
+        \item \textbf{Conexión con el Determinante Métrico:}
+        Usando la relación matricial $g = J^T J$:
+        \[
+        \det(g) = \det(J^T J) = \det(J^T)\det(J) = (\det J)^2.
+        \]
+        Por consiguiente, el factor volumétrico es exactamente:
+        \[
+        \boxed{dV = \sqrt{\det(g)}\, du^1 \cdots du^n = |\det(J)|\, du^1 \cdots du^n}
+        \]
+        \item \textbf{En Sistemas Ortogonales:}
+        $\sqrt{\det(g)} = \sqrt{h_1^2 h_2^2 \cdots h_n^2} = h_1 h_2 \cdots h_n$.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \footnotesize
+      \begin{block}{Factores Físicos de Integración}
+        \scriptsize
+        \begin{itemize}\itemsep1pt
+          \item \textbf{Área Polar:}
+          $dA = r\, dr\, d\theta$.
+          \item \textbf{Volumen Cilíndrico:}
+          $dV = \rho\, d\rho\, d\phi\, dz$.
+          \item \textbf{Volumen Esférico:}
+          $dV = r^2\sin\theta\, dr\, d\theta\, d\phi$.
+        \end{itemize}
+        El factor geométrico surge de forma unificada a partir de la métrica $g$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 11: PREGUNTAS SOBRE MÉTRICA Y VOLÚMENES
+% ---------------------------------------------------------------------
+\begin{frame}{Geometría Métrica y Deformación Espacial}
+  \vspace{0.2cm}
+  Sobre la integración de áreas, volúmenes y tensores métricos:
+  \vspace{0.3cm}
+  \begin{enumerate}\itemsep14pt
+    \item Si un observador calcula el volumen de una región integrando $\iiint dV$, demuestra formalmente por qué el resultado numérico final es estrictamente el mismo independientemente de emplear coordenadas cartesianas, cilíndricas o esféricas.
+    \item En coordenadas esféricas, ¿por qué el factor de escala $h_\phi = r\sin\theta$ depende simultáneamente del radio $r$ y de la colatitud $\theta$? ¿Cuál es el significado geométrico de su anulación en el eje polar $\theta = 0, \pi$?
+    \item Si se define un sistema en el plano donde los vectores de la base son unitarios pero forman un ángulo constante $\alpha$ entre sí, determina la matriz métrica $g_{ab}$ y la fórmula explícita para la distancia infinitesimal $ds^2$.
+  \end{enumerate}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 12: DIFERENCIALES EXACTOS E INEXACTOS
+% ---------------------------------------------------------------------
+\begin{frame}{Diferenciales Exactos e Inexactos en la Física}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep1pt
+        \item \textbf{Diferencial Exacto ($df$):}
+        Proviene del gradiente de una función escalar potencial $f(x, y)$:
+        \[
+        df = \frac{\partial f}{\partial x} dx + \frac{\partial f}{\partial y} dy.
+        \]
+        La integral depende solo de los puntos inicial y final:
+        \[
+        \boxed{\int_{\mathcal{C}_A^B} df = f(B) - f(A) \iff \oint df = 0}
+        \]
+        Representa funciones de estado y fuerzas conservativas.
+        \item \textbf{Diferencial Inexacto ($\delta W$):}
+        Forma $\delta W = P\,dx + Q\,dy$ no integrable a un potencial global. Su integral depende de la trayectoria: $\boxed{\oint \delta W \neq 0}$. Modela magnitudes de proceso (trabajo o calor).
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.82]
+        \coordinate (A) at (0.3, 0.4);
+        \coordinate (B) at (2.4, 1.7);
+        \draw[-{Stealth}, line width=1.3pt, color=orangeacc] (A) to[out=60, in=190] (B);
+        \draw[-{Stealth}, line width=1.3pt, color=navyaccent] (A) to[out=0, in=260] (B);
+        \fill[blackmain] (A) circle (2pt) node[below left, font=\scriptsize\bfseries] {$A$};
+        \fill[blackmain] (B) circle (2pt) node[above right, font=\scriptsize\bfseries] {$B$};
+        \node[font=\tiny\bfseries, color=orangeacc] at (0.9, 1.6) {$\mathcal{C}_1$};
+        \node[font=\tiny\bfseries, color=navyaccent] at (1.8, 0.7) {$\mathcal{C}_2$};
+      \end{tikzpicture}
+      {\scriptsize Si $df$ es exacto: $\int_{\mathcal{C}_1} df = \int_{\mathcal{C}_2} df = f(B)-f(A)$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 13: CONDICIÓN DE INTEGRABILIDAD DE SCHWARZ
+% ---------------------------------------------------------------------
+\begin{frame}{Condición de Integrabilidad y Simetría de Derivadas Cruzadas}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \footnotesize
+      \begin{itemize}\itemsep1pt
+        \item \textbf{Criterio de Exactitud para $\omega = P\,dx + Q\,dy$:}
+        Si $\omega = df$, entonces $P = \frac{\partial f}{\partial x}$ y $Q = \frac{\partial f}{\partial y}$.
+        \item \textbf{Simetría de Derivadas de Schwarz:}
+        Para funciones $\mathcal{C}^2$, $\frac{\partial^2 f}{\partial y \partial x} = \frac{\partial^2 f}{\partial x \partial y}$. Por tanto:
+        \[
+        \boxed{\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x} \iff \frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y} = 0}
+        \]
+        \item \textbf{Conexión con Campos Conservativos:}
+        Para $\vec{F} = P\hat{i} + Q\hat{j}$, equivale a la anulación del rotacional:
+        \[
+        \vec{\nabla} \times \vec{F} = \vec{0} \iff \vec{F} = -\vec{\nabla}V.
+        \]
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \footnotesize
+      \begin{block}{Topología y Lema de Poincaré}
+        \scriptsize
+        En un dominio simplemente conexo (sin agujeros), la condición local de simetría $\partial_y P = \partial_x Q$ es suficiente para garantizar la existencia global de una función potencial unívoca $f(x,y)$.
+      \end{block}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------------
+% SLIDE 14: PREGUNTAS DE SÍNTESIS DEL MÓDULO 00
+% ---------------------------------------------------------------------
+\begin{frame}{El Arsenal Indicial y la Geometría Diferencial}
+  \vspace{0.2cm}
+  Consolidación de las bases matemáticas construidas a lo largo del módulo:
+  \vspace{0.3cm}
+  \begin{enumerate}\itemsep14pt
+    \item ¿Cómo unifica la condición de integrabilidad $\frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$ los principios de conservación mecánica, la independencia de trayectoria del trabajo y la simetría de derivadas parciales?
+    \item ¿De qué manera la contracción métrica $g_{ab} du^a du^b$ absorbe e integra todas las distorsiones de escala y curvatura de coordenadas provocadas por la elección de un sistema curvilíneo arbitrario?
+    \item Habiendo formulado vectores, índices de Einstein, símbolos de Levi-Civita, rotaciones y tensores métricos, ¿cuál es la ventaja conceptual de expresar las leyes de la física mediante identidades tensoriales independientes de las coordenadas?
+  \end{enumerate}
 \end{frame}
 
 \end{document}

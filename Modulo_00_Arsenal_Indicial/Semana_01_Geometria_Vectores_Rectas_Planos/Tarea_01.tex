@@ -12,25 +12,25 @@
 \begin{center}
 {\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
 {\Large\textcolor{orangeacc}{\textbf{Tarea 1: Geometría de Vectores, Espacios Vectoriales, Rectas y Planos}}}\\[0.2cm]
-{\large\textcolor{graymuted}{Nivel: Licenciatura en Física e Ingeniería --- Módulo 0: Arsenal Indicial}}\\[0.25cm]
+{\large\textcolor{graymuted}{Módulo 0: El Arsenal Indicial y Geométrico}}\\[0.25cm]
 \end{center}
 
 \vspace{0.2cm}
 
-\noindent\textbf{Instrucciones:} Esta tarea está diseñada para construir tanto la intuición geométrica y física como el dominio formal de espacios vectoriales, subespacios, proyecciones, rectas y planos en $\R^3$. Acompaña tus desarrollos de \textbf{esquemas geométricos claros} y justifica formalmente cada paso.
+\noindent\textbf{Instrucciones:} Desarrolla cada problema justificando tanto la interpretación geométrica como los pasos algebraicos formales. Acompaña tus soluciones con \textbf{esquemas geométricos claros}.
 
 % =============================================================================
-\manualsection{Parte A: Construcción Visual, Espacio Afín y Proyecciones}
+\manualsection{Parte A: Construcción Geométrica, Espacio Afín y Proyecciones}
 
-\begin{infobox}{Problema 1: Puntos vs. Vectores e Invariancia por Traslación en un Puente}
-Un ingeniero estructural coloca tres sensores en los nodos de una armadura metálica. Medidos desde la caseta de control $O = (0,0,0)$, las posiciones de los nodos son:
+\begin{infobox}{Problema 1: Puntos vs. Vectores e Invariancia por Traslación}
+Se colocan tres sensores en los vértices de una estructura triangular en el espacio. Medidas desde un origen de referencia $O = (0,0,0)$, las posiciones de los vértices son:
 \[
     A = (2, 1, 3)\,\text{m}, \qquad B = (5, 5, 3)\,\text{m}, \qquad C = (1, 4, 7)\,\text{m}.
 \]
 \begin{enumerate}[label=(\alph*)]
-    \item Calcula los vectores de las barras $\vec{u} = \overrightarrow{AB} = B - A$ y $\vec{v} = \overrightarrow{AC} = C - A$, así como el vector del tercer lado $\vec{w} = \overrightarrow{BC} = C - B$. Verifica algebraica y geométricamente que $\vec{w} = \vec{v} - \vec{u}$ (segunda diagonal del paralelogramo).
-    \item Un segundo ingeniero coloca su propio origen de coordenadas en el punto $O' = (10, -4, 2)\,\text{m}$, por lo que las nuevas coordenadas de cada punto son $P' = P - O'$. Calcula las nuevas coordenadas $A', B', C'$ y demuestra que los vectores de desplazamiento $\overrightarrow{A'B'}$ y $\overrightarrow{A'C'}$ permanecen \textbf{exactamente iguales}. ¿Por qué el conjunto de puntos fijos es un \emph{espacio afín} y no un espacio vectorial canónico si no fijamos antes un origen?
-    \item Demuestra que la combinación baricéntrica $G = \frac{1}{3}A + \frac{1}{3}B + \frac{1}{3}C$ (centroide del triángulo $\triangle ABC$) sí define el mismo punto físico sin importar dónde se elija el origen $O$. (\emph{Pista:} Escribe $O'G = \frac{1}{3}(A-O') + \frac{1}{3}(B-O') + \frac{1}{3}(C-O')$ y usa que $\frac{1}{3}+\frac{1}{3}+\frac{1}{3}=1$).
+    \item Calcula los vectores de las aristas $\vec{u} = \overrightarrow{AB} = B - A$ y $\vec{v} = \overrightarrow{AC} = C - A$, así como el vector del tercer lado $\vec{w} = \overrightarrow{BC} = C - B$. Verifica algebraica y geométricamente que $\vec{w} = \vec{v} - \vec{u}$ (segunda diagonal del paralelogramo).
+    \item Un segundo observador fija su origen de coordenadas en el punto $O' = (10, -4, 2)\,\text{m}$, por lo que las nuevas coordenadas de cada punto son $P' = P - O'$. Calcula las nuevas coordenadas $A', B', C'$ y demuestra que los vectores de desplazamiento $\overrightarrow{A'B'}$ y $\overrightarrow{A'C'}$ permanecen \textbf{exactamente iguales}. ¿Por qué el conjunto de puntos del espacio es un \emph{espacio afín} y no un espacio vectorial canónico mientras no se elija un origen privilegiado?
+    \item Demuestra que la combinación baricéntrica $G = \frac{1}{3}A + \frac{1}{3}B + \frac{1}{3}C$ (centroide del triángulo $\triangle ABC$) sí define el mismo punto geométrico sin importar dónde se elija el origen $O$. (\emph{Pista:} Escribe $O'G = \frac{1}{3}(A-O') + \frac{1}{3}(B-O') + \frac{1}{3}(C-O')$ y usa que $\frac{1}{3}+\frac{1}{3}+\frac{1}{3}=1$).
 \end{enumerate}
 \end{infobox}
 
@@ -93,17 +93,17 @@ Dados dos vectores cualesquiera $\vec{u} = \langle u_1, u_2, u_3 \rangle$ y $\ve
 \end{infobox}
 
 % =============================================================================
-\manualsection{Parte C: Aplicaciones en Física e Ingeniería}
+\manualsection{Parte C: Aplicaciones Físicas y Geométricas}
 
-\begin{infobox}{Problema 5: Intersección de un Rayo Láser con un Panel Solar y Reflexión Óptica}
-Un colector solar plano $\Pi$ está descrito por la ecuación $2x - y + 2z = 12$ (con coordenadas en metros). Desde un emisor situado en $E = (1, 3, 8)\,\text{m}$ se dispara un haz láser en la dirección del vector $\vec{d} = \langle 1, -1, -2 \rangle$.
+\begin{infobox}{Problema 5: Intersección de un Rayo con una Superficie Plana y Reflexión Óptica}
+Una superficie reflectora plana $\Pi$ está descrita por la ecuación $2x - y + 2z = 12$ (con coordenadas en metros). Desde una fuente situada en $E = (1, 3, 8)\,\text{m}$ se emite un haz de luz en la dirección del vector $\vec{d} = \langle 1, -1, -2 \rangle$.
 
 \begin{center}
 \begin{tikzpicture}[scale=0.88]
-    % Panel solar (paralelogramo mas bajo y amplio)
+    % Superficie reflectora (paralelogramo mas bajo y amplio)
     \fill[navyaccent!10] (0,0) -- (6.0,0) -- (7.0,1.1) -- (1.0,1.1) -- cycle;
     \draw[color=navyaccent, line width=1.2pt] (0,0) -- (6.0,0) -- (7.0,1.1) -- (1.0,1.1) -- cycle;
-    \node[color=navyaccent, font=\small\bfseries, right=4pt] at (6.5, 0.55) {Panel Solar $\Pi$};
+    \node[color=navyaccent, font=\small\bfseries, right=4pt] at (6.5, 0.55) {Plano $\Pi$};
 
     \coordinate (I) at (3.7, 0.55);
     \coordinate (E) at (1.3, 3.2);
@@ -121,9 +121,9 @@ Un colector solar plano $\Pi$ está descrito por la ecuación $2x - y + 2z = 12$
 \end{center}
 
 \begin{enumerate}[label=(\alph*)]
-    \item Escribe la ecuación paramétrica de la recta $\vec{r}(t) = E + t\vec{d}$ que sigue el haz láser y determina el parámetro $t^*$ y las coordenadas exactas del \textbf{punto de impacto} $I \in \Pi$.
-    \item Calcula la \textbf{distancia mínima perpendicular} $D(E, \Pi)$ desde el emisor $E$ hasta el plano del panel solar, y encuentra las coordenadas del pie de la perpendicular $P_\perp \in \Pi$.
-    \item \textbf{Ley de la Reflexión Vectorial:} Descompón el vector director incidente $\vec{d} = \vec{d}_\parallel + \vec{d}_\perp$ en su parte paralela al panel solar y su parte perpendicular (a lo largo de la normal $\vec{n}$). Sabiendo que al reflejarse en un espejo plano la componente tangencial $\vec{d}_\parallel$ se conserva y la componente normal $\vec{d}_\perp$ invierte su signo ($\vec{d}_{\text{ref}} = \vec{d}_\parallel - \vec{d}_\perp$), deduce la fórmula vectorial de reflexión:
+    \item Escribe la ecuación paramétrica de la recta $\vec{r}(t) = E + t\vec{d}$ que sigue el haz y determina el parámetro $t^*$ y las coordenadas exactas del \textbf{punto de impacto} $I \in \Pi$.
+    \item Calcula la \textbf{distancia mínima perpendicular} $D(E, \Pi)$ desde la fuente $E$ hasta el plano $\Pi$, y encuentra las coordenadas del pie de la perpendicular $P_\perp \in \Pi$.
+    \item \textbf{Ley de la Reflexión Vectorial:} Descompón el vector director incidente $\vec{d} = \vec{d}_\parallel + \vec{d}_\perp$ en su parte paralela al plano $\Pi$ y su parte perpendicular (a lo largo de la normal $\vec{n}$). Sabiendo que al reflejarse en un espejo plano la componente tangencial $\vec{d}_\parallel$ se conserva y la componente normal $\vec{d}_\perp$ invierte su signo ($\vec{d}_{\text{ref}} = \vec{d}_\parallel - \vec{d}_\perp$), deduce la fórmula vectorial de reflexión:
     \[
         \vec{d}_{\text{ref}} = \vec{d} - 2\left(\frac{\vec{d}\cdot\vec{n}}{\|\vec{n}\|^2}\right)\vec{n},
     \]
@@ -131,15 +131,15 @@ Un colector solar plano $\Pi$ está descrito por la ecuación $2x - y + 2z = 12$
 \end{enumerate}
 \end{infobox}
 
-\begin{infobox}{Problema 6: Falla Geológica y Túnel de Intersección de Dos Planos}
-En ingeniería civil y geofísica, dos estratos rocosos planos $\Pi_1$ y $\Pi_2$ se modelan mediante las ecuaciones:
+\begin{infobox}{Problema 6: Recta de Intersección entre Dos Planos}
+Dos planos $\Pi_1$ y $\Pi_2$ en $\R^3$ están descritos por las ecuaciones cartesianas:
 \[
     \Pi_1:\; x + 2y - z = 3, \qquad \Pi_2:\; 2x - y + 3z = 1.
 \]
 \begin{enumerate}[label=(\alph*)]
-    \item Identifica los vectores normales $\vec{n}_1$ y $\vec{n}_2$ de cada estrato y calcula el ángulo agudo $\theta$ entre ambos planos.
-    \item Sin resolver el sistema por eliminación tradicional para la dirección, utiliza el producto cruz $\vec{v} = \vec{n}_1 \times \vec{n}_2$ para obtener el vector director de la recta de intersección $\mathcal{L} = \Pi_1 \cap \Pi_2$.
-    \item Encuentra un punto $P_0 \in \mathcal{L}$ (por ejemplo, fijando $z = 0$) y escribe la ecuación paramétrica completa $\vec{r}(t) = \vec{p}_0 + t\vec{v}$ de la línea de falla donde se intersectan ambos estratos.
+    \item Identifica los vectores normales $\vec{n}_1$ y $\vec{n}_2$ de cada plano y calcula el ángulo agudo $\theta$ que forman entre sí.
+    \item Utiliza el producto cruz $\vec{v} = \vec{n}_1 \times \vec{n}_2$ para obtener directamente el vector director de la recta de intersección $\mathcal{L} = \Pi_1 \cap \Pi_2$.
+    \item Encuentra un punto $P_0 \in \mathcal{L}$ (por ejemplo, fijando $z = 0$) y escribe la ecuación paramétrica completa $\vec{r}(t) = \vec{p}_0 + t\vec{v}$ de la recta de intersección.
 \end{enumerate}
 \end{infobox}
 

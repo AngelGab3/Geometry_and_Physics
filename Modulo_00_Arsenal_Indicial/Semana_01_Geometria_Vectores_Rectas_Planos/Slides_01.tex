@@ -4,9 +4,9 @@
 \usepackage[spanish,provide=*]{babel}
 
 \title[Semana 1: Geometría, Espacios Vectoriales, Rectas y Planos]{Geometría del Espacio Euclidiano: Vectores, Rectas y Planos}
-\subtitle{Bienvenida al Curso y Semana 01: De la intuición de flechas a la estructura de Espacio Vectorial}
+\subtitle{Introducción al Curso y Semana 01: De la geometría de flechas a la estructura de Espacio Vectorial}
 \author{Geometría y Física I: Mecánica Clásica y Formas de Cartan}
-\institute{Licenciatura en Física e Ingeniería}
+\institute{}
 \date{}
 
 \begin{document}
@@ -19,32 +19,26 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{¡Bienvenidos a Geometría y Física I!}
+\begin{frame}{Bienvenida a Geometría y Física I: Propósito y Objetivos}
   \begin{columns}[c]
-    \begin{column}{0.52\textwidth}
-      \begin{block}{Nuestra Filosofía: «La Necesidad Crea la Herramienta»}
+    \begin{column}{0.49\textwidth}
+      \begin{block}{¿Por qué existe este curso?}
         \footnotesize
-        En este curso para \textbf{Física e Ingeniería} ninguna definición matemática caerá del cielo para memorizarse:
-        \begin{enumerate}
-          \item Partiremos siempre de un \textbf{problema físico o de ingeniería real} donde el cálculo ingenuo entra en crisis.
-          \item Construiremos primero la \textbf{intuición visual y geométrica}.
-          \item Destilaremos a partir de ella la \textbf{definición formal y axiomática} (espacios vectoriales, tensores, formas de Cartan, variedades).
-        \end{enumerate}
+        En los cursos introductorios las leyes físicas suelen presentarse como listas de fórmulas en coordenadas cartesianas. Este curso existe para tender el puente hacia el \textbf{lenguaje geométrico moderno} de la física:
+        \begin{itemize}
+          \item Comprender que los objetos físicos (fuerzas, velocidades, flujos, campos y estados mecánicos) tienen una \textbf{estructura geométrica propia}, independiente del sistema de coordenadas.
+          \item Unificar el álgebra lineal, el cálculo vectorial y la mecánica clásica bajo un marco visual y riguroso: el \textbf{cálculo exterior de Élie Cartan}.
+        \end{itemize}
       \end{block}
     \end{column}
-    \begin{column}{0.45\textwidth}
-      \begin{exampleblock}{¿Cómo trabajaremos en cada sesión?}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{¿Qué lograrás al terminar el semestre?}
         \footnotesize
-        \begin{itemize}
-          \item \textbf{Modalidad Taller:} Alternaremos \textbf{Actividades en equipo} (retos cortos de 8--10 min) con \textbf{Discusiones grupales} y formalización.
-          \item \textbf{Tríptico Semanal:}
-          \begin{itemize}
-            \scriptsize
-            \item \texttt{Lectura\_XX.pdf}: Notas detalladas con figuras y teoremas.
-            \item \texttt{Slides\_XX.pdf}: Taller interactivo en clase.
-            \item \texttt{Tarea\_XX.pdf}: Construcción visual, algebraica y aplicada.
-          \end{itemize}
-        \end{itemize}
+        \begin{enumerate}
+          \item \textbf{Dominio algebraico y geométrico en $\R^n$:} Operar con soltura usando espacios vectoriales, notación indicial ($\delta_{ij}, \epsilon_{ijk}$), rotaciones en $SO(3)$ y métricas curvilíneas $g_{ij}$.
+          \item \textbf{Dominio de las Formas Diferenciales:} Visualizar y calcular con $k$-formas, producto cuña ($\wedge$), derivada exterior ($d$) y el Teorema Generalizado de Stokes $\int_{\partial\Omega}\omega = \int_\Omega d\omega$.
+          \item \textbf{Mecánica Geométrica:} Formular la dinámica lagrangiana en $TQ$ y hamiltoniana en $T^*Q$ mediante la forma simpléctica $\omega = dp_i \wedge dq^i$.
+        \end{enumerate}
       \end{exampleblock}
     \end{column}
   \end{columns}
@@ -101,14 +95,14 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 1: Puntos vs. Flechas y el Riel de un Dron}
+\begin{frame}{Actividad 1: Puntos vs. Flechas y Movimiento Rectilíneo}
   \begin{block}{Reto en clase (8 minutos)}
     \footnotesize
-    Un dron de inspección despega desde la plataforma $P_0 = (1, 2, 1)\,\text{m}$ y después de $1\,\text{s}$ pasa por $P_1 = (3, 5, 3)\,\text{m}$ volando en línea recta a velocidad constante.
+    Una partícula parte de la posición $P_0 = (1, 2, 1)\,\text{m}$ y después de $1\,\text{s}$ pasa por $P_1 = (3, 5, 3)\,\text{m}$ moviéndose en línea recta a velocidad constante.
     \begin{enumerate}
-      \item[(a)] \textbf{La trampa de sumar ubicaciones:} ¿Tiene sentido físico «sumar el lugar $P_0$ con el lugar $P_1$»? ¿Qué le pasa a $P_0 + P_1$ si un ingeniero civil mueve el origen $(0,0,0)$ a la esquina opuesta del edificio?
+      \item[(a)] \textbf{La trampa de sumar ubicaciones:} ¿Tiene sentido físico «sumar el lugar $P_0$ con el lugar $P_1$»? ¿Qué le pasa a $P_0 + P_1$ si un segundo observador mueve el origen $(0,0,0)$ a otro punto del espacio?
       \item[(b)] \textbf{El vector desplazamiento:} Calcula $\vec{v} = P_1 - P_0$. Demuestra que si trasladamos el origen sumando una constante $\vec{c}$ a todos los puntos ($P' = P + \vec{c}$), el vector $\vec{v}$ \textbf{no cambia}.
-      \item[(c)] \textbf{Construcción de la recta:} Si el dron mantiene su dirección $\vec{v}$ en todo instante $t \in \R$, escribe una fórmula para su posición $\vec{r}(t)$ y determina en qué instante $t$ alcanza la altura $z = 9\,\text{m}$.
+      \item[(c)] \textbf{Construcción de la recta:} Si la partícula mantiene su dirección $\vec{v}$ en todo instante $t \in \R$, escribe una fórmula para su posición $\vec{r}(t)$ y determina en qué instante $t$ alcanza la altura $z = 9\,\text{m}$.
     \end{enumerate}
   \end{block}
   \begin{alertblock}{Pregunta Guía}
@@ -215,9 +209,9 @@
       \item[(b)] \textbf{Descomposición sobre un Riel:} Una fuerza $\vec{F}$ jala un vagón sobre un riel con dirección $\vec{v}$. Escribe $\vec{F} = \vec{F}_\parallel + \vec{F}_\perp$, donde $\vec{F}_\parallel = c\vec{v}$ es paralela al riel y $\vec{F}_\perp$ es perpendicular ($\vec{F}_\perp \cdot \vec{v} = 0$). Toma el producto punto con $\vec{v}$ para despejar el escalar $c$.
     \end{enumerate}
   \end{block}
-  \begin{exampleblock}{Pregunta de Ingeniería}
+  \begin{exampleblock}{Pregunta Clave}
     \footnotesize
-    Si queremos saber qué parte de la fuerza $\vec{F}$ intenta descarrilar el vagón lateralmente ($\vec{F}_\perp$), ¿cómo la calculamos sin medir ningún ángulo $\theta$ con transportador?
+    Si queremos conocer la componente normal $\vec{F}_\perp$ que presiona lateralmente el riel, ¿cómo la calculamos directamente a partir de las componentes de $\vec{F}$ y $\vec{v}$ sin medir el ángulo $\theta$?
   \end{exampleblock}
 \end{frame}
 
@@ -280,9 +274,9 @@
       \item[(b)] ¿Qué sucede si intercambias el orden de los vectores ($\vec{v} \times \vec{u}$ en vez de $\vec{u} \times \vec{v}$)? ¿Por qué el flujo de un fluido a través de una ventana necesita una normal con signo?
     \end{enumerate}
   \end{block}
-  \begin{alertblock}{Observación Constructivista}
+  \begin{alertblock}{Idea Clave}
     \footnotesize
-    El producto cruz nace directamente de resolver el sistema de ortogonalidad simultánea $\vec{u}\cdot\vec{n}=0$ y $\vec{v}\cdot\vec{n}=0$.
+    El producto cruz surge directamente de resolver el sistema de ortogonalidad simultánea $\vec{u}\cdot\vec{n}=0$ y $\vec{v}\cdot\vec{n}=0$.
   \end{alertblock}
 \end{frame}
 
@@ -334,14 +328,14 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 4: Dos Ingenieros Describen el Mismo Plano}
+\begin{frame}{Actividad 4: Dos Descripciones Duales del Mismo Plano}
   \begin{block}{Reto en clase (10 minutos)}
     \footnotesize
-    Queremos describir la superficie plana de una mesa inclinada que pasa por $P_0 = (1,0,2)$ y es generada por los vectores $\vec{v}_1 = (1, 1, 0)$ y $\vec{v}_2 = (0, 1, 1)$.
+    Queremos describir una superficie plana $\Pi$ que pasa por $P_0 = (1,0,2)$ y es generada por los vectores $\vec{v}_1 = (1, 1, 0)$ y $\vec{v}_2 = (0, 1, 1)$.
     \begin{enumerate}
-      \item[(a)] \textbf{Ingeniero A (Visión Paramétrica e Independencia Lineal):} Usa dos coordenadas internas $(u,v) \in \R^2$ para caminar sobre la mesa: $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$. ¿Qué pasaría si $\vec{v}_2$ fuera múltiplo de $\vec{v}_1$?
-      \item[(b)] \textbf{Ingeniero B (Visión Normal):} Prefiere una sola ecuación que ponga un «candado» a la dirección perpendicular a la mesa. Calcula $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe $\vec{n}\cdot(\vec{r} - \vec{p}_0) = 0$ en la forma $n_1 x + n_2 y + n_3 z = d$.
-      \item[(c)] \textbf{La Familia de Planos Paralelos:} ¿Qué representa geométricamente cambiar $d$ en $x - y + z = d$ para $d = 0, 1, 2, 3, \dots$? Si un proyectil se desplaza $\vec{w} = (2, -1, 3)$, ¿cuántos planos perfora?
+      \item[(a)] \textbf{Descripción Interna (Paramétrica e Independencia Lineal):} Usamos dos coordenadas $(u,v) \in \R^2$ para movernos sobre el plano: $\vec{r}(u,v) = \vec{p}_0 + u\vec{v}_1 + v\vec{v}_2$. ¿Qué ocurriría geométricamente si $\vec{v}_2$ fuera múltiplo escalar de $\vec{v}_1$?
+      \item[(b)] \textbf{Descripción Externa (Ecuación Normal):} Podemos caracterizar el mismo plano mediante una sola ecuación que restrinja la dirección perpendicular. Calcula $\vec{n} = \vec{v}_1 \times \vec{v}_2$ y escribe $\vec{n}\cdot(\vec{r} - \vec{p}_0) = 0$ en la forma $n_1 x + n_2 y + n_3 z = d$.
+      \item[(c)] \textbf{Familia de Planos Paralelos:} ¿Qué representa geométricamente variar $d$ en $x - y + z = d$ para $d = 0, 1, 2, 3, \dots$? Si una partícula experimenta el desplazamiento $\vec{w} = (2, -1, 3)$, ¿cuántos planos de esta familia atraviesa?
     \end{enumerate}
   \end{block}
 \end{frame}

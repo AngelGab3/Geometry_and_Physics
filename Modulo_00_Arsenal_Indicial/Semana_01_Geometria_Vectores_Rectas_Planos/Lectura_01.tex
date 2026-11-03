@@ -12,8 +12,8 @@
 \begin{center}
 {\LARGE\textbf{Geometría y Física I: Mecánica Clásica y Formas de Cartan}}\\[0.25cm]
 {\Large\textcolor{orangeacc}{\textbf{Semana 1: Geometría del Espacio Euclidiano, Espacios Vectoriales, Rectas y Planos}}}\\[0.15cm]
-{\large\textbf{De la intuición geométrica de flechas y proyecciones a la estructura formal de $\R^3$}}\\[0.3cm]
-{\large\textcolor{graymuted}{Notas de Clase Constructivistas --- Licenciatura en Física e Ingeniería}}\\[0.2cm]
+{\large\textbf{De la geometría de flechas y proyecciones a la estructura formal de $\R^3$}}\\[0.3cm]
+{\large\textcolor{graymuted}{Notas de Estudio --- Módulo 0: El Arsenal Indicial y Geométrico}}\\[0.2cm]
 \end{center}
 
 \vspace{0.2cm}
@@ -21,17 +21,17 @@
 % =====================================================================
 \manualsection[1. Puntos, Vectores y Espacio Vectorial]{1. Puntos vs. Flechas: De la Geometría del Movimiento a la Definición de Espacio Vectorial}
 
-Cuando un ingeniero diseña la estructura de un puente o un físico estudia la trayectoria de un satélite, conviven dos objetos geométricos que en la escritura cotidiana suelen confundirse porque ambos se representan mediante ternas de números $(x, y, z)$, pero que física y matemáticamente tienen naturalezas opuestas:
+Cuando describimos el equilibrio de una estructura o la trayectoria de una partícula en el espacio, conviven dos objetos geométricos que en la escritura cotidiana suelen confundirse porque ambos se representan mediante ternas de números $(x, y, z)$, pero que física y matemáticamente tienen naturalezas opuestas:
 
-\begin{intuitionbox}{La Necesidad de Distinguir Ubicaciones de Desplazamientos}
+\begin{intuitionbox}{Distinción entre Ubicaciones y Desplazamientos}
 \begin{itemize}
-    \item \term{Un Punto $P = (x, y, z)$:} Es una \textbf{posición o ubicación fija} en el espacio físico (la esquina de un edificio, el nodo de una armadura metálica). No tiene sentido físico «sumar dos lugares» ni hablar de la longitud de un lugar: si cambiamos el origen de nuestro sistema de medición, las coordenadas de $P$ cambian.
-    \item \term{Un Vector $\vec{v} = \langle v_1, v_2, v_3 \rangle$:} Es una \textbf{instrucción de desplazamiento, velocidad o fuerza} que posee magnitud, dirección y sentido. Si estás en el punto inicial $P_0 = (x_0, y_0, z_0)$ y te desplazas hasta el punto final $P_1 = (x_1, y_1, z_1)$, el vector desplazamiento que los conecta es:
+    \item \term{Un Punto $P = (x, y, z)$:} Es una \textbf{posición o ubicación fija} en el espacio. No tiene sentido físico «sumar dos lugares» ni hablar de la longitud de un lugar: si cambiamos el origen de nuestro sistema de referencia, las coordenadas de $P$ cambian.
+    \item \term{Un Vector $\vec{v} = \langle v_1, v_2, v_3 \rangle$:} Es una \textbf{instrucción de desplazamiento, velocidad o fuerza} que posee magnitud, dirección y sentido. Si partimos de un punto inicial $P_0 = (x_0, y_0, z_0)$ y nos desplazamos hasta el punto final $P_1 = (x_1, y_1, z_1)$, el vector desplazamiento que los conecta es:
     \[
     \vec{v} = \overrightarrow{P_0 P_1} = P_1 - P_0 = \langle x_1 - x_0,\; y_1 - y_0,\; z_1 - z_0 \rangle.
     \]
 \end{itemize}
-\textbf{Relación fundamental (Espacio Afín):} $\text{Punto final} = \text{Punto inicial} + \text{Vector desplazamiento}$ ($P_1 = P_0 + \vec{v}$). Si dos ingenieros eligen orígenes distintos ($P' = P + \vec{c}$), la diferencia $\vec{v}' = P'_1 - P'_0 = (P_1 + \vec{c}) - (P_0 + \vec{c}) = P_1 - P_0 = \vec{v}$ permanece \textbf{invariante}.
+\textbf{Relación fundamental (Espacio Afín):} $\text{Punto final} = \text{Punto inicial} + \text{Vector desplazamiento}$ ($P_1 = P_0 + \vec{v}$). Si dos observadores eligen orígenes distintos ($P' = P + \vec{c}$), la diferencia $\vec{v}' = P'_1 - P'_0 = (P_1 + \vec{c}) - (P_0 + \vec{c}) = P_1 - P_0 = \vec{v}$ permanece \textbf{invariante}.
 \end{intuitionbox}
 
 \manualsubsection{Construcción Geométrica de la Suma, Resta y Escalamiento}
@@ -249,7 +249,7 @@ Todo producto interno induce una \textbf{norma (longitud)} $\|\vec{u}\| \equiv \
 % =====================================================================
 \manualsection[4. El Producto Cruz y Áreas]{4. El Producto Cruz: Midiendo Áreas y Construyendo Normales}
 
-En problemas de ingeniería y física en 3D surge constantemente una necesidad geométrica clave: \textbf{dados dos vectores no paralelos $\vec{u}$ y $\vec{v}$, ¿cómo construimos un tercer vector $\vec{n}$ que sea simultáneamente perpendicular a ambos?} (Por ejemplo, el eje de giro de una tuerca al aplicar una llave inglesa, o el vector normal a una placa).
+En la geometría tridimensional surge constantemente una pregunta fundamental: \textbf{dados dos vectores no paralelos $\vec{u}$ y $\vec{v}$, ¿cómo construimos un tercer vector $\vec{n}$ que sea simultáneamente perpendicular a ambos?} (Por ejemplo, el eje de giro asociado a una torca $\vec{\tau} = \vec{r} \times \vec{F}$, o el vector normal a una superficie).
 
 \begin{infobox}{Construyendo el Vector Perpendicular $\vec{n} = \vec{u} \times \vec{v}$ desde Cero}
 Buscamos un vector $\vec{n} = \langle n_1, n_2, n_3 \rangle$ que cumpla dos ecuaciones de ortogonalidad simultáneas:

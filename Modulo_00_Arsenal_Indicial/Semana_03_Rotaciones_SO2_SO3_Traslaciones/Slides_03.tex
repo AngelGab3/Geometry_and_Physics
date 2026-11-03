@@ -4,7 +4,7 @@
 \usepackage[spanish,provide=*]{babel}
 
 \title[Semana 3: Rotaciones $SO(2), SO(3)$ y Traslaciones]{El Grupo de Rotaciones $SO(2)$, $SO(3)$ y Traslaciones}
-\subtitle{Rigidez, Ortogonalidad, Orientación y Velocidad Angular}
+\subtitle{Rigidez, Definición Formal de Grupo, Fórmula de Rodrigues y Transformaciones Activas/Pasivas}
 \author{Geometría y Física I: Mecánica Clásica y Formas de Cartan}
 \institute{}
 \date{}
@@ -19,59 +19,84 @@
 \end{frame}
 
 % ---------------------------------------------------------------------
+\begin{frame}{Activación: Conexión con la Sesión Anterior}
+  \begin{block}{Recordando el Arsenal de Índices (Semana 02)}
+    \footnotesize
+    En la sesión anterior construimos dos herramientas maestras en la base canónica $\{\hat{e}_1, \hat{e}_2, \hat{e}_3\}$:
+    \[
+    \delta_{ij} \equiv \hat{e}_i \cdot \hat{e}_j \quad (\text{ortogonalidad y norma}), \qquad
+    \epsilon_{ijk} \equiv \hat{e}_i \cdot (\hat{e}_j \times \hat{e}_k) \quad (\text{volumen orientado de la base}).
+    \]
+  \end{block}
+  \begin{alertblock}{Preguntas de Arranque para la Clase}
+    \footnotesize
+    \begin{enumerate}
+      \item Si transformamos la base mediante una matriz $R$ tal que $\hat{e}'_i = R_{ki}\hat{e}_k$, ¿qué condición debe cumplir $R$ para que el producto punto siga siendo $\delta_{ij}$?
+      \item ¿Qué le ocurre al volumen orientado $\epsilon_{123} = +1$ si transformamos el espacio con una matriz de determinante arbitrario $\det(R)$?
+    \end{enumerate}
+  \end{alertblock}
+  \begin{exampleblock}{Para reflexionar en equipo}
+    \scriptsize
+    ¿Cómo garantizamos matemáticamente que un objeto en movimiento gire sin deformarse ni cambiar de tamaño?
+  \end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
 \begin{frame}{Actividad 1: La Física de la Rigidez y la Condición $R^T R = I$}
   \begin{block}{Reto en clase (8 minutos)}
     \footnotesize
-    Consideremos un cuerpo rígido en rotación. Dos partículas del cuerpo están unidas por vectores $\vec{u}$ y $\vec{v}$.
+    Consideremos un cuerpo rígido. Dos partículas cualesquiera están unidas por vectores $\vec{u}$ y $\vec{v}$.
     \begin{enumerate}
       \item[(a)] \textbf{Conservación de Longitudes y Ángulos:} La transformación $\vec{u}' = R\vec{u}$ debe conservar el producto interno: $\langle R\vec{u}, R\vec{v} \rangle = \langle \vec{u}, \vec{v} \rangle$. Usa la definición de transpuesta $\langle \vec{x}, A\vec{y} \rangle = \langle A^T\vec{x}, \vec{y} \rangle$ para reescribir esta condición.
       \item[(b)] \textbf{La Matriz Identidad:} Si la igualdad se cumple para todos los vectores posibles, demuestra que:
       \[
       R^T R = I \quad \Longleftrightarrow \quad R^{-1} = R^T.
       \]
-      \item[(c)] \textbf{Ortonormalidad de Columnas:} Escribe $R = [\vec{c}_1 \mid \vec{c}_2 \mid \vec{c}_3]$ en términos de sus vectores columna. ¿Qué nos dice la condición $(R^T R)_{ij} = \delta_{ij}$ sobre las columnas de $R$?
+      \item[(c)] \textbf{Ortonormalidad de Columnas:} Escribe $R = [\vec{c}_1 \mid \vec{c}_2 \mid \vec{c}_3]$ en términos de sus columnas. ¿Qué nos dice la condición $(R^T R)_{ij} = \delta_{ij}$ sobre las columnas de $R$?
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué la exigencia física de indeformabilidad conduce de manera unívoca a la transpuesta como inversa?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 1: Matrices Ortogonales y el Grupo $O(n)$}
+\begin{frame}{Discusión 1: Definición Formal de Grupo y el Grupo Ortogonal $O(n)$}
   \begin{columns}[c]
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
-        \item \textbf{Definición de Matriz Ortogonal:}
-        \[
-        \boxed{R^T R = I \quad \Longleftrightarrow \quad R^{-1} = R^T}
-        \]
+        \item \textbf{Definición de Grupo $(G, \cdot)$:}
+        Conjunto con operación binaria cerrada, asociativa, con elemento neutro único ($e$) e inverso para cada elemento ($g^{-1}$).
         \item \textbf{Grupo Ortogonal $O(n)$:}
-        Conjunto de todas las transformaciones lineales que preservan distancias y ángulos en $\R^n$.
-        \item \textbf{Columnas Ortonormales:}
-        Las columnas de $R$ forman una base ortonormal:
         \[
-        \vec{c}_i \cdot \vec{c}_j = \delta_{ij}.
+        \boxed{O(n) \equiv \{R \in \mathcal{M}_{n\times n}(\R) \mid R^T R = I\}}
         \]
+        \item \textbf{Verificación de Axiomas:}
+        $(R_1 R_2)^T (R_1 R_2) = R_2^T (R_1^T R_1) R_2 = I$; $I \in O(n)$; $(R^T)^T R^T = I$.
         \item \textbf{Determinante:}
         $\det(R^T R) = (\det R)^2 = 1 \implies \det R = \pm 1$.
       \end{itemize}
     \end{column}
     \begin{column}{0.43\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.9]
+      \begin{tikzpicture}[scale=0.85]
         \coordinate (O) at (0,0);
-        \draw[-{Stealth}, line width=1.4pt, color=orangeacc] (O) -- (2.2, 0.5) node[right, font=\scriptsize\bfseries] {$\vec{c}_1 = R\hat{e}_1$};
-        \draw[-{Stealth}, line width=1.4pt, color=navyaccent] (O) -- (-0.5, 2.2) node[above, font=\scriptsize\bfseries] {$\vec{c}_2 = R\hat{e}_2$};
-        \draw[dashed, color=graymuted] (O) -- (0, 2.0);
+        \draw[-{Stealth}, line width=1.5pt, color=orangeacc] (O) -- (2.2, 0.4) node[right, font=\scriptsize\bfseries] {$\vec{c}_1 = R\hat{e}_1$};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (O) -- (-0.4, 2.2) node[above, font=\scriptsize\bfseries] {$\vec{c}_2 = R\hat{e}_2$};
         \draw[dashed, color=graymuted] (O) -- (2.0, 0);
-        \draw[color=orangeacc, thick] (0.8, 0) arc (0:12.8:0.8);
-        \node[font=\tiny\bfseries, color=orangeacc] at (1.0, 0.15) {$\theta$};
-        \draw[color=navyaccent, thick] (0, 0.8) arc (90:102.8:0.8);
-        \node[font=\tiny\bfseries, color=navyaccent] at (-0.2, 1.0) {$\theta$};
+        \draw[dashed, color=graymuted] (O) -- (0, 2.0);
+        \draw[color=orangeacc, thick] (0.8, 0) arc (0:10.3:0.8);
       \end{tikzpicture}
       \vspace{0.1cm}
-      {\scriptsize Las columnas de $R$ son las imágenes de la base canónica.}
+      {\scriptsize Columnas de $R$: base ortonormal $\vec{c}_i \cdot \vec{c}_j = \delta_{ij}$.}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Qué garantiza que la composición sucesiva de dos movimientos rígidos sea a su vez un movimiento rígido?
+  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -87,10 +112,10 @@
       \item[(b)] \textbf{El Espejo (Reflexión):} Considera la matriz de reflexión horizontal $S = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$. Calcula $S^T S$ y $\det(S)$. ¿Preserva distancias? ¿Puede obtenerse girando continuamente desde la identidad?
     \end{enumerate}
   \end{block}
-  \begin{block}{Definición Clave}
-    \footnotesize
-    El grupo especial ortogonal $SO(n) = \{R \in O(n) \mid \det R = +1\}$ contiene únicamente rotaciones que preservan la orientación (sin reflexiones).
-  \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué la condición de rigidez $R^T R = I$ no basta por sí sola para garantizar que no hubo una reflexión en un espejo?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -99,24 +124,22 @@
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
-        \item \textbf{Matriz de Rotación en 2D:}
+        \item \textbf{El Grupo $SO(n)$:}
         \[
-        R(\theta) = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}, \quad \det R(\theta) = +1.
+        \boxed{SO(n) \equiv \{R \in O(n) \mid \det R = +1\}}
         \]
-        \item \textbf{Propiedad de Grupo:}
-        $R(\theta_1)R(\theta_2) = R(\theta_1+\theta_2)$. En 2D las rotaciones siempre conmutan.
-        \item \textbf{Rotaciones Propias vs. Impropias:}
-        \begin{itemize}
-          \scriptsize
-          \item $\det R = +1$: Rotación pura (preserva orientación / regla de mano derecha).
-          \item $\det R = -1$: Reflexión (invierte la orientación).
-        \end{itemize}
+        \item \textbf{Rotaciones Propias ($\det R = +1$):}
+        Preservan la orientación espacial y la regla de la mano derecha. Conectadas con la identidad $I$.
+        \item \textbf{Reflexiones Impropias ($\det R = -1$):}
+        Preservan distancias pero invierten la orientación.
+        \item \textbf{En el Plano 2D:}
+        $R(\theta_1)R(\theta_2) = R(\theta_1+\theta_2) = R(\theta_2)R(\theta_1)$. $SO(2)$ es un \textbf{grupo abeliano}.
       \end{itemize}
     \end{column}
     \begin{column}{0.43\textwidth}
       \centering
-      \begin{tikzpicture}[scale=0.85]
-        \draw[line width=1.4pt, color=graymuted] (0, -0.6) -- (0, 2.4) node[above, font=\tiny\bfseries] {Espejo};
+      \begin{tikzpicture}[scale=0.82]
+        \draw[line width=1.4pt, color=graymuted] (0, -0.6) -- (0, 2.3) node[above, font=\tiny\bfseries] {Plano Espejo};
         \coordinate (O) at (0,0);
         \draw[-{Stealth}, color=orangeacc, line width=1.4pt] (O) -- (1.8, 0.5) node[right, font=\tiny\bfseries] {$\vec{u}$};
         \draw[-{Stealth}, color=navyaccent, line width=1.4pt] (O) -- (0.5, 1.8) node[above right, font=\tiny\bfseries] {$\vec{v}$};
@@ -124,13 +147,17 @@
         \draw[-{Stealth}, color=navyaccent, dashed, line width=1.4pt] (O) -- (-0.5, 1.8) node[above left, font=\tiny\bfseries] {$\vec{v}^*$};
       \end{tikzpicture}
       \vspace{0.1cm}
-      {\scriptsize Reflexión ($\det R = -1$): no conectada con la identidad.}
+      {\scriptsize Reflexión: $\det S = -1$ invierte orientación.}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Cómo usamos $\epsilon_{ijk}$ para comprobar algebraicamente que una rotación preserva el volumen orientado?
+  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 3: No-Conmutatividad en 3D (El Experimento del Objeto)}
+\begin{frame}{Actividad 3: No-Conmutatividad en 3D y Generadores}
   \begin{block}{Reto en clase (8 minutos)}
     \footnotesize
     Consideremos las rotaciones de $90^\circ$ alrededor del eje $X$ y del eje $Z$:
@@ -139,11 +166,15 @@
     R_z(\pi/2) = \begin{pmatrix} 0 & -1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}.
     \]
     \begin{enumerate}
-      \item[(a)] Calcula el producto matricial $R_1 = R_x(\pi/2) R_z(\pi/2)$.
-      \item[(b)] Calcula el producto en orden inverso $R_2 = R_z(\pi/2) R_x(\pi/2)$.
-      \item[(c)] Compara ambas matrices resultantes. ¿Son iguales? ¿Qué implica esto físicamente para la orientación final de un objeto rígido en el espacio?
+      \item[(a)] Calcula los productos matriciales $R_1 = R_x(\pi/2) R_z(\pi/2)$ y $R_2 = R_z(\pi/2) R_x(\pi/2)$.
+      \item[(b)] Compara ambas matrices resultantes. Calcula el conmutador $[R_x, R_z] = R_x R_z - R_z R_x$.
+      \item[(c)] ¿Qué significa físicamente que $[R_x, R_z] \neq 0$ para la orientación final de un objeto rígido en el espacio?
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué en 2D el orden de los giros es indiferente mientras que en 3D altera radicalmente el resultado?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
@@ -152,15 +183,15 @@
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
-        \item \textbf{Cálculo de los Productos:}
+        \item \textbf{Productos Matriciales:}
         \[
         R_x R_z = \begin{pmatrix} 0 & -1 & 0 \\ 0 & 0 & -1 \\ 1 & 0 & 0 \end{pmatrix} \neq
         R_z R_x = \begin{pmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0 \end{pmatrix}.
         \]
-        \item \textbf{No-Conmutatividad:}
-        En 3D, el orden de los giros altera la posición final. El grupo $SO(3)$ es \textbf{no conmutativo (no abeliano)}.
-        \item \textbf{Rotaciones Alrededor de Ejes Coordinados:}
-        Cada $R_i(\theta)$ deja invariante su propio eje ($R_z \hat{e}_3 = \hat{e}_3$).
+        \item \textbf{El Grupo $SO(3)$ es No Abeliano:}
+        El álgebra de rotaciones tridimensionales no conmuta.
+        \item \textbf{Generadores de Rotación:}
+        Las rotaciones infinitesimales alrededor de cada eje están gobernadas por matrices antisimétricas básicas $\{J_1, J_2, J_3\}$ cuyo conmutador no se anula.
       \end{itemize}
     \end{column}
     \begin{column}{0.43\textwidth}
@@ -179,49 +210,121 @@
       \end{tikzpicture}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Cómo construimos el eje fijo que garantiza el Teorema de Euler a partir del álgebra lineal de $R$?
+  \end{exampleblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Actividad 4: El Eje Fijo y Rotaciones Infinitesimales}
+\begin{frame}{Actividad 4: Rotación Alrededor de un Eje Arbitrario $\hat{n}$}
   \begin{block}{Reto en clase (10 minutos)}
     \footnotesize
+    Queremos rotar un vector $\vec{v}$ un ángulo $\theta$ alrededor de una dirección unitaria arbitraria $\hat{n}$.
     \begin{enumerate}
-      \item[(a)] \textbf{Teorema de Euler:} Demuestra que para todo $R \in SO(3)$, $\det(R - I) = 0$. (\emph{Pista:} Escribe $\det(R - I) = \det[R(I - R^T)]$ y usa $\det(R)=1$ y $\det(M^T)=\det(M)$). ¿Por qué esto garantiza la existencia de un eje de giro $\vec{v}$ con $R\vec{v} = \vec{v}$?
-      \item[(b)] \textbf{Rotaciones Infinitesimales:} Escribe $R \approx I + \Omega\,\delta\theta$. Aplica $R^T R = I$ y demuestra que $\Omega^T = -\Omega$ (matriz antisimétrica).
-      \item[(c)] Si $\Omega = \begin{pmatrix} 0 & -\omega_3 & \omega_2 \\ \omega_3 & 0 & -\omega_1 \\ -\omega_2 & \omega_1 & 0 \end{pmatrix}$, calcula $\Omega\vec{r}$ y verifica que es idéntico a $\vec{\omega} \times \vec{r}$.
+      \item[(a)] Descompón $\vec{v} = \vec{v}_\parallel + \vec{v}_\perp$ donde $\vec{v}_\parallel = (\vec{v}\cdot\hat{n})\hat{n}$. ¿Cuánto vale $R(\hat{n}, \theta)\vec{v}_\parallel$?
+      \item[(b)] En el plano perpendicular a $\hat{n}$, considera el vector $\vec{w} = \hat{n} \times \vec{v}$. Demuestra que $\vec{w}$ es perpendicular a $\vec{v}_\perp$ y tiene su misma longitud ($\|\vec{w}\| = \|\vec{v}_\perp\|$).
+      \item[(c)] Rota $\vec{v}_\perp$ en el plano generado por $\{\vec{v}_\perp, \vec{w}\}$ y deduce la \textbf{Fórmula de Rodrigues}:
+      \[
+      R(\hat{n}, \theta)\vec{v} = \vec{v}\cos\theta + (\hat{n}\times\vec{v})\sin\theta + \hat{n}(\hat{n}\cdot\vec{v})(1 - \cos\theta).
+      \]
     \end{enumerate}
   \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Cómo nos permite la descomposición ortogonal proyectar un problema 3D en un giro 2D estándar?
+  \end{alertblock}
 \end{frame}
 
 % ---------------------------------------------------------------------
-\begin{frame}{Discusión 4: Velocidad Angular $\vec{\omega}$ y Síntesis de la Sesión}
+\begin{frame}{Discusión 4: Fórmula de Rodrigues y Matriz Generadora}
   \begin{columns}[c]
     \begin{column}{0.54\textwidth}
       \footnotesize
       \begin{itemize}
-        \item \textbf{Eje Invariante (Teorema de Euler):}
-        Toda rotación tridimensional tiene un eje fijo: $R\vec{v} = \vec{v}$ ($\lambda = 1$).
-        \item \textbf{Generadores Antisimétricos:}
-        Las rotaciones infinitesimales están gobernadas por matrices antisimétricas $\Omega^T = -\Omega$.
-        \item \textbf{Velocidad Angular:}
+        \item \textbf{Fórmula Vectorial de Rodrigues:}
         \[
-        \boxed{\dot{\vec{r}} = \Omega\vec{r} = \vec{\omega} \times \vec{r}}
+        R\vec{v} = \vec{v}\cos\theta + (\hat{n}\times\vec{v})\sin\theta + \hat{n}(\hat{n}\cdot\vec{v})(1 - \cos\theta)
         \]
-        \item \textbf{Rotaciones vs. Traslaciones:}
-        Las rotaciones son lineales y fijan el origen; las traslaciones $\vec{x}' = \vec{x}+\vec{a}$ son afines y conmutan entre sí.
+        \item \textbf{Forma Matricial:}
+        Definiendo $K\vec{v} \equiv \hat{n} \times \vec{v}$ con $K_{ij} = -\epsilon_{ijk} n_k$:
+        \[
+        \boxed{R(\hat{n}, \theta) = I + (\sin\theta)K + (1 - \cos\theta)K^2}
+        \]
+        \item \textbf{Eje Invariante (Teorema de Euler):}
+        $R\hat{n} = \hat{n}$ ($\lambda = 1$ siempre es valor propio de toda rotación en $\R^3$).
       \end{itemize}
     \end{column}
     \begin{column}{0.43\textwidth}
       \centering
       \begin{tikzpicture}[scale=0.85]
         \coordinate (O) at (0,0);
-        \draw[-{Stealth}, line width=2pt, color=orangeacc] (O) -- (0, 2.5) node[above, font=\small\bfseries] {$\vec{\omega}$ (eje de giro)};
-        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (O) -- (2.0, 0.8) node[right, font=\small\bfseries] {$\vec{r}$};
-        \draw[-{Stealth}, line width=2pt, color=blackmain] (2.0, 0.8) -- (2.0, 2.2) node[above, font=\small\bfseries] {$\dot{\vec{r}} = \vec{\omega} \times \vec{r}$};
-        \draw[color=orangeacc, thick, ->] (0.8, 1.8) arc (0:220:0.8 and 0.3);
+        \coordinate (N) at (0, 2.6);
+        \coordinate (V) at (2.0, 1.4);
+        \coordinate (Vpar) at (0, 1.4);
+        \draw[-{Stealth}, line width=1.8pt, color=orangeacc] (O) -- (N) node[above, font=\scriptsize\bfseries] {$\hat{n}$};
+        \draw[-{Stealth}, line width=1.4pt, color=blackmain] (O) -- (V) node[right, font=\scriptsize\bfseries] {$\vec{v}$};
+        \draw[-{Stealth}, line width=1.4pt, color=orangeacc!80!black] (O) -- (Vpar) node[left, font=\tiny\bfseries] {$\vec{v}_\parallel$};
+        \draw[dashed, color=navyaccent!50] (Vpar) circle (2.0cm and 0.6cm);
       \end{tikzpicture}
     \end{column}
   \end{columns}
+  \begin{exampleblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Cómo se conecta la matriz antisimétrica $K$ con el producto cruz y los índices de Levi-Civita $\epsilon_{ijk}$?
+  \end{exampleblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Actividad 5: Rotaciones Activas frente a Pasivas y Velocidad Angular}
+  \begin{block}{Reto en clase (8 minutos)}
+    \footnotesize
+    \begin{enumerate}
+      \item[(a)] \textbf{Activa vs. Pasiva:} Un sensor mide el vector $\vec{v} = (1, 0)^T$. Si el objeto rota $90^\circ$ en sentido antihorario (rotación activa), ¿cuál es el nuevo vector $\vec{v}'$? Si el objeto no se mueve pero giramos los ejes coordenados $90^\circ$ antihorario (rotación pasiva), ¿cuáles son las nuevas coordenadas $[v']$? Demuestra que $[v'] = R^T [v]$.
+      \item[(b)] \textbf{Rotación Infinitesimal:} Escribe $R \approx I + \Omega\,\delta\theta$. Aplica $R^T R = I$ y demuestra que $\Omega^T = -\Omega$.
+      \item[(c)] Si $\Omega\vec{r} = \vec{\omega} \times \vec{r}$, ¿cuál es la velocidad instantánea $\dot{\vec{r}}$ de un punto en rotación pura?
+    \end{enumerate}
+  \end{block}
+  \begin{alertblock}{Pregunta de Consolidación}
+    \scriptsize
+    ¿Por qué rotar activamente un vector un ángulo $\theta$ produce las mismas coordenadas que rotar los ejes un ángulo $-\theta$?
+  \end{alertblock}
+\end{frame}
+
+% ---------------------------------------------------------------------
+\begin{frame}{Discusión 5: Síntesis Visual y Dinámica de Rotaciones}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \footnotesize
+      \begin{itemize}
+        \item \textbf{Activa vs. Pasiva:}
+        \[
+        \text{Activa: } \vec{v}' = R\vec{v}, \qquad \text{Pasiva: } [v'] = R^{-1}[v] = R^T [v].
+        \]
+        \item \textbf{Rotaciones Infinitesimales y Velocidad Angular:}
+        Toda matriz antisimétrica $\Omega^T = -\Omega$ en $\R^3$ equivale al producto vectorial con una velocidad angular $\vec{\omega}$:
+        \[
+        \boxed{\dot{\vec{r}} = \Omega\vec{r} = \vec{\omega} \times \vec{r}}
+        \]
+        \item \textbf{Rotaciones vs. Traslaciones:}
+        Rotaciones son transformaciones lineales que fijan el origen; traslaciones $\vec{x}' = \vec{x}+\vec{a}$ son transformaciones afines.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.43\textwidth}
+      \centering
+      \begin{tikzpicture}[scale=0.82]
+        \coordinate (O) at (0,0);
+        \draw[-{Stealth}, line width=2pt, color=orangeacc] (O) -- (0, 2.4) node[above, font=\scriptsize\bfseries] {$\vec{\omega}$ (eje de giro)};
+        \draw[-{Stealth}, line width=1.5pt, color=navyaccent] (O) -- (1.8, 0.7) node[right, font=\scriptsize\bfseries] {$\vec{r}$};
+        \draw[-{Stealth}, line width=2pt, color=blackmain] (1.8, 0.7) -- (1.8, 2.0) node[above, font=\scriptsize\bfseries] {$\dot{\vec{r}} = \vec{\omega} \times \vec{r}$};
+        \draw[color=orangeacc, thick, ->] (0.7, 1.7) arc (0:220:0.7 and 0.25);
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \begin{exampleblock}{Pregunta Final de Cierre}
+    \scriptsize
+    ¿Cuál es el significado físico de que los generadores de rotaciones infinitesimales sean matrices antisimétricas?
+  \end{exampleblock}
 \end{frame}
 
 \end{document}
